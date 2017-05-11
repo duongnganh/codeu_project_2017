@@ -14,14 +14,21 @@
 
 package codeu.chat.client.bettergui;
 
-//import java.awt.*;
+import java.io.*;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+
+//import com.jfoenix.*;
+import javafx.fxml.FXML;
+import javafx.scene.layout.AnchorPane;
 
 import codeu.chat.client.ClientContext;
 import codeu.chat.client.Controller;
@@ -31,81 +38,33 @@ import codeu.chat.util.Logger;
 // Chat - top-level client application - Java Better GUI (using JavaFX)
 public final class ChatBetterGui extends Application {
 
-  private final static Logger.Log LOG = Logger.newLog(ChatBetterGui.class);
-
-  //private JFrame mainFrame;
+    private final static Logger.Log LOG = Logger.newLog(ChatBetterGui.class);
 
 
- /* private final ClientContext clientContext;
+    @Override
+    public void start(Stage primaryStage) throws Exception {
 
-  // Constructor - sets up the Chat Application
-  public ChatBetterGui(Controller controller, View view) {
-    clientContext = new ClientContext(controller, view);
-    launch();
-  }
-*/
-  // Run the GUI client
-  /*public void run() {
+        Parent root = FXMLLoader.load(getClass().getResource("/codeu/chat/client/bettergui/Untitled.fxml"));
 
-    try {
+        Scene scene = new Scene(root);
 
-        launch();
-      //initialize();
-      //mainFrame.setVisible(true);
-      //primaryStage.setVisible(true);
+        primaryStage.setScene(scene);
 
-    } catch (Exception ex) {
-      System.out.println("ERROR: Exception in ChatSimpleGui.run. Check log for details.");
-      LOG.error(ex, "Exception in ChatSimpleGui.run");
-      System.exit(1);
+        /*primaryStage.setTitle("Hello World!");
+        Button btn = new Button();
+        btn.setText("Say 'Hello World'");
+        btn.setOnAction(new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent event) {
+                System.out.println("Hello World!");
+            }
+        });
+
+        StackPane root = new StackPane();
+        root.getChildren().add(btn);
+        primaryStage.setScene(new Scene(root, 300, 250));*/
+        primaryStage.show();
     }
-}*/
-
-
-  @Override
-      public void start(Stage primaryStage) {
-          primaryStage.setTitle("Hello World!");
-          Button btn = new Button();
-          btn.setText("Say 'Hello World'");
-          btn.setOnAction(new EventHandler<ActionEvent>() {
-
-              @Override
-              public void handle(ActionEvent event) {
-                  System.out.println("Hello World!");
-              }
-          });
-
-          StackPane root = new StackPane();
-          root.getChildren().add(btn);
-          primaryStage.setScene(new Scene(root, 300, 250));
-          primaryStage.show();
-      }
-
-//private void initialize() {}
-  // Initialize the GUI
- /* private void initialize() {
-
-    // Outermost frame.
-    // NOTE: may have tweak size, or place in scrollable panel.
-    //mainFrame = new JFrame("Chat");
-
-    primaryStage = new Stage();
-    primaryStage.setTitle("Hello World!");
-    Button btn = new Button();
-    btn.setText("Say 'Hello World'");
-    btn.setOnAction(new EventHandler<ActionEvent>() {
-
-        @Override
-        public void handle(ActionEvent event) {
-            System.out.println("Hello World!");
-        }
-    });
-
-    StackPane root = new StackPane();
-    root.getChildren().add(btn);
-    primaryStage.setScene(new Scene(root, 300, 250));
-    primaryStage.show();
-  }
-*/
 
 }
