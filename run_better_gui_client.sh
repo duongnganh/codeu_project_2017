@@ -18,4 +18,4 @@ LOCAL_MACHINE="localhost@2007"
 
 cd './bin'
 
-java -classpath .:jfoenix.jar:third_party/jfoenix.jar codeu.chat.BetterGuiClientMain "$LOCAL_MACHINE"
+java -classpath ".:jfoenix.jar:third_party/jfoenix.jar" codeu.chat.BetterGuiClientMain "$LOCAL_MACHINE"

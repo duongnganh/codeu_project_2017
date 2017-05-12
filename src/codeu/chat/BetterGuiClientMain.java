@@ -32,7 +32,7 @@ final class BetterGuiClientMain {
 
   public static void main(String [] args) {
 
-    try {
+/*    try {
       Logger.enableFileOutput("chat_better_gui_client_log.log");
     } catch (IOException ex) {
       LOG.error(ex, "Failed to set logger to write to file");
@@ -59,7 +59,9 @@ final class BetterGuiClientMain {
     } catch (Exception ex) {
       System.out.println("ERROR: Exception setting up client. Check log for details.");
       LOG.error(ex, "Exception setting up client.");
-    }
+    }*/
+
+      Application.launch(ChatBetterGui.class, args[0]);
   }
 
   private static void runClient(Controller controller, View view) {
@@ -67,7 +69,7 @@ final class BetterGuiClientMain {
     //final ChatSimpleGui chatSimpleGui = new ChatSimpleGui(controller, view);
     //final ChatBetterGui chatSimpleGui = new ChatBetterGui(controller, view);
 
-    Application.launch(ChatBetterGui.class);
+
 
     LOG.info("Created client");
 

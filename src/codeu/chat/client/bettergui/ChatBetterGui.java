@@ -15,40 +15,92 @@
 package codeu.chat.client.bettergui;
 
 import java.io.*;
+import java.util.*;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.Parent;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 
-//import com.jfoenix.*;
+import com.jfoenix.controls.*;
 import javafx.fxml.FXML;
 import javafx.scene.layout.AnchorPane;
 
 import codeu.chat.client.ClientContext;
+import codeu.chat.common.User;
 import codeu.chat.client.Controller;
 import codeu.chat.client.View;
 import codeu.chat.util.Logger;
+
+import codeu.chat.client.Controller;
+import codeu.chat.client.bettergui.ChatBetterGui;
+import codeu.chat.client.View;
+import codeu.chat.util.Logger;
+import codeu.chat.util.RemoteAddress;
+import codeu.chat.util.connections.ClientConnectionSource;
+import codeu.chat.util.connections.ConnectionSource;
 
 // Chat - top-level client application - Java Better GUI (using JavaFX)
 public final class ChatBetterGui extends Application {
 
     private final static Logger.Log LOG = Logger.newLog(ChatBetterGui.class);
 
+    private ClientContext clientContext;
+
+    public static Stage window;
+    Scene s1, s2;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        Parent root = FXMLLoader.load(getClass().getResource("/codeu/chat/client/bettergui/Untitled.fxml"));
+        window = primaryStage;
 
-        Scene scene = new Scene(root);
+        try {
+            Logger.enableFileOutput("chat_better_gui_client_log.log");
+        } catch (IOException ex) {
+            LOG.error(ex, "Failed to set logger to write to file");
+        }
 
-        primaryStage.setScene(scene);
+        LOG.info("============================= START OF LOG =============================");
+
+        LOG.info("Starting chat client...");
+
+        // Start up server connection/interface.
+
+
+        Parameters parameters = getParameters();
+        List<String> unnamed = parameters.getUnnamed();
+
+
+        final RemoteAddress address = RemoteAddress.parse(unnamed.get(0));
+
+        try (
+                final ConnectionSource source = new ClientConnectionSource(address.host, address.port)
+        ) {
+            final Controller controller = new Controller(source);
+            final View view = new View(source);
+
+            clientContext = new ClientContext(controller, view);
+
+            LOG.info("Creating client...");
+            //runClient(controller, view);
+
+        } catch (Exception ex) {
+            System.out.println("ERROR: Exception setting up client. Check log for details.");
+            LOG.error(ex, "Exception setting up client.");
+        }
+
+        Parent root = FXMLLoader.load(getClass().getResource("/codeu/chat/client/bettergui/LoginUI.fxml"));
+
+        s1 = new Scene(root);
+
+        window.setScene(s1);
 
         /*primaryStage.setTitle("Hello World!");
         Button btn = new Button();
@@ -64,7 +116,8 @@ public final class ChatBetterGui extends Application {
         StackPane root = new StackPane();
         root.getChildren().add(btn);
         primaryStage.setScene(new Scene(root, 300, 250));*/
-        primaryStage.show();
+        System.out.print("showing");
+        window.show();
     }
 
 }
