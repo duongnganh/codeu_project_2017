@@ -61,15 +61,11 @@ public final class LoginController {
             System.out.print(u.name);
         }*/
 
-        Parent window1;
-        window1 = FXMLLoader.load(getClass().getResource("/codeu/chat/client/bettergui/MainUI.fxml"));
+        Parent window1 = FXMLLoader.load(getClass().getResource("/codeu/chat/client/bettergui/MainUI.fxml"));
 
-        //Scene newSceneWindow1 = new Scene(window1);
+        Stage mainStage = (Stage) anchorPane.getScene().getWindow();
 
-        Stage mainStage;
-        //mainStage = (Stage)  ((Node)event.getSource()).getScene().getWindow();
-        mainStage = ChatBetterGui.window;
-        mainStage.getScene().setRoot(window1); //we dont need to change whole sceene, only set new root.
+        mainStage.getScene().setRoot(window1);
 
     }
 

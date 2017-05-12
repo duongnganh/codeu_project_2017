@@ -53,13 +53,10 @@ public final class ChatBetterGui extends Application {
 
     private ClientContext clientContext;
 
-    public static Stage window;
     Scene s1, s2;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-
-        window = primaryStage;
 
         try {
             Logger.enableFileOutput("chat_better_gui_client_log.log");
@@ -100,7 +97,7 @@ public final class ChatBetterGui extends Application {
 
         s1 = new Scene(root);
 
-        window.setScene(s1);
+        primaryStage.setScene(s1);
 
         /*primaryStage.setTitle("Hello World!");
         Button btn = new Button();
@@ -117,7 +114,7 @@ public final class ChatBetterGui extends Application {
         root.getChildren().add(btn);
         primaryStage.setScene(new Scene(root, 300, 250));*/
         System.out.print("showing");
-        window.show();
+        primaryStage.show();
     }
 
 }
