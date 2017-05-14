@@ -55,7 +55,7 @@ public final class LoginController {
 
     @FXML
     void onLoginButtonClick(ActionEvent event) throws Exception {
-        System.out.print("clicked");
+
         /*clientContext.user.addUser("Testname");
         for (final User u : clientContext.user.getUsers()) {
             System.out.print(u.name);
@@ -64,6 +64,9 @@ public final class LoginController {
         Parent window1 = FXMLLoader.load(getClass().getResource("/codeu/chat/client/bettergui/MainUI.fxml"));
 
         Stage mainStage = (Stage) anchorPane.getScene().getWindow();
+
+        mainStage.setHeight(650);
+        mainStage.setWidth(800);
 
         mainStage.getScene().setRoot(window1);
 

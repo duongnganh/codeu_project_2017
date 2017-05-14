@@ -23,7 +23,6 @@
                         <Font size="24.0" />
                     </font>
                 </Label>
-            <JFXButton fx:id="test" layoutX="158.0" layoutY="79.0" onAction="#onLoginButtonClick" text="TEST" />
             </children>
             <effect>
                 <DropShadow blurType="GAUSSIAN" />
