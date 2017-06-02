@@ -47,9 +47,9 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 
-public final class LoginController implements Initializable {
+public final class RegistrationController implements Initializable {
 
-    private final static Logger.Log LOG = Logger.newLog(LoginController.class);
+    private final static Logger.Log LOG = Logger.newLog(RegistrationController.class);
 
     ClientContext clientContext;
 
@@ -68,24 +68,29 @@ public final class LoginController implements Initializable {
     private AnchorPane anchorPane;
 
     @FXML
-    private JFXPasswordField pass;
+    private JFXPasswordField password;
 
     @FXML
-    private JFXButton login;
+    private JFXButton registration;
 
     @FXML
-    private JFXButton register;
+    private JFXButton back;
 
     @FXML
     private JFXTextField username;
 
     @FXML
-    void onLoginButtonClick(ActionEvent event) throws Exception {
+    private JFXTextField nickname;
 
-        String username = this.pass.getText();
-        String password = this.username.getText();
 
-        Boolean status = clientContext.user.signInUser(username, password);
+    @FXML
+    void onRegistrationButtonClick(ActionEvent event) throws Exception {
+
+        String username = this.username.getText();
+        String password = this.password.getText();
+        String nickname = this.nickname.getText();
+
+        Boolean status = clientContext.user.addUser(username, nickname, password);
 
         if (status) {
             Parent window1 = FXMLLoader.load(getClass().getResource("/codeu/chat/client/bettergui/MainUI.fxml"));
@@ -100,23 +105,23 @@ public final class LoginController implements Initializable {
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Error!");
             alert.setHeaderText(null);
-            alert.setContentText("Entered user credentials are not correct!");
-
+            alert.setContentText("Please enter a unique username that only consists of alphabets");
             alert.showAndWait();
         }
 
     }
 
     @FXML
-    void onRegisterButtonClick(ActionEvent event) throws Exception {
-        LOG.info("Register button gets called");
-        Parent window2 = FXMLLoader.load(getClass().getResource("/codeu/chat/client/bettergui/RegistrationUI.fxml"));
+    void onBackButtonClick(ActionEvent event) throws Exception {
 
-        Stage stage = (Stage) anchorPane.getScene().getWindow();
+        Parent window1 = FXMLLoader.load(getClass().getResource("/codeu/chat/client/bettergui/LoginUI.fxml"));
 
-        stage.setHeight(475);
-        stage.setWidth(427);
-        stage.getScene().setRoot(window2);
+        Stage mainStage = (Stage) anchorPane.getScene().getWindow();
+
+        mainStage.setHeight(650);
+        mainStage.setWidth(800);
+
+        mainStage.getScene().setRoot(window1);
 
     }
 
