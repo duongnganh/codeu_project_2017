@@ -21,6 +21,7 @@ codeu/chat/util/Uuid.class
 codeu/chat/util/Serializers$3.class
 codeu/chat/createTable.class
 codeu/chat/common/BasicController.class
+codeu/chat/client/bettergui/RegistrationController.class
 codeu/chat/util/connections/ClientConnectionSource$1.class
 codeu/chat/common/Group$1.class
 codeu/chat/util/Timeline$1.class

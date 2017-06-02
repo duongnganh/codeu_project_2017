@@ -154,7 +154,7 @@ public final class UserPanel extends JPanel {
       public void actionPerformed(ActionEvent e) {
 <span class="nc bnc" id="L155" title="All 2 branches missed.">        if (userList.getSelectedIndex() != -1) {</span>
 <span class="nc" id="L156">          final String data = userList.getSelectedValue();</span>
-<span class="nc" id="L157">          clientContext.user.signInUser(data);</span>
+          //clientContext.user.signInUser(data);
 <span class="nc" id="L158">          userSignedInLabel.setText(&quot;Hello &quot; + data);</span>
         }
 <span class="nc" id="L160">      }</span>
@@ -167,7 +167,7 @@ public final class UserPanel extends JPanel {
             UserPanel.this, &quot;Enter user name:&quot;, &quot;Add User&quot;, JOptionPane.PLAIN_MESSAGE,
             null, null, &quot;&quot;);
 <span class="nc bnc" id="L169" title="All 4 branches missed.">        if (s != null &amp;&amp; s.length() &gt; 0) {</span>
-<span class="nc" id="L170">          clientContext.user.addUser(s);</span>
+          //clientContext.user.addUser(s);
 <span class="nc" id="L171">          UserPanel.this.getAllUsers(listModel);</span>
         }
 <span class="nc" id="L173">      }</span>

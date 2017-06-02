@@ -1,6 +1,6 @@
 GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
 cloud-bigtable-hello-world,codeu.chat.client,ClientUser.new Comparator() {...},37,0,12,0,6,0,8,0,2,0
-cloud-bigtable-hello-world,codeu.chat.client,ClientUser,515,0,60,0,105,0,54,0,24,0
+cloud-bigtable-hello-world,codeu.chat.client,ClientUser,516,0,60,0,105,0,53,0,23,0
 cloud-bigtable-hello-world,codeu.chat.client,Controller,820,0,84,0,116,0,52,0,10,0
 cloud-bigtable-hello-world,codeu.chat.client,View,1332,0,140,0,173,0,86,0,16,0
 cloud-bigtable-hello-world,codeu.chat.client,ClientMessage,496,0,60,0,95,0,51,0,21,0
@@ -44,7 +44,8 @@ cloud-bigtable-hello-world,codeu.chat,RelayMain.new Runnable() {...},33,0,0,0,6,
 cloud-bigtable-hello-world,codeu.chat,RelayMain.new Runnable() {...},23,0,0,0,6,0,2,0,2,0
 cloud-bigtable-hello-world,codeu.chat,deleteTable,152,0,12,0,27,0,11,0,5,0
 cloud-bigtable-hello-world,codeu.chat,createTable,172,0,12,0,29,0,12,0,6,0
-cloud-bigtable-hello-world,codeu.chat.client.bettergui,LoginController,76,0,2,0,18,0,6,0,5,0
+cloud-bigtable-hello-world,codeu.chat.client.bettergui,RegistrationController,111,0,2,0,30,0,7,0,6,0
+cloud-bigtable-hello-world,codeu.chat.client.bettergui,LoginController,112,0,2,0,30,0,7,0,6,0
 cloud-bigtable-hello-world,codeu.chat.client.bettergui,ChatBetterGui,152,0,8,0,29,0,7,0,3,0
 cloud-bigtable-hello-world,codeu.chat.client.bettergui,MainUIController,60,0,0,0,12,0,3,0,3,0
 cloud-bigtable-hello-world,codeu.chat.util.store,StoreLink,0,12,0,0,0,5,0,1,0,1
@@ -54,8 +55,8 @@ cloud-bigtable-hello-world,codeu.chat.util.store,LinkIterator,1,40,0,4,1,9,1,5,1
 cloud-bigtable-hello-world,codeu.chat.client.simplegui,ChatSimpleGui,197,0,0,0,55,0,5,0,5,0
 cloud-bigtable-hello-world,codeu.chat.client.simplegui,UserPanel.new ListSelectionListener() {...},32,0,2,0,5,0,3,0,2,0
 cloud-bigtable-hello-world,codeu.chat.client.simplegui,UserPanel.new ActionListener() {...},37,0,4,0,6,0,4,0,2,0
-cloud-bigtable-hello-world,codeu.chat.client.simplegui,UserPanel.new ActionListener() {...},37,0,4,0,6,0,4,0,2,0
-cloud-bigtable-hello-world,codeu.chat.client.simplegui,UserPanel.new ActionListener() {...},41,0,2,0,6,0,3,0,2,0
+cloud-bigtable-hello-world,codeu.chat.client.simplegui,UserPanel.new ActionListener() {...},31,0,4,0,5,0,4,0,2,0
+cloud-bigtable-hello-world,codeu.chat.client.simplegui,UserPanel.new ActionListener() {...},34,0,2,0,5,0,3,0,2,0
 cloud-bigtable-hello-world,codeu.chat.client.simplegui,UserPanel.new ActionListener() {...},15,0,0,0,3,0,2,0,2,0
 cloud-bigtable-hello-world,codeu.chat.client.simplegui,MessagePanel.new ActionListener() {...},70,0,8,0,12,0,6,0,2,0
 cloud-bigtable-hello-world,codeu.chat.client.simplegui,MessagePanel,363,0,10,0,82,0,9,0,4,0
@@ -102,5 +103,5 @@ cloud-bigtable-hello-world,codeu.chat.common,Group.new Serializer() {...},80,3,0
 cloud-bigtable-hello-world,codeu.chat.common,NetworkCode,3,0,0,0,1,0,1,0,1,0
 cloud-bigtable-hello-world,codeu.chat.common,Message.new Serializer() {...},59,3,0,0,14,1,2,1,2,1
 cloud-bigtable-hello-world,codeu.chat.common,ConversationSummary,3,23,0,0,1,8,1,2,1,2
-cloud-bigtable-hello-world,codeu.chat.client.commandline,Chat,970,0,124,0,242,0,80,0,18,0
+cloud-bigtable-hello-world,codeu.chat.client.commandline,Chat,971,0,124,0,242,0,80,0,18,0
 cloud-bigtable-hello-world,codeu.chat.client.commandline,ListNavigator,320,0,42,0,55,0,35,0,14,0
