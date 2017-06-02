@@ -134,7 +134,7 @@ access control, billing, and services.
 
 1. Open the [Cloud Platform Console][cloud-console].
 1. In the drop-down menu at the top, select **Create a project**.
-1. Give your project a name "codeuproject".
+1. Give your project a name "codeuproject12345".
 1. Make a note of the project ID, which might be different from the project
    name. The project ID is used in commands and in configurations.
 
@@ -179,7 +179,7 @@ documentation](https://cloud.google.com/bigtable/docs/creating-instance) to
 create a Google Cloud Platform project and Cloud Bigtable instance if necessary.
 You'll need to reference your project id and instance id to run the
 application.
-Please name your instance "codeuinstance".
+Please name your instance "codeuinstance12345".
 
 
 
