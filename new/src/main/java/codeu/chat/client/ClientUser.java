@@ -113,14 +113,9 @@ public final class ClientUser {
     return current;
   }
 
-  public boolean signInUser(String name) {
-    return signInUser(name, "");
-  }
-
   public boolean signInUser(String name, String pass) {
     // System.out.println("Pass in signInUser "+ pass);
     updateUsers();
-
     final User prev = current;
     if (name != null) {
       final User newCurrent = usersByName.first(name);
@@ -147,7 +142,7 @@ public final class ClientUser {
     addUser(name, "", "");
   }
 
-  public void addUser(String name, String nickname, String pass) {
+  public Boolean addUser(String name, String nickname, String pass) {
     final boolean validInputs = isValidName(name) && isValidNickname(nickname);
     final boolean existed = ifExistedName(name) || ifExistedNickname(nickname);
     final boolean valid = (validInputs && !existed);
@@ -163,7 +158,9 @@ public final class ClientUser {
       LOG.info("New user complete, Name= \"%s\" Nickname= \"%s\" UUID=%s", user.name, user.nickname, user.id);
       // usersByUsername.put(user.name, user);
       updateUsers();
+      return true;
     }
+    return false;
   }
 
   public void addNickname(String name) {

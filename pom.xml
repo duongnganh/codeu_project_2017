@@ -38,5 +38,6 @@ limitations under the License.
     <module>hello-world</module>
     <module>simple-cli</module>
     <module>simple-performance-test</module>
+    <module>jfoenix</module>
   </modules>
 </project>
