@@ -1,5 +1,4 @@
-PROJECTID="codeuproject12345"
-INSTANCEID="codeuinstance12345"
+source IDs
 USERTABLE="user"
 CONVERSATIONTABLE="conversation"
 GROUPTABLE="group"

@@ -22,3 +22,23 @@ Jun 02, 2017 9:45:02 AM codeu.chat.client.bettergui.ChatBetterGui start
 INFO: Starting chat client...
 Jun 02, 2017 9:45:02 AM codeu.chat.client.bettergui.ChatBetterGui start
 INFO: Creating client...
+Jun 02, 2017 11:44:43 AM codeu.chat.client.bettergui.ChatBetterGui start
+INFO: ============================= START OF LOG =============================
+Jun 02, 2017 11:44:43 AM codeu.chat.client.bettergui.ChatBetterGui start
+INFO: Starting chat client...
+Jun 02, 2017 11:44:43 AM codeu.chat.client.bettergui.ChatBetterGui start
+INFO: Creating client...
+Jun 02, 2017 11:44:43 AM codeu.chat.client.bettergui.LoginController initialize
+INFO: initializing
+Jun 02, 2017 11:44:43 AM codeu.chat.client.bettergui.LoginController setClientContext
+INFO: setting client context
+Jun 02, 2017 11:53:41 AM codeu.chat.client.bettergui.ChatBetterGui start
+INFO: ============================= START OF LOG =============================
+Jun 02, 2017 11:53:41 AM codeu.chat.client.bettergui.ChatBetterGui start
+INFO: Starting chat client...
+Jun 02, 2017 11:53:41 AM codeu.chat.client.bettergui.ChatBetterGui start
+INFO: Creating client...
+Jun 02, 2017 11:53:41 AM codeu.chat.client.bettergui.LoginController initialize
+INFO: initializing
+Jun 02, 2017 11:53:41 AM codeu.chat.client.bettergui.LoginController setClientContext
+INFO: setting client context

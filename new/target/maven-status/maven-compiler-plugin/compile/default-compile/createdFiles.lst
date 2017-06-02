@@ -79,6 +79,7 @@ codeu/chat/server/RemoteRelay$Component.class
 codeu/chat/common/NetworkCode.class
 codeu/chat/common/ConversationSummary$1.class
 codeu/chat/server/RemoteRelay$2.class
+codeu/chat/common/IDs.class
 codeu/chat/client/ClientGroup.class
 codeu/chat/common/Relay.class
 codeu/chat/server/Model$1.class

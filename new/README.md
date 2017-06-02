@@ -199,6 +199,12 @@ Build and run the sample using Maven.
        $ sh make-and-test.sh
        ```
 
+  1. If the tables are not yet created, creat tables. This is done once.
+       $ sh run_createTable.sh
+
+     To delete the created tables:
+       $ sh run_deleteTable.sh
+
   1. To run the project you will need to run both the client and the server. Run
      the following two commands in separate shells:
 
