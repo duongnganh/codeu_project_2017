@@ -130,3 +130,55 @@ Jun 02, 2017 10:48:48 AM codeu.chat.ClientMain main
 INFO: Creating client...
 Jun 02, 2017 10:48:48 AM codeu.chat.ClientMain main
 INFO: Created client
+Jun 02, 2017 10:57:53 AM codeu.chat.ClientMain main
+INFO: ============================= START OF LOG =============================
+Jun 02, 2017 10:57:53 AM codeu.chat.ClientMain main
+INFO: Starting chat client...
+Jun 02, 2017 10:57:53 AM codeu.chat.ClientMain main
+INFO: Creating client...
+Jun 02, 2017 10:57:53 AM codeu.chat.ClientMain main
+INFO: Created client
+Jun 02, 2017 10:58:17 AM codeu.chat.client.Controller newUser
+INFO: newUser: Request completed.
+Jun 02, 2017 10:58:19 AM codeu.chat.client.Controller newUser
+INFO: newUser: Response completed.
+Jun 02, 2017 10:58:19 AM codeu.chat.client.ClientUser addUser
+INFO: New user complete, Name= "hello" Nickname= "kkk" UUID=[UUID:0.2616216509]
+Jun 02, 2017 11:12:18 AM codeu.chat.ClientMain main
+INFO: ============================= START OF LOG =============================
+Jun 02, 2017 11:12:18 AM codeu.chat.ClientMain main
+INFO: Starting chat client...
+Jun 02, 2017 11:12:18 AM codeu.chat.ClientMain main
+INFO: Creating client...
+Jun 02, 2017 11:12:18 AM codeu.chat.ClientMain main
+INFO: Created client
+Jun 02, 2017 11:12:30 AM codeu.chat.client.Controller newUser
+INFO: newUser: Request completed.
+Jun 02, 2017 11:12:32 AM codeu.chat.client.Controller newUser
+INFO: newUser: Response completed.
+Jun 02, 2017 11:12:32 AM codeu.chat.client.ClientUser addUser
+INFO: New user complete, Name= "kkk" Nickname= "" UUID=[UUID:0.565959957]
+Jun 02, 2017 11:29:36 AM codeu.chat.ClientMain main
+INFO: ============================= START OF LOG =============================
+Jun 02, 2017 11:29:36 AM codeu.chat.ClientMain main
+INFO: Starting chat client...
+Jun 02, 2017 11:29:36 AM codeu.chat.ClientMain main
+INFO: Creating client...
+Jun 02, 2017 11:29:36 AM codeu.chat.ClientMain main
+INFO: Created client
+Jun 02, 2017 11:30:11 AM codeu.chat.client.Controller newUser
+INFO: newUser: Request completed.
+Jun 02, 2017 11:30:13 AM codeu.chat.client.Controller newUser
+INFO: newUser: Response completed.
+Jun 02, 2017 11:30:13 AM codeu.chat.client.ClientUser addUser
+INFO: New user complete, Name= "duong nguyen anh" Nickname= "elena" UUID=[UUID:0.1060860890]
+Jun 02, 2017 11:30:46 AM codeu.chat.ClientMain main
+INFO: chat client has exited.
+Jun 02, 2017 11:41:27 AM codeu.chat.ClientMain main
+INFO: ============================= START OF LOG =============================
+Jun 02, 2017 11:41:27 AM codeu.chat.ClientMain main
+INFO: Starting chat client...
+Jun 02, 2017 11:41:27 AM codeu.chat.ClientMain main
+INFO: Creating client...
+Jun 02, 2017 11:41:27 AM codeu.chat.ClientMain main
+INFO: Created client

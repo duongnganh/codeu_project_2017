@@ -46,7 +46,7 @@ public final class BasicControllerTest {
         "Check that user has a valid reference",
         user == null);
 
-    model.refresh();
+    model.remove(user);
   }
 
   @Test
@@ -63,7 +63,6 @@ public final class BasicControllerTest {
     assertFalse(
       "Check that user name entered is valid",
       delUser == null);
-    model.refresh();
   }
 
   @Test
@@ -88,7 +87,10 @@ public final class BasicControllerTest {
     assertFalse(
         "Check that conversation has a valid reference",
         conversation == null);
-    model.refresh();
+
+    model.remove(user);
+    model.remove(group);
+    model.remove(conversation);
   }
 
   @Test
@@ -119,7 +121,9 @@ public final class BasicControllerTest {
     assertFalse(
         "Check that conversation ID is valid",
         delConversation == null);
-    model.refresh();
+
+    model.remove(user);
+    model.remove(group);
   }
 
   @Test
@@ -138,7 +142,9 @@ public final class BasicControllerTest {
     assertFalse(
         "Check that group has a valid reference",
         group == null);
-    model.refresh();
+
+    model.remove(user);
+    model.remove(group);
   }
 
   @Test
@@ -171,6 +177,10 @@ public final class BasicControllerTest {
     assertFalse(
         "Check that the message has a valid reference",
         message == null);
-    model.refresh();
+
+    model.remove(user);
+    model.remove(group);
+    model.remove(conversation);
+    model.remove(message);
   }
 }
