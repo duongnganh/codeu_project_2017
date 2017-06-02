@@ -108,25 +108,25 @@ public final class Model {
 
   public void refresh(){
     //Delete all contents. For test purpose
-<span class="fc bfc" id="L111" title="All 2 branches covered.">    if (ifUserUpdated) updateUsers();</span>
-<span class="fc bfc" id="L112" title="All 2 branches covered.">    if (ifConversationUpdated) updateConversations();</span>
-<span class="fc bfc" id="L113" title="All 2 branches covered.">    if (ifGroupUpdated) updateGroups();</span>
-<span class="fc bfc" id="L114" title="All 2 branches covered.">    if (ifMessageUpdated) updateMessages();</span>
+<span class="nc bnc" id="L111" title="All 2 branches missed.">    if (ifUserUpdated) updateUsers();</span>
+<span class="nc bnc" id="L112" title="All 2 branches missed.">    if (ifConversationUpdated) updateConversations();</span>
+<span class="nc bnc" id="L113" title="All 2 branches missed.">    if (ifGroupUpdated) updateGroups();</span>
+<span class="nc bnc" id="L114" title="All 2 branches missed.">    if (ifMessageUpdated) updateMessages();</span>
 
-<span class="fc bfc" id="L116" title="All 2 branches covered.">    for (User user : userByText.all())</span>
-<span class="fc" id="L117">      remove(user);</span>
-<span class="fc bfc" id="L118" title="All 2 branches covered.">    for (Conversation conversation : conversationByText.all())</span>
-<span class="fc" id="L119">      remove(conversation);</span>
-<span class="fc bfc" id="L120" title="All 2 branches covered.">    for (Group group : groupByText.all())</span>
-<span class="fc" id="L121">      remove(group);</span>
-<span class="fc bfc" id="L122" title="All 2 branches covered.">    for (Message message : messageByText.all())</span>
-<span class="fc" id="L123">      remove(message);</span>
+<span class="nc bnc" id="L116" title="All 2 branches missed.">    for (User user : userByText.all())</span>
+<span class="nc" id="L117">      remove(user);</span>
+<span class="nc bnc" id="L118" title="All 2 branches missed.">    for (Conversation conversation : conversationByText.all())</span>
+<span class="nc" id="L119">      remove(conversation);</span>
+<span class="nc bnc" id="L120" title="All 2 branches missed.">    for (Group group : groupByText.all())</span>
+<span class="nc" id="L121">      remove(group);</span>
+<span class="nc bnc" id="L122" title="All 2 branches missed.">    for (Message message : messageByText.all())</span>
+<span class="nc" id="L123">      remove(message);</span>
 
-<span class="fc" id="L125">    ifUserUpdated = false;</span>
-<span class="fc" id="L126">    ifConversationUpdated = false;</span>
-<span class="fc" id="L127">    ifGroupUpdated = false;</span>
-<span class="fc" id="L128">    ifMessageUpdated = false;</span>
-<span class="fc" id="L129">  }</span>
+<span class="nc" id="L125">    ifUserUpdated = false;</span>
+<span class="nc" id="L126">    ifConversationUpdated = false;</span>
+<span class="nc" id="L127">    ifGroupUpdated = false;</span>
+<span class="nc" id="L128">    ifMessageUpdated = false;</span>
+<span class="nc" id="L129">  }</span>
   // ================================= USER ========================================
 
   public void add(User user) {
@@ -412,81 +412,85 @@ public final class Model {
 <span class="fc" id="L412">      put.addColumn(COLUMN_FAMILY_NAME, Bytes.toBytes(&quot;previous&quot;), Bytes.toBytes(Uuid.toUuidString(message.previous)));</span>
 <span class="fc" id="L413">      put.addColumn(COLUMN_FAMILY_NAME, Bytes.toBytes(&quot;creation&quot;), Bytes.toBytes(message.creation.inMs()));</span>
 <span class="fc" id="L414">      put.addColumn(COLUMN_FAMILY_NAME, Bytes.toBytes(&quot;author&quot;), Bytes.toBytes(Uuid.toUuidString(message.author)));</span>
-<span class="fc" id="L415">      put.addColumn(COLUMN_FAMILY_NAME, Bytes.toBytes(&quot;content&quot;), Bytes.toBytes(message.content));</span>
-<span class="fc" id="L416">      table.put(put);</span>
+<span class="fc" id="L415">      put.addColumn(COLUMN_FAMILY_NAME, Bytes.toBytes(&quot;conversation&quot;), Bytes.toBytes(Uuid.toUuidString(message.conversation)));</span>
+<span class="fc" id="L416">      put.addColumn(COLUMN_FAMILY_NAME, Bytes.toBytes(&quot;group&quot;), Bytes.toBytes(Uuid.toUuidString(message.group)));</span>
+<span class="fc" id="L417">      put.addColumn(COLUMN_FAMILY_NAME, Bytes.toBytes(&quot;content&quot;), Bytes.toBytes(message.content));</span>
+<span class="fc" id="L418">      table.put(put);</span>
 
-<span class="pc bpc" id="L418" title="6 of 8 branches missed.">    } catch (IOException e) {</span>
-<span class="nc" id="L419">      System.err.println(&quot;Exception while running Bigtable: &quot; + e.getMessage());</span>
-<span class="nc" id="L420">      e.printStackTrace();</span>
-<span class="fc" id="L421">    }</span>
-<span class="fc" id="L422">    ifMessageUpdated = true;</span>
-<span class="fc" id="L423">  }</span>
+<span class="pc bpc" id="L420" title="6 of 8 branches missed.">    } catch (IOException e) {</span>
+<span class="nc" id="L421">      System.err.println(&quot;Exception while running Bigtable: &quot; + e.getMessage());</span>
+<span class="nc" id="L422">      e.printStackTrace();</span>
+<span class="fc" id="L423">    }</span>
+<span class="fc" id="L424">    ifMessageUpdated = true;</span>
+<span class="fc" id="L425">  }</span>
 
   public void remove(Message message) {
     
-<span class="pc" id="L427">    try (Connection connection = BigtableConfiguration.connect(projectId, instanceId)) {</span>
-<span class="fc" id="L428">      Table table = connection.getTable(TableName.valueOf(Bytes.toBytes(messageTable)));</span>
+<span class="pc" id="L429">    try (Connection connection = BigtableConfiguration.connect(projectId, instanceId)) {</span>
+<span class="fc" id="L430">      Table table = connection.getTable(TableName.valueOf(Bytes.toBytes(messageTable)));</span>
 
-<span class="fc" id="L430">      String rowKey = Uuid.toUuidString(message.id);</span>
-<span class="fc" id="L431">      Delete delete = new Delete(Bytes.toBytes(rowKey));</span>
-<span class="fc" id="L432">      table.delete(delete);</span>
+<span class="fc" id="L432">      String rowKey = Uuid.toUuidString(message.id);</span>
+<span class="fc" id="L433">      Delete delete = new Delete(Bytes.toBytes(rowKey));</span>
+<span class="fc" id="L434">      table.delete(delete);</span>
 
-<span class="pc bpc" id="L434" title="6 of 8 branches missed.">    } catch (IOException e) {</span>
-<span class="nc" id="L435">      System.err.println(&quot;Exception while running Bigtable: &quot; + e.getMessage());</span>
-<span class="nc" id="L436">      e.printStackTrace();</span>
-<span class="fc" id="L437">    }</span>
-<span class="fc" id="L438">    ifMessageUpdated = true;</span>
-<span class="fc" id="L439">  }</span>
+<span class="pc bpc" id="L436" title="6 of 8 branches missed.">    } catch (IOException e) {</span>
+<span class="nc" id="L437">      System.err.println(&quot;Exception while running Bigtable: &quot; + e.getMessage());</span>
+<span class="nc" id="L438">      e.printStackTrace();</span>
+<span class="fc" id="L439">    }</span>
+<span class="fc" id="L440">    ifMessageUpdated = true;</span>
+<span class="fc" id="L441">  }</span>
 
   public StoreAccessor&lt;Uuid, Message&gt; messageById() {
-<span class="fc bfc" id="L442" title="All 2 branches covered.">    if (ifMessageUpdated) updateMessages();</span>
-<span class="fc" id="L443">    return messageById;</span>
+<span class="fc bfc" id="L444" title="All 2 branches covered.">    if (ifMessageUpdated) updateMessages();</span>
+<span class="fc" id="L445">    return messageById;</span>
   }
 
   public StoreAccessor&lt;Time, Message&gt; messageByTime() {
-<span class="nc bnc" id="L447" title="All 2 branches missed.">    if (ifMessageUpdated) updateMessages();</span>
-<span class="nc" id="L448">    return messageByTime;</span>
+<span class="nc bnc" id="L449" title="All 2 branches missed.">    if (ifMessageUpdated) updateMessages();</span>
+<span class="nc" id="L450">    return messageByTime;</span>
   }
 
   public StoreAccessor&lt;String, Message&gt; messageByText() {
-<span class="nc bnc" id="L452" title="All 2 branches missed.">    if (ifMessageUpdated) updateMessages();</span>
-<span class="nc" id="L453">    return messageByText;</span>
+<span class="nc bnc" id="L454" title="All 2 branches missed.">    if (ifMessageUpdated) updateMessages();</span>
+<span class="nc" id="L455">    return messageByText;</span>
   }
 
   private void updateMessages(){
 
-<span class="fc" id="L458">    messageById = new Store&lt;&gt;(UUID_COMPARE);</span>
-<span class="fc" id="L459">    messageByTime = new Store&lt;&gt;(TIME_COMPARE);</span>
-<span class="fc" id="L460">    messageByText = new Store&lt;&gt;(STRING_COMPARE);</span>
+<span class="fc" id="L460">    messageById = new Store&lt;&gt;(UUID_COMPARE);</span>
+<span class="fc" id="L461">    messageByTime = new Store&lt;&gt;(TIME_COMPARE);</span>
+<span class="fc" id="L462">    messageByText = new Store&lt;&gt;(STRING_COMPARE);</span>
 
-<span class="pc" id="L462">    try (Connection connection = BigtableConfiguration.connect(projectId, instanceId)) {</span>
-<span class="fc" id="L463">      Table table = connection.getTable(TableName.valueOf(Bytes.toBytes(messageTable)));</span>
-<span class="fc" id="L464">      Scan scan = new Scan();</span>
+<span class="fc" id="L464">    try (Connection connection = BigtableConfiguration.connect(projectId, instanceId)) {</span>
+<span class="fc" id="L465">      Table table = connection.getTable(TableName.valueOf(Bytes.toBytes(messageTable)));</span>
+<span class="fc" id="L466">      Scan scan = new Scan();</span>
 
-<span class="fc" id="L466">      System.out.println(&quot;Scan for all messages:&quot;);</span>
-<span class="fc" id="L467">      ResultScanner scanner = table.getScanner(scan);</span>
+<span class="fc" id="L468">      System.out.println(&quot;Scan for all messages:&quot;);</span>
+<span class="fc" id="L469">      ResultScanner scanner = table.getScanner(scan);</span>
       //Uuid id, Uuid next, Uuid previous, Time creation, Uuid author, String content
-<span class="fc bfc" id="L469" title="All 2 branches covered.">      for (Result row : scanner) {</span>
-<span class="fc" id="L470">        Uuid id = Uuid.fromUuidString(Bytes.toString(row.getValue(COLUMN_FAMILY_NAME, Bytes.toBytes(&quot;id&quot;))));</span>
-<span class="fc" id="L471">        Uuid next = Uuid.fromUuidString(Bytes.toString(row.getValue(COLUMN_FAMILY_NAME, Bytes.toBytes(&quot;next&quot;))));</span>
-<span class="fc" id="L472">        Uuid previous = Uuid.fromUuidString(Bytes.toString(row.getValue(COLUMN_FAMILY_NAME, Bytes.toBytes(&quot;previous&quot;))));</span>
-<span class="fc" id="L473">        Time creation = Time.fromMs(Bytes.toLong(row.getValue(COLUMN_FAMILY_NAME, Bytes.toBytes(&quot;creation&quot;))));</span>
-<span class="fc" id="L474">        Uuid author = Uuid.fromUuidString(Bytes.toString(row.getValue(COLUMN_FAMILY_NAME, Bytes.toBytes(&quot;author&quot;))));</span>
-<span class="fc" id="L475">        String content = Bytes.toString(row.getValue(COLUMN_FAMILY_NAME, Bytes.toBytes(&quot;content&quot;)));</span>
+<span class="fc bfc" id="L471" title="All 2 branches covered.">      for (Result row : scanner) {</span>
+<span class="fc" id="L472">        Uuid id = Uuid.fromUuidString(Bytes.toString(row.getValue(COLUMN_FAMILY_NAME, Bytes.toBytes(&quot;id&quot;))));</span>
+<span class="fc" id="L473">        Uuid next = Uuid.fromUuidString(Bytes.toString(row.getValue(COLUMN_FAMILY_NAME, Bytes.toBytes(&quot;next&quot;))));</span>
+<span class="fc" id="L474">        Uuid previous = Uuid.fromUuidString(Bytes.toString(row.getValue(COLUMN_FAMILY_NAME, Bytes.toBytes(&quot;previous&quot;))));</span>
+<span class="fc" id="L475">        Time creation = Time.fromMs(Bytes.toLong(row.getValue(COLUMN_FAMILY_NAME, Bytes.toBytes(&quot;creation&quot;))));</span>
+<span class="fc" id="L476">        Uuid author = Uuid.fromUuidString(Bytes.toString(row.getValue(COLUMN_FAMILY_NAME, Bytes.toBytes(&quot;author&quot;))));</span>
+<span class="nc" id="L477">        Uuid conversation = Uuid.fromUuidString(Bytes.toString(row.getValue(COLUMN_FAMILY_NAME, Bytes.toBytes(&quot;conversation&quot;))));</span>
+<span class="nc" id="L478">        Uuid group = Uuid.fromUuidString(Bytes.toString(row.getValue(COLUMN_FAMILY_NAME, Bytes.toBytes(&quot;group&quot;))));</span>
+<span class="nc" id="L479">        String content = Bytes.toString(row.getValue(COLUMN_FAMILY_NAME, Bytes.toBytes(&quot;content&quot;)));</span>
 
-<span class="fc" id="L477">        Message message = new Message(id, next, previous, creation, author, content);</span>
-<span class="fc" id="L478">        messageById.insert(message.id, message);</span>
-<span class="fc" id="L479">        messageByTime.insert(message.creation, message);</span>
+<span class="nc" id="L481">        Message message = new Message(id, next, previous, creation, author, conversation, group, content);</span>
+<span class="nc" id="L482">        messageById.insert(message.id, message);</span>
+<span class="nc" id="L483">        messageByTime.insert(message.creation, message);</span>
         // TODO: check here
-<span class="fc" id="L481">        messageByText.insert(message.content, message);</span>
-<span class="fc" id="L482">      }</span>
+<span class="nc" id="L485">        messageByText.insert(message.content, message);</span>
+<span class="nc" id="L486">      }</span>
 
-<span class="pc bpc" id="L484" title="6 of 8 branches missed.">    } catch (IOException e) {</span>
-<span class="nc" id="L485">      System.err.println(&quot;Exception while running GetUsers in Model: &quot; + e.getMessage());</span>
-<span class="nc" id="L486">      e.printStackTrace();</span>
-<span class="fc" id="L487">    }</span>
-<span class="fc" id="L488">    ifMessageUpdated = false;</span>
-<span class="fc" id="L489">  }</span>
+<span class="pc bpc" id="L488" title="4 of 8 branches missed.">    } catch (IOException e) {</span>
+<span class="nc" id="L489">      System.err.println(&quot;Exception while running GetUsers in Model: &quot; + e.getMessage());</span>
+<span class="nc" id="L490">      e.printStackTrace();</span>
+<span class="fc" id="L491">    }</span>
+<span class="fc" id="L492">    ifMessageUpdated = false;</span>
+<span class="fc" id="L493">  }</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

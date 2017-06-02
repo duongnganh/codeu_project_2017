@@ -17,6 +17,7 @@ package codeu.chat.client.commandline;
 import java.util.Scanner;
 
 import codeu.chat.client.ClientContext;
+import codeu.chat.client.ClientConversation;
 import codeu.chat.client.Controller;
 import codeu.chat.client.View;
 import codeu.chat.common.ConversationSummary;
@@ -167,8 +168,11 @@ public final class Chat {
       }
 
     } else if (token.equals("g-list-all")) {
-
-      clientContext.group.showAllGroups();
+      if (!clientContext.user.hasCurrent()) {
+        System.out.println("ERROR: Not signed in.");
+      } else {
+        clientContext.group.showAllGroups();
+      }
 
     } else if (token.equals("g-select")) {
 
@@ -178,14 +182,16 @@ public final class Chat {
 
       if (!clientContext.user.hasCurrent()) {
         System.out.println("ERROR: Not signed in.");
-    } else if (!clientContext.group.hasCurrent()) {
+      } else if (!clientContext.group.hasCurrent()) {
         System.out.println("ERROR: No group selected.");
       } else {
         if (!tokenScanner.hasNext()) {
           System.out.println("ERROR: Conversation title not supplied.");
         } else {
           final String title = tokenScanner.nextLine().trim();
-          clientContext.conversation.startConversation(title, clientContext.user.getCurrent().id, clientContext.group.getCurrent().id);
+          clientContext.conversation.startConversation(title, 
+            clientContext.user.getCurrent().id, 
+            clientContext.group.getCurrent().id);
         }
       }
 
@@ -205,8 +211,13 @@ public final class Chat {
       }
 
     } else if (token.equals("c-list-all")) {
-
-      clientContext.conversation.showAllConversations();
+      if (!clientContext.user.hasCurrent()) {
+        System.out.println("ERROR: Not signed in.");
+      } else if (!clientContext.group.hasCurrent()) {
+        System.out.println("ERROR: No group selected.");
+      } else {
+        clientContext.conversation.showAllConversations(clientContext.group.getCurrent().id);
+      }
 
     } else if (token.equals("c-select")) {
 
@@ -226,16 +237,22 @@ public final class Chat {
         } else {
           clientContext.message.addMessage(clientContext.user.getCurrent().id,
               clientContext.conversation.getCurrentId(),
+              clientContext.group.getCurrent().id,
               tokenScanner.nextLine().trim());
         }
       }
 
     } else if (token.equals("m-list-all")) {
 
-      if (!clientContext.conversation.hasCurrent()) {
+      if (!clientContext.user.hasCurrent()) {
+        System.out.println("ERROR: Not signed in.");
+      } else if (!clientContext.group.hasCurrent()) {
+        System.out.println("ERROR: No group selected.");
+      } else if (!clientContext.conversation.hasCurrent()) {
         System.out.println("ERROR: No conversation selected.");
       } else {
-        clientContext.message.showAllMessages();
+        clientContext.message.showAllMessages(
+          clientContext.group.getCurrent().id, clientContext.conversation.getCurrent().id);
       }
 
     } else if (token.equals("m-next")) {

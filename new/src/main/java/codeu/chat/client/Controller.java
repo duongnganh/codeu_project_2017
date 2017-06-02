@@ -41,7 +41,7 @@ public class Controller implements BasicController {
   }
 
   @Override
-  public Message newMessage(Uuid author, Uuid conversation, String body) {
+  public Message newMessage(Uuid author, Uuid conversation, Uuid group, String body) {
 
     Message response = null;
 
@@ -50,6 +50,7 @@ public class Controller implements BasicController {
       Serializers.INTEGER.write(connection.out(), NetworkCode.NEW_MESSAGE_REQUEST);
       Uuid.SERIALIZER.write(connection.out(), author);
       Uuid.SERIALIZER.write(connection.out(), conversation);
+      Uuid.SERIALIZER.write(connection.out(), group);
       Serializers.STRING.write(connection.out(), body);
 
       if (Serializers.INTEGER.read(connection.in()) == NetworkCode.NEW_MESSAGE_RESPONSE) {
@@ -167,17 +168,23 @@ public class Controller implements BasicController {
 
   @Override
   public Conversation newConversation(String title, Uuid owner, Uuid group)  {
+    LOG.info("clientnewConversation1");
 
     Conversation response = null;
 
     try (final Connection connection = source.connect()) {
+      LOG.info("clientnewConversation2");
 
       Serializers.INTEGER.write(connection.out(), NetworkCode.NEW_CONVERSATION_REQUEST);
       Serializers.STRING.write(connection.out(), title);
       Uuid.SERIALIZER.write(connection.out(), owner);
+      Uuid.SERIALIZER.write(connection.out(), group);
+
+      LOG.info("clientnewConversation3donewriting");
 
       if (Serializers.INTEGER.read(connection.in()) == NetworkCode.NEW_CONVERSATION_RESPONSE) {
         response = Serializers.nullable(Conversation.SERIALIZER).read(connection.in());
+        LOG.info("clientnewConversation4reading");
       } else {
         LOG.error("Response from server failed.");
       }

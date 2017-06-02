@@ -35,20 +35,24 @@ public final class Message {
 <span class="nc" id="L35">      Uuid.SERIALIZER.write(out, value.previous);</span>
 <span class="nc" id="L36">      Time.SERIALIZER.write(out, value.creation);</span>
 <span class="nc" id="L37">      Uuid.SERIALIZER.write(out, value.author);</span>
-<span class="nc" id="L38">      Serializers.STRING.write(out, value.content);</span>
+<span class="nc" id="L38">      Uuid.SERIALIZER.write(out, value.conversation);</span>
+<span class="nc" id="L39">      Uuid.SERIALIZER.write(out, value.group);</span>
+<span class="nc" id="L40">      Serializers.STRING.write(out, value.content);</span>
 
-<span class="nc" id="L40">    }</span>
+<span class="nc" id="L42">    }</span>
 
     @Override
     public Message read(InputStream in) throws IOException {
 
-<span class="nc" id="L45">      return new Message(</span>
-<span class="nc" id="L46">          Uuid.SERIALIZER.read(in),</span>
-<span class="nc" id="L47">          Uuid.SERIALIZER.read(in),</span>
+<span class="nc" id="L47">      return new Message(</span>
 <span class="nc" id="L48">          Uuid.SERIALIZER.read(in),</span>
-<span class="nc" id="L49">          Time.SERIALIZER.read(in),</span>
+<span class="nc" id="L49">          Uuid.SERIALIZER.read(in),</span>
 <span class="nc" id="L50">          Uuid.SERIALIZER.read(in),</span>
-<span class="nc" id="L51">          Serializers.STRING.read(in)</span>
+<span class="nc" id="L51">          Time.SERIALIZER.read(in),</span>
+<span class="nc" id="L52">          Uuid.SERIALIZER.read(in),</span>
+<span class="nc" id="L53">          Uuid.SERIALIZER.read(in),</span>
+<span class="nc" id="L54">          Uuid.SERIALIZER.read(in),</span>
+<span class="nc" id="L55">          Serializers.STRING.read(in)</span>
       );
 
     }
@@ -58,18 +62,22 @@ public final class Message {
   public final Uuid previous;
   public final Time creation;
   public final Uuid author;
+  public final Uuid conversation;
+  public final Uuid group;
   public final String content;
   public Uuid next;
 
-<span class="fc" id="L64">  public Message(Uuid id, Uuid next, Uuid previous, Time creation, Uuid author, String content) {</span>
+<span class="fc" id="L70">  public Message(Uuid id, Uuid next, Uuid previous, Time creation, Uuid author, Uuid conversation, Uuid group, String content) {</span>
 
-<span class="fc" id="L66">    this.id = id;</span>
-<span class="fc" id="L67">    this.next = next;</span>
-<span class="fc" id="L68">    this.previous = previous;</span>
-<span class="fc" id="L69">    this.creation = creation;</span>
-<span class="fc" id="L70">    this.author = author;</span>
-<span class="fc" id="L71">    this.content = content;</span>
+<span class="fc" id="L72">    this.id = id;</span>
+<span class="fc" id="L73">    this.next = next;</span>
+<span class="fc" id="L74">    this.previous = previous;</span>
+<span class="fc" id="L75">    this.creation = creation;</span>
+<span class="fc" id="L76">    this.author = author;</span>
+<span class="fc" id="L77">    this.conversation = conversation;</span>
+<span class="fc" id="L78">    this.group = group;</span>
+<span class="fc" id="L79">    this.content = content;</span>
 
-<span class="fc" id="L73">  }</span>
+<span class="fc" id="L81">  }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

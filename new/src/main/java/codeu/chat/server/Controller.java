@@ -53,8 +53,8 @@ public final class Controller implements RawController, BasicController {
   // Override Basic Controller
 
   @Override
-  public Message newMessage(Uuid author, Uuid conversation, String body) {
-    return newMessage(createId(), author, conversation, body, Time.now());
+  public Message newMessage(Uuid author, Uuid conversation, Uuid group, String body) {
+    return newMessage(createId(), author, conversation, group, body, Time.now());
   }
 
   @Override
@@ -86,7 +86,7 @@ public final class Controller implements RawController, BasicController {
   // Override Raw Controller
 
   @Override
-  public Message newMessage(Uuid id, Uuid author, Uuid conversation, String body, Time creationTime) {
+  public Message newMessage(Uuid id, Uuid author, Uuid conversation, Uuid group, String body, Time creationTime) {
 
     final User foundUser = model.userById().first(author);
     final Conversation foundConversation = model.conversationById().first(conversation);
@@ -95,7 +95,7 @@ public final class Controller implements RawController, BasicController {
 
     if (foundUser != null && foundConversation != null && isIdFree(id)) {
 
-      message = new Message(id, Uuid.NULL, Uuid.NULL, creationTime, author, body);
+      message = new Message(id, Uuid.NULL, Uuid.NULL, creationTime, author, conversation, group, body);
       model.add(message);
       LOG.info("Message added: %s", message.id);
 
@@ -183,9 +183,7 @@ public final class Controller implements RawController, BasicController {
 
   @Override
   public Conversation newConversation(Uuid id, String title, Uuid owner, Uuid group, Time creationTime) {
-
     final User foundOwner = model.userById().first(owner);
-
     Conversation conversation = null;
 
     if (foundOwner != null && isIdFree(id)) {

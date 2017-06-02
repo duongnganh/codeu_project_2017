@@ -152,11 +152,12 @@ public final class BasicControllerTest {
   public void testAddMessage() {
 
     final User user = controller.newUser("user6", "nickname", "password");
-    final Group group = controller.newGroup("group6", user.id);
 
     assertFalse(
         "Check that user has a valid reference",
         user == null);
+
+    final Group group = controller.newGroup("group6", user.id);
 
     assertFalse(
         "Check that group has a valid reference",
@@ -173,6 +174,7 @@ public final class BasicControllerTest {
     final Message message = controller.newMessage(
         user.id,
         conversation.id,
+        group.id,
         "Hello World Basic");
 
     assertFalse(

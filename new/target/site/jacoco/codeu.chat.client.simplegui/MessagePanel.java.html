@@ -161,31 +161,32 @@ public final class MessagePanel extends JPanel {
 <span class="nc" id="L161">            clientContext.message.addMessage(</span>
 <span class="nc" id="L162">                clientContext.user.getCurrent().id,</span>
 <span class="nc" id="L163">                clientContext.conversation.getCurrentId(),</span>
+<span class="nc" id="L164">                clientContext.group.getCurrent().id,</span>
                 messageText);
-<span class="nc" id="L165">            MessagePanel.this.getAllMessages(clientContext.conversation.getCurrent());</span>
+<span class="nc" id="L166">            MessagePanel.this.getAllMessages(clientContext.conversation.getCurrent());</span>
           }
         }
-<span class="nc" id="L168">      }</span>
+<span class="nc" id="L169">      }</span>
     });
 
     // Panel is set up. If there is a current conversation, Populate the conversation list.
-<span class="nc" id="L172">    getAllMessages(clientContext.conversation.getCurrent());</span>
-<span class="nc" id="L173">  }</span>
+<span class="nc" id="L173">    getAllMessages(clientContext.conversation.getCurrent());</span>
+<span class="nc" id="L174">  }</span>
 
   // Populate ListModel
   // TODO: don't refetch messages if current conversation not changed
   private void getAllMessages(ConversationSummary conversation) {
-<span class="nc" id="L178">    messageListModel.clear();</span>
+<span class="nc" id="L179">    messageListModel.clear();</span>
 
-<span class="nc bnc" id="L180" title="All 2 branches missed.">    for (final Message m : clientContext.message.getConversationContents(conversation)) {</span>
+<span class="nc bnc" id="L181" title="All 2 branches missed.">    for (final Message m : clientContext.message.getConversationContents(conversation)) {</span>
       // Display author name if available.  Otherwise display the author UUID.
-<span class="nc" id="L182">      final String authorName = clientContext.user.getName(m.author);</span>
+<span class="nc" id="L183">      final String authorName = clientContext.user.getName(m.author);</span>
 
-<span class="nc bnc" id="L184" title="All 2 branches missed.">      final String displayString = String.format(&quot;%s: [%s]: %s&quot;,</span>
-<span class="nc" id="L185">          ((authorName == null) ? m.author : authorName), m.creation, m.content);</span>
+<span class="nc bnc" id="L185" title="All 2 branches missed.">      final String displayString = String.format(&quot;%s: [%s]: %s&quot;,</span>
+<span class="nc" id="L186">          ((authorName == null) ? m.author : authorName), m.creation, m.content);</span>
 
-<span class="nc" id="L187">      messageListModel.addElement(displayString);</span>
-<span class="nc" id="L188">    }</span>
-<span class="nc" id="L189">  }</span>
+<span class="nc" id="L188">      messageListModel.addElement(displayString);</span>
+<span class="nc" id="L189">    }</span>
+<span class="nc" id="L190">  }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

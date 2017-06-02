@@ -412,6 +412,8 @@ public final class Model {
       put.addColumn(COLUMN_FAMILY_NAME, Bytes.toBytes("previous"), Bytes.toBytes(Uuid.toUuidString(message.previous)));
       put.addColumn(COLUMN_FAMILY_NAME, Bytes.toBytes("creation"), Bytes.toBytes(message.creation.inMs()));
       put.addColumn(COLUMN_FAMILY_NAME, Bytes.toBytes("author"), Bytes.toBytes(Uuid.toUuidString(message.author)));
+      put.addColumn(COLUMN_FAMILY_NAME, Bytes.toBytes("conversation"), Bytes.toBytes(Uuid.toUuidString(message.conversation)));
+      put.addColumn(COLUMN_FAMILY_NAME, Bytes.toBytes("group"), Bytes.toBytes(Uuid.toUuidString(message.group)));
       put.addColumn(COLUMN_FAMILY_NAME, Bytes.toBytes("content"), Bytes.toBytes(message.content));
       table.put(put);
 
@@ -472,9 +474,11 @@ public final class Model {
         Uuid previous = Uuid.fromUuidString(Bytes.toString(row.getValue(COLUMN_FAMILY_NAME, Bytes.toBytes("previous"))));
         Time creation = Time.fromMs(Bytes.toLong(row.getValue(COLUMN_FAMILY_NAME, Bytes.toBytes("creation"))));
         Uuid author = Uuid.fromUuidString(Bytes.toString(row.getValue(COLUMN_FAMILY_NAME, Bytes.toBytes("author"))));
+        Uuid conversation = Uuid.fromUuidString(Bytes.toString(row.getValue(COLUMN_FAMILY_NAME, Bytes.toBytes("conversation"))));
+        Uuid group = Uuid.fromUuidString(Bytes.toString(row.getValue(COLUMN_FAMILY_NAME, Bytes.toBytes("group"))));
         String content = Bytes.toString(row.getValue(COLUMN_FAMILY_NAME, Bytes.toBytes("content")));
 
-        Message message = new Message(id, next, previous, creation, author, content);
+        Message message = new Message(id, next, previous, creation, author, conversation, group, content);
         messageById.insert(message.id, message);
         messageByTime.insert(message.creation, message);
         // TODO: check here
