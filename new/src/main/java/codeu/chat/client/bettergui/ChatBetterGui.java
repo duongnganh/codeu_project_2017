@@ -74,11 +74,10 @@ public final class ChatBetterGui extends Application {
         Parameters parameters = getParameters();
         List<String> unnamed = parameters.getUnnamed();
 
-
         final RemoteAddress address = RemoteAddress.parse(unnamed.get(0));
 
         try (
-            final ConnectionSource source = new ClientConnectionSource(address.host, address.port)
+                final ConnectionSource source = new ClientConnectionSource(address.host, address.port)
         ) {
             final Controller controller = new Controller(source);
             final View view = new View(source);
@@ -93,8 +92,13 @@ public final class ChatBetterGui extends Application {
             LOG.error(ex, "Exception setting up client.");
         }
 
-        // Parent root = FXMLLoader.load(getClass().getResource("/codeu/chat/client/bettergui/LoginUI.fxml"));
-        Parent root = FXMLLoader.load(getClass().getResource("LoginUI.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/codeu/chat/client/bettergui/LoginUI.fxml"));
+
+        Parent root = loader.load();
+
+        LoginController loginController = loader.getController();
+
+        loginController.setClientContext(clientContext);
 
         s1 = new Scene(root);
 
