@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Chat.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">cloud-bigtable-hello-world</a> &gt; <a href="index.source.html" class="el_package">codeu.chat.client.commandline</a> &gt; <span class="el_source">Chat.java</span></div><h1>Chat.java</h1><pre class="source lang-java linenums">// Copyright 2017 Google Inc.
+//
+// Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+package codeu.chat.client.commandline;
+
+import java.util.Scanner;
+
+import codeu.chat.client.ClientContext;
+import codeu.chat.client.Controller;
+import codeu.chat.client.View;
+import codeu.chat.common.ConversationSummary;
+import codeu.chat.common.GroupSummary;
+import codeu.chat.util.Logger;
+import java.io.Console;
+import codeu.chat.util.Uuid;
+
+// Chat - top-level client application.
+public final class Chat {
+
+<span class="nc" id="L31">  private final static Logger.Log LOG = Logger.newLog(Chat.class);</span>
+
+  private static final String PROMPT = &quot;&gt;&gt;&quot;;
+
+  private final static int PAGE_SIZE = 10;
+
+<span class="nc" id="L37">  private boolean alive = true;</span>
+
+  private final ClientContext clientContext;
+
+  // Constructor - sets up the Chat Application
+<span class="nc" id="L42">  public Chat(Controller controller, View view) {</span>
+<span class="nc" id="L43">    clientContext = new ClientContext(controller, view);</span>
+<span class="nc" id="L44">  }</span>
+
+  // Print help message.
+  private static void help() {
+<span class="nc" id="L48">    System.out.println(&quot;Chat commands:&quot;);</span>
+<span class="nc" id="L49">    System.out.println(&quot;   exit      - exit the program.&quot;);</span>
+<span class="nc" id="L50">    System.out.println(&quot;   help      - this help message.&quot;);</span>
+<span class="nc" id="L51">    System.out.println(&quot;   sign-in &lt;username&gt;  - sign in as user &lt;username&gt;.&quot;);</span>
+<span class="nc" id="L52">    System.out.println(&quot;   sign-out  - sign out current user.&quot;);</span>
+<span class="nc" id="L53">    System.out.println(&quot;   current   - show current user, conversation, message.&quot;);</span>
+<span class="nc" id="L54">    System.out.println(&quot;User commands:&quot;);</span>
+<span class="nc" id="L55">    System.out.println(&quot;   u-add &lt;name&gt; [n-add &lt;nickname&gt;] - add a new user [with nickname]&quot;);</span>
+<span class="nc" id="L56">    System.out.println(&quot;   u-delete &lt;username&gt; - delete an existing user&quot;);</span>
+<span class="nc" id="L57">    System.out.println(&quot;   u-list-all    - list all users known to system.&quot;);</span>
+<span class="nc" id="L58">    System.out.println(&quot;Nickname commands:&quot;);</span>
+<span class="nc" id="L59">    System.out.println(&quot;   n-add &lt;name&gt;  - set a new nickname for the current user&quot;);</span>
+<span class="nc" id="L60">    System.out.println(&quot;Group commands:&quot;);</span>
+<span class="nc" id="L61">    System.out.println(&quot;   g-add &lt;title&gt;    - add a new group.&quot;);</span>
+<span class="nc" id="L62">    System.out.println(&quot;   g-list-all       - list all groups known to system.&quot;);</span>
+<span class="nc" id="L63">    System.out.println(&quot;   g-select &lt;index&gt; - select group from list.&quot;);</span>
+<span class="nc" id="L64">    System.out.println(&quot;Conversation commands:&quot;);</span>
+<span class="nc" id="L65">    System.out.println(&quot;   c-add &lt;title&gt;    - add a new conversation.&quot;);</span>
+<span class="nc" id="L66">    System.out.println(&quot;   c-list-all       - list all conversations known to system.&quot;);</span>
+<span class="nc" id="L67">    System.out.println(&quot;   c-select &lt;index&gt; - select conversation from list.&quot;);</span>
+<span class="nc" id="L68">    System.out.println(&quot;   c-delete &lt;title&gt; - delete a conversation by ID&quot;);</span>
+<span class="nc" id="L69">    System.out.println(&quot;Message commands:&quot;);</span>
+<span class="nc" id="L70">    System.out.println(&quot;   m-add &lt;body&gt;     - add a new message to the current conversation.&quot;);</span>
+<span class="nc" id="L71">    System.out.println(&quot;   m-list-all       - list all messages in the current conversation.&quot;);</span>
+<span class="nc" id="L72">    System.out.println(&quot;   m-next &lt;index&gt;   - index of next message to view.&quot;);</span>
+<span class="nc" id="L73">    System.out.println(&quot;   m-show &lt;count&gt;   - show next &lt;count&gt; messages.&quot;);</span>
+<span class="nc" id="L74">  }</span>
+
+  // Prompt for new command.
+  private void promptForCommand() {
+<span class="nc" id="L78">    System.out.print(PROMPT);</span>
+<span class="nc" id="L79">    System.out.flush();</span>
+<span class="nc" id="L80">  }</span>
+
+  // Parse and execute a single command.
+  private void doOneCommand(Scanner lineScanner) {
+
+<span class="nc" id="L85">    final Scanner tokenScanner = new Scanner(lineScanner.nextLine());</span>
+<span class="nc bnc" id="L86" title="All 2 branches missed.">    if (!tokenScanner.hasNext()) {</span>
+<span class="nc" id="L87">      return;</span>
+    }
+<span class="nc" id="L89">    final String token = tokenScanner.next();</span>
+
+<span class="nc bnc" id="L91" title="All 2 branches missed.">    if (token.equals(&quot;exit&quot;)) {</span>
+
+<span class="nc" id="L93">      alive = false;</span>
+
+<span class="nc bnc" id="L95" title="All 2 branches missed.">    } else if (token.equals(&quot;help&quot;)) {</span>
+
+<span class="nc" id="L97">      help();</span>
+
+<span class="nc bnc" id="L99" title="All 2 branches missed.">    } else if (token.equals(&quot;sign-in&quot;)) {</span>
+
+<span class="nc bnc" id="L101" title="All 2 branches missed.">      if (!tokenScanner.hasNext()) {</span>
+<span class="nc" id="L102">        System.out.println(&quot;ERROR: No user name supplied.&quot;);</span>
+      } else {
+<span class="nc" id="L104">        String username = tokenScanner.nextLine().trim();</span>
+<span class="nc" id="L105">        Console console = System.console();</span>
+<span class="nc" id="L106">        String pass = new String(console.readPassword(&quot;Enter your secret password: &quot;));</span>
+<span class="nc" id="L107">        signInUser(username, pass);</span>
+<span class="nc" id="L108">      }</span>
+
+<span class="nc bnc" id="L110" title="All 2 branches missed.">    } else if (token.equals(&quot;sign-out&quot;)) {</span>
+
+<span class="nc bnc" id="L112" title="All 2 branches missed.">      if (!clientContext.user.hasCurrent()) {</span>
+<span class="nc" id="L113">        System.out.println(&quot;ERROR: Not signed in.&quot;);</span>
+      } else {
+<span class="nc" id="L115">        signOutUser();</span>
+      }
+
+<span class="nc bnc" id="L118" title="All 2 branches missed.">    } else if (token.equals(&quot;current&quot;)) {</span>
+
+<span class="nc" id="L120">      showCurrent();</span>
+
+<span class="nc bnc" id="L122" title="All 2 branches missed.">    } else if (token.equals(&quot;u-add&quot;)) {</span>
+
+<span class="nc bnc" id="L124" title="All 2 branches missed.">      if (!tokenScanner.hasNext()) {</span>
+<span class="nc" id="L125">        System.out.println(&quot;ERROR: Username not supplied.&quot;);</span>
+      } else {
+<span class="nc" id="L127">        String name = tokenScanner.nextLine().trim();</span>
+<span class="nc" id="L128">        Console console = System.console();</span>
+<span class="nc" id="L129">        String pass = new String(console.readPassword(&quot;Enter your secret password: &quot;));</span>
+<span class="nc" id="L130">        String confirm = new String(console.readPassword(&quot;Confirm your password: &quot;));</span>
+<span class="nc" id="L131">        addUser(name, pass, confirm);</span>
+<span class="nc" id="L132">      }</span>
+
+<span class="nc bnc" id="L134" title="All 2 branches missed.">    } else if (token.equals(&quot;u-delete&quot;)) {</span>
+<span class="nc bnc" id="L135" title="All 2 branches missed.">      if (!tokenScanner.hasNext()) {</span>
+<span class="nc" id="L136">        System.out.println(&quot;ERROR: Username not supplied.&quot;);</span>
+      } else {
+<span class="nc" id="L138">        String parseId = tokenScanner.nextLine().trim();</span>
+<span class="nc" id="L139">        System.out.format(&quot;PRINT: Username: %s\n&quot;, parseId);</span>
+        //Uuid userId = Uuid.fromString(parseId);
+<span class="nc" id="L141">        deleteUser(parseId);</span>
+<span class="nc" id="L142">      }</span>
+
+<span class="nc bnc" id="L144" title="All 2 branches missed.">    } else if (token.equals(&quot;u-list-all&quot;)) {</span>
+
+<span class="nc" id="L146">      showAllUsers();</span>
+
+<span class="nc bnc" id="L148" title="All 2 branches missed.">    } else if (token.equals(&quot;n-add&quot;)) {</span>
+
+<span class="nc bnc" id="L150" title="All 2 branches missed.">      if (!tokenScanner.hasNext()) {</span>
+<span class="nc" id="L151">        System.out.println(&quot;ERROR: Nickname not supplied.&quot;);</span>
+      } else {
+<span class="nc" id="L153">        addNickname(tokenScanner.nextLine().trim());</span>
+      }
+
+<span class="nc bnc" id="L156" title="All 2 branches missed.">    } else if (token.equals(&quot;g-add&quot;)) {</span>
+
+<span class="nc bnc" id="L158" title="All 2 branches missed.">      if (!clientContext.user.hasCurrent()) {</span>
+<span class="nc" id="L159">        System.out.println(&quot;ERROR: Not signed in.&quot;);</span>
+      } else {
+<span class="nc bnc" id="L161" title="All 2 branches missed.">        if (!tokenScanner.hasNext()) {</span>
+<span class="nc" id="L162">          System.out.println(&quot;ERROR: Group name not supplied.&quot;);</span>
+        } else {
+<span class="nc" id="L164">          final String name = tokenScanner.nextLine().trim();</span>
+<span class="nc" id="L165">          clientContext.group.startGroup(name, clientContext.user.getCurrent().id);</span>
+<span class="nc" id="L166">        }</span>
+      }
+
+<span class="nc bnc" id="L169" title="All 2 branches missed.">    } else if (token.equals(&quot;g-list-all&quot;)) {</span>
+
+<span class="nc" id="L171">      clientContext.group.showAllGroups();</span>
+
+<span class="nc bnc" id="L173" title="All 2 branches missed.">    } else if (token.equals(&quot;g-select&quot;)) {</span>
+
+<span class="nc" id="L175">      selectGroup(lineScanner);</span>
+
+<span class="nc bnc" id="L177" title="All 2 branches missed.">    } else if (token.equals(&quot;c-add&quot;)) {</span>
+
+<span class="nc bnc" id="L179" title="All 2 branches missed.">      if (!clientContext.user.hasCurrent()) {</span>
+<span class="nc" id="L180">        System.out.println(&quot;ERROR: Not signed in.&quot;);</span>
+<span class="nc bnc" id="L181" title="All 2 branches missed.">    } else if (!clientContext.group.hasCurrent()) {</span>
+<span class="nc" id="L182">        System.out.println(&quot;ERROR: No group selected.&quot;);</span>
+      } else {
+<span class="nc bnc" id="L184" title="All 2 branches missed.">        if (!tokenScanner.hasNext()) {</span>
+<span class="nc" id="L185">          System.out.println(&quot;ERROR: Conversation title not supplied.&quot;);</span>
+        } else {
+<span class="nc" id="L187">          final String title = tokenScanner.nextLine().trim();</span>
+<span class="nc" id="L188">          clientContext.conversation.startConversation(title, clientContext.user.getCurrent().id, clientContext.group.getCurrent().id);</span>
+<span class="nc" id="L189">        }</span>
+      }
+
+<span class="nc bnc" id="L192" title="All 2 branches missed.">    } else if (token.equals(&quot;c-delete&quot;)) {</span>
+
+<span class="nc bnc" id="L194" title="All 2 branches missed.">      if (!clientContext.user.hasCurrent()) {</span>
+<span class="nc" id="L195">        System.out.println(&quot;ERROR: Not signed in.&quot;);</span>
+      } else {
+<span class="nc bnc" id="L197" title="All 2 branches missed.">        if (!tokenScanner.hasNext()) {</span>
+<span class="nc" id="L198">          System.out.println(&quot;ERROR: Conversation name not supplied.&quot;);</span>
+        } else {
+<span class="nc" id="L200">          final String title = tokenScanner.nextLine().trim();</span>
+<span class="nc" id="L201">          clientContext.conversation.deleteConversation(title);</span>
+          //Uuid conversationID = Uuid.fromString(title);
+          //clientContext.conversation.deleteConversation(conversationID);
+<span class="nc" id="L204">        }</span>
+      }
+
+<span class="nc bnc" id="L207" title="All 2 branches missed.">    } else if (token.equals(&quot;c-list-all&quot;)) {</span>
+
+<span class="nc" id="L209">      clientContext.conversation.showAllConversations();</span>
+
+<span class="nc bnc" id="L211" title="All 2 branches missed.">    } else if (token.equals(&quot;c-select&quot;)) {</span>
+
+<span class="nc" id="L213">      selectConversation(lineScanner);</span>
+
+<span class="nc bnc" id="L215" title="All 2 branches missed.">    } else if (token.equals(&quot;m-add&quot;)) {</span>
+
+<span class="nc bnc" id="L217" title="All 2 branches missed.">      if (!clientContext.user.hasCurrent()) {</span>
+<span class="nc" id="L218">        System.out.println(&quot;ERROR: Not signed in.&quot;);</span>
+<span class="nc bnc" id="L219" title="All 2 branches missed.">      } else if (!clientContext.group.hasCurrent()) {</span>
+<span class="nc" id="L220">        System.out.println(&quot;ERROR: No group selected.&quot;);</span>
+<span class="nc bnc" id="L221" title="All 2 branches missed.">      } else if (!clientContext.conversation.hasCurrent()) {</span>
+<span class="nc" id="L222">        System.out.println(&quot;ERROR: No conversation selected.&quot;);</span>
+      } else {
+<span class="nc bnc" id="L224" title="All 2 branches missed.">        if (!tokenScanner.hasNext()) {</span>
+<span class="nc" id="L225">          System.out.println(&quot;ERROR: Message body not supplied.&quot;);</span>
+        } else {
+<span class="nc" id="L227">          clientContext.message.addMessage(clientContext.user.getCurrent().id,</span>
+<span class="nc" id="L228">              clientContext.conversation.getCurrentId(),</span>
+<span class="nc" id="L229">              tokenScanner.nextLine().trim());</span>
+        }
+      }
+
+<span class="nc bnc" id="L233" title="All 2 branches missed.">    } else if (token.equals(&quot;m-list-all&quot;)) {</span>
+
+<span class="nc bnc" id="L235" title="All 2 branches missed.">      if (!clientContext.conversation.hasCurrent()) {</span>
+<span class="nc" id="L236">        System.out.println(&quot;ERROR: No conversation selected.&quot;);</span>
+      } else {
+<span class="nc" id="L238">        clientContext.message.showAllMessages();</span>
+      }
+
+<span class="nc bnc" id="L241" title="All 2 branches missed.">    } else if (token.equals(&quot;m-next&quot;)) {</span>
+
+      // TODO: Implement m-next command to jump to an index in the message chain.
+<span class="nc bnc" id="L244" title="All 2 branches missed.">      if (!clientContext.conversation.hasCurrent()) {</span>
+<span class="nc" id="L245">        System.out.println(&quot;ERROR: No conversation selected.&quot;);</span>
+<span class="nc bnc" id="L246" title="All 2 branches missed.">      } else if (!tokenScanner.hasNextInt()) {</span>
+<span class="nc" id="L247">        System.out.println(&quot;Command requires an integer message index.&quot;);</span>
+      } else {
+<span class="nc" id="L249">        clientContext.message.selectMessage(tokenScanner.nextInt());</span>
+      }
+
+<span class="nc bnc" id="L252" title="All 2 branches missed.">    } else if (token.equals(&quot;m-show&quot;)) {</span>
+
+      // TODO: Implement m-show command to show N messages (currently just show all)
+<span class="nc bnc" id="L255" title="All 2 branches missed.">      if (!clientContext.conversation.hasCurrent()) {</span>
+<span class="nc" id="L256">        System.out.println(&quot;ERROR: No conversation selected.&quot;);</span>
+      } else {
+<span class="nc bnc" id="L258" title="All 2 branches missed.">        final int count = (tokenScanner.hasNextInt()) ? tokenScanner.nextInt() : 1;</span>
+<span class="nc" id="L259">        clientContext.message.showMessages(count);</span>
+<span class="nc" id="L260">      }</span>
+
+    } else {
+
+<span class="nc" id="L264">      System.out.format(&quot;Command not recognized: %s\n&quot;, token);</span>
+<span class="nc" id="L265">      System.out.format(&quot;Command line rejected: %s%s\n&quot;, token,</span>
+<span class="nc bnc" id="L266" title="All 2 branches missed.">          (tokenScanner.hasNext()) ? tokenScanner.nextLine() : &quot;&quot;);</span>
+<span class="nc" id="L267">      System.out.println(&quot;Type \&quot;help\&quot; for help.&quot;);</span>
+    }
+<span class="nc" id="L269">    tokenScanner.close();</span>
+<span class="nc" id="L270">  }</span>
+
+  // Sign in a user.
+  private void signInUser(String name, String pass) {
+<span class="nc bnc" id="L274" title="All 2 branches missed.">    if (!clientContext.user.signInUser(name, pass)) {</span>
+<span class="nc" id="L275">      System.out.println(&quot;Error: sign in failed (wrong password?)&quot;);</span>
+    }
+<span class="nc" id="L277">  }</span>
+
+  // Sign out a user.
+  private void signOutUser() {
+<span class="nc bnc" id="L281" title="All 2 branches missed.">    if (!clientContext.user.signOutUser()) {</span>
+<span class="nc" id="L282">      System.out.println(&quot;Error: sign out failed (not signed in?)&quot;);</span>
+    }
+<span class="nc" id="L284">  }</span>
+
+  // Helper for showCurrent() - show message info.
+  private void showCurrentMessage() {
+<span class="nc bnc" id="L288" title="All 2 branches missed.">    if (clientContext.conversation.currentMessageCount() == 0) {</span>
+<span class="nc" id="L289">      System.out.println(&quot; -- no messages in conversation --&quot;);</span>
+    } else {
+<span class="nc" id="L291">      System.out.format(&quot; conversation has %d messages.\n&quot;,</span>
+<span class="nc" id="L292">                        clientContext.conversation.currentMessageCount());</span>
+<span class="nc bnc" id="L293" title="All 2 branches missed.">      if (!clientContext.message.hasCurrent()) {</span>
+<span class="nc" id="L294">        System.out.println(&quot; -- no current message --&quot;);</span>
+      } else {
+<span class="nc" id="L296">        System.out.println(&quot;\nCurrent Message:&quot;);</span>
+<span class="nc" id="L297">        clientContext.message.showCurrent();</span>
+      }
+    }
+<span class="nc" id="L300">  }</span>
+
+  // Show current user, conversation, message, if any
+  private void showCurrent() {
+<span class="nc" id="L304">    boolean displayed = false;</span>
+<span class="nc bnc" id="L305" title="All 2 branches missed.">    if (clientContext.user.hasCurrent()) {</span>
+<span class="nc" id="L306">      System.out.println(&quot;User:&quot;);</span>
+<span class="nc" id="L307">      clientContext.user.showCurrent();</span>
+<span class="nc" id="L308">      System.out.println();</span>
+<span class="nc" id="L309">      displayed = true;</span>
+    }
+
+<span class="nc bnc" id="L312" title="All 2 branches missed.">    if (clientContext.conversation.hasCurrent()) {</span>
+<span class="nc" id="L313">      System.out.println(&quot;Conversation:&quot;);</span>
+<span class="nc" id="L314">      clientContext.conversation.showCurrent();</span>
+
+<span class="nc" id="L316">      showCurrentMessage();</span>
+
+<span class="nc" id="L318">      System.out.println();</span>
+<span class="nc" id="L319">      displayed = true;</span>
+    }
+
+<span class="nc bnc" id="L322" title="All 2 branches missed.">    if (!displayed) {</span>
+<span class="nc" id="L323">      System.out.println(&quot;No current user or conversation.&quot;);</span>
+    }
+<span class="nc" id="L325">  }</span>
+
+  // Display current user.
+  private void showCurrentUser() {
+<span class="nc bnc" id="L329" title="All 2 branches missed.">    if (clientContext.user.hasCurrent()) {</span>
+<span class="nc" id="L330">      clientContext.user.showCurrent();</span>
+    } else {
+<span class="nc" id="L332">      System.out.println(&quot;No current user.&quot;);</span>
+    }
+<span class="nc" id="L334">  }</span>
+
+  // Display current conversation.
+  private void showCurrentConversation() {
+<span class="nc bnc" id="L338" title="All 2 branches missed.">    if (clientContext.conversation.hasCurrent()) {</span>
+<span class="nc" id="L339">      clientContext.conversation.showCurrent();</span>
+    } else {
+<span class="nc" id="L341">      System.out.println(&quot; No current conversation.&quot;);</span>
+    }
+<span class="nc" id="L343">  }</span>
+
+  // Add a new user.
+  private void addUser(String name, String pass, String confirm) {
+<span class="nc bnc" id="L347" title="All 2 branches missed.">    if (!pass.equals(confirm)){</span>
+<span class="nc" id="L348">      System.out.println(&quot;Password doesn't match&quot;);</span>
+<span class="nc" id="L349">      return;</span>
+    }
+<span class="nc" id="L351">    String[] name_nickname = name.split(&quot;n-add&quot;);</span>
+<span class="nc" id="L352">    String username = name_nickname[0].trim();</span>
+<span class="nc bnc" id="L353" title="All 2 branches missed.">    String nickname = name_nickname.length == 1 ? &quot;&quot; : name_nickname[1].trim();</span>
+<span class="nc" id="L354">    clientContext.user.addUser(username, nickname, pass);</span>
+<span class="nc" id="L355">  }</span>
+
+  // Add a new nickname.
+  private void addNickname(String name) {
+<span class="nc" id="L359">    clientContext.user.addNickname(name);</span>
+<span class="nc" id="L360">  }</span>
+
+  // Delete a user
+  private void deleteUser(String name) {
+<span class="nc" id="L364">    clientContext.user.deleteUser(name);</span>
+<span class="nc" id="L365">  }</span>
+
+  // Display all users known to server.
+  private void showAllUsers() {
+<span class="nc" id="L369">    clientContext.user.showAllUsers();</span>
+<span class="nc" id="L370">  }</span>
+
+  public boolean handleCommand(Scanner lineScanner) {
+
+    try {
+<span class="nc" id="L375">      promptForCommand();</span>
+<span class="nc" id="L376">      doOneCommand(lineScanner);</span>
+<span class="nc" id="L377">    } catch (Exception ex) {</span>
+<span class="nc" id="L378">      System.out.println(&quot;ERROR: Exception during command processing. Check log for details.&quot;);</span>
+<span class="nc" id="L379">      LOG.error(ex, &quot;Exception during command processing&quot;);</span>
+<span class="nc" id="L380">    }</span>
+
+    // &quot;alive&quot; may have been set to false while executing a command. Return
+    // the result to signal if the user wants to keep going.
+
+<span class="nc" id="L385">    return alive;</span>
+  }
+
+  public void selectConversation(Scanner lineScanner) {
+
+<span class="nc" id="L390">    clientContext.conversation.updateAllConversations(false);</span>
+<span class="nc" id="L391">    final int selectionSize = clientContext.conversation.conversationsCount();</span>
+<span class="nc" id="L392">    System.out.format(&quot;Selection contains %d entries.\n&quot;, selectionSize);</span>
+
+<span class="nc" id="L394">    final ConversationSummary previous = clientContext.conversation.getCurrent();</span>
+<span class="nc" id="L395">    ConversationSummary newCurrent = null;</span>
+
+<span class="nc bnc" id="L397" title="All 2 branches missed.">    if (selectionSize == 0) {</span>
+<span class="nc" id="L398">      System.out.println(&quot;Nothing to select.&quot;);</span>
+    } else {
+<span class="nc" id="L400">      final ListNavigator&lt;ConversationSummary&gt; navigator =</span>
+          new ListNavigator&lt;ConversationSummary&gt;(
+<span class="nc" id="L402">              clientContext.conversation.getConversationSummaries(),</span>
+              lineScanner, PAGE_SIZE);
+<span class="nc bnc" id="L404" title="All 2 branches missed.">      if (navigator.chooseFromList()) {</span>
+<span class="nc" id="L405">        newCurrent = navigator.getSelectedChoice();</span>
+<span class="nc bnc" id="L406" title="All 2 branches missed.">        clientContext.message.resetCurrent(newCurrent != previous);</span>
+<span class="nc" id="L407">        System.out.format(&quot;OK. Conversation \&quot;%s\&quot; selected.\n&quot;, newCurrent.title);</span>
+      } else {
+<span class="nc" id="L409">        System.out.println(&quot;OK. Current Conversation is unchanged.&quot;);</span>
+      }
+    }
+<span class="nc bnc" id="L412" title="All 2 branches missed.">    if (newCurrent != previous) {</span>
+<span class="nc" id="L413">      clientContext.conversation.setCurrent(newCurrent);</span>
+<span class="nc" id="L414">      clientContext.conversation.updateAllConversations(true);</span>
+    }
+<span class="nc" id="L416">  }</span>
+
+  public void selectGroup(Scanner lineScanner) {
+
+<span class="nc" id="L420">    clientContext.group.updateAllGroups(false);</span>
+<span class="nc" id="L421">    final int selectionSize = clientContext.group.groupsCount();</span>
+<span class="nc" id="L422">    System.out.format(&quot;Selection contains %d entries.\n&quot;, selectionSize);</span>
+
+<span class="nc" id="L424">    final GroupSummary previous = clientContext.group.getCurrent();</span>
+<span class="nc" id="L425">    GroupSummary newCurrent = null;</span>
+
+<span class="nc bnc" id="L427" title="All 2 branches missed.">    if (selectionSize == 0) {</span>
+<span class="nc" id="L428">      System.out.println(&quot;Nothing to select.&quot;);</span>
+    } else {
+<span class="nc" id="L430">      final ListNavigator&lt;GroupSummary&gt; navigator =</span>
+          new ListNavigator&lt;GroupSummary&gt;(
+<span class="nc" id="L432">              clientContext.group.getGroupSummaries(),</span>
+              lineScanner, PAGE_SIZE);
+<span class="nc bnc" id="L434" title="All 2 branches missed.">      if (navigator.chooseFromList()) {</span>
+<span class="nc" id="L435">        newCurrent = navigator.getSelectedChoice();</span>
+<span class="nc bnc" id="L436" title="All 2 branches missed.">        clientContext.message.resetCurrent(newCurrent != previous);</span>
+<span class="nc" id="L437">        System.out.format(&quot;OK. Group \&quot;%s\&quot; selected.\n&quot;, newCurrent.title);</span>
+      } else {
+<span class="nc" id="L439">        System.out.println(&quot;OK. Current Group is unchanged.&quot;);</span>
+      }
+    }
+<span class="nc bnc" id="L442" title="All 2 branches missed.">    if (newCurrent != previous) {</span>
+<span class="nc" id="L443">      clientContext.group.setCurrent(newCurrent);</span>
+<span class="nc" id="L444">      clientContext.group.updateAllGroups(true);</span>
+    }
+<span class="nc" id="L446">  }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

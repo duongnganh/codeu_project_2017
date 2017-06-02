@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Timeline.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">cloud-bigtable-hello-world</a> &gt; <a href="index.source.html" class="el_package">codeu.chat.util</a> &gt; <span class="el_source">Timeline.java</span></div><h1>Timeline.java</h1><pre class="source lang-java linenums">// Copyright 2017 Google Inc.
+//
+// Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+package codeu.chat.util;
+
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.PriorityBlockingQueue;
+
+// TIMELINE
+//
+// The timeline is a time ordered collection of executable units. This is used
+// when work needs to be ordered by time. The timeline manages its own threads
+// and there is no way to know outside of the code that is executed when the
+// code has been executed.
+public final class Timeline {
+
+<span class="nc" id="L29">  private final static Logger.Log LOG = Logger.newLog(Timeline.class);</span>
+
+  private static final class Event implements Comparable&lt;Event&gt; {
+
+    public final long time;
+    public final Runnable callback;
+
+<span class="nc" id="L36">    public Event(long time, Runnable callback) {</span>
+<span class="nc" id="L37">      this.time = time;</span>
+<span class="nc" id="L38">      this.callback = callback;</span>
+<span class="nc" id="L39">    }</span>
+
+    @Override
+    public int compareTo(Event other) {
+<span class="nc" id="L43">      return Long.compare(time, other.time);</span>
+    }
+  }
+
+<span class="nc" id="L47">  private final BlockingQueue&lt;Event&gt; backlog = new PriorityBlockingQueue&lt;&gt;();</span>
+<span class="nc" id="L48">  private final BlockingQueue&lt;Runnable&gt; todo = new LinkedBlockingQueue&lt;&gt;();</span>
+
+<span class="nc" id="L50">  private boolean running = true;</span>
+
+  // This thread is used to track the time of events and moves events from the
+  // &quot;backlog&quot; queue to the &quot;todo&quot; queue when it is time to execute. They are
+  // separated to allow this thread to be safely interrupted.
+<span class="nc" id="L55">  private final Thread scheduler = new Thread() {</span>
+    @Override
+    public void run() {
+<span class="nc bnc" id="L58" title="All 2 branches missed.">      while (running) {</span>
+
+        Event next;
+
+        try {
+<span class="nc" id="L63">          next = backlog.take();</span>
+<span class="nc" id="L64">        } catch (InterruptedException ex) {</span>
+          // Rather than try to handle the exception here, set &quot;next&quot;
+          // to null and let the normal flow handle the case.
+<span class="nc" id="L67">          next = null;</span>
+<span class="nc" id="L68">        }</span>
+
+<span class="nc" id="L70">        long sleep = 0;</span>
+
+<span class="nc bnc" id="L72" title="All 2 branches missed.">        if (next != null) {</span>
+
+<span class="nc" id="L74">          final long now = System.currentTimeMillis();</span>
+
+          // Check which queue the event should be added to. If it
+          // is time to execute, it should be added to the &quot;todo&quot;
+          // queue. If it is not time, it should be added back to the
+          // &quot;backlog&quot;.
+          // If the item is added back to the backlog, we know how long
+          // it will be until it will be executed. That means we can sleep
+          // until then.
+<span class="nc bnc" id="L83" title="All 2 branches missed.">          if (next.time &lt;= now) {</span>
+<span class="nc" id="L84">            forceAdd(todo, next.callback);</span>
+<span class="nc" id="L85">            sleep = 0;</span>
+          } else {
+            // Put it back (it's not time).
+<span class="nc" id="L88">            forceAdd(backlog, next);</span>
+<span class="nc" id="L89">            sleep = next.time - now;</span>
+          }
+        }
+
+<span class="nc bnc" id="L93" title="All 2 branches missed.">        if (sleep &gt; 0) {</span>
+          try {
+<span class="nc" id="L95">            Thread.sleep(sleep);</span>
+<span class="nc" id="L96">          } catch (InterruptedException ex) {</span>
+            // There are two cases this will happen:
+            //  1. A new item was added and we are being woken to
+            //     check if we need to update the time.
+            //  2. It is time to exit and we need to wake-up so that
+            //     we can check that &quot;running&quot; is &quot;false&quot;.
+<span class="nc" id="L102">          }</span>
+        }
+<span class="nc" id="L104">      }</span>
+<span class="nc" id="L105">    }</span>
+  };
+
+  // This thread is used to run the code that was given to the time line. This
+  // worker does not need to know anything about the time. Once an event gets to
+  // here - it is considered &quot;on time&quot; and will be executed.
+<span class="nc" id="L111">  private final Thread executor = new Thread() {</span>
+    @Override
+    public void run() {
+<span class="nc bnc" id="L114" title="All 2 branches missed.">      while (running) {</span>
+        try {
+<span class="nc" id="L116">          todo.take().run();</span>
+<span class="nc" id="L117">        } catch (Exception ex) {</span>
+          // Catch all exceptions here to stop any rogue action from
+          // take down the timeline.
+<span class="nc" id="L120">          LOG.warning(</span>
+              &quot;An exception was seen on the timeline (%s)&quot;,
+<span class="nc" id="L122">              ex.toString());</span>
+<span class="nc" id="L123">        }</span>
+      }
+<span class="nc" id="L125">    }</span>
+  };
+
+<span class="nc" id="L128">  public Timeline() {</span>
+<span class="nc" id="L129">    scheduler.start();</span>
+<span class="nc" id="L130">    executor.start();</span>
+<span class="nc" id="L131">  }</span>
+
+  // SCHEDULE NOW
+  //
+  // Add an event to the timeline so that it will occur as soon as possible.
+  public void scheduleNow(Runnable callback) {
+<span class="nc" id="L137">    scheduleAt(System.currentTimeMillis(), callback);</span>
+<span class="nc" id="L138">  }</span>
+
+  // SCHEDULE IN
+  //
+  // Add an event to the timeline so that it will occur in approximately in a
+  // set amount of milliseconds.
+  public void scheduleIn(long ms, Runnable callback) {
+<span class="nc" id="L145">    scheduleAt(System.currentTimeMillis() + ms, callback);</span>
+<span class="nc" id="L146">  }</span>
+
+  // SCHEDULE AT
+  //
+  // Add an event to the timeline so that will occur approximately at a fixed
+  // point in time.
+  public void scheduleAt(long timeMs, Runnable callback) {
+<span class="nc" id="L153">    final Event event = new Event(timeMs, callback);</span>
+<span class="nc" id="L154">    forceAdd(backlog, event);</span>
+<span class="nc" id="L155">    scheduler.interrupt();  // wake it up</span>
+<span class="nc" id="L156">  }</span>
+
+  // STOP
+  //
+  // Tell the timeline to shutdown. This is a non-blocking call.
+  public void stop() {
+<span class="nc" id="L162">    running = false;</span>
+
+    // Interrupt does not force a thread to exit. It signals the
+    // thead that it is time to stop execution. As the threads may
+    // be sleeping, this will force them awake.
+<span class="nc" id="L167">    executor.interrupt();</span>
+<span class="nc" id="L168">    scheduler.interrupt();</span>
+<span class="nc" id="L169">  }</span>
+
+  // JOIN
+  //
+  // Wait for the timeline to shutdown. This is a blocking call.
+  public void join() {
+<span class="nc" id="L175">    forceJoin(executor);</span>
+<span class="nc" id="L176">    forceJoin(scheduler);</span>
+<span class="nc" id="L177">  }</span>
+
+  private static void forceJoin(Thread thread) {
+    while (true) {
+      try {
+<span class="nc" id="L182">        thread.join();</span>
+<span class="nc" id="L183">        break;</span>
+<span class="nc" id="L184">      } catch (InterruptedException ex) {</span>
+        // Do nothing - allow this to try again.
+<span class="nc" id="L186">      }</span>
+    }
+<span class="nc" id="L188">  }</span>
+
+  private static &lt;T&gt; void forceAdd(BlockingQueue&lt;T&gt; queue, T value) {
+<span class="nc bnc" id="L191" title="All 2 branches missed.">    while (!queue.offer(value)) {</span>
+<span class="nc" id="L192">      LOG.warning(&quot;Failed to add to queue, trying again...&quot;);</span>
+    }
+<span class="nc" id="L194">  }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RelayMain.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">cloud-bigtable-hello-world</a> &gt; <a href="index.source.html" class="el_package">codeu.chat</a> &gt; <span class="el_source">RelayMain.java</span></div><h1>RelayMain.java</h1><pre class="source lang-java linenums">// Copyright 2017 Google Inc.
+//
+// Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+package codeu.chat;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
+import codeu.chat.common.Secret;
+import codeu.chat.relay.Server;
+import codeu.chat.relay.ServerFrontEnd;
+import codeu.chat.util.Logger;
+import codeu.chat.util.Timeline;
+import codeu.chat.util.Uuid;
+import codeu.chat.util.connections.Connection;
+import codeu.chat.util.connections.ConnectionSource;
+import codeu.chat.util.connections.ServerConnectionSource;
+
+<span class="nc" id="L31">final class RelayMain {</span>
+
+<span class="nc" id="L33">  private static final Logger.Log LOG = Logger.newLog(RelayMain.class);</span>
+
+  public static void main(String[] args) {
+
+<span class="nc" id="L37">    Logger.enableConsoleOutput();</span>
+
+    try {
+<span class="nc" id="L40">      Logger.enableFileOutput(&quot;chat_relay_log.log&quot;);</span>
+<span class="nc" id="L41">    } catch (IOException ex) {</span>
+<span class="nc" id="L42">      LOG.error(ex, &quot;Failed to set logger to write to file&quot;);</span>
+<span class="nc" id="L43">    }</span>
+
+<span class="nc" id="L45">    LOG.info(&quot;============================= START OF LOG =============================&quot;);</span>
+
+<span class="nc" id="L47">    final int myPort = Integer.parseInt(args[0]);</span>
+
+<span class="nc" id="L49">    try (final ConnectionSource source = ServerConnectionSource.forPort(myPort)) {</span>
+
+      // Limit the number of messages that the server tracks to be 1024 and limit the
+      // max number of messages that the relay will send out to be 16.
+<span class="nc" id="L53">      final Server relay = new Server(1024, 16);</span>
+
+<span class="nc" id="L55">      LOG.info(&quot;Relay object created.&quot;);</span>
+
+<span class="nc" id="L57">      LOG.info(&quot;Starting relay...&quot;);</span>
+
+<span class="nc" id="L59">      startRelay(relay, source, args[1]);</span>
+
+<span class="nc bnc" id="L61" title="All 8 branches missed.">    } catch (IOException ex) {</span>
+<span class="nc" id="L62">      LOG.error(ex, &quot;Failed to establish server accept port&quot;);</span>
+<span class="nc" id="L63">    }</span>
+<span class="nc" id="L64">  }</span>
+
+  private static void startRelay(final Server relay,
+                                 final ConnectionSource source,
+                                 final String teamFile) {
+
+<span class="nc" id="L70">    final ServerFrontEnd frontEnd = new ServerFrontEnd(relay);</span>
+<span class="nc" id="L71">    LOG.info(&quot;Relay front end object created.&quot;);</span>
+
+<span class="nc" id="L73">    final Timeline timeline = new Timeline();</span>
+<span class="nc" id="L74">    LOG.info(&quot;Relay timeline created.&quot;);</span>
+
+<span class="nc" id="L76">    timeline.scheduleNow(new Runnable() {</span>
+      @Override
+      public void run() {
+<span class="nc" id="L79">        LOG.info(&quot;Loading team data...&quot;);</span>
+<span class="nc" id="L80">        loadTeamInfo(relay, teamFile);</span>
+<span class="nc" id="L81">        LOG.info(&quot;Done loading team data.&quot;);</span>
+
+        // Add this again in 1 minute so that new team entries will be added to
+        // the relay. This won't support updating entries.
+<span class="nc" id="L85">        timeline.scheduleIn(60000, this);</span>
+<span class="nc" id="L86">      }</span>
+    });
+
+<span class="nc" id="L89">    LOG.info(&quot;Starting relay main loop...&quot;);</span>
+
+    while (true) {
+      try {
+
+<span class="nc" id="L94">        LOG.info(&quot;Establishing connection...&quot;);</span>
+<span class="nc" id="L95">        final Connection connection = source.connect();</span>
+<span class="nc" id="L96">        LOG.info(&quot;Connection established.&quot;);</span>
+
+<span class="nc" id="L98">        timeline.scheduleNow(new Runnable() {</span>
+          @Override
+          public void run() {
+            try {
+<span class="nc" id="L102">              frontEnd.handleConnection(connection);</span>
+<span class="nc" id="L103">            } catch (Exception ex) {</span>
+<span class="nc" id="L104">              LOG.error(ex, &quot;Exception handling connection.&quot;);</span>
+<span class="nc" id="L105">            }</span>
+<span class="nc" id="L106">          }</span>
+        });
+
+<span class="nc" id="L109">      } catch (IOException ex) {</span>
+<span class="nc" id="L110">        LOG.error(ex, &quot;Failed to establish connection.&quot;);</span>
+<span class="nc" id="L111">      }</span>
+    }
+  }
+
+  private static void loadTeamInfo(Server relay, String file) {
+
+<span class="nc" id="L117">    try (final BufferedReader reader = new BufferedReader(new FileReader(file))) {</span>
+
+      String line;
+<span class="nc" id="L120">      for (line = reader.readLine();</span>
+<span class="nc bnc" id="L121" title="All 2 branches missed.">           line != null;</span>
+<span class="nc" id="L122">           line = reader.readLine()) {</span>
+
+<span class="nc" id="L124">        line = line.trim();</span>
+
+<span class="nc bnc" id="L126" title="All 2 branches missed.">        if (line.length() == 0) {</span>
+          // This line is blank, skip it
+<span class="nc bnc" id="L128" title="All 2 branches missed.">        } else if (line.startsWith(&quot;#&quot;)) {</span>
+          // this is a comment, skip it
+        } else {
+
+          try {
+
+<span class="nc" id="L134">            final String[] tokens = line.split(&quot;:&quot;);</span>
+
+            // There are just so many things that could go wrong when parsing
+            // this line that it is not worth trying to handle ahead of time.
+            // So instead just try to parse it and catch any exception.
+
+<span class="nc" id="L140">            final Uuid id = Uuid.parse(tokens[0].trim());</span>
+<span class="nc" id="L141">            final byte[] secret = Secret.parse(tokens[1].trim());</span>
+
+<span class="nc" id="L143">            relay.addTeam(id, secret);</span>
+<span class="nc" id="L144">          } catch (Exception ex) {</span>
+<span class="nc" id="L145">            LOG.error(ex, &quot;Skipping line \&quot;%s\&quot;. Could not parse&quot;, line);</span>
+<span class="nc" id="L146">          }</span>
+        }
+      }
+<span class="nc bnc" id="L149" title="All 8 branches missed.">    } catch (IOException ex) {</span>
+<span class="nc" id="L150">      LOG.error(ex, &quot;Failed to load team data&quot;);</span>
+<span class="nc" id="L151">    }</span>
+<span class="nc" id="L152">  }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

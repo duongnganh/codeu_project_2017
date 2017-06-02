@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UserPanel.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">cloud-bigtable-hello-world</a> &gt; <a href="index.source.html" class="el_package">codeu.chat.client.simplegui</a> &gt; <span class="el_source">UserPanel.java</span></div><h1>UserPanel.java</h1><pre class="source lang-java linenums">// Copyright 2017 Google Inc.
+//
+// Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+package codeu.chat.client.simplegui;
+
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+
+import codeu.chat.client.ClientContext;
+import codeu.chat.common.User;
+import codeu.chat.util.Uuid;
+
+// NOTE: JPanel is serializable, but there is no need to serialize UserPanel
+// without the @SuppressWarnings, the compiler will complain of no override for serialVersionUID
+@SuppressWarnings(&quot;serial&quot;)
+public final class UserPanel extends JPanel {
+
+  private final ClientContext clientContext;
+
+  public UserPanel(ClientContext clientContext) {
+<span class="nc" id="L36">    super(new GridBagLayout());</span>
+<span class="nc" id="L37">    this.clientContext = clientContext;</span>
+<span class="nc" id="L38">    initialize();</span>
+<span class="nc" id="L39">  }</span>
+
+  private void initialize() {
+
+    // This panel contains from top to bottom; a title bar, a list of users,
+    // information about the current (selected) user, and a button bar.
+
+    // Title bar - also includes name of currently signed-in user.
+<span class="nc" id="L47">    final JPanel titlePanel = new JPanel(new GridBagLayout());</span>
+<span class="nc" id="L48">    final GridBagConstraints titlePanelC = new GridBagConstraints();</span>
+
+<span class="nc" id="L50">    final JLabel titleLabel = new JLabel(&quot;Users&quot;, JLabel.LEFT);</span>
+<span class="nc" id="L51">    final GridBagConstraints titleLabelC = new GridBagConstraints();</span>
+<span class="nc" id="L52">    titleLabelC.gridx = 0;</span>
+<span class="nc" id="L53">    titleLabelC.gridy = 0;</span>
+<span class="nc" id="L54">    titleLabelC.anchor = GridBagConstraints.PAGE_START;</span>
+
+<span class="nc" id="L56">    final GridBagConstraints titleGapC = new GridBagConstraints();</span>
+<span class="nc" id="L57">    titleGapC.gridx = 1;</span>
+<span class="nc" id="L58">    titleGapC.gridy = 0;</span>
+<span class="nc" id="L59">    titleGapC.fill = GridBagConstraints.HORIZONTAL;</span>
+<span class="nc" id="L60">    titleGapC.weightx = 0.9;</span>
+
+<span class="nc" id="L62">    final JLabel userSignedInLabel = new JLabel(&quot;not signed in&quot;, JLabel.RIGHT);</span>
+<span class="nc" id="L63">    final GridBagConstraints titleUserC = new GridBagConstraints();</span>
+<span class="nc" id="L64">    titleUserC.gridx = 2;</span>
+<span class="nc" id="L65">    titleUserC.gridy = 0;</span>
+<span class="nc" id="L66">    titleUserC.anchor = GridBagConstraints.LINE_END;</span>
+
+<span class="nc" id="L68">    titlePanel.add(titleLabel, titleLabelC);</span>
+<span class="nc" id="L69">    titlePanel.add(Box.createHorizontalGlue(), titleGapC);</span>
+<span class="nc" id="L70">    titlePanel.add(userSignedInLabel, titleUserC);</span>
+<span class="nc" id="L71">    titlePanel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));</span>
+
+    // User List panel.
+<span class="nc" id="L74">    final JPanel listShowPanel = new JPanel();</span>
+<span class="nc" id="L75">    final GridBagConstraints listPanelC = new GridBagConstraints();</span>
+
+<span class="nc" id="L77">    final DefaultListModel&lt;String&gt; listModel = new DefaultListModel&lt;&gt;();</span>
+<span class="nc" id="L78">    final JList&lt;String&gt; userList = new JList&lt;&gt;(listModel);</span>
+<span class="nc" id="L79">    userList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);</span>
+<span class="nc" id="L80">    userList.setVisibleRowCount(10);</span>
+<span class="nc" id="L81">    userList.setSelectedIndex(-1);</span>
+
+<span class="nc" id="L83">    final JScrollPane userListScrollPane = new JScrollPane(userList);</span>
+<span class="nc" id="L84">    listShowPanel.add(userListScrollPane);</span>
+<span class="nc" id="L85">    userListScrollPane.setPreferredSize(new Dimension(150, 150));</span>
+
+    // Current User panel
+<span class="nc" id="L88">    final JPanel currentPanel = new JPanel();</span>
+<span class="nc" id="L89">    final GridBagConstraints currentPanelC = new GridBagConstraints();</span>
+
+<span class="nc" id="L91">    final JTextArea userInfoPanel = new JTextArea();</span>
+<span class="nc" id="L92">    final JScrollPane userInfoScrollPane = new JScrollPane(userInfoPanel);</span>
+<span class="nc" id="L93">    currentPanel.add(userInfoScrollPane);</span>
+<span class="nc" id="L94">    userInfoScrollPane.setPreferredSize(new Dimension(245, 85));</span>
+
+    // Button bar
+<span class="nc" id="L97">    final JPanel buttonPanel = new JPanel();</span>
+<span class="nc" id="L98">    final GridBagConstraints buttonPanelC = new GridBagConstraints();</span>
+
+<span class="nc" id="L100">    final JButton userUpdateButton = new JButton(&quot;Update&quot;);</span>
+<span class="nc" id="L101">    final JButton userSignInButton = new JButton(&quot;Sign In&quot;);</span>
+<span class="nc" id="L102">    final JButton userAddButton = new JButton(&quot;Add&quot;);</span>
+<span class="nc" id="L103">    final JButton userRemoveButton = new JButton(&quot;Remove&quot;);</span>
+
+<span class="nc" id="L105">    buttonPanel.add(userUpdateButton);</span>
+<span class="nc" id="L106">    buttonPanel.add(userSignInButton);</span>
+<span class="nc" id="L107">    buttonPanel.add(userAddButton);</span>
+<span class="nc" id="L108">    buttonPanel.add(userRemoveButton);</span>
+
+    // Placement of title, list panel, buttons, and current user panel.
+<span class="nc" id="L111">    titlePanelC.gridx = 0;</span>
+<span class="nc" id="L112">    titlePanelC.gridy = 0;</span>
+<span class="nc" id="L113">    titlePanelC.gridwidth = 10;</span>
+<span class="nc" id="L114">    titlePanelC.gridheight = 1;</span>
+<span class="nc" id="L115">    titlePanelC.fill = GridBagConstraints.HORIZONTAL;</span>
+<span class="nc" id="L116">    titlePanelC.anchor = GridBagConstraints.FIRST_LINE_START;</span>
+
+<span class="nc" id="L118">    listPanelC.gridx = 0;</span>
+<span class="nc" id="L119">    listPanelC.gridy = 1;</span>
+<span class="nc" id="L120">    listPanelC.gridwidth = 10;</span>
+<span class="nc" id="L121">    listPanelC.gridheight = 8;</span>
+<span class="nc" id="L122">    listPanelC.fill = GridBagConstraints.BOTH;</span>
+<span class="nc" id="L123">    listPanelC.anchor = GridBagConstraints.FIRST_LINE_START;</span>
+<span class="nc" id="L124">    listPanelC.weighty = 0.8;</span>
+
+<span class="nc" id="L126">    currentPanelC.gridx = 0;</span>
+<span class="nc" id="L127">    currentPanelC.gridy = 9;</span>
+<span class="nc" id="L128">    currentPanelC.gridwidth = 10;</span>
+<span class="nc" id="L129">    currentPanelC.gridheight = 3;</span>
+<span class="nc" id="L130">    currentPanelC.fill = GridBagConstraints.HORIZONTAL;</span>
+<span class="nc" id="L131">    currentPanelC.anchor = GridBagConstraints.FIRST_LINE_START;</span>
+
+<span class="nc" id="L133">    buttonPanelC.gridx = 0;</span>
+<span class="nc" id="L134">    buttonPanelC.gridy = 12;</span>
+<span class="nc" id="L135">    buttonPanelC.gridwidth = 10;</span>
+<span class="nc" id="L136">    buttonPanelC.gridheight = 1;</span>
+<span class="nc" id="L137">    buttonPanelC.fill = GridBagConstraints.HORIZONTAL;</span>
+<span class="nc" id="L138">    buttonPanelC.anchor = GridBagConstraints.FIRST_LINE_START;</span>
+
+<span class="nc" id="L140">    this.add(titlePanel, titlePanelC);</span>
+<span class="nc" id="L141">    this.add(listShowPanel, listPanelC);</span>
+<span class="nc" id="L142">    this.add(buttonPanel, buttonPanelC);</span>
+<span class="nc" id="L143">    this.add(currentPanel, currentPanelC);</span>
+
+<span class="nc" id="L145">    userUpdateButton.addActionListener(new ActionListener() {</span>
+      @Override
+      public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L148">        UserPanel.this.getAllUsers(listModel);</span>
+<span class="nc" id="L149">      }</span>
+    });
+
+<span class="nc" id="L152">    userSignInButton.addActionListener(new ActionListener() {</span>
+      @Override
+      public void actionPerformed(ActionEvent e) {
+<span class="nc bnc" id="L155" title="All 2 branches missed.">        if (userList.getSelectedIndex() != -1) {</span>
+<span class="nc" id="L156">          final String data = userList.getSelectedValue();</span>
+<span class="nc" id="L157">          clientContext.user.signInUser(data);</span>
+<span class="nc" id="L158">          userSignedInLabel.setText(&quot;Hello &quot; + data);</span>
+        }
+<span class="nc" id="L160">      }</span>
+    });
+
+<span class="nc" id="L163">    userAddButton.addActionListener(new ActionListener() {</span>
+      @Override
+      public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L166">        final String s = (String) JOptionPane.showInputDialog(</span>
+            UserPanel.this, &quot;Enter user name:&quot;, &quot;Add User&quot;, JOptionPane.PLAIN_MESSAGE,
+            null, null, &quot;&quot;);
+<span class="nc bnc" id="L169" title="All 4 branches missed.">        if (s != null &amp;&amp; s.length() &gt; 0) {</span>
+<span class="nc" id="L170">          clientContext.user.addUser(s);</span>
+<span class="nc" id="L171">          UserPanel.this.getAllUsers(listModel);</span>
+        }
+<span class="nc" id="L173">      }</span>
+    });
+
+<span class="nc" id="L176">    userRemoveButton.addActionListener(new ActionListener() {</span>
+      @Override
+      public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L179">        final String s = (String) JOptionPane.showInputDialog(</span>
+          UserPanel.this, &quot;Enter user id:&quot;, &quot;Delete User&quot;, JOptionPane.PLAIN_MESSAGE,
+          null, null, &quot;&quot;);
+<span class="nc bnc" id="L182" title="All 4 branches missed.">        if (s != null &amp;&amp; s.length() &gt; 0) {</span>
+          //Uuid id = Uuid.fromString(s);
+<span class="nc" id="L184">          clientContext.user.deleteUser(s);</span>
+<span class="nc" id="L185">          UserPanel.this.getAllUsers(listModel);</span>
+        }
+<span class="nc" id="L187">      }</span>
+    }); 
+
+<span class="nc" id="L190">    userList.addListSelectionListener(new ListSelectionListener() {</span>
+      @Override
+      public void valueChanged(ListSelectionEvent e) {
+<span class="nc bnc" id="L193" title="All 2 branches missed.">        if (userList.getSelectedIndex() != -1) {</span>
+<span class="nc" id="L194">          final String data = userList.getSelectedValue();</span>
+<span class="nc" id="L195">          userInfoPanel.setText(clientContext.user.showUserInfo(data));</span>
+        }
+<span class="nc" id="L197">      }</span>
+    });
+
+<span class="nc" id="L200">    getAllUsers(listModel);</span>
+<span class="nc" id="L201">  }</span>
+
+  // Swing UI: populate ListModel object - updates display objects.
+  private void getAllUsers(DefaultListModel&lt;String&gt; usersList) {
+<span class="nc" id="L205">    clientContext.user.updateUsers();</span>
+<span class="nc" id="L206">    usersList.clear();</span>
+
+<span class="nc bnc" id="L208" title="All 2 branches missed.">    for (final User u : clientContext.user.getUsers()) {</span>
+<span class="nc" id="L209">      usersList.addElement(u.name);</span>
+<span class="nc" id="L210">    }</span>
+<span class="nc" id="L211">  }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>
