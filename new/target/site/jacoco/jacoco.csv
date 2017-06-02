@@ -1,12 +1,12 @@
 GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
 cloud-bigtable-hello-world,codeu.chat.client,ClientUser.new Comparator() {...},37,0,12,0,6,0,8,0,2,0
 cloud-bigtable-hello-world,codeu.chat.client,ClientUser,515,0,60,0,105,0,54,0,24,0
-cloud-bigtable-hello-world,codeu.chat.client,Controller,820,0,84,0,116,0,52,0,10,0
+cloud-bigtable-hello-world,codeu.chat.client,Controller,850,0,84,0,122,0,52,0,10,0
 cloud-bigtable-hello-world,codeu.chat.client,View,1332,0,140,0,173,0,86,0,16,0
-cloud-bigtable-hello-world,codeu.chat.client,ClientMessage,496,0,60,0,95,0,51,0,21,0
+cloud-bigtable-hello-world,codeu.chat.client,ClientMessage,534,0,64,0,99,0,53,0,21,0
 cloud-bigtable-hello-world,codeu.chat.client,ClientGroup,380,0,34,0,75,0,38,0,21,0
-cloud-bigtable-hello-world,codeu.chat.client,ClientConversation,520,0,50,0,98,0,51,0,26,0
-cloud-bigtable-hello-world,codeu.chat.client,ClientContext,41,0,0,0,6,0,1,0,1,0
+cloud-bigtable-hello-world,codeu.chat.client,ClientConversation,537,0,52,0,100,0,52,0,26,0
+cloud-bigtable-hello-world,codeu.chat.client,ClientContext,43,0,0,0,6,0,1,0,1,0
 cloud-bigtable-hello-world,codeu.chat.relay,ServerFrontEnd.new Serializer() {...},86,0,0,0,17,0,3,0,3,0
 cloud-bigtable-hello-world,codeu.chat.relay,ServerFrontEnd.new Serializer() {...},42,0,0,0,9,0,3,0,3,0
 cloud-bigtable-hello-world,codeu.chat.relay,ServerFrontEnd.2.new Relay.Bundle() {...},48,0,0,0,8,0,8,0,8,0
@@ -57,7 +57,7 @@ cloud-bigtable-hello-world,codeu.chat.client.simplegui,UserPanel.new ActionListe
 cloud-bigtable-hello-world,codeu.chat.client.simplegui,UserPanel.new ActionListener() {...},37,0,4,0,6,0,4,0,2,0
 cloud-bigtable-hello-world,codeu.chat.client.simplegui,UserPanel.new ActionListener() {...},41,0,2,0,6,0,3,0,2,0
 cloud-bigtable-hello-world,codeu.chat.client.simplegui,UserPanel.new ActionListener() {...},15,0,0,0,3,0,2,0,2,0
-cloud-bigtable-hello-world,codeu.chat.client.simplegui,MessagePanel.new ActionListener() {...},70,0,8,0,12,0,6,0,2,0
+cloud-bigtable-hello-world,codeu.chat.client.simplegui,MessagePanel.new ActionListener() {...},76,0,8,0,13,0,6,0,2,0
 cloud-bigtable-hello-world,codeu.chat.client.simplegui,MessagePanel,363,0,10,0,82,0,9,0,4,0
 cloud-bigtable-hello-world,codeu.chat.client.simplegui,UserPanel,366,0,2,0,93,0,4,0,3,0
 cloud-bigtable-hello-world,codeu.chat.client.simplegui,ConversationPanel.new ActionListener() {...},15,0,0,0,3,0,2,0,2,0
@@ -66,11 +66,11 @@ cloud-bigtable-hello-world,codeu.chat.client.simplegui,ConversationPanel.new Act
 cloud-bigtable-hello-world,codeu.chat.client.simplegui,ConversationPanel.new ListSelectionListener() {...},41,0,2,0,8,0,3,0,2,0
 cloud-bigtable-hello-world,codeu.chat.client.simplegui,ConversationPanel,287,0,8,0,74,0,8,0,4,0
 cloud-bigtable-hello-world,codeu.chat.server,View,444,0,46,0,84,0,44,0,21,0
-cloud-bigtable-hello-world,codeu.chat.server,Server,812,0,52,0,164,0,32,0,6,0
+cloud-bigtable-hello-world,codeu.chat.server,Server,836,0,52,0,166,0,32,0,6,0
 cloud-bigtable-hello-world,codeu.chat.server,RemoteRelay.2.new Relay.Bundle() {...},48,0,0,0,8,0,8,0,8,0
 cloud-bigtable-hello-world,codeu.chat.server,RemoteRelay.new Serializer() {...},41,0,0,0,9,0,3,0,3,0
 cloud-bigtable-hello-world,codeu.chat.server,RemoteRelay.new Serializer() {...},86,0,0,0,17,0,3,0,3,0
-cloud-bigtable-hello-world,codeu.chat.server,Model,579,1343,86,58,37,247,63,37,7,21
+cloud-bigtable-hello-world,codeu.chat.server,Model,715,1245,100,44,62,226,72,28,8,20
 cloud-bigtable-hello-world,codeu.chat.server,Model.new Comparator() {...},0,7,0,0,0,2,0,2,0,2
 cloud-bigtable-hello-world,codeu.chat.server,Model.new Comparator() {...},4,33,4,8,0,6,3,5,0,2
 cloud-bigtable-hello-world,codeu.chat.server,Server.new Runnable() {...},98,0,0,0,12,0,2,0,2,0
@@ -78,7 +78,7 @@ cloud-bigtable-hello-world,codeu.chat.server,Server.new Runnable() {...},57,0,2,
 cloud-bigtable-hello-world,codeu.chat.server,Server.new Runnable() {...},66,0,2,0,11,0,3,0,2,0
 cloud-bigtable-hello-world,codeu.chat.server,RemoteRelay.Component,21,0,0,0,8,0,4,0,4,0
 cloud-bigtable-hello-world,codeu.chat.server,NoOpRelay,17,0,0,0,4,0,4,0,4,0
-cloud-bigtable-hello-world,codeu.chat.server,Controller,99,446,25,21,17,80,25,19,3,18
+cloud-bigtable-hello-world,codeu.chat.server,Controller,99,449,25,21,17,80,25,19,3,18
 cloud-bigtable-hello-world,codeu.chat.server,NoOpRelay.new Relay.Bundle.Component() {...},24,0,0,0,4,0,4,0,4,0
 cloud-bigtable-hello-world,codeu.chat.server,RemoteRelay,244,0,20,0,37,0,15,0,5,0
 cloud-bigtable-hello-world,codeu.chat.util.connections,ClientConnectionSource.new Connection() {...},18,0,0,0,5,0,4,0,4,0
@@ -93,14 +93,14 @@ cloud-bigtable-hello-world,codeu.chat.common,Group,0,40,0,0,0,11,0,2,0,2
 cloud-bigtable-hello-world,codeu.chat.common,ConversationSummary.new Serializer() {...},50,3,0,0,12,1,2,1,2,1
 cloud-bigtable-hello-world,codeu.chat.common,Secret,5,85,1,7,2,12,2,6,1,2
 cloud-bigtable-hello-world,codeu.chat.common,GroupSummary.new Serializer() {...},41,3,0,0,10,1,2,1,2,1
-cloud-bigtable-hello-world,codeu.chat.common,Message,0,26,0,0,0,9,0,2,0,2
+cloud-bigtable-hello-world,codeu.chat.common,Message,0,32,0,0,0,11,0,2,0,2
 cloud-bigtable-hello-world,codeu.chat.common,IDs,3,0,0,0,1,0,1,0,1,0
 cloud-bigtable-hello-world,codeu.chat.common,Conversation,0,44,0,0,0,12,0,2,0,2
 cloud-bigtable-hello-world,codeu.chat.common,LinearUuidGenerator,5,37,1,1,1,10,1,3,0,3
 cloud-bigtable-hello-world,codeu.chat.common,Conversation.new Serializer() {...},89,3,0,0,19,1,2,1,2,1
 cloud-bigtable-hello-world,codeu.chat.common,Group.new Serializer() {...},80,3,0,0,17,1,2,1,2,1
 cloud-bigtable-hello-world,codeu.chat.common,NetworkCode,3,0,0,0,1,0,1,0,1,0
-cloud-bigtable-hello-world,codeu.chat.common,Message.new Serializer() {...},59,3,0,0,14,1,2,1,2,1
+cloud-bigtable-hello-world,codeu.chat.common,Message.new Serializer() {...},77,3,0,0,18,1,2,1,2,1
 cloud-bigtable-hello-world,codeu.chat.common,ConversationSummary,3,23,0,0,1,8,1,2,1,2
-cloud-bigtable-hello-world,codeu.chat.client.commandline,Chat,970,0,124,0,242,0,80,0,18,0
+cloud-bigtable-hello-world,codeu.chat.client.commandline,Chat,1035,0,134,0,256,0,85,0,18,0
 cloud-bigtable-hello-world,codeu.chat.client.commandline,ListNavigator,320,0,42,0,55,0,35,0,14,0

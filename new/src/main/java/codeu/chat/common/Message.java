@@ -35,6 +35,8 @@ public final class Message {
       Uuid.SERIALIZER.write(out, value.previous);
       Time.SERIALIZER.write(out, value.creation);
       Uuid.SERIALIZER.write(out, value.author);
+      Uuid.SERIALIZER.write(out, value.conversation);
+      Uuid.SERIALIZER.write(out, value.group);
       Serializers.STRING.write(out, value.content);
 
     }
@@ -48,6 +50,8 @@ public final class Message {
           Uuid.SERIALIZER.read(in),
           Time.SERIALIZER.read(in),
           Uuid.SERIALIZER.read(in),
+          Uuid.SERIALIZER.read(in),
+          Uuid.SERIALIZER.read(in),
           Serializers.STRING.read(in)
       );
 
@@ -58,16 +62,20 @@ public final class Message {
   public final Uuid previous;
   public final Time creation;
   public final Uuid author;
+  public final Uuid conversation;
+  public final Uuid group;
   public final String content;
   public Uuid next;
 
-  public Message(Uuid id, Uuid next, Uuid previous, Time creation, Uuid author, String content) {
+  public Message(Uuid id, Uuid next, Uuid previous, Time creation, Uuid author, Uuid conversation, Uuid group, String content) {
 
     this.id = id;
     this.next = next;
     this.previous = previous;
     this.creation = creation;
     this.author = author;
+    this.conversation = conversation;
+    this.group = group;
     this.content = content;
 
   }

@@ -122,15 +122,12 @@ public final class ClientConversation {
     final boolean existed = ifExistedTitle(title);
 
     final Conversation conv = (validInputs && !existed) ? controller.newConversation(title, owner, group) : null;
-
     if (conv == null) {
       System.out.format("Error: conversation not created - %s.\n",
           (!validInputs) ? "bad input value" : ((existed) ? "existed title" : "server failure"));
     } else {
       LOG.info("New conversation: Title= \"%s\" UUID= %s", conv.title, conv.id);
-
       currentSummary = conv.summary;
-
       updateAllConversations(currentSummary != null);
     }
   }
@@ -152,11 +149,12 @@ public final class ClientConversation {
 
   public void setCurrent(ConversationSummary conv) { currentSummary = conv; }
 
-  public void showAllConversations() {
+  public void showAllConversations(Uuid group_id) {
     updateAllConversations(false);
 
     for (final ConversationSummary c : summariesByUuid.values()) {
-      printConversation(c, userContext, groupContext);
+      // if (c.group == group_id)
+        printConversation(c, userContext, groupContext);
     }
   }
 

@@ -161,6 +161,7 @@ public final class MessagePanel extends JPanel {
             clientContext.message.addMessage(
                 clientContext.user.getCurrent().id,
                 clientContext.conversation.getCurrentId(),
+                clientContext.group.getCurrent().id,
                 messageText);
             MessagePanel.this.getAllMessages(clientContext.conversation.getCurrent());
           }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="codeu.chat.util.UuidTest" time="0.002" tests="11" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="codeu.chat.util.UuidTest" time="0.001" tests="11" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home/jre/lib"/>
@@ -66,13 +66,13 @@
   </properties>
   <testcase name="testValidSingleLink" classname="codeu.chat.util.UuidTest" time="0"/>
   <testcase name="testBadId" classname="codeu.chat.util.UuidTest" time="0"/>
-  <testcase name="testLargeId" classname="codeu.chat.util.UuidTest" time="0.001"/>
+  <testcase name="testLargeId" classname="codeu.chat.util.UuidTest" time="0"/>
   <testcase name="testRootEqual" classname="codeu.chat.util.UuidTest" time="0"/>
   <testcase name="testEqualsNoRoot" classname="codeu.chat.util.UuidTest" time="0"/>
   <testcase name="testValidMultiLink" classname="codeu.chat.util.UuidTest" time="0"/>
   <testcase name="testNotEqualsMixLength" classname="codeu.chat.util.UuidTest" time="0"/>
   <testcase name="testNotEqualsWithRoot" classname="codeu.chat.util.UuidTest" time="0"/>
-  <testcase name="testNotEqualsNoRoot" classname="codeu.chat.util.UuidTest" time="0.001"/>
+  <testcase name="testNotEqualsNoRoot" classname="codeu.chat.util.UuidTest" time="0"/>
   <testcase name="testRootEqualNot" classname="codeu.chat.util.UuidTest" time="0"/>
   <testcase name="testEqualsWithRoot" classname="codeu.chat.util.UuidTest" time="0"/>
 </testsuite>

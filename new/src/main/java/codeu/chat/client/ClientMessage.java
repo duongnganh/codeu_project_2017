@@ -45,13 +45,15 @@ public final class ClientMessage {
 
   private final ClientUser userContext;
   private final ClientConversation conversationContext;
+  private final ClientGroup groupContext;
 
   public ClientMessage(Controller controller, View view, ClientUser userContext,
-                       ClientConversation conversationContext) {
+                       ClientConversation conversationContext, ClientGroup groupContext) {
     this.controller = controller;
     this.view = view;
     this.userContext = userContext;
     this.conversationContext = conversationContext;
+    this.groupContext = groupContext;
     this.conversationContext.setMessageContext(this);
   }
 
@@ -96,10 +98,10 @@ public final class ClientMessage {
   }
 
   // For m-add command.
-  public void addMessage(Uuid author, Uuid conversation, String body) {
+  public void addMessage(Uuid author, Uuid conversation, Uuid group, String body) {
     final boolean validInputs = isValidBody(body) && (author != null) && (conversation != null);
 
-    final Message message = (validInputs) ? controller.newMessage(author, conversation, body) : null;
+    final Message message = (validInputs) ? controller.newMessage(author, conversation, group, body) : null;
 
     if (message == null) {
       System.out.format("Error: message not created - %s.\n",
@@ -114,12 +116,15 @@ public final class ClientMessage {
   // For m-list-all command.
   // Show all messages attached to the current conversation. This will balk if the conversation
   // has too many messages (use m-next and m-show instead).
-  public void showAllMessages() {
+  public void showAllMessages(Uuid group_id, Uuid conversation_id) {
     if (conversationContents.size() == 0) {
       System.out.println(" Current Conversation has no messages");
     } else {
       for (final Message m : conversationContents) {
-        printMessage(m, userContext);
+        // System.out.println(m.group+""+group_id);
+        // System.out.println(m.conversation+""+conversation_id);
+        // if (m.group == group_id && m.conversation == conversation_id)
+          printMessage(m, userContext);
       }
     }
   }

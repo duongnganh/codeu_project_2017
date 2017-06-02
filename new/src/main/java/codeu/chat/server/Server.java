@@ -149,7 +149,7 @@ public final class Server {
       final Uuid group = Uuid.SERIALIZER.read(in);
       final String content = Serializers.STRING.read(in);
 
-      final Message message = controller.newMessage(author, conversation, content);
+      final Message message = controller.newMessage(author, conversation, group, content);
 
       Serializers.INTEGER.write(out, NetworkCode.NEW_MESSAGE_RESPONSE);
       Serializers.nullable(Message.SERIALIZER).write(out, message);
@@ -191,10 +191,13 @@ public final class Server {
       Serializers.INTEGER.write(out, NetworkCode.REMOVE_USER_RESPONSE);
       Serializers.nullable(User.SERIALIZER).write(out, user);
     } else if (type == NetworkCode.NEW_CONVERSATION_REQUEST) {
+      LOG.info("servernewConversation1");
 
       final String title = Serializers.STRING.read(in);
       final Uuid owner = Uuid.SERIALIZER.read(in);
       final Uuid group = Uuid.SERIALIZER.read(in);
+
+      LOG.info("servernewConversation2donereading"+title+owner+group);
 
       final Conversation conversation = controller.newConversation(title, owner, group);
 
@@ -404,6 +407,7 @@ public final class Server {
       message = controller.newMessage(relayMessage.id(),
                                       user.id,
                                       conversation.id,
+                                      group.id,
                                       relayMessage.text(),
                                       relayMessage.time());
     }

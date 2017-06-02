@@ -53,8 +53,8 @@ public final class Controller implements RawController, BasicController {
   // Override Basic Controller
 
   @Override
-  public Message newMessage(Uuid author, Uuid conversation, String body) {
-<span class="fc" id="L57">    return newMessage(createId(), author, conversation, body, Time.now());</span>
+  public Message newMessage(Uuid author, Uuid conversation, Uuid group, String body) {
+<span class="fc" id="L57">    return newMessage(createId(), author, conversation, group, body, Time.now());</span>
   }
 
   @Override
@@ -86,7 +86,7 @@ public final class Controller implements RawController, BasicController {
   // Override Raw Controller
 
   @Override
-  public Message newMessage(Uuid id, Uuid author, Uuid conversation, String body, Time creationTime) {
+  public Message newMessage(Uuid id, Uuid author, Uuid conversation, Uuid group, String body, Time creationTime) {
 
 <span class="fc" id="L91">    final User foundUser = model.userById().first(author);</span>
 <span class="fc" id="L92">    final Conversation foundConversation = model.conversationById().first(conversation);</span>
@@ -95,7 +95,7 @@ public final class Controller implements RawController, BasicController {
 
 <span class="pc bpc" id="L96" title="3 of 6 branches missed.">    if (foundUser != null &amp;&amp; foundConversation != null &amp;&amp; isIdFree(id)) {</span>
 
-<span class="fc" id="L98">      message = new Message(id, Uuid.NULL, Uuid.NULL, creationTime, author, body);</span>
+<span class="fc" id="L98">      message = new Message(id, Uuid.NULL, Uuid.NULL, creationTime, author, conversation, group, body);</span>
 <span class="fc" id="L99">      model.add(message);</span>
 <span class="fc" id="L100">      LOG.info(&quot;Message added: %s&quot;, message.id);</span>
 
@@ -183,86 +183,84 @@ public final class Controller implements RawController, BasicController {
 
   @Override
   public Conversation newConversation(Uuid id, String title, Uuid owner, Uuid group, Time creationTime) {
+<span class="fc" id="L186">    final User foundOwner = model.userById().first(owner);</span>
+<span class="fc" id="L187">    Conversation conversation = null;</span>
 
-<span class="fc" id="L187">    final User foundOwner = model.userById().first(owner);</span>
+<span class="pc bpc" id="L189" title="2 of 4 branches missed.">    if (foundOwner != null &amp;&amp; isIdFree(id)) {</span>
+<span class="fc" id="L190">      conversation = new Conversation(id, owner, group, creationTime, title);</span>
+<span class="fc" id="L191">      model.add(conversation);</span>
 
-<span class="fc" id="L189">    Conversation conversation = null;</span>
-
-<span class="pc bpc" id="L191" title="2 of 4 branches missed.">    if (foundOwner != null &amp;&amp; isIdFree(id)) {</span>
-<span class="fc" id="L192">      conversation = new Conversation(id, owner, group, creationTime, title);</span>
-<span class="fc" id="L193">      model.add(conversation);</span>
-
-<span class="fc" id="L195">      LOG.info(&quot;Conversation added: &quot; + conversation.id);</span>
+<span class="fc" id="L193">      LOG.info(&quot;Conversation added: &quot; + conversation.id);</span>
     }
 
-<span class="fc" id="L198">    return conversation;</span>
+<span class="fc" id="L196">    return conversation;</span>
   }
 
   @Override
   public Conversation deleteConversation(String title, Time deletionTime) {
-<span class="fc" id="L203">    final Conversation conversation = model.conversationByText().first(title);</span>
-<span class="pc bpc" id="L204" title="1 of 2 branches missed.">    if (conversation != null) {</span>
-<span class="fc" id="L205">      model.remove(conversation);</span>
+<span class="fc" id="L201">    final Conversation conversation = model.conversationByText().first(title);</span>
+<span class="pc bpc" id="L202" title="1 of 2 branches missed.">    if (conversation != null) {</span>
+<span class="fc" id="L203">      model.remove(conversation);</span>
 
-<span class="fc" id="L207">      LOG.info(</span>
+<span class="fc" id="L205">      LOG.info(</span>
           &quot;removeConversation success (conversation.id=%s conversation.owner=%s conversation.title=%s)&quot;,
           conversation.id,
           conversation.owner,
           conversation.title);
     } else {
 
-<span class="nc" id="L214">      LOG.info(</span>
+<span class="nc" id="L212">      LOG.info(</span>
           &quot;deleteConversation failed - title not found (user.id=%s)&quot;,
           title);
     }
 
-<span class="fc" id="L219">    return conversation;</span>
+<span class="fc" id="L217">    return conversation;</span>
   }
 
   @Override
   public Group newGroup(Uuid id, String title, Uuid owner, Time creationTime) {
 
-<span class="fc" id="L225">    final User foundOwner = model.userById().first(owner);</span>
+<span class="fc" id="L223">    final User foundOwner = model.userById().first(owner);</span>
 
-<span class="fc" id="L227">    Group group = null;</span>
+<span class="fc" id="L225">    Group group = null;</span>
 
-<span class="pc bpc" id="L229" title="2 of 4 branches missed.">    if (foundOwner != null &amp;&amp; isIdFree(id)) {</span>
-<span class="fc" id="L230">      group = new Group(id, owner, creationTime, title);</span>
-<span class="fc" id="L231">      model.add(group);</span>
+<span class="pc bpc" id="L227" title="2 of 4 branches missed.">    if (foundOwner != null &amp;&amp; isIdFree(id)) {</span>
+<span class="fc" id="L228">      group = new Group(id, owner, creationTime, title);</span>
+<span class="fc" id="L229">      model.add(group);</span>
 
-<span class="fc" id="L233">      LOG.info(&quot;Group added: &quot; + group.id);</span>
+<span class="fc" id="L231">      LOG.info(&quot;Group added: &quot; + group.id);</span>
     }
 
-<span class="fc" id="L236">    return group;</span>
+<span class="fc" id="L234">    return group;</span>
   }
 
   //=====================================================================
 
   public User ifCorrectPassword(Uuid id, String pass){
-<span class="nc" id="L242">    User user = model.userById().first(id);</span>
+<span class="nc" id="L240">    User user = model.userById().first(id);</span>
     
-<span class="nc bnc" id="L244" title="All 2 branches missed.">    if (user == null) return null;</span>
+<span class="nc bnc" id="L242" title="All 2 branches missed.">    if (user == null) return null;</span>
 
-<span class="nc" id="L246">    String regeneratedPassword = getSecurePassword(pass, salt);</span>
-<span class="nc bnc" id="L247" title="All 2 branches missed.">    if (user.password.equals(regeneratedPassword))</span>
-<span class="nc" id="L248">      return user;</span>
+<span class="nc" id="L244">    String regeneratedPassword = getSecurePassword(pass, salt);</span>
+<span class="nc bnc" id="L245" title="All 2 branches missed.">    if (user.password.equals(regeneratedPassword))</span>
+<span class="nc" id="L246">      return user;</span>
 
-<span class="nc" id="L250">    return null;</span>
+<span class="nc" id="L248">    return null;</span>
   }
 
   public User setNickname(Uuid id, String nickname){
-<span class="nc bnc" id="L254" title="All 2 branches missed.">    if (model.userById().first(id) == null) return null;</span>
-<span class="nc" id="L255">    model.userById().first(id).setNickname(nickname);</span>
-<span class="nc" id="L256">    return model.userById().first(id);</span>
+<span class="nc bnc" id="L252" title="All 2 branches missed.">    if (model.userById().first(id) == null) return null;</span>
+<span class="nc" id="L253">    model.userById().first(id).setNickname(nickname);</span>
+<span class="nc" id="L254">    return model.userById().first(id);</span>
   }
 
   private Uuid createId() {
 
     Uuid candidate;
 
-<span class="fc" id="L263">    for (candidate = uuidGenerator.make();</span>
-<span class="pc bpc" id="L264" title="1 of 2 branches missed.">         isIdInUse(candidate);</span>
-<span class="nc" id="L265">         candidate = uuidGenerator.make()) {</span>
+<span class="fc" id="L261">    for (candidate = uuidGenerator.make();</span>
+<span class="pc bpc" id="L262" title="1 of 2 branches missed.">         isIdInUse(candidate);</span>
+<span class="nc" id="L263">         candidate = uuidGenerator.make()) {</span>
 
      // Assuming that &quot;randomUuid&quot; is actually well implemented, this
      // loop should never be needed, but just incase make sure that the
@@ -270,42 +268,42 @@ public final class Controller implements RawController, BasicController {
 
     }
 
-<span class="fc" id="L273">    return candidate;</span>
+<span class="fc" id="L271">    return candidate;</span>
   }
 
   private boolean isIdInUse(Uuid id) {
-<span class="pc bpc" id="L277" title="1 of 2 branches missed.">    return model.messageById().first(id) != null ||</span>
-<span class="pc bpc" id="L278" title="1 of 2 branches missed.">           model.conversationById().first(id) != null ||</span>
-<span class="pc bpc" id="L279" title="1 of 2 branches missed.">           model.groupById().first(id) != null ||</span>
-<span class="pc bpc" id="L280" title="1 of 2 branches missed.">           model.userById().first(id) != null;</span>
+<span class="pc bpc" id="L275" title="1 of 2 branches missed.">    return model.messageById().first(id) != null ||</span>
+<span class="pc bpc" id="L276" title="1 of 2 branches missed.">           model.conversationById().first(id) != null ||</span>
+<span class="pc bpc" id="L277" title="1 of 2 branches missed.">           model.groupById().first(id) != null ||</span>
+<span class="pc bpc" id="L278" title="1 of 2 branches missed.">           model.userById().first(id) != null;</span>
   }
 
-<span class="pc bpc" id="L283" title="1 of 2 branches missed.">  private boolean isIdFree(Uuid id) { return !isIdInUse(id); }</span>
+<span class="pc bpc" id="L281" title="1 of 2 branches missed.">  private boolean isIdFree(Uuid id) { return !isIdInUse(id); }</span>
 
   private static String getSecurePassword(String passwordToHash, byte[] salt)
   {
-<span class="fc" id="L287">    String generatedPassword = null;</span>
+<span class="fc" id="L285">    String generatedPassword = null;</span>
     try {
       // Create MessageDigest instance for MD5
-<span class="fc" id="L290">      MessageDigest md = MessageDigest.getInstance(&quot;MD5&quot;);</span>
+<span class="fc" id="L288">      MessageDigest md = MessageDigest.getInstance(&quot;MD5&quot;);</span>
       //Add password bytes to digest
-<span class="fc" id="L292">      md.update(salt);</span>
+<span class="fc" id="L290">      md.update(salt);</span>
       //Get the hash's bytes 
-<span class="fc" id="L294">      byte[] bytes = md.digest(passwordToHash.getBytes());</span>
+<span class="fc" id="L292">      byte[] bytes = md.digest(passwordToHash.getBytes());</span>
       //This bytes[] has bytes in decimal format;
       //Convert it to hexadecimal format
-<span class="fc" id="L297">      StringBuilder sb = new StringBuilder();</span>
-<span class="fc bfc" id="L298" title="All 2 branches covered.">      for(int i=0; i&lt; bytes.length ;i++)</span>
+<span class="fc" id="L295">      StringBuilder sb = new StringBuilder();</span>
+<span class="fc bfc" id="L296" title="All 2 branches covered.">      for(int i=0; i&lt; bytes.length ;i++)</span>
       {
-<span class="fc" id="L300">          sb.append(Integer.toString((bytes[i] &amp; 0xfff) + 0x1000, 32).substring(1));</span>
+<span class="fc" id="L298">          sb.append(Integer.toString((bytes[i] &amp; 0xfff) + 0x1000, 32).substring(1));</span>
       }
       //Get complete hashed password in hex format
-<span class="fc" id="L303">      generatedPassword = sb.toString();</span>
+<span class="fc" id="L301">      generatedPassword = sb.toString();</span>
     } 
-<span class="nc" id="L305">    catch (NoSuchAlgorithmException e) {</span>
-<span class="nc" id="L306">      e.printStackTrace();</span>
-<span class="fc" id="L307">    }</span>
-<span class="fc" id="L308">    return generatedPassword;</span>
+<span class="nc" id="L303">    catch (NoSuchAlgorithmException e) {</span>
+<span class="nc" id="L304">      e.printStackTrace();</span>
+<span class="fc" id="L305">    }</span>
+<span class="fc" id="L306">    return generatedPassword;</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

@@ -32,6 +32,6 @@ public final class ClientContext {
     user = new ClientUser(controller, view);
     group = new ClientGroup(controller, view, user);
     conversation = new ClientConversation(controller, view, user, group);
-    message = new ClientMessage(controller, view, user, conversation);
+    message = new ClientMessage(controller, view, user, conversation, group);
   }
 }
