@@ -39,7 +39,28 @@ import codeu.chat.client.View;
 import codeu.chat.util.Logger;
 
 
-public final class LoginController {
+import javafx.fxml.Initializable;
+
+import java.net.URL;
+import java.util.ResourceBundle;
+
+
+public final class LoginController implements Initializable {
+
+    private final static Logger.Log LOG = Logger.newLog(LoginController.class);
+
+    ClientContext clientContext;
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        LOG.info("initializing");
+    }
+
+    public void setClientContext(ClientContext c) {
+        LOG.info("setting client context");
+        this.clientContext = c;
+    }
+
 
     @FXML
     private AnchorPane anchorPane;
@@ -56,13 +77,15 @@ public final class LoginController {
     @FXML
     void onLoginButtonClick(ActionEvent event) throws Exception {
 
-        /*clientContext.user.addUser("Testname");
-        for (final User u : clientContext.user.getUsers()) {
-            System.out.print(u.name);
-        }*/
+        LOG.info("triggered");
 
-        // Parent window1 = FXMLLoader.load(getClass().getResource("/codeu/chat/client/bettergui/MainUI.fxml"));
-        Parent window1 = FXMLLoader.load(getClass().getResource("MainUI.fxml"));
+        clientContext.user.addUser("Testname");
+        for (final User u : clientContext.user.getUsers()) {
+            LOG.info(u.name);
+
+        }
+
+        Parent window1 = FXMLLoader.load(getClass().getResource("/codeu/chat/client/bettergui/MainUI.fxml"));
 
         Stage mainStage = (Stage) anchorPane.getScene().getWindow();
 

@@ -15,7 +15,7 @@
         <Pane layoutX="25.0" layoutY="22.0" prefHeight="338.0" prefWidth="377.0" style="-fx-background-color: #ffffff;">
             <children>
                 <JFXTextField fx:id="username" focusColor="#09b6bc" labelFloat="true" layoutX="71.0" layoutY="120.0" maxWidth="232.0" minWidth="232.0" prefHeight="40.0" prefWidth="232.0" promptText="Username" />
-                <JFXButton fx:id="login" buttonType="RAISED" defaultButton="true" layoutX="73.0" layoutY="269.0" prefHeight="32.0" prefWidth="86.0" ripplerFill="WHITE" style="-fx-background-color: #2196F3;" text="Login" textAlignment="CENTER" textFill="WHITE" />
+                <JFXButton fx:id="login" buttonType="RAISED" defaultButton="true" layoutX="73.0" layoutY="269.0" onAction="#onLoginButtonClick" prefHeight="32.0" prefWidth="86.0" ripplerFill="WHITE" style="-fx-background-color: #2196F3;" text="Login" textAlignment="CENTER" textFill="WHITE" />
                 <JFXButton buttonType="RAISED" cancelButton="true" layoutX="213.0" layoutY="269.0" prefHeight="32.0" prefWidth="86.0" ripplerFill="WHITE" style="-fx-background-color: #2196F3;" text="Sign up" textAlignment="CENTER" textFill="WHITE" />
                 <JFXPasswordField fx:id="pass" focusColor="#09b6bc" labelFloat="true" layoutX="74.0" layoutY="209.0" maxWidth="232.0" minWidth="214.0" prefHeight="40.0" prefWidth="232.0" promptText="Password" />
                 <Label layoutX="49.0" layoutY="37.0" text="Welcome to Travel Chat!">
