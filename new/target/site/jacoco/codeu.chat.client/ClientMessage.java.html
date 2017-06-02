@@ -121,9 +121,9 @@ public final class ClientMessage {
 <span class="nc" id="L121">      System.out.println(&quot; Current Conversation has no messages&quot;);</span>
     } else {
 <span class="nc bnc" id="L123" title="All 2 branches missed.">      for (final Message m : conversationContents) {</span>
-<span class="nc" id="L124">        System.out.println(m.group+&quot;&quot;+group_id);</span>
-<span class="nc" id="L125">        System.out.println(m.conversation+&quot;&quot;+conversation_id);</span>
-<span class="nc bnc" id="L126" title="All 4 branches missed.">        if (m.group == group_id &amp;&amp; m.conversation == conversation_id)</span>
+        // System.out.println(m.group+&quot;&quot;+group_id);
+        // System.out.println(m.conversation+&quot;&quot;+conversation_id);
+        // if (m.group == group_id &amp;&amp; m.conversation == conversation_id)
 <span class="nc" id="L127">          printMessage(m, userContext);</span>
 <span class="nc" id="L128">      }</span>
     }
