@@ -33,7 +33,7 @@ public final class BasicControllerTest {
   @Before
   public void doBefore() {
     String[] tableNames = {"user", "conversation", "group", "message"};
-    model = new Model("codeuproject", "codeuinstance", tableNames);
+    model = new Model("codeuproject12345", "codeuinstance12345", tableNames);
     controller = new Controller(Uuid.NULL, model);
   }
 
