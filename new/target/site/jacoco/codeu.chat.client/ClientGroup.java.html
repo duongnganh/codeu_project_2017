@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ClientGroup.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">cloud-bigtable-hello-world</a> &gt; <a href="index.source.html" class="el_package">codeu.chat.client</a> &gt; <span class="el_source">ClientGroup.java</span></div><h1>ClientGroup.java</h1><pre class="source lang-java linenums">// Copyright 2017 Google Inc.
+//
+// Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+package codeu.chat.client;
+
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+
+import codeu.chat.common.Group;
+import codeu.chat.common.GroupSummary;
+import codeu.chat.util.Uuid;
+import codeu.chat.util.Logger;
+import codeu.chat.util.Method;
+import codeu.chat.util.store.Store;
+
+public final class ClientGroup {
+
+<span class="nc" id="L30">  private final static Logger.Log LOG = Logger.newLog(ClientGroup.class);</span>
+
+  private final Controller controller;
+  private final View view;
+
+<span class="nc" id="L35">  private GroupSummary currentSummary = null;</span>
+<span class="nc" id="L36">  private Group currentGroup = null;</span>
+
+  private final ClientUser userContext;
+<span class="nc" id="L39">  private ClientGroup groupContext = null;</span>
+
+<span class="nc" id="L41">  private ClientConversation conversationContext = null;</span>
+
+  // This is the set of groups known to the server.
+<span class="nc" id="L44">  private final Map&lt;Uuid, GroupSummary&gt; summariesByUuid = new HashMap&lt;&gt;();</span>
+
+  // This is the set of groups known to the server, sorted by title.
+<span class="nc" id="L47">  private Store&lt;String, GroupSummary&gt; summariesSortedByTitle =</span>
+      new Store&lt;&gt;(String.CASE_INSENSITIVE_ORDER);
+
+<span class="nc" id="L50">  public ClientGroup(Controller controller, View view, ClientUser userContext) {</span>
+<span class="nc" id="L51">    this.controller = controller;</span>
+<span class="nc" id="L52">    this.view = view;</span>
+<span class="nc" id="L53">    this.userContext = userContext;</span>
+<span class="nc" id="L54">  }</span>
+
+  public void setGroupContext(ClientGroup groupContext) {
+<span class="nc" id="L57">    this.groupContext = groupContext;</span>
+<span class="nc" id="L58">  }</span>
+
+  public void setConversationContext(ClientConversation conversationContext) {
+<span class="nc" id="L61">    this.conversationContext = conversationContext;</span>
+<span class="nc" id="L62">  }</span>
+
+  // Validate the title of the conversation
+  static public boolean isValidTitle(String title) {
+<span class="nc" id="L66">    boolean clean = true;</span>
+<span class="nc bnc" id="L67" title="All 4 branches missed.">    if ((title.length() &lt;= 0) || (title.length() &gt; 64)) {</span>
+<span class="nc" id="L68">      clean = false;</span>
+    } else {
+
+      // TODO: check for invalid characters
+
+    }
+<span class="nc" id="L74">    return clean;</span>
+  }
+
+  public boolean hasCurrent() {
+<span class="nc bnc" id="L78" title="All 2 branches missed.">    return (currentSummary != null);</span>
+  }
+
+  public GroupSummary getCurrent() {
+<span class="nc" id="L82">    return currentSummary;</span>
+  }
+
+<span class="nc bnc" id="L85" title="All 2 branches missed.">  public Uuid getCurrentId() { return (currentSummary != null) ? currentSummary.id : null; }</span>
+
+  public void showCurrent() {
+<span class="nc" id="L88">    printGroup(currentSummary, userContext);</span>
+<span class="nc" id="L89">  }</span>
+
+  public void startGroup(String title, Uuid owner) {
+<span class="nc" id="L92">    final boolean validInputs = isValidTitle(title);</span>
+
+<span class="nc bnc" id="L94" title="All 2 branches missed.">    final Group group = (validInputs) ? controller.newGroup(title, owner) : null;</span>
+
+<span class="nc bnc" id="L96" title="All 2 branches missed.">    if (group == null) {</span>
+<span class="nc bnc" id="L97" title="All 2 branches missed.">      System.out.format(&quot;Error: group not created - %s.\n&quot;,</span>
+<span class="nc" id="L98">          (validInputs) ? &quot;server failure&quot; : &quot;bad input value&quot;);</span>
+    } else {
+<span class="nc" id="L100">      LOG.info(&quot;New group: Title= \&quot;%s\&quot; UUID= %s&quot;, group.title, group.id);</span>
+
+<span class="nc" id="L102">      currentSummary = group.summary;</span>
+
+<span class="nc bnc" id="L104" title="All 2 branches missed.">      updateAllGroups(currentSummary != null);</span>
+    }
+<span class="nc" id="L106">  }</span>
+
+<span class="nc" id="L108">  public void setCurrent(GroupSummary group) { currentSummary = group; }</span>
+
+  public void showAllGroups() {
+<span class="nc" id="L111">    updateAllGroups(false);</span>
+
+<span class="nc bnc" id="L113" title="All 2 branches missed.">    for (final GroupSummary c : summariesByUuid.values()) {</span>
+<span class="nc" id="L114">      printGroup(c, userContext);</span>
+<span class="nc" id="L115">    }</span>
+<span class="nc" id="L116">  }</span>
+
+  // Get a single group from the server.
+  public Group getGroup(Uuid groupId) {
+<span class="nc bnc" id="L120" title="All 2 branches missed.">    for (final Group g : view.getGroups(Arrays.asList(groupId))) {</span>
+<span class="nc" id="L121">      return g;</span>
+    }
+<span class="nc" id="L123">    return null;</span>
+  }
+
+  private void joinGroup(String match) {
+<span class="nc" id="L127">    Method.notImplemented();</span>
+<span class="nc" id="L128">  }</span>
+
+  private void leaveCurrentGroup() {
+<span class="nc" id="L131">    Method.notImplemented();</span>
+<span class="nc" id="L132">  }</span>
+
+  private void updateCurrentGroup() {
+<span class="nc bnc" id="L135" title="All 2 branches missed.">    if (currentSummary == null) {</span>
+<span class="nc" id="L136">      currentGroup = null;</span>
+    } else {
+<span class="nc" id="L138">      currentGroup = getGroup(currentSummary.id);</span>
+<span class="nc bnc" id="L139" title="All 2 branches missed.">      if (currentGroup == null) {</span>
+<span class="nc" id="L140">        LOG.info(&quot;GetGroup: current=%s, current.id=%s, but currentConversation == null&quot;,</span>
+            currentSummary, currentSummary.id);
+      } else {
+<span class="nc" id="L143">        LOG.info(&quot;Get Group: Title=\&quot;%s\&quot; UUID=%s first=%s last=%s\n&quot;,</span>
+            currentGroup.title, currentGroup.id, currentGroup.firstConversation,
+            currentGroup.lastConversation);
+      }
+    }
+<span class="nc" id="L148">  }</span>
+
+  public int groupsCount() {
+<span class="nc" id="L151">   return summariesByUuid.size();</span>
+  }
+
+  public Iterable&lt;GroupSummary&gt; getGroupSummaries() {
+<span class="nc" id="L155">    return summariesSortedByTitle.all();</span>
+  }
+
+  // Update the list of known Groups.
+  // If the input currentChanged is true, then re-establish the state of
+  // the current Group, including its conversations.
+  public void updateAllGroups(boolean currentChanged) {
+
+<span class="nc" id="L163">    summariesByUuid.clear();</span>
+<span class="nc" id="L164">    summariesSortedByTitle = new Store&lt;&gt;(String.CASE_INSENSITIVE_ORDER);</span>
+
+<span class="nc bnc" id="L166" title="All 2 branches missed.">    for (final GroupSummary gs : view.getAllGroups()) {</span>
+<span class="nc" id="L167">      summariesByUuid.put(gs.id, gs);</span>
+<span class="nc" id="L168">      summariesSortedByTitle.insert(gs.title, gs);</span>
+<span class="nc" id="L169">    }</span>
+
+<span class="nc bnc" id="L171" title="All 2 branches missed.">    if (currentChanged) {</span>
+<span class="nc" id="L172">      updateCurrentGroup();</span>
+<span class="nc" id="L173">      conversationContext.resetCurrent(true);</span>
+      //groupContext.resetCurrent(true);
+    }
+<span class="nc" id="L176">  }</span>
+
+  // Print Group.  User context is used to map from owner UUID to name.
+  public static void printGroup(GroupSummary g, ClientUser userContext) {
+<span class="nc bnc" id="L180" title="All 2 branches missed.">    if (g == null) {</span>
+<span class="nc" id="L181">      System.out.println(&quot;Null group&quot;);</span>
+    } else {
+<span class="nc bnc" id="L183" title="All 2 branches missed.">      final String name = (userContext == null) ? null : userContext.getName(g.owner);</span>
+<span class="nc bnc" id="L184" title="All 2 branches missed.">      final String ownerName = (name == null) ? &quot;&quot; : String.format(&quot; (%s)&quot;, name);</span>
+<span class="nc" id="L185">      System.out.format(&quot; Title: %s\n&quot;, g.title);</span>
+<span class="nc" id="L186">      System.out.format(&quot;    Id: %s owner: %s%s created %s\n&quot;, g.id, g.owner, ownerName, g.creation);</span>
+    }
+<span class="nc" id="L188">  }</span>
+
+  // Print Group outside of User context.
+  public static void printGroup(GroupSummary g) {
+<span class="nc" id="L192">    printGroup(g, null);</span>
+<span class="nc" id="L193">  }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

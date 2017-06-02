@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import com.jfoenix.controls.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="500.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="codeu.chat.client.bettergui.MainUIController">
+   <center>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <JFXTextArea disable="true" editable="false" VBox.vgrow="ALWAYS" />
+            <JFXTextField>
+               <VBox.margin>
+                  <Insets bottom="12.0" left="8.0" right="8.0" top="12.0" />
+               </VBox.margin>
+            </JFXTextField>
+         </children>
+      </VBox>
+   </center>
+   <left>
+      <JFXListView fx:id="conversationList" style="-fx-border-color: white #d9d9d9 white white;" BorderPane.alignment="CENTER" />
+   </left>
+   <top>
+      <VBox style="-fx-border-color: #d9d9d9;" BorderPane.alignment="CENTER">
+         <children>
+            <HBox spacing="10.0" style="-fx-border-color: white white #d9d9d9 white;">
+               <children>
+                  <Label graphicTextGap="10.0" text="Travel Chat">
+                     <graphic>
+                        <ImageView fitHeight="65.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../../../../Desktop/offscreen-master/PNG/logo_small.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font name="MyriadPro-Semibold" size="25.0" />
+                     </font>
+                     <padding>
+                        <Insets bottom="8.0" left="8.0" />
+                     </padding>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+                  <Region HBox.hgrow="ALWAYS" />
+                  <JFXButton fx:id="backButton" buttonType="RAISED" defaultButton="true" onAction="#onBackClick" ripplerFill="WHITE" style="-fx-background-color: #2196F3;" text="Log Out" textAlignment="CENTER" textFill="WHITE">
+                     <HBox.margin>
+                        <Insets right="15.0" top="18.0" />
+                     </HBox.margin>
+                  </JFXButton>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="8.0" top="8.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox spacing="10.0">
+               <children>
+                  <JFXButton contentDisplay="TOP" text="Paris">
+                     <graphic>
+                        <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" smooth="false">
+                           <image>
+                              <Image url="@../../../../../../../../Desktop/offscreen-master/PNG/paris_small.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </JFXButton>
+                  <JFXButton contentDisplay="TOP" text="Berlin">
+                     <graphic>
+                        <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../../../../Desktop/offscreen-master/PNG/berlin.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </JFXButton>
+                  <JFXButton contentDisplay="TOP" text="New York">
+                     <graphic>
+                        <ImageView cache="true" fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../../../../Desktop/offscreen-master/PNG/new-york.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </JFXButton>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+               </VBox.margin>
+            </HBox>
+         </children>
+      </VBox>
+   </top>
+</BorderPane>

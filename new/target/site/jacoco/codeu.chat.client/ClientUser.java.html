@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ClientUser.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">cloud-bigtable-hello-world</a> &gt; <a href="index.source.html" class="el_package">codeu.chat.client</a> &gt; <span class="el_source">ClientUser.java</span></div><h1>ClientUser.java</h1><pre class="source lang-java linenums">// Copyright 2017 Google Inc.
+//
+// Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+package codeu.chat.client;
+
+import java.util.Comparator;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+
+import java.lang.Object;
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
+
+import codeu.chat.common.User;
+import codeu.chat.util.Logger;
+import codeu.chat.util.Uuid;
+import codeu.chat.util.store.Store;
+
+public final class ClientUser {
+
+<span class="nc" id="L34">  private static final Comparator&lt;Uuid&gt; UUID_COMPARE = new Comparator&lt;Uuid&gt;() {</span>
+
+    @Override
+    public int compare(Uuid a, Uuid b) {
+
+<span class="nc bnc" id="L39" title="All 2 branches missed.">      if (a == b) { return 0; }</span>
+
+<span class="nc bnc" id="L41" title="All 4 branches missed.">      if (a == null &amp;&amp; b != null) { return -1; }</span>
+
+<span class="nc bnc" id="L43" title="All 4 branches missed.">      if (a != null &amp;&amp; b == null) { return 1; }</span>
+
+<span class="nc" id="L45">      final int order = Integer.compare(a.id(), b.id());</span>
+<span class="nc bnc" id="L46" title="All 2 branches missed.">      return order == 0 ? compare(a.root(), b.root()) : order;</span>
+    }
+  };
+
+<span class="nc" id="L50">  private final static Logger.Log LOG = Logger.newLog(ClientUser.class);</span>
+
+<span class="nc" id="L52">  private static final Collection&lt;Uuid&gt; EMPTY = Arrays.asList(new Uuid[0]);</span>
+  private final Controller controller;
+  private final View view;
+
+<span class="nc" id="L56">  private User current = null;</span>
+
+  // private final Map&lt;String, User&gt; usersByUsername = new HashMap&lt;&gt;();
+  // private final Map&lt;Uuid, User&gt; usersById = new HashMap&lt;&gt;();
+
+  // This is the set of users known to the server, sorted by name.
+<span class="nc" id="L62">  private Store&lt;Uuid, User&gt; usersById = new Store&lt;&gt;(UUID_COMPARE);</span>
+<span class="nc" id="L63">  private Store&lt;String, User&gt; usersByName = new Store&lt;&gt;(String.CASE_INSENSITIVE_ORDER);</span>
+<span class="nc" id="L64">  private Store&lt;String, User&gt; usersByNickname = new Store&lt;&gt;(String.CASE_INSENSITIVE_ORDER);</span>
+
+<span class="nc" id="L66">  public ClientUser(Controller controller, View view) {</span>
+<span class="nc" id="L67">    this.controller = controller;</span>
+<span class="nc" id="L68">    this.view = view;</span>
+<span class="nc" id="L69">  }</span>
+
+  // TODO: Decide what to do with existed name and nickname
+
+  // Validate the username string
+  static public boolean isValidName(String userName) {
+<span class="nc" id="L75">    boolean clean = true;</span>
+<span class="nc bnc" id="L76" title="All 2 branches missed.">    if (userName.length() == 0) {</span>
+<span class="nc" id="L77">      clean = false;</span>
+    } else {
+
+      // only accepts names that contain alphabets and spaces.
+<span class="nc" id="L81">      Pattern validPattern = Pattern.compile(&quot;^[ A-z]+$&quot;);</span>
+<span class="nc" id="L82">      Matcher match = validPattern.matcher(userName);</span>
+<span class="nc" id="L83">      clean = match.matches();</span>
+
+    }
+<span class="nc" id="L86">    return clean;</span>
+  }
+
+  // Check if this userName has already existed
+  public boolean ifExistedName(String userName) {
+<span class="nc" id="L91">    updateUsers();</span>
+<span class="nc" id="L92">    final User user = usersByName.first(userName);</span>
+<span class="nc bnc" id="L93" title="All 2 branches missed.">    return (user != null);</span>
+  }
+
+  // Validate the nickname string
+  static public boolean isValidNickname(String nickname) {
+    //TODO: check for valid nickname
+<span class="nc" id="L99">    return true;</span>
+  }
+  
+  // Check if this nickname has already existed
+  public boolean ifExistedNickname(String nickname) {
+    // TODO: check for existed nickname
+<span class="nc" id="L105">    return false;</span>
+  }
+
+  public boolean hasCurrent() {
+<span class="nc bnc" id="L109" title="All 2 branches missed.">    return (current != null);</span>
+  }
+
+  public User getCurrent() {
+<span class="nc" id="L113">    return current;</span>
+  }
+
+  public boolean signInUser(String name) {
+<span class="nc" id="L117">    return signInUser(name, &quot;&quot;);</span>
+  }
+
+  public boolean signInUser(String name, String pass) {
+    // System.out.println(&quot;Pass in signInUser &quot;+ pass);
+<span class="nc" id="L122">    updateUsers();</span>
+
+<span class="nc" id="L124">    final User prev = current;</span>
+<span class="nc bnc" id="L125" title="All 2 branches missed.">    if (name != null) {</span>
+<span class="nc" id="L126">      final User newCurrent = usersByName.first(name);</span>
+<span class="nc" id="L127">      final boolean ifCorrectPassword = controller.ifCorrectPassword(newCurrent, pass);</span>
+<span class="nc bnc" id="L128" title="All 4 branches missed.">      if (newCurrent != null &amp;&amp; ifCorrectPassword) {</span>
+<span class="nc" id="L129">        current = newCurrent;</span>
+      }
+    }
+<span class="nc bnc" id="L132" title="All 2 branches missed.">    return (prev != current);</span>
+  }
+
+  public boolean signOutUser() {
+<span class="nc" id="L136">    boolean hadCurrent = hasCurrent();</span>
+<span class="nc" id="L137">    current = null;</span>
+<span class="nc" id="L138">    return hadCurrent;</span>
+  }
+
+  public void showCurrent() {
+<span class="nc" id="L142">    updateUsers();</span>
+<span class="nc" id="L143">    printUser(usersById.first(current.id));</span>
+<span class="nc" id="L144">  }</span>
+
+  public void addUser(String name) {
+<span class="nc" id="L147">    addUser(name, &quot;&quot;, &quot;&quot;);</span>
+<span class="nc" id="L148">  }</span>
+
+  public void addUser(String name, String nickname, String pass) {
+<span class="nc bnc" id="L151" title="All 4 branches missed.">    final boolean validInputs = isValidName(name) &amp;&amp; isValidNickname(nickname);</span>
+<span class="nc bnc" id="L152" title="All 4 branches missed.">    final boolean existed = ifExistedName(name) || ifExistedNickname(nickname);</span>
+<span class="nc bnc" id="L153" title="All 4 branches missed.">    final boolean valid = (validInputs &amp;&amp; !existed);</span>
+
+<span class="nc bnc" id="L155" title="All 2 branches missed.">    final User user = !valid ? null : controller.newUser(name, nickname, pass);</span>
+
+    // System.out.println(&quot;in addUser clientUser&quot;);
+
+<span class="nc bnc" id="L159" title="All 2 branches missed.">    if (user == null) {</span>
+<span class="nc bnc" id="L160" title="All 2 branches missed.">      System.out.format(&quot;Error: user not created - %s.\n&quot;,</span>
+<span class="nc bnc" id="L161" title="All 2 branches missed.">          (!validInputs) ? &quot;bad input value&quot; : ((existed) ? &quot;existed username/nickname&quot; : &quot;server failure&quot;));</span>
+    } else {
+<span class="nc" id="L163">      LOG.info(&quot;New user complete, Name= \&quot;%s\&quot; Nickname= \&quot;%s\&quot; UUID=%s&quot;, user.name, user.nickname, user.id);</span>
+      // usersByUsername.put(user.name, user);
+<span class="nc" id="L165">      updateUsers();</span>
+    }
+<span class="nc" id="L167">  }</span>
+
+  public void addNickname(String name) {
+<span class="nc" id="L170">    final boolean validInputs = isValidNickname(name);</span>
+<span class="nc" id="L171">    final boolean existed = ifExistedNickname(name);</span>
+
+<span class="nc bnc" id="L173" title="All 4 branches missed.">    final boolean valid = (validInputs &amp;&amp; !existed);</span>
+
+<span class="nc bnc" id="L175" title="All 2 branches missed.">    if (current == null){</span>
+<span class="nc" id="L176">      System.out.println(&quot;Please sign in before setting nickname&quot;);</span>
+<span class="nc bnc" id="L177" title="All 2 branches missed.">    } else if (!valid) {</span>
+<span class="nc bnc" id="L178" title="All 2 branches missed.">      System.out.format(&quot;Error: nickname not added - %s.\n&quot;,</span>
+<span class="nc bnc" id="L179" title="All 2 branches missed.">          (!validInputs) ? &quot;bad input value&quot; : ((existed) ? &quot;existed nickname&quot; : &quot;server failure&quot;));</span>
+    } else {
+<span class="nc" id="L181">      final boolean response = controller.setNickname(current, name);</span>
+<span class="nc bnc" id="L182" title="All 2 branches missed.">      if (response){</span>
+<span class="nc" id="L183">        LOG.info(&quot;Nickname added complete for the current user, Name= \&quot;%s\&quot; Nickname= \&quot;%s\&quot; UUID=%s&quot;, current.name, current.nickname, current.id);</span>
+<span class="nc" id="L184">        updateUsers();</span>
+      }
+      else{
+<span class="nc" id="L187">        LOG.info(&quot;Cannot set nickname&quot;);</span>
+      }
+    }
+<span class="nc" id="L190">  }</span>
+
+  public void deleteUser(String name) {
+    
+    // check if user exists in the system OR usersById.containsKey(id)
+<span class="nc" id="L195">    updateUsers();</span>
+
+<span class="nc bnc" id="L197" title="All 2 branches missed.">    if (usersByName.first(name) != null) {</span>
+<span class="nc" id="L198">      final User user = controller.deleteUser(name);</span>
+<span class="nc bnc" id="L199" title="All 2 branches missed.">      if (user == null) {</span>
+<span class="nc" id="L200">        System.out.format(&quot;Error: user not deleted - server failure&quot;);</span>
+      } else {
+<span class="nc" id="L202">        LOG.info(&quot;Remove user complete, Name=\&quot;%s\&quot; UUID=%s&quot;, user.name, user.id);</span>
+<span class="nc" id="L203">        updateUsers();</span>
+      }
+<span class="nc" id="L205">    } else {</span>
+<span class="nc" id="L206">      System.out.format(&quot;Error: user not deleted - user not found, check input!&quot;);</span>
+    }
+<span class="nc" id="L208">  }</span>
+
+  public void showAllUsers() {
+<span class="nc" id="L211">    updateUsers();</span>
+<span class="nc bnc" id="L212" title="All 2 branches missed.">    for (final User u : usersByName.all()) {</span>
+<span class="nc" id="L213">      printUser(u);</span>
+<span class="nc" id="L214">    }</span>
+<span class="nc" id="L215">  }</span>
+
+  public User lookup(Uuid id) {
+<span class="nc" id="L218">    updateUsers();</span>
+    // return (usersById.containsKey(id)) ? usersById.get(id) : null;
+<span class="nc" id="L220">    return usersById.first(id);</span>
+  }
+
+  public String getName(Uuid id) {
+<span class="nc" id="L224">    updateUsers();</span>
+<span class="nc" id="L225">    final User user = lookup(id);</span>
+<span class="nc bnc" id="L226" title="All 2 branches missed.">    if (user == null) {</span>
+<span class="nc" id="L227">      LOG.warning(&quot;userContext.lookup() failed on ID: %s&quot;, id);</span>
+<span class="nc" id="L228">      return null;</span>
+    } else {
+<span class="nc" id="L230">      return user.name;</span>
+    }
+  }
+
+  public Iterable&lt;User&gt; getUsers() {
+<span class="nc" id="L235">    updateUsers();</span>
+<span class="nc" id="L236">    return usersByName.all();</span>
+  }
+
+  public void updateUsers() {
+<span class="nc" id="L240">    usersById = new Store&lt;&gt;(UUID_COMPARE);</span>
+<span class="nc" id="L241">    usersByName = new Store&lt;&gt;(String.CASE_INSENSITIVE_ORDER);</span>
+<span class="nc" id="L242">    usersByNickname = new Store&lt;&gt;(String.CASE_INSENSITIVE_ORDER);</span>
+
+<span class="nc bnc" id="L244" title="All 2 branches missed.">    for (final User user : view.getUsersExcluding(EMPTY)) {</span>
+<span class="nc" id="L245">      usersById.insert(user.id, user);</span>
+<span class="nc" id="L246">      usersByName.insert(user.name, user);</span>
+<span class="nc" id="L247">      usersByNickname.insert(user.nickname, user);</span>
+<span class="nc" id="L248">    }</span>
+<span class="nc" id="L249">  }</span>
+
+  public static String getUserInfoString(User user) {
+<span class="nc bnc" id="L252" title="All 2 branches missed.">    return (user == null) ? &quot;Null user&quot; :</span>
+<span class="nc" id="L253">        String.format(&quot; User: %s\n   Nickname: %s\n   Id: %s\n   created: %s\n&quot;, user.name, user.nickname, user.id, user.creation);</span>
+  }
+
+  public String showUserInfo(String uname) {
+<span class="nc" id="L257">    return getUserInfoString(usersByName.first(uname));</span>
+  }
+
+  // Move to User's toString()
+  public static void printUser(User user) {
+<span class="nc" id="L262">    System.out.println(getUserInfoString(user));</span>
+<span class="nc" id="L263">  }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

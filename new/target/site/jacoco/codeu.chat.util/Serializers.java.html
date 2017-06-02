@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Serializers.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">cloud-bigtable-hello-world</a> &gt; <a href="index.source.html" class="el_package">codeu.chat.util</a> &gt; <span class="el_source">Serializers.java</span></div><h1>Serializers.java</h1><pre class="source lang-java linenums">// Copyright 2017 Google Inc.
+//
+// Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+package codeu.chat.util;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.Collection;
+
+<span class="nc" id="L23">public final class Serializers {</span>
+
+<span class="nc" id="L25">  public static final Serializer&lt;Boolean&gt; BOOLEAN = new Serializer&lt;Boolean&gt;() {</span>
+
+    @Override
+    public void write(OutputStream out, Boolean value) throws IOException {
+<span class="nc bnc" id="L29" title="All 2 branches missed.">      out.write(value ? 1 : 0);</span>
+<span class="nc" id="L30">    }</span>
+
+    @Override
+    public Boolean read(InputStream in) throws IOException {
+<span class="nc bnc" id="L34" title="All 2 branches missed.">      return in.read() != 0;</span>
+    }
+  };
+
+<span class="nc" id="L38">  public static final Serializer&lt;Integer&gt; INTEGER = new Serializer&lt;Integer&gt;() {</span>
+
+    @Override
+    public void write(OutputStream out, Integer value) throws IOException {
+
+<span class="nc bnc" id="L43" title="All 2 branches missed.">      for (int i = 24; i &gt;= 0; i -= 8) {</span>
+<span class="nc" id="L44">        out.write(0xFF &amp; (value &gt;&gt;&gt; i));</span>
+      }
+
+<span class="nc" id="L47">    }</span>
+
+    @Override
+    public Integer read(InputStream in) throws IOException {
+
+<span class="nc" id="L52">      int value = 0;</span>
+
+<span class="nc bnc" id="L54" title="All 2 branches missed.">      for (int i = 0; i &lt; 4; i++) {</span>
+<span class="nc" id="L55">        value = (value &lt;&lt; 8) | in.read();</span>
+      }
+
+<span class="nc" id="L58">      return value;</span>
+
+    }
+  };
+
+<span class="nc" id="L63">  public static final Serializer&lt;Long&gt; LONG = new Serializer&lt;Long&gt;() {</span>
+
+    @Override
+    public void write(OutputStream out, Long value) throws IOException {
+
+<span class="nc bnc" id="L68" title="All 2 branches missed.">      for (int i = 56; i &gt;= 0; i -= 8) {</span>
+<span class="nc" id="L69">        out.write((int)(0xFF &amp; (value &gt;&gt;&gt; i)));</span>
+      }
+
+<span class="nc" id="L72">    }</span>
+
+    @Override
+    public Long read(InputStream in) throws IOException {
+
+<span class="nc" id="L77">      long value = 0;</span>
+
+<span class="nc bnc" id="L79" title="All 2 branches missed.">      for (int i = 0; i &lt; 8; i++) {</span>
+<span class="nc" id="L80">        value = (value &lt;&lt; 8) | in.read();</span>
+      }
+
+<span class="nc" id="L83">      return value;</span>
+
+    }
+  };
+
+<span class="nc" id="L88">  public static final Serializer&lt;byte[]&gt; BYTES = new Serializer&lt;byte[]&gt;() {</span>
+
+    @Override
+    public void write(OutputStream out, byte[] value) throws IOException {
+
+<span class="nc" id="L93">      INTEGER.write(out, value.length);</span>
+<span class="nc" id="L94">      out.write(value);</span>
+
+<span class="nc" id="L96">    }</span>
+
+    @Override
+    public byte[] read(InputStream input) throws IOException {
+
+<span class="nc" id="L101">      final int length = INTEGER.read(input);</span>
+<span class="nc" id="L102">      final byte[] array = new byte[length];</span>
+
+<span class="nc bnc" id="L104" title="All 2 branches missed.">      for (int i = 0; i &lt; length; i++) {</span>
+<span class="nc" id="L105">        array[i] = (byte)input.read();</span>
+      }
+
+<span class="nc" id="L108">      return array;</span>
+
+    }
+  };
+
+<span class="nc" id="L113">  public static final Serializer&lt;String&gt; STRING = new Serializer&lt;String&gt;() {</span>
+
+    @Override
+    public void write(OutputStream out, String value) throws IOException {
+
+<span class="nc" id="L118">      BYTES.write(out, value.getBytes());</span>
+
+<span class="nc" id="L120">    }</span>
+
+    @Override
+    public String read(InputStream input) throws IOException {
+
+<span class="nc" id="L125">      return new String(BYTES.read(input));</span>
+
+    }
+  };
+
+  public static &lt;T&gt; Serializer&lt;Collection&lt;T&gt;&gt; collection(final Serializer&lt;T&gt; serializer) {
+
+<span class="nc" id="L132">    return new Serializer&lt;Collection&lt;T&gt;&gt;() {</span>
+
+      @Override
+      public void write(OutputStream out, Collection&lt;T&gt; value) throws IOException {
+<span class="nc" id="L136">        INTEGER.write(out, value.size());</span>
+<span class="nc bnc" id="L137" title="All 2 branches missed.">        for (final T x : value) {</span>
+<span class="nc" id="L138">          serializer.write(out, x);</span>
+<span class="nc" id="L139">        }</span>
+<span class="nc" id="L140">      }</span>
+
+      @Override
+      public Collection&lt;T&gt; read(InputStream in) throws IOException {
+<span class="nc" id="L144">        final int size = INTEGER.read(in);</span>
+<span class="nc" id="L145">        Collection&lt;T&gt; list = new ArrayList&lt;&gt;(size);</span>
+<span class="nc bnc" id="L146" title="All 2 branches missed.">        for (int i = 0; i &lt; size; i++) {</span>
+<span class="nc" id="L147">          list.add(serializer.read(in));</span>
+        }
+<span class="nc" id="L149">        return list;</span>
+      }
+    };
+  }
+
+  public static &lt;T&gt; Serializer&lt;T&gt; nullable(final Serializer&lt;T&gt; serializer) {
+
+<span class="nc" id="L156">    final int NO_VALUE = 0x00;</span>
+<span class="nc" id="L157">    final int YES_VALUE = 0xFF;</span>
+
+<span class="nc" id="L159">    return new Serializer&lt;T&gt;() {</span>
+
+      @Override
+      public void write(OutputStream out, T value) throws IOException {
+<span class="nc bnc" id="L163" title="All 2 branches missed.">        if (value == null) {</span>
+<span class="nc" id="L164">          out.write(NO_VALUE);</span>
+        } else {
+<span class="nc" id="L166">          out.write(YES_VALUE);</span>
+<span class="nc" id="L167">          serializer.write(out, value);</span>
+        }
+<span class="nc" id="L169">      }</span>
+
+      @Override
+      public T read(InputStream in) throws IOException {
+<span class="nc bnc" id="L173" title="All 2 branches missed.">        return in.read() == NO_VALUE ? null : serializer.read(in);</span>
+      }
+    };
+  }
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>
