@@ -74,34 +74,38 @@ import codeu.chat.util.connections.ConnectionSource;
 <span class="nc" id="L74">        Parameters parameters = getParameters();</span>
 <span class="nc" id="L75">        List&lt;String&gt; unnamed = parameters.getUnnamed();</span>
 
+<span class="nc" id="L77">        final RemoteAddress address = RemoteAddress.parse(unnamed.get(0));</span>
 
-<span class="nc" id="L78">        final RemoteAddress address = RemoteAddress.parse(unnamed.get(0));</span>
-
-<span class="nc" id="L80">        try (</span>
-<span class="nc" id="L81">            final ConnectionSource source = new ClientConnectionSource(address.host, address.port)</span>
+<span class="nc" id="L79">        try (</span>
+<span class="nc" id="L80">                final ConnectionSource source = new ClientConnectionSource(address.host, address.port)</span>
         ) {
-<span class="nc" id="L83">            final Controller controller = new Controller(source);</span>
-<span class="nc" id="L84">            final View view = new View(source);</span>
+<span class="nc" id="L82">            final Controller controller = new Controller(source);</span>
+<span class="nc" id="L83">            final View view = new View(source);</span>
 
-<span class="nc" id="L86">            clientContext = new ClientContext(controller, view);</span>
+<span class="nc" id="L85">            clientContext = new ClientContext(controller, view);</span>
 
-<span class="nc" id="L88">            LOG.info(&quot;Creating client...&quot;);</span>
+<span class="nc" id="L87">            LOG.info(&quot;Creating client...&quot;);</span>
             //runClient(controller, view);
 
-<span class="nc bnc" id="L91" title="All 8 branches missed.">        } catch (Exception ex) {</span>
-<span class="nc" id="L92">            System.out.println(&quot;ERROR: Exception setting up client. Check log for details.&quot;);</span>
-<span class="nc" id="L93">            LOG.error(ex, &quot;Exception setting up client.&quot;);</span>
-<span class="nc" id="L94">        }</span>
+<span class="nc bnc" id="L90" title="All 8 branches missed.">        } catch (Exception ex) {</span>
+<span class="nc" id="L91">            System.out.println(&quot;ERROR: Exception setting up client. Check log for details.&quot;);</span>
+<span class="nc" id="L92">            LOG.error(ex, &quot;Exception setting up client.&quot;);</span>
+<span class="nc" id="L93">        }</span>
 
-        // Parent root = FXMLLoader.load(getClass().getResource(&quot;/codeu/chat/client/bettergui/LoginUI.fxml&quot;));
-<span class="nc" id="L97">        Parent root = FXMLLoader.load(getClass().getResource(&quot;LoginUI.fxml&quot;));</span>
+<span class="nc" id="L95">        FXMLLoader loader = new FXMLLoader(getClass().getResource(&quot;/codeu/chat/client/bettergui/LoginUI.fxml&quot;));</span>
 
-<span class="nc" id="L99">        s1 = new Scene(root);</span>
+<span class="nc" id="L97">        Parent root = loader.load();</span>
 
-<span class="nc" id="L101">        primaryStage.setScene(s1);</span>
+<span class="nc" id="L99">        LoginController loginController = loader.getController();</span>
 
-<span class="nc" id="L103">        primaryStage.show();</span>
-<span class="nc" id="L104">    }</span>
+<span class="nc" id="L101">        loginController.setClientContext(clientContext);</span>
+
+<span class="nc" id="L103">        s1 = new Scene(root);</span>
+
+<span class="nc" id="L105">        primaryStage.setScene(s1);</span>
+
+<span class="nc" id="L107">        primaryStage.show();</span>
+<span class="nc" id="L108">    }</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

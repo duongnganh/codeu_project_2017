@@ -60,7 +60,7 @@ public final class RawControllerTest {
         "Check that the user has the correct id",
         Uuid.equals(user.id, userId));
 
-    model.refresh();
+    model.remove(user);
   }
 
   @Test
@@ -83,8 +83,6 @@ public final class RawControllerTest {
     assertTrue(
         "Check that the user has the correct username",
         Uuid.equals(delUser.id, userId));
-
-    model.refresh();
   }
 
   @Test
@@ -122,7 +120,9 @@ public final class RawControllerTest {
         "Check that the conversation has the correct id",
         Uuid.equals(conversation.id, conversationId));
 
-    model.refresh();
+    model.remove(user);
+    model.remove(group);
+    model.remove(conversation);
   }
 
   @Test
@@ -169,7 +169,8 @@ public final class RawControllerTest {
         "Check that the conversation has the correct id",
         Uuid.equals(delConversation.id, conversationId));
 
-    model.refresh();
+    model.remove(user);
+    model.remove(group);
 
   }
 
@@ -198,7 +199,8 @@ public final class RawControllerTest {
         "Check that the group has the correct id",
         Uuid.equals(group.id, groupId));
 
-    model.refresh();
+    model.remove(user);
+    model.remove(group);
   }
 
   @Test
@@ -249,6 +251,10 @@ public final class RawControllerTest {
     assertTrue(
         "Check that the message has the correct id",
         Uuid.equals(message.id, messageId));
-    model.refresh();
+    
+    model.remove(user);
+    model.remove(group);
+    model.remove(conversation);
+    model.remove(message);
   }
 }
