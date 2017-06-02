@@ -23,6 +23,7 @@ import codeu.chat.common.Group;
 import codeu.chat.common.Message;
 import codeu.chat.common.RawController;
 import codeu.chat.common.User;
+import codeu.chat.common.IDs;
 import codeu.chat.util.Time;
 import codeu.chat.util.Uuid;
 
@@ -39,7 +40,7 @@ public final class RawControllerTest {
   @Before
   public void doBefore() {
     String[] tableNames = {"user", "conversation", "group", "message"};
-    model = new Model("codeuproject12345", "codeuinstance12345", tableNames);
+    model = new Model(IDs.projectId, IDs.instanceId, tableNames);
     controller = new Controller(Uuid.NULL, model);
 
     userId = new Uuid(1);

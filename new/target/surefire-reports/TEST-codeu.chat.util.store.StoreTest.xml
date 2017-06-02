@@ -67,9 +67,9 @@
   <testcase name="testOrderPingPongOrderInsert" classname="codeu.chat.util.store.StoreTest" time="0.001"/>
   <testcase name="testOrderReverseOrderInsert" classname="codeu.chat.util.store.StoreTest" time="0"/>
   <testcase name="testAfter" classname="codeu.chat.util.store.StoreTest" time="0"/>
-  <testcase name="testFirst" classname="codeu.chat.util.store.StoreTest" time="0.001"/>
+  <testcase name="testFirst" classname="codeu.chat.util.store.StoreTest" time="0"/>
   <testcase name="testRange" classname="codeu.chat.util.store.StoreTest" time="0"/>
   <testcase name="testAt" classname="codeu.chat.util.store.StoreTest" time="0"/>
-  <testcase name="testOrderInOrderInsert" classname="codeu.chat.util.store.StoreTest" time="0"/>
+  <testcase name="testOrderInOrderInsert" classname="codeu.chat.util.store.StoreTest" time="0.001"/>
   <testcase name="testBefore" classname="codeu.chat.util.store.StoreTest" time="0"/>
 </testsuite>

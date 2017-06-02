@@ -13,14 +13,12 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
+source IDs
 TEAM_ID="$1"
 TEAM_SECRET="$2"
 PORT="$3"
 PERSISTENT_DIR="$4"
 RELAY_ADDRESS="$5"
-PROJECTID="codeuproject12345"
-INSTANCEID="codeuinstance12345"
 USERTABLE="user"
 CONVERSATIONTABLE="conversation"
 GROUPTABLE="group"

@@ -94,6 +94,7 @@ cloud-bigtable-hello-world,codeu.chat.common,ConversationSummary.new Serializer(
 cloud-bigtable-hello-world,codeu.chat.common,Secret,5,85,1,7,2,12,2,6,1,2
 cloud-bigtable-hello-world,codeu.chat.common,GroupSummary.new Serializer() {...},41,3,0,0,10,1,2,1,2,1
 cloud-bigtable-hello-world,codeu.chat.common,Message,0,26,0,0,0,9,0,2,0,2
+cloud-bigtable-hello-world,codeu.chat.common,IDs,3,0,0,0,1,0,1,0,1,0
 cloud-bigtable-hello-world,codeu.chat.common,Conversation,0,44,0,0,0,12,0,2,0,2
 cloud-bigtable-hello-world,codeu.chat.common,LinearUuidGenerator,5,37,1,1,1,10,1,3,0,3
 cloud-bigtable-hello-world,codeu.chat.common,Conversation.new Serializer() {...},89,3,0,0,19,1,2,1,2,1

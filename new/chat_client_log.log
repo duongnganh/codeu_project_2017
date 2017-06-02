@@ -182,3 +182,29 @@ Jun 02, 2017 11:41:27 AM codeu.chat.ClientMain main
 INFO: Creating client...
 Jun 02, 2017 11:41:27 AM codeu.chat.ClientMain main
 INFO: Created client
+Jun 02, 2017 11:53:54 AM codeu.chat.ClientMain main
+INFO: ============================= START OF LOG =============================
+Jun 02, 2017 11:53:54 AM codeu.chat.ClientMain main
+INFO: Starting chat client...
+Jun 02, 2017 11:53:54 AM codeu.chat.ClientMain main
+INFO: Creating client...
+Jun 02, 2017 11:53:54 AM codeu.chat.ClientMain main
+INFO: Created client
+Jun 02, 2017 11:54:05 AM codeu.chat.client.View getUsersExcluding
+SEVERE: Response from server failed.
+Jun 02, 2017 11:55:28 AM codeu.chat.ClientMain main
+INFO: ============================= START OF LOG =============================
+Jun 02, 2017 11:55:28 AM codeu.chat.ClientMain main
+INFO: Starting chat client...
+Jun 02, 2017 11:55:28 AM codeu.chat.ClientMain main
+INFO: Creating client...
+Jun 02, 2017 11:55:28 AM codeu.chat.ClientMain main
+INFO: Created client
+Jun 02, 2017 12:08:38 PM codeu.chat.ClientMain main
+INFO: ============================= START OF LOG =============================
+Jun 02, 2017 12:08:38 PM codeu.chat.ClientMain main
+INFO: Starting chat client...
+Jun 02, 2017 12:08:38 PM codeu.chat.ClientMain main
+INFO: Creating client...
+Jun 02, 2017 12:08:38 PM codeu.chat.ClientMain main
+INFO: Created client
