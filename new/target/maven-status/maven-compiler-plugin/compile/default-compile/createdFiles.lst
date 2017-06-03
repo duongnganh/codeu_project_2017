@@ -8,6 +8,7 @@ codeu/chat/server/RemoteRelay$1.class
 codeu/chat/util/Logger$Log.class
 codeu/chat/relay/ServerFrontEnd.class
 codeu/chat/common/SinglesView.class
+codeu/chat/createTableForUI.class
 codeu/chat/util/Uuid$1.class
 codeu/chat/client/simplegui/UserPanel$5.class
 codeu/chat/server/View.class

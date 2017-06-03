@@ -82,7 +82,11 @@ public class deleteTable {
     String instanceId = requiredProperty("instanceId");
     String[] tableNames = 
     {requiredProperty("userTable"), requiredProperty("conversationTable"), 
-    requiredProperty("groupTable"), requiredProperty("messageTable")};
+    requiredProperty("groupTable"), requiredProperty("messageTable"),
+    //TODO: hard code
+    "Paris-Food", "Paris-Culture", "Paris-Attraction", 
+    "Berlin-Food", "Berlin-Culture", "Berlin-Attraction", 
+    "London-Food", "London-Culture", "London-Attraction"};
     
     delete(projectId, instanceId, tableNames);
   }

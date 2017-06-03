@@ -82,17 +82,21 @@ import java.io.IOException;
 <span class="nc" id="L82">    String instanceId = requiredProperty(&quot;instanceId&quot;);</span>
 <span class="nc" id="L83">    String[] tableNames = </span>
 <span class="nc" id="L84">    {requiredProperty(&quot;userTable&quot;), requiredProperty(&quot;conversationTable&quot;), </span>
-<span class="nc" id="L85">    requiredProperty(&quot;groupTable&quot;), requiredProperty(&quot;messageTable&quot;)};</span>
+<span class="nc" id="L85">    requiredProperty(&quot;groupTable&quot;), requiredProperty(&quot;messageTable&quot;),</span>
+    //TODO: hard code
+    &quot;Paris-Food&quot;, &quot;Paris-Culture&quot;, &quot;Paris-Attraction&quot;, 
+    &quot;Berlin-Food&quot;, &quot;Berlin-Culture&quot;, &quot;Berlin-Attraction&quot;, 
+    &quot;London-Food&quot;, &quot;London-Culture&quot;, &quot;London-Attraction&quot;};
     
-<span class="nc" id="L87">    delete(projectId, instanceId, tableNames);</span>
-<span class="nc" id="L88">  }</span>
+<span class="nc" id="L91">    delete(projectId, instanceId, tableNames);</span>
+<span class="nc" id="L92">  }</span>
 
   private static String requiredProperty(String prop) {
-<span class="nc" id="L91">    String value = System.getProperty(prop);</span>
-<span class="nc bnc" id="L92" title="All 2 branches missed.">    if (value == null) {</span>
-<span class="nc" id="L93">      throw new IllegalArgumentException(&quot;Missing required system property: &quot; + prop);</span>
+<span class="nc" id="L95">    String value = System.getProperty(prop);</span>
+<span class="nc bnc" id="L96" title="All 2 branches missed.">    if (value == null) {</span>
+<span class="nc" id="L97">      throw new IllegalArgumentException(&quot;Missing required system property: &quot; + prop);</span>
     }
-<span class="nc" id="L95">    return value;</span>
+<span class="nc" id="L99">    return value;</span>
   }
 
 }
