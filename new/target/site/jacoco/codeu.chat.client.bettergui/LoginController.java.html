@@ -85,9 +85,9 @@ import java.util.ResourceBundle;
 <span class="nc" id="L85">        String username = this.pass.getText();</span>
 <span class="nc" id="L86">        String password = this.username.getText();</span>
 
-        //Boolean status = clientContext.user.signInUser(username, password);
+<span class="nc" id="L88">        Boolean status = clientContext.user.signInUser(username, password);</span>
 
-        //if (status) {
+<span class="nc bnc" id="L90" title="All 2 branches missed.">        if (status) {</span>
 <span class="nc" id="L91">            Parent window1 = FXMLLoader.load(getClass().getResource(&quot;/codeu/chat/client/bettergui/MainUI.fxml&quot;));</span>
 
 <span class="nc" id="L93">            Stage mainStage = (Stage) anchorPane.getScene().getWindow();</span>
@@ -96,15 +96,15 @@ import java.util.ResourceBundle;
 <span class="nc" id="L96">            mainStage.setWidth(800);</span>
 
 <span class="nc" id="L98">            mainStage.getScene().setRoot(window1);</span>
-       /* } else {
+<span class="nc" id="L99">        } else {</span>
 
-            Alert alert = new Alert(AlertType.INFORMATION);
-            alert.setTitle(&quot;Error!&quot;);
-            alert.setHeaderText(null);
-            alert.setContentText(&quot;Entered user credentials are not correct!&quot;);
+<span class="nc" id="L101">            Alert alert = new Alert(AlertType.INFORMATION);</span>
+<span class="nc" id="L102">            alert.setTitle(&quot;Error!&quot;);</span>
+<span class="nc" id="L103">            alert.setHeaderText(null);</span>
+<span class="nc" id="L104">            alert.setContentText(&quot;Entered user credentials are not correct!&quot;);</span>
 
-            alert.showAndWait();
-        }*/
+<span class="nc" id="L106">            alert.showAndWait();</span>
+        }
 
 <span class="nc" id="L109">    }</span>
 

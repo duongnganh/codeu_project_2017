@@ -60,33 +60,32 @@ import java.util.Calendar;
 <span class="nc" id="L60">            listView.getItems().add( sdf.format(cal.getTime()) + &quot;: &quot; + message);</span>
 
         }
-<span class="nc" id="L63">        messageView.setPrefHeight(25);</span>
-<span class="nc" id="L64">    }</span>
+<span class="nc" id="L63">    }</span>
 
     @Override
     public void initialize (URL url, ResourceBundle rb) {
 
-<span class="nc" id="L69">        ListView&lt;String&gt; list = new ListView&lt;String&gt;();</span>
-<span class="nc" id="L70">        ObservableList&lt;String&gt; items = FXCollections.observableArrayList (</span>
+<span class="nc" id="L68">        ListView&lt;String&gt; list = new ListView&lt;String&gt;();</span>
+<span class="nc" id="L69">        ObservableList&lt;String&gt; items = FXCollections.observableArrayList (</span>
                 &quot;+ Around the Eiffel Tower&quot;, &quot;+ Best Dessert Places&quot;, &quot;+ Night Life&quot;, &quot;+ Museum &amp; Exhibitions&quot;);
-<span class="nc" id="L72">        conversationList.setItems(items);</span>
-<span class="nc" id="L73">        conversationList.setMinWidth(190);</span>
-<span class="nc" id="L74">    }</span>
+<span class="nc" id="L71">        conversationList.setItems(items);</span>
+<span class="nc" id="L72">        conversationList.setMinWidth(190);</span>
+<span class="nc" id="L73">    }</span>
 
     @FXML
     void onBackClick(ActionEvent event) throws Exception {
 
-<span class="nc" id="L79">        Parent window1 = FXMLLoader.load(getClass().getResource(&quot;/codeu/chat/client/bettergui/LoginUI.fxml&quot;));</span>
+<span class="nc" id="L78">        Parent window1 = FXMLLoader.load(getClass().getResource(&quot;/codeu/chat/client/bettergui/LoginUI.fxml&quot;));</span>
 
-<span class="nc" id="L81">        Stage mainStage = (Stage) borderPane.getScene().getWindow();</span>
+<span class="nc" id="L80">        Stage mainStage = (Stage) borderPane.getScene().getWindow();</span>
 
-<span class="nc" id="L83">        mainStage.setHeight(400);</span>
-<span class="nc" id="L84">        mainStage.setWidth(427);</span>
+<span class="nc" id="L82">        mainStage.setHeight(400);</span>
+<span class="nc" id="L83">        mainStage.setWidth(427);</span>
 
 
-<span class="nc" id="L87">        mainStage.getScene().setRoot(window1);</span>
+<span class="nc" id="L86">        mainStage.getScene().setRoot(window1);</span>
 
-<span class="nc" id="L89">    }</span>
+<span class="nc" id="L88">    }</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>
