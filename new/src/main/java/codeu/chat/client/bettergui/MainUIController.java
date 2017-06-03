@@ -59,6 +59,12 @@ public class MainUIController implements Initializable {
 
             listView.getItems().add( sdf.format(cal.getTime()) + ": " + message);
 
+            /*clientContext.message.addMessage(
+            clientContext.user.getCurrent().id,
+                    clientContext.conversation.getCurrentId(),
+                    clientContext.group.getCurrent().id,
+                    messageText);*/
+
         }
     }
 
@@ -67,9 +73,56 @@ public class MainUIController implements Initializable {
 
         ListView<String> list = new ListView<String>();
         ObservableList<String> items = FXCollections.observableArrayList (
-                "+ Around the Eiffel Tower", "+ Best Dessert Places", "+ Night Life", "+ Museum & Exhibitions");
+            "+ Best Dessert Places", "+ Night Life", "+ Museum & Exhibitions");
         conversationList.setItems(items);
         conversationList.setMinWidth(190);
+
+        /*
+        *
+
+         for (final Message m : clientContext.message.getConversationContents(conversation)) {
+            // Display author name if available.  Otherwise display the author UUID.
+            final String authorName = clientContext.user.getName(m.author);
+
+            final String displayString = String.format("%s: [%s]: %s",
+                ((authorName == null) ? m.author : authorName), m.creation, m.content);
+
+                messageListModel.addElement(displayString);
+            }
+
+        *
+        * */
+
+        //clientContext.conversation.startConversation(s, clientContext.user.getCurrent().id, clientContext.group.getCurrent().id);
+
+        /*
+
+          final int index = objectList.getSelectedIndex();
+          final String data = objectList.getSelectedValue();
+          final ConversationSummary cs = ConversationPanel.this.lookupByTitle(data, index);
+
+          clientContext.conversation.setCurrent(cs);
+
+          messagePanel.update(cs);
+
+
+          *******
+
+
+          private ConversationSummary lookupByTitle(String title, int index) {
+
+            int localIndex = 0;
+                for (final ConversationSummary cs : clientContext.conversation.getConversationSummaries()) {
+                    if ((localIndex >= index) && cs.title.equals(title)) {
+                        return cs;
+                    }
+                    localIndex++;
+                }
+            return null;
+          }
+
+        * */
+
     }
 
     @FXML
