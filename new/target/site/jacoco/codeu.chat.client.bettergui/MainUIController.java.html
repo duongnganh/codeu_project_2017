@@ -25,7 +25,10 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import java.net.URL;
 
-<span class="nc" id="L28">public class MainUIController implements Initializable {</span>
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
+<span class="nc" id="L31">public class MainUIController implements Initializable {</span>
 
     @FXML
     private JFXButton backButton;
@@ -34,32 +37,56 @@ import java.net.URL;
     private BorderPane borderPane;
 
     @FXML
+    private JFXListView&lt;String&gt; listView;
+
+    @FXML
+    private JFXTextField messageView;
+
+    @FXML
     private JFXListView&lt;String&gt; conversationList;
+
+    @FXML
+    private JFXButton sendButton;
+
+    @FXML
+    void sendMessage(ActionEvent event) {
+<span class="nc" id="L53">        String message = this.messageView.getText();</span>
+
+<span class="nc bnc" id="L55" title="All 2 branches missed.">        if (message != null) {</span>
+
+<span class="nc" id="L57">            Calendar cal = Calendar.getInstance();</span>
+<span class="nc" id="L58">            SimpleDateFormat sdf = new SimpleDateFormat(&quot;HH:mm:ss&quot;);</span>
+
+<span class="nc" id="L60">            listView.getItems().add( sdf.format(cal.getTime()) + &quot;: &quot; + message);</span>
+
+        }
+<span class="nc" id="L63">        messageView.setPrefHeight(25);</span>
+<span class="nc" id="L64">    }</span>
 
     @Override
     public void initialize (URL url, ResourceBundle rb) {
 
-<span class="nc" id="L42">        ListView&lt;String&gt; list = new ListView&lt;String&gt;();</span>
-<span class="nc" id="L43">        ObservableList&lt;String&gt; items = FXCollections.observableArrayList (</span>
+<span class="nc" id="L69">        ListView&lt;String&gt; list = new ListView&lt;String&gt;();</span>
+<span class="nc" id="L70">        ObservableList&lt;String&gt; items = FXCollections.observableArrayList (</span>
                 &quot;+ Around the Eiffel Tower&quot;, &quot;+ Best Dessert Places&quot;, &quot;+ Night Life&quot;, &quot;+ Museum &amp; Exhibitions&quot;);
-<span class="nc" id="L45">        conversationList.setItems(items);</span>
-<span class="nc" id="L46">        conversationList.setMinWidth(190);</span>
-<span class="nc" id="L47">    }</span>
+<span class="nc" id="L72">        conversationList.setItems(items);</span>
+<span class="nc" id="L73">        conversationList.setMinWidth(190);</span>
+<span class="nc" id="L74">    }</span>
 
     @FXML
     void onBackClick(ActionEvent event) throws Exception {
 
-<span class="nc" id="L52">        Parent window1 = FXMLLoader.load(getClass().getResource(&quot;/codeu/chat/client/bettergui/LoginUI.fxml&quot;));</span>
+<span class="nc" id="L79">        Parent window1 = FXMLLoader.load(getClass().getResource(&quot;/codeu/chat/client/bettergui/LoginUI.fxml&quot;));</span>
 
-<span class="nc" id="L54">        Stage mainStage = (Stage) borderPane.getScene().getWindow();</span>
+<span class="nc" id="L81">        Stage mainStage = (Stage) borderPane.getScene().getWindow();</span>
 
-<span class="nc" id="L56">        mainStage.setHeight(400);</span>
-<span class="nc" id="L57">        mainStage.setWidth(427);</span>
+<span class="nc" id="L83">        mainStage.setHeight(400);</span>
+<span class="nc" id="L84">        mainStage.setWidth(427);</span>
 
 
-<span class="nc" id="L60">        mainStage.getScene().setRoot(window1);</span>
+<span class="nc" id="L87">        mainStage.getScene().setRoot(window1);</span>
 
-<span class="nc" id="L62">    }</span>
+<span class="nc" id="L89">    }</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>
