@@ -34,9 +34,6 @@
          </children>
       </VBox>
    </center>
-   <left>
-      <JFXListView fx:id="conversationList" style="-fx-border-color: white #d9d9d9 white white;" BorderPane.alignment="CENTER" />
-   </left>
    <top>
       <VBox style="-fx-border-color: #d9d9d9;" BorderPane.alignment="CENTER">
          <children>
@@ -73,7 +70,7 @@
             </HBox>
             <HBox spacing="10.0">
                <children>
-                  <JFXButton contentDisplay="TOP" text="Paris">
+                  <JFXButton fx:id="parisButton" contentDisplay="TOP" onAction="#clickParis" text="Paris">
                      <graphic>
                         <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" smooth="false">
                            <image>
@@ -82,7 +79,7 @@
                         </ImageView>
                      </graphic>
                   </JFXButton>
-                  <JFXButton contentDisplay="TOP" text="Berlin">
+                  <JFXButton fx:id="berlinButton" contentDisplay="TOP" onAction="#clickBerlin" text="Berlin">
                      <graphic>
                         <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -91,7 +88,7 @@
                         </ImageView>
                      </graphic>
                   </JFXButton>
-                  <JFXButton contentDisplay="TOP" text="New York">
+                  <JFXButton fx:id="newYorkButton" contentDisplay="TOP" onAction="#clickNewYork" text="New York">
                      <graphic>
                         <ImageView cache="true" fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -108,4 +105,7 @@
          </children>
       </VBox>
    </top>
+   <left>
+      <ListView fx:id="conversationList" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+   </left>
 </BorderPane>
