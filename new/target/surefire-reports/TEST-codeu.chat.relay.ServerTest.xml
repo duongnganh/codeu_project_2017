@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="codeu.chat.relay.ServerTest" time="0.024" tests="11" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="codeu.chat.relay.ServerTest" time="0.03" tests="11" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home/jre/lib"/>
@@ -64,15 +64,15 @@
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase name="testAddTeam" classname="codeu.chat.relay.ServerTest" time="0.002"/>
-  <testcase name="testReadLimited" classname="codeu.chat.relay.ServerTest" time="0.014"/>
+  <testcase name="testAddTeam" classname="codeu.chat.relay.ServerTest" time="0.006"/>
+  <testcase name="testReadLimited" classname="codeu.chat.relay.ServerTest" time="0.015"/>
   <testcase name="testReadFailWrongSecret" classname="codeu.chat.relay.ServerTest" time="0.001"/>
   <testcase name="testWriteFailNoTeam" classname="codeu.chat.relay.ServerTest" time="0"/>
   <testcase name="testReadMidHistory" classname="codeu.chat.relay.ServerTest" time="0.002"/>
   <testcase name="testWriteAndReadSuccess" classname="codeu.chat.relay.ServerTest" time="0.001"/>
   <testcase name="testHistoryOverwrite" classname="codeu.chat.relay.ServerTest" time="0.001"/>
-  <testcase name="testReadFailMissingTeam" classname="codeu.chat.relay.ServerTest" time="0"/>
-  <testcase name="testWriteSuccess" classname="codeu.chat.relay.ServerTest" time="0"/>
+  <testcase name="testReadFailMissingTeam" classname="codeu.chat.relay.ServerTest" time="0.001"/>
+  <testcase name="testWriteSuccess" classname="codeu.chat.relay.ServerTest" time="0.001"/>
   <testcase name="testWriteFailWrongSecret" classname="codeu.chat.relay.ServerTest" time="0.001"/>
   <testcase name="testReadWithMissingRoot" classname="codeu.chat.relay.ServerTest" time="0.001"/>
 </testsuite>
