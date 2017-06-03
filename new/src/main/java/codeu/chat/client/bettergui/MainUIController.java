@@ -34,6 +34,28 @@ import codeu.chat.util.Logger;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+//for big table
+import com.google.cloud.bigtable.hbase.BigtableConfiguration;
+
+import org.apache.hadoop.hbase.HColumnDescriptor;
+import org.apache.hadoop.hbase.HTableDescriptor;
+import org.apache.hadoop.hbase.TableName;
+import org.apache.hadoop.hbase.client.Admin;
+import org.apache.hadoop.hbase.client.Connection;
+import org.apache.hadoop.hbase.client.Get;
+import org.apache.hadoop.hbase.client.Put;
+import org.apache.hadoop.hbase.client.Delete;
+import org.apache.hadoop.hbase.client.Result;
+import org.apache.hadoop.hbase.client.ResultScanner;
+import org.apache.hadoop.hbase.client.Scan;
+import org.apache.hadoop.hbase.client.Table;
+import org.apache.hadoop.hbase.util.Bytes;
+
+import java.io.IOException;
+import codeu.chat.common.IDs;
+
+import java.util.ArrayList;
+
 public class MainUIController implements Initializable {
 
     private final static Logger.Log LOG = Logger.newLog(MainUIController.class);
@@ -113,19 +135,19 @@ public class MainUIController implements Initializable {
 
         /*
 
-          final int index = objectList.getSelectedIndex();
-          final String data = objectList.getSelectedValue();
-          final ConversationSummary cs = ConversationPanel.this.lookupByTitle(data, index);
+            final int index = objectList.getSelectedIndex();
+            final String data = objectList.getSelectedValue();
+            final ConversationSummary cs = ConversationPanel.this.lookupByTitle(data, index);
 
-          clientContext.conversation.setCurrent(cs);
+            clientContext.conversation.setCurrent(cs);
 
-          messagePanel.update(cs);
-
-
-          *******
+            messagePanel.update(cs);
 
 
-          private ConversationSummary lookupByTitle(String title, int index) {
+            *******
+
+
+            private ConversationSummary lookupByTitle(String title, int index) {
 
             int localIndex = 0;
                 for (final ConversationSummary cs : clientContext.conversation.getConversationSummaries()) {
@@ -135,7 +157,7 @@ public class MainUIController implements Initializable {
                     localIndex++;
                 }
             return null;
-          }
+            }
 
         * */
 
@@ -160,4 +182,63 @@ public class MainUIController implements Initializable {
 
     }
 
+    // For big table
+    private static final byte[] COLUMN_FAMILY_NAME = Bytes.toBytes("cf1");
+
+    void insert(String city, String conversation, String username, String message, String timestamp, int counter){
+        
+        String table_name = city+"-"+conversation;
+
+        try (Connection connection = BigtableConfiguration.connect(IDs.projectId, IDs.instanceId)) {
+            
+            Table table = connection.getTable(TableName.valueOf(Bytes.toBytes(table_name)));
+
+            int rowKey = counter;
+
+            Put put = new Put(Bytes.toBytes(rowKey));
+            //Uuid id, String name, Time creation, String nickname
+            put.addColumn(COLUMN_FAMILY_NAME, Bytes.toBytes("username"), Bytes.toBytes(username));
+            put.addColumn(COLUMN_FAMILY_NAME, Bytes.toBytes("message"), Bytes.toBytes(message));
+            put.addColumn(COLUMN_FAMILY_NAME, Bytes.toBytes("timestamp"), Bytes.toBytes(timestamp));
+            table.put(put);
+
+        } catch (IOException e) {
+            System.err.println("Exception while running Bigtable: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    // return List of rows. each row is an arraylist of 3 Strings: username, message and timestamp
+    // change the return if you need so.
+    ArrayList<ArrayList<String>> retrieveAllMessages(String city, String conversation){
+        
+        String table_name = city+"-"+conversation;
+
+        try (Connection connection = BigtableConfiguration.connect(IDs.projectId, IDs.instanceId)) {
+            Table table = connection.getTable(TableName.valueOf(Bytes.toBytes(table_name)));
+            Scan scan = new Scan();
+
+            System.out.println("Scan for all message for mainUI:");
+            ResultScanner scanner = table.getScanner(scan);
+
+            ArrayList<ArrayList<String>> al_rows = new ArrayList<>();
+            for (Result row : scanner) {
+                String username = Bytes.toString(row.getValue(COLUMN_FAMILY_NAME, Bytes.toBytes("username")));
+                String message = Bytes.toString(row.getValue(COLUMN_FAMILY_NAME, Bytes.toBytes("message")));
+                String timestamp = Bytes.toString(row.getValue(COLUMN_FAMILY_NAME, Bytes.toBytes("timestamp")));
+
+                ArrayList<String> al_row = new ArrayList<>();
+                al_row.add(username);
+                al_row.add(message);
+                al_row.add(timestamp);
+
+                al_rows.add(al_row);
+            }
+            return al_rows;
+        } catch (IOException e) {
+            System.err.println("Exception while running GetUsers in Model: " + e.getMessage());
+            e.printStackTrace();
+        }
+        return null;
+    }
 }
