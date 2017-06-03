@@ -159,6 +159,15 @@
 			            </configuration>
 			          </execution>
 			          <execution>
+			            <id>createTableForUI</id>
+			            <goals>
+			              <goal>java</goal>
+			            </goals>
+			            <configuration>
+			              <mainClass>codeu.chat.createTableForUI</mainClass>
+			            </configuration>
+			          </execution>
+			          <execution>
 			            <id>simpleGUI</id>
 			            <goals>
 			              <goal>java</goal>

@@ -474,16 +474,16 @@ public final class Model {
 <span class="fc" id="L474">        Uuid previous = Uuid.fromUuidString(Bytes.toString(row.getValue(COLUMN_FAMILY_NAME, Bytes.toBytes(&quot;previous&quot;))));</span>
 <span class="fc" id="L475">        Time creation = Time.fromMs(Bytes.toLong(row.getValue(COLUMN_FAMILY_NAME, Bytes.toBytes(&quot;creation&quot;))));</span>
 <span class="fc" id="L476">        Uuid author = Uuid.fromUuidString(Bytes.toString(row.getValue(COLUMN_FAMILY_NAME, Bytes.toBytes(&quot;author&quot;))));</span>
-<span class="nc" id="L477">        Uuid conversation = Uuid.fromUuidString(Bytes.toString(row.getValue(COLUMN_FAMILY_NAME, Bytes.toBytes(&quot;conversation&quot;))));</span>
-<span class="nc" id="L478">        Uuid group = Uuid.fromUuidString(Bytes.toString(row.getValue(COLUMN_FAMILY_NAME, Bytes.toBytes(&quot;group&quot;))));</span>
-<span class="nc" id="L479">        String content = Bytes.toString(row.getValue(COLUMN_FAMILY_NAME, Bytes.toBytes(&quot;content&quot;)));</span>
+<span class="fc" id="L477">        Uuid conversation = Uuid.fromUuidString(Bytes.toString(row.getValue(COLUMN_FAMILY_NAME, Bytes.toBytes(&quot;conversation&quot;))));</span>
+<span class="fc" id="L478">        Uuid group = Uuid.fromUuidString(Bytes.toString(row.getValue(COLUMN_FAMILY_NAME, Bytes.toBytes(&quot;group&quot;))));</span>
+<span class="fc" id="L479">        String content = Bytes.toString(row.getValue(COLUMN_FAMILY_NAME, Bytes.toBytes(&quot;content&quot;)));</span>
 
-<span class="nc" id="L481">        Message message = new Message(id, next, previous, creation, author, conversation, group, content);</span>
-<span class="nc" id="L482">        messageById.insert(message.id, message);</span>
-<span class="nc" id="L483">        messageByTime.insert(message.creation, message);</span>
+<span class="fc" id="L481">        Message message = new Message(id, next, previous, creation, author, conversation, group, content);</span>
+<span class="fc" id="L482">        messageById.insert(message.id, message);</span>
+<span class="fc" id="L483">        messageByTime.insert(message.creation, message);</span>
         // TODO: check here
-<span class="nc" id="L485">        messageByText.insert(message.content, message);</span>
-<span class="nc" id="L486">      }</span>
+<span class="fc" id="L485">        messageByText.insert(message.content, message);</span>
+<span class="fc" id="L486">      }</span>
 
 <span class="pc bpc" id="L488" title="4 of 8 branches missed.">    } catch (IOException e) {</span>
 <span class="nc" id="L489">      System.err.println(&quot;Exception while running GetUsers in Model: &quot; + e.getMessage());</span>
