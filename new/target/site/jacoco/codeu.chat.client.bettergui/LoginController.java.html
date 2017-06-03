@@ -85,48 +85,56 @@ import java.util.ResourceBundle;
 <span class="nc" id="L85">        String username = this.pass.getText();</span>
 <span class="nc" id="L86">        String password = this.username.getText();</span>
 
-<span class="nc" id="L88">        Boolean status = clientContext.user.signInUser(username, password);</span>
+        //Boolean status = clientContext.user.signInUser(username, password);
 
-<span class="nc bnc" id="L90" title="All 2 branches missed.">        if (status) {</span>
-<span class="nc" id="L91">            Parent window1 = FXMLLoader.load(getClass().getResource(&quot;/codeu/chat/client/bettergui/MainUI.fxml&quot;));</span>
+        //if (status) {
 
-<span class="nc" id="L93">            Stage mainStage = (Stage) anchorPane.getScene().getWindow();</span>
+<span class="nc" id="L92">            FXMLLoader loader = new FXMLLoader(getClass().getResource(&quot;/codeu/chat/client/bettergui/MainUI.fxml&quot;));</span>
 
-<span class="nc" id="L95">            mainStage.setHeight(650);</span>
-<span class="nc" id="L96">            mainStage.setWidth(800);</span>
+<span class="nc" id="L94">            Parent window2 = loader.load();</span>
 
-<span class="nc" id="L98">            mainStage.getScene().setRoot(window1);</span>
-<span class="nc" id="L99">        } else {</span>
+<span class="nc" id="L96">            MainUIController mainController = loader.getController();</span>
 
-<span class="nc" id="L101">            Alert alert = new Alert(AlertType.INFORMATION);</span>
-<span class="nc" id="L102">            alert.setTitle(&quot;Error!&quot;);</span>
-<span class="nc" id="L103">            alert.setHeaderText(null);</span>
-<span class="nc" id="L104">            alert.setContentText(&quot;Entered user credentials are not correct!&quot;);</span>
+<span class="nc" id="L98">            mainController.setClientContext(clientContext);</span>
 
-<span class="nc" id="L106">            alert.showAndWait();</span>
-        }
+<span class="nc" id="L100">            Stage stage = (Stage) anchorPane.getScene().getWindow();</span>
 
-<span class="nc" id="L109">    }</span>
+<span class="nc" id="L102">            stage.setHeight(650);</span>
+<span class="nc" id="L103">            stage.setWidth(800);</span>
+
+<span class="nc" id="L105">            stage.getScene().setRoot(window2);</span>
+
+        /*} else {
+
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle(&quot;Error!&quot;);
+            alert.setHeaderText(null);
+            alert.setContentText(&quot;Entered user credentials are not correct!&quot;);
+
+            alert.showAndWait();
+        }*/
+
+<span class="nc" id="L117">    }</span>
 
     @FXML
     void onRegisterButtonClick(ActionEvent event) throws Exception {
-<span class="nc" id="L113">        LOG.info(&quot;Register button gets called&quot;);</span>
+<span class="nc" id="L121">        LOG.info(&quot;Register button gets called&quot;);</span>
 
-<span class="nc" id="L115">        FXMLLoader loader = new FXMLLoader(getClass().getResource(&quot;/codeu/chat/client/bettergui/RegistrationUI.fxml&quot;));</span>
+<span class="nc" id="L123">        FXMLLoader loader = new FXMLLoader(getClass().getResource(&quot;/codeu/chat/client/bettergui/RegistrationUI.fxml&quot;));</span>
 
-<span class="nc" id="L117">        Parent window2 = loader.load();</span>
+<span class="nc" id="L125">        Parent window2 = loader.load();</span>
 
-<span class="nc" id="L119">        RegistrationController registrationController = loader.getController();</span>
+<span class="nc" id="L127">        RegistrationController registrationController = loader.getController();</span>
 
-<span class="nc" id="L121">        registrationController.setClientContext(clientContext);</span>
+<span class="nc" id="L129">        registrationController.setClientContext(clientContext);</span>
 
-<span class="nc" id="L123">        Stage stage = (Stage) anchorPane.getScene().getWindow();</span>
+<span class="nc" id="L131">        Stage stage = (Stage) anchorPane.getScene().getWindow();</span>
 
-<span class="nc" id="L125">        stage.setHeight(475);</span>
-<span class="nc" id="L126">        stage.setWidth(427);</span>
-<span class="nc" id="L127">        stage.getScene().setRoot(window2);</span>
+<span class="nc" id="L133">        stage.setHeight(475);</span>
+<span class="nc" id="L134">        stage.setWidth(427);</span>
+<span class="nc" id="L135">        stage.getScene().setRoot(window2);</span>
 
-<span class="nc" id="L129">    }</span>
+<span class="nc" id="L137">    }</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>
