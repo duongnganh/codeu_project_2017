@@ -142,3 +142,45 @@ Jun 02, 2017 8:18:14 PM codeu.chat.client.bettergui.LoginController initialize
 INFO: initializing
 Jun 02, 2017 8:18:14 PM codeu.chat.client.bettergui.LoginController setClientContext
 INFO: setting client context
+Jun 02, 2017 8:25:56 PM codeu.chat.client.bettergui.ChatBetterGui start
+INFO: ============================= START OF LOG =============================
+Jun 02, 2017 8:25:56 PM codeu.chat.client.bettergui.ChatBetterGui start
+INFO: Starting chat client...
+Jun 02, 2017 8:25:56 PM codeu.chat.client.bettergui.ChatBetterGui start
+INFO: Creating client...
+Jun 02, 2017 8:25:57 PM codeu.chat.client.bettergui.LoginController initialize
+INFO: initializing
+Jun 02, 2017 8:25:57 PM codeu.chat.client.bettergui.LoginController setClientContext
+INFO: setting client context
+Jun 02, 2017 8:26:15 PM codeu.chat.client.bettergui.ChatBetterGui start
+INFO: ============================= START OF LOG =============================
+Jun 02, 2017 8:26:15 PM codeu.chat.client.bettergui.ChatBetterGui start
+INFO: Starting chat client...
+Jun 02, 2017 8:26:15 PM codeu.chat.client.bettergui.ChatBetterGui start
+INFO: Creating client...
+Jun 02, 2017 8:26:16 PM codeu.chat.client.bettergui.LoginController initialize
+INFO: initializing
+Jun 02, 2017 8:26:16 PM codeu.chat.client.bettergui.LoginController setClientContext
+INFO: setting client context
+Jun 02, 2017 8:27:51 PM codeu.chat.client.bettergui.ChatBetterGui start
+INFO: ============================= START OF LOG =============================
+Jun 02, 2017 8:27:51 PM codeu.chat.client.bettergui.ChatBetterGui start
+INFO: Starting chat client...
+Jun 02, 2017 8:27:51 PM codeu.chat.client.bettergui.ChatBetterGui start
+INFO: Creating client...
+Jun 02, 2017 8:27:51 PM codeu.chat.client.bettergui.LoginController initialize
+INFO: initializing
+Jun 02, 2017 8:27:51 PM codeu.chat.client.bettergui.LoginController setClientContext
+INFO: setting client context
+Jun 02, 2017 8:27:53 PM codeu.chat.client.bettergui.LoginController onRegisterButtonClick
+INFO: Register button gets called
+Jun 02, 2017 8:27:53 PM codeu.chat.client.bettergui.RegistrationController initialize
+INFO: initializing
+Jun 02, 2017 8:27:53 PM codeu.chat.client.bettergui.RegistrationController setClientContext
+INFO: setting client context
+Jun 02, 2017 8:28:03 PM codeu.chat.client.View getUsersExcluding
+SEVERE: Response from server failed.
+Jun 02, 2017 8:28:03 PM codeu.chat.client.Controller newUser
+INFO: newUser: Request completed.
+Jun 02, 2017 8:28:05 PM codeu.chat.client.Controller newUser
+SEVERE: Response from server failed.
