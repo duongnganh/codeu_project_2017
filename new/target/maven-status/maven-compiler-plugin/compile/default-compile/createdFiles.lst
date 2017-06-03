@@ -35,6 +35,7 @@ codeu/chat/util/connections/ServerConnectionSource$1.class
 codeu/chat/client/ClientUser$1.class
 codeu/chat/util/Serializers$2.class
 codeu/chat/server/NoOpRelay$1.class
+codeu/chat/client/bettergui/MainUIController$1.class
 codeu/chat/common/User.class
 codeu/chat/util/Serializers$6.class
 codeu/chat/util/store/StoreAccessor.class

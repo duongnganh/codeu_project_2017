@@ -21,7 +21,11 @@ import javafx.stage.Stage;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+
 import javafx.event.ActionEvent;
+import javafx.scene.input.KeyEvent;
 import javafx.event.EventHandler;
 import java.net.URL;
 
@@ -53,10 +57,31 @@ public class MainUIController implements Initializable {
     private JFXTextField messageView;
 
     @FXML
-    private JFXListView<String> conversationList;
+    private ListView<String> conversationList;
 
     @FXML
     private JFXButton sendButton;
+
+
+    @FXML
+    private JFXButton parisButton;
+    @FXML
+    private JFXButton berlinButton;
+    @FXML
+    private JFXButton newYorkButton;
+
+    @FXML
+    void clickParis(ActionEvent event) {
+        LOG.info("Paris got clicked");
+    }
+    @FXML
+    void clickBerlin(ActionEvent event) {
+        LOG.info("Berlin got clicked");
+    }
+    @FXML
+    void clickNewYork(ActionEvent event) {
+        LOG.info("New York got clicked");
+    }
 
 
     public void setClientContext(ClientContext clientContext) {
@@ -84,14 +109,24 @@ public class MainUIController implements Initializable {
         }
     }
 
+
+
     @Override
     public void initialize (URL url, ResourceBundle rb) {
 
         ListView<String> list = new ListView<String>();
         ObservableList<String> items = FXCollections.observableArrayList (
-            "+ Best Dessert Places", "+ Night Life", "+ Museum & Exhibitions");
+            "+ Best Dessert Places", "+ Night Life", "+ Museums & Exhibitions");
         conversationList.setItems(items);
         conversationList.setMinWidth(190);
+
+        conversationList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                LOG.info("ListView selection changed from oldValue = "
+                        + oldValue + " to newValue = " + newValue);
+            }
+        });
 
         /*
         *

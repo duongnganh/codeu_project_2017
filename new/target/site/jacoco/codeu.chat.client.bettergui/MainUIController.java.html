@@ -21,7 +21,11 @@ import javafx.stage.Stage;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+
 import javafx.event.ActionEvent;
+import javafx.scene.input.KeyEvent;
 import javafx.event.EventHandler;
 import java.net.URL;
 
@@ -34,9 +38,9 @@ import codeu.chat.util.Logger;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-<span class="nc" id="L37">public class MainUIController implements Initializable {</span>
+<span class="nc" id="L41">public class MainUIController implements Initializable {</span>
 
-<span class="nc" id="L39">    private final static Logger.Log LOG = Logger.newLog(MainUIController.class);</span>
+<span class="nc" id="L43">    private final static Logger.Log LOG = Logger.newLog(MainUIController.class);</span>
 
     ClientContext clientContext;
 
@@ -53,27 +57,48 @@ import java.util.Calendar;
     private JFXTextField messageView;
 
     @FXML
-    private JFXListView&lt;String&gt; conversationList;
+    private ListView&lt;String&gt; conversationList;
 
     @FXML
     private JFXButton sendButton;
 
 
+    @FXML
+    private JFXButton parisButton;
+    @FXML
+    private JFXButton berlinButton;
+    @FXML
+    private JFXButton newYorkButton;
+
+    @FXML
+    void clickParis(ActionEvent event) {
+<span class="nc" id="L75">        LOG.info(&quot;Paris got clicked&quot;);</span>
+<span class="nc" id="L76">    }</span>
+    @FXML
+    void clickBerlin(ActionEvent event) {
+<span class="nc" id="L79">        LOG.info(&quot;Berlin got clicked&quot;);</span>
+<span class="nc" id="L80">    }</span>
+    @FXML
+    void clickNewYork(ActionEvent event) {
+<span class="nc" id="L83">        LOG.info(&quot;New York got clicked&quot;);</span>
+<span class="nc" id="L84">    }</span>
+
+
     public void setClientContext(ClientContext clientContext) {
-<span class="nc" id="L63">        LOG.info(&quot;setting client context&quot;);</span>
-<span class="nc" id="L64">        this.clientContext = clientContext;</span>
-<span class="nc" id="L65">    }</span>
+<span class="nc" id="L88">        LOG.info(&quot;setting client context&quot;);</span>
+<span class="nc" id="L89">        this.clientContext = clientContext;</span>
+<span class="nc" id="L90">    }</span>
 
     @FXML
     void sendMessage(ActionEvent event) {
-<span class="nc" id="L69">        String message = this.messageView.getText();</span>
+<span class="nc" id="L94">        String message = this.messageView.getText();</span>
 
-<span class="nc bnc" id="L71" title="All 2 branches missed.">        if (message != null) {</span>
+<span class="nc bnc" id="L96" title="All 2 branches missed.">        if (message != null) {</span>
 
-<span class="nc" id="L73">            Calendar cal = Calendar.getInstance();</span>
-<span class="nc" id="L74">            SimpleDateFormat sdf = new SimpleDateFormat(&quot;HH:mm:ss&quot;);</span>
+<span class="nc" id="L98">            Calendar cal = Calendar.getInstance();</span>
+<span class="nc" id="L99">            SimpleDateFormat sdf = new SimpleDateFormat(&quot;HH:mm:ss&quot;);</span>
 
-<span class="nc" id="L76">            listView.getItems().add( sdf.format(cal.getTime()) + &quot;: &quot; + message);</span>
+<span class="nc" id="L101">            listView.getItems().add( sdf.format(cal.getTime()) + &quot;: &quot; + message);</span>
 
             /*clientContext.message.addMessage(
             clientContext.user.getCurrent().id,
@@ -82,16 +107,26 @@ import java.util.Calendar;
                     messageText);*/
 
         }
-<span class="nc" id="L85">    }</span>
+<span class="nc" id="L110">    }</span>
+
+
 
     @Override
     public void initialize (URL url, ResourceBundle rb) {
 
-<span class="nc" id="L90">        ListView&lt;String&gt; list = new ListView&lt;String&gt;();</span>
-<span class="nc" id="L91">        ObservableList&lt;String&gt; items = FXCollections.observableArrayList (</span>
-            &quot;+ Best Dessert Places&quot;, &quot;+ Night Life&quot;, &quot;+ Museum &amp; Exhibitions&quot;);
-<span class="nc" id="L93">        conversationList.setItems(items);</span>
-<span class="nc" id="L94">        conversationList.setMinWidth(190);</span>
+<span class="nc" id="L117">        ListView&lt;String&gt; list = new ListView&lt;String&gt;();</span>
+<span class="nc" id="L118">        ObservableList&lt;String&gt; items = FXCollections.observableArrayList (</span>
+            &quot;+ Best Dessert Places&quot;, &quot;+ Night Life&quot;, &quot;+ Museums &amp; Exhibitions&quot;);
+<span class="nc" id="L120">        conversationList.setItems(items);</span>
+<span class="nc" id="L121">        conversationList.setMinWidth(190);</span>
+
+<span class="nc" id="L123">        conversationList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener&lt;String&gt;() {</span>
+            @Override
+            public void changed(ObservableValue&lt;? extends String&gt; observable, String oldValue, String newValue) {
+<span class="nc" id="L126">                LOG.info(&quot;ListView selection changed from oldValue = &quot;</span>
+                        + oldValue + &quot; to newValue = &quot; + newValue);
+<span class="nc" id="L128">            }</span>
+        });
 
         /*
         *
@@ -139,26 +174,26 @@ import java.util.Calendar;
 
         * */
 
-<span class="nc" id="L142">    }</span>
+<span class="nc" id="L177">    }</span>
 
     @FXML
     void onBackClick(ActionEvent event) throws Exception {
 
-<span class="nc" id="L147">        Parent window1 = FXMLLoader.load(getClass().getResource(&quot;/codeu/chat/client/bettergui/LoginUI.fxml&quot;));</span>
+<span class="nc" id="L182">        Parent window1 = FXMLLoader.load(getClass().getResource(&quot;/codeu/chat/client/bettergui/LoginUI.fxml&quot;));</span>
 
-<span class="nc" id="L149">        Stage mainStage = (Stage) borderPane.getScene().getWindow();</span>
+<span class="nc" id="L184">        Stage mainStage = (Stage) borderPane.getScene().getWindow();</span>
 
-<span class="nc" id="L151">        mainStage.setHeight(400);</span>
-<span class="nc" id="L152">        mainStage.setWidth(427);</span>
+<span class="nc" id="L186">        mainStage.setHeight(400);</span>
+<span class="nc" id="L187">        mainStage.setWidth(427);</span>
 
         //logout
 
-<span class="nc" id="L156">        clientContext.user.signOutUser();</span>
+<span class="nc" id="L191">        clientContext.user.signOutUser();</span>
 
 
-<span class="nc" id="L159">        mainStage.getScene().setRoot(window1);</span>
+<span class="nc" id="L194">        mainStage.getScene().setRoot(window1);</span>
 
-<span class="nc" id="L161">    }</span>
+<span class="nc" id="L196">    }</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>
