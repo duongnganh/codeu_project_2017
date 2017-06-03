@@ -1,0 +1,20 @@
+Jun 03, 2017 12:06:02 AM codeu.chat.client.bettergui.ChatBetterGui start
+INFO: ============================= START OF LOG =============================
+Jun 03, 2017 12:06:02 AM codeu.chat.client.bettergui.ChatBetterGui start
+INFO: Starting chat client...
+Jun 03, 2017 12:06:02 AM codeu.chat.client.bettergui.ChatBetterGui start
+INFO: Creating client...
+Jun 03, 2017 12:06:53 AM codeu.chat.client.bettergui.ChatBetterGui start
+INFO: ============================= START OF LOG =============================
+Jun 03, 2017 12:06:53 AM codeu.chat.client.bettergui.ChatBetterGui start
+INFO: Starting chat client...
+Jun 03, 2017 12:06:53 AM codeu.chat.client.bettergui.ChatBetterGui start
+INFO: Creating client...
+Jun 03, 2017 12:06:54 AM codeu.chat.client.bettergui.LoginController initialize
+INFO: initializing
+Jun 03, 2017 12:06:54 AM codeu.chat.client.bettergui.LoginController setClientContext
+INFO: setting client context
+Jun 03, 2017 12:06:58 AM codeu.chat.client.bettergui.MainUIController setClientContext
+INFO: setting client context
+Jun 03, 2017 12:07:01 AM codeu.chat.client.bettergui.MainUIController clickParis
+INFO: Paris got clicked
