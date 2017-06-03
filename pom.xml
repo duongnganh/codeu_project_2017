@@ -21,7 +21,6 @@ limitations under the License.
   <artifactId>bigtable-samples</artifactId>
   <packaging>pom</packaging>
 
-	<!-- Parent POM defines common plugins and properties. -->
 	<parent>
 		<groupId>com.google.cloud.samples</groupId>
 		<artifactId>shared-configuration</artifactId>
