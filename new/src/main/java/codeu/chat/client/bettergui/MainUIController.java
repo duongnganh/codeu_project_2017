@@ -25,10 +25,20 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import java.net.URL;
 
+import codeu.chat.client.ClientContext;
+import codeu.chat.common.User;
+import codeu.chat.client.Controller;
+import codeu.chat.client.View;
+import codeu.chat.util.Logger;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 public class MainUIController implements Initializable {
+
+    private final static Logger.Log LOG = Logger.newLog(MainUIController.class);
+
+    ClientContext clientContext;
 
     @FXML
     private JFXButton backButton;
@@ -47,6 +57,12 @@ public class MainUIController implements Initializable {
 
     @FXML
     private JFXButton sendButton;
+
+
+    public void setClientContext(ClientContext clientContext) {
+        LOG.info("setting client context");
+        this.clientContext = clientContext;
+    }
 
     @FXML
     void sendMessage(ActionEvent event) {
@@ -134,6 +150,10 @@ public class MainUIController implements Initializable {
 
         mainStage.setHeight(400);
         mainStage.setWidth(427);
+
+        //logout
+
+        clientContext.user.signOutUser();
 
 
         mainStage.getScene().setRoot(window1);
