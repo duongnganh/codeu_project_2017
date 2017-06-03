@@ -59,33 +59,86 @@ import java.util.Calendar;
 
 <span class="nc" id="L60">            listView.getItems().add( sdf.format(cal.getTime()) + &quot;: &quot; + message);</span>
 
+            /*clientContext.message.addMessage(
+            clientContext.user.getCurrent().id,
+                    clientContext.conversation.getCurrentId(),
+                    clientContext.group.getCurrent().id,
+                    messageText);*/
+
         }
-<span class="nc" id="L63">    }</span>
+<span class="nc" id="L69">    }</span>
 
     @Override
     public void initialize (URL url, ResourceBundle rb) {
 
-<span class="nc" id="L68">        ListView&lt;String&gt; list = new ListView&lt;String&gt;();</span>
-<span class="nc" id="L69">        ObservableList&lt;String&gt; items = FXCollections.observableArrayList (</span>
-                &quot;+ Around the Eiffel Tower&quot;, &quot;+ Best Dessert Places&quot;, &quot;+ Night Life&quot;, &quot;+ Museum &amp; Exhibitions&quot;);
-<span class="nc" id="L71">        conversationList.setItems(items);</span>
-<span class="nc" id="L72">        conversationList.setMinWidth(190);</span>
-<span class="nc" id="L73">    }</span>
+<span class="nc" id="L74">        ListView&lt;String&gt; list = new ListView&lt;String&gt;();</span>
+<span class="nc" id="L75">        ObservableList&lt;String&gt; items = FXCollections.observableArrayList (</span>
+            &quot;+ Best Dessert Places&quot;, &quot;+ Night Life&quot;, &quot;+ Museum &amp; Exhibitions&quot;);
+<span class="nc" id="L77">        conversationList.setItems(items);</span>
+<span class="nc" id="L78">        conversationList.setMinWidth(190);</span>
+
+        /*
+        *
+
+         for (final Message m : clientContext.message.getConversationContents(conversation)) {
+            // Display author name if available.  Otherwise display the author UUID.
+            final String authorName = clientContext.user.getName(m.author);
+
+            final String displayString = String.format(&quot;%s: [%s]: %s&quot;,
+                ((authorName == null) ? m.author : authorName), m.creation, m.content);
+
+                messageListModel.addElement(displayString);
+            }
+
+        *
+        * */
+
+        //clientContext.conversation.startConversation(s, clientContext.user.getCurrent().id, clientContext.group.getCurrent().id);
+
+        /*
+
+          final int index = objectList.getSelectedIndex();
+          final String data = objectList.getSelectedValue();
+          final ConversationSummary cs = ConversationPanel.this.lookupByTitle(data, index);
+
+          clientContext.conversation.setCurrent(cs);
+
+          messagePanel.update(cs);
+
+
+          *******
+
+
+          private ConversationSummary lookupByTitle(String title, int index) {
+
+            int localIndex = 0;
+                for (final ConversationSummary cs : clientContext.conversation.getConversationSummaries()) {
+                    if ((localIndex &gt;= index) &amp;&amp; cs.title.equals(title)) {
+                        return cs;
+                    }
+                    localIndex++;
+                }
+            return null;
+          }
+
+        * */
+
+<span class="nc" id="L126">    }</span>
 
     @FXML
     void onBackClick(ActionEvent event) throws Exception {
 
-<span class="nc" id="L78">        Parent window1 = FXMLLoader.load(getClass().getResource(&quot;/codeu/chat/client/bettergui/LoginUI.fxml&quot;));</span>
+<span class="nc" id="L131">        Parent window1 = FXMLLoader.load(getClass().getResource(&quot;/codeu/chat/client/bettergui/LoginUI.fxml&quot;));</span>
 
-<span class="nc" id="L80">        Stage mainStage = (Stage) borderPane.getScene().getWindow();</span>
+<span class="nc" id="L133">        Stage mainStage = (Stage) borderPane.getScene().getWindow();</span>
 
-<span class="nc" id="L82">        mainStage.setHeight(400);</span>
-<span class="nc" id="L83">        mainStage.setWidth(427);</span>
+<span class="nc" id="L135">        mainStage.setHeight(400);</span>
+<span class="nc" id="L136">        mainStage.setWidth(427);</span>
 
 
-<span class="nc" id="L86">        mainStage.getScene().setRoot(window1);</span>
+<span class="nc" id="L139">        mainStage.getScene().setRoot(window1);</span>
 
-<span class="nc" id="L88">    }</span>
+<span class="nc" id="L141">    }</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>
