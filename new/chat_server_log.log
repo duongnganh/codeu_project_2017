@@ -388,3 +388,161 @@ Jun 02, 2017 8:03:42 PM codeu.chat.server.Server$1 run
 INFO: Reading update from relay...
 Jun 02, 2017 8:03:47 PM codeu.chat.server.Server$1 run
 INFO: Reading update from relay...
+Jun 02, 2017 8:25:50 PM codeu.chat.ServerMain main
+INFO: ============================= START OF LOG =============================
+Jun 02, 2017 8:25:51 PM codeu.chat.ServerMain main
+INFO: Starting server...
+Jun 02, 2017 8:25:51 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+Jun 02, 2017 8:25:51 PM codeu.chat.ServerMain runServer
+INFO: Created server.
+Jun 02, 2017 8:25:51 PM codeu.chat.ServerMain runServer
+INFO: Established connection...
+Jun 02, 2017 8:25:56 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+Jun 02, 2017 8:26:01 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+Jun 02, 2017 8:26:06 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+Jun 02, 2017 8:26:11 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+Jun 02, 2017 8:26:16 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+Jun 02, 2017 8:26:21 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+Jun 02, 2017 8:26:26 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+Jun 02, 2017 8:26:31 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+Jun 02, 2017 8:26:36 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+Jun 02, 2017 8:26:41 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+Jun 02, 2017 8:26:46 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+Jun 02, 2017 8:26:51 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+Jun 02, 2017 8:26:56 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+Jun 02, 2017 8:27:01 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+Jun 02, 2017 8:27:06 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+Jun 02, 2017 8:27:11 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+Jun 02, 2017 8:27:16 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+Jun 02, 2017 8:27:21 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+Jun 02, 2017 8:27:26 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+Jun 02, 2017 8:27:31 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+Jun 02, 2017 8:27:36 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+Jun 02, 2017 8:27:45 PM codeu.chat.ServerMain main
+INFO: ============================= START OF LOG =============================
+Jun 02, 2017 8:27:45 PM codeu.chat.ServerMain main
+INFO: Starting server...
+Jun 02, 2017 8:27:45 PM codeu.chat.ServerMain runServer
+INFO: Created server.
+Jun 02, 2017 8:27:45 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+Jun 02, 2017 8:27:45 PM codeu.chat.ServerMain runServer
+INFO: Established connection...
+Jun 02, 2017 8:27:50 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+Jun 02, 2017 8:27:55 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+Jun 02, 2017 8:27:58 PM codeu.chat.ServerMain runServer
+INFO: Connection established.
+Jun 02, 2017 8:27:58 PM codeu.chat.ServerMain runServer
+INFO: Established connection...
+Jun 02, 2017 8:27:58 PM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+Jun 02, 2017 8:28:03 PM codeu.chat.server.Server$2 run
+SEVERE: Exception while handling connection.
+java.lang.RuntimeException: com.google.cloud.bigtable.grpc.scanner.BigtableRetriesExhaustedException: Exhausted streaming retries.
+	at org.apache.hadoop.hbase.client.AbstractClientScanner$1.hasNext(AbstractClientScanner.java:97)
+	at codeu.chat.server.Model.updateUsers(Model.java:198)
+	at codeu.chat.server.Model.userById(Model.java:174)
+	at codeu.chat.server.View.getUsersExcluding(View.java:109)
+	at codeu.chat.server.Server.onMessage(Server.java:285)
+	at codeu.chat.server.Server.access$400(Server.java:42)
+	at codeu.chat.server.Server$2.run(Server.java:122)
+	at codeu.chat.util.Timeline$2.run(Timeline.java:116)
+Caused by: com.google.cloud.bigtable.grpc.scanner.BigtableRetriesExhaustedException: Exhausted streaming retries.
+	at com.google.cloud.bigtable.grpc.scanner.ResumingStreamingResultScanner.next(ResumingStreamingResultScanner.java:89)
+	at com.google.cloud.bigtable.grpc.scanner.ResumingStreamingResultScanner.next(ResumingStreamingResultScanner.java:34)
+	at com.google.cloud.bigtable.hbase.adapters.read.BigtableResultScannerAdapter$1.next(BigtableResultScannerAdapter.java:57)
+	at org.apache.hadoop.hbase.client.AbstractClientScanner$1.hasNext(AbstractClientScanner.java:94)
+	... 7 more
+Caused by: com.google.cloud.bigtable.grpc.io.IOExceptionWithStatus: Error in response stream
+	at com.google.cloud.bigtable.grpc.scanner.ResultQueueEntry$ExceptionResultQueueEntry.getResponseOrThrow(ResultQueueEntry.java:88)
+	at com.google.cloud.bigtable.grpc.scanner.ResponseQueueReader.getNextMergedRow(ResponseQueueReader.java:91)
+	at com.google.cloud.bigtable.grpc.scanner.ResumingStreamingResultScanner.next(ResumingStreamingResultScanner.java:79)
+	... 10 more
+Caused by: com.google.bigtable.repackaged.io.grpc.StatusRuntimeException: PERMISSION_DENIED: User can't access: projects/codeuproject12345/instances/codeuinstance12345/tables/user
+	at com.google.bigtable.repackaged.io.grpc.Status.asRuntimeException(Status.java:536)
+	at com.google.cloud.bigtable.grpc.async.AbstractRetryingRpcListener.onClose(AbstractRetryingRpcListener.java:147)
+	at com.google.cloud.bigtable.grpc.scanner.ReadRowsRetryListener.onClose(ReadRowsRetryListener.java:141)
+	at com.google.cloud.bigtable.grpc.io.ChannelPool$InstrumentedChannel$2.onClose(ChannelPool.java:209)
+	at com.google.bigtable.repackaged.io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl.close(ClientCallImpl.java:481)
+	at com.google.bigtable.repackaged.io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl.access$600(ClientCallImpl.java:398)
+	at com.google.bigtable.repackaged.io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl$1StreamClosed.runInContext(ClientCallImpl.java:513)
+	at com.google.bigtable.repackaged.io.grpc.internal.ContextRunnable.run(ContextRunnable.java:52)
+	at com.google.bigtable.repackaged.io.grpc.internal.SerializingExecutor$TaskRunner.run(SerializingExecutor.java:154)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+
+Jun 02, 2017 8:28:03 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+Jun 02, 2017 8:28:03 PM codeu.chat.ServerMain runServer
+INFO: Connection established.
+Jun 02, 2017 8:28:03 PM codeu.chat.ServerMain runServer
+INFO: Established connection...
+Jun 02, 2017 8:28:03 PM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+Jun 02, 2017 8:28:05 PM codeu.chat.server.Server$2 run
+SEVERE: Exception while handling connection.
+java.lang.RuntimeException: com.google.cloud.bigtable.grpc.scanner.BigtableRetriesExhaustedException: Exhausted streaming retries.
+	at org.apache.hadoop.hbase.client.AbstractClientScanner$1.hasNext(AbstractClientScanner.java:97)
+	at codeu.chat.server.Model.updateMessages(Model.java:471)
+	at codeu.chat.server.Model.messageById(Model.java:444)
+	at codeu.chat.server.Controller.isIdInUse(Controller.java:275)
+	at codeu.chat.server.Controller.createId(Controller.java:262)
+	at codeu.chat.server.Controller.newUser(Controller.java:62)
+	at codeu.chat.server.Server.onMessage(Server.java:169)
+	at codeu.chat.server.Server.access$400(Server.java:42)
+	at codeu.chat.server.Server$2.run(Server.java:122)
+	at codeu.chat.util.Timeline$2.run(Timeline.java:116)
+Caused by: com.google.cloud.bigtable.grpc.scanner.BigtableRetriesExhaustedException: Exhausted streaming retries.
+	at com.google.cloud.bigtable.grpc.scanner.ResumingStreamingResultScanner.next(ResumingStreamingResultScanner.java:89)
+	at com.google.cloud.bigtable.grpc.scanner.ResumingStreamingResultScanner.next(ResumingStreamingResultScanner.java:34)
+	at com.google.cloud.bigtable.hbase.adapters.read.BigtableResultScannerAdapter$1.next(BigtableResultScannerAdapter.java:57)
+	at org.apache.hadoop.hbase.client.AbstractClientScanner$1.hasNext(AbstractClientScanner.java:94)
+	... 9 more
+Caused by: com.google.cloud.bigtable.grpc.io.IOExceptionWithStatus: Error in response stream
+	at com.google.cloud.bigtable.grpc.scanner.ResultQueueEntry$ExceptionResultQueueEntry.getResponseOrThrow(ResultQueueEntry.java:88)
+	at com.google.cloud.bigtable.grpc.scanner.ResponseQueueReader.getNextMergedRow(ResponseQueueReader.java:91)
+	at com.google.cloud.bigtable.grpc.scanner.ResumingStreamingResultScanner.next(ResumingStreamingResultScanner.java:79)
+	... 12 more
+Caused by: com.google.bigtable.repackaged.io.grpc.StatusRuntimeException: PERMISSION_DENIED: User can't access: projects/codeuproject12345/instances/codeuinstance12345/tables/message
+	at com.google.bigtable.repackaged.io.grpc.Status.asRuntimeException(Status.java:536)
+	at com.google.cloud.bigtable.grpc.async.AbstractRetryingRpcListener.onClose(AbstractRetryingRpcListener.java:147)
+	at com.google.cloud.bigtable.grpc.scanner.ReadRowsRetryListener.onClose(ReadRowsRetryListener.java:141)
+	at com.google.cloud.bigtable.grpc.io.ChannelPool$InstrumentedChannel$2.onClose(ChannelPool.java:209)
+	at com.google.bigtable.repackaged.io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl.close(ClientCallImpl.java:481)
+	at com.google.bigtable.repackaged.io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl.access$600(ClientCallImpl.java:398)
+	at com.google.bigtable.repackaged.io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl$1StreamClosed.runInContext(ClientCallImpl.java:513)
+	at com.google.bigtable.repackaged.io.grpc.internal.ContextRunnable.run(ContextRunnable.java:52)
+	at com.google.bigtable.repackaged.io.grpc.internal.SerializingExecutor$TaskRunner.run(SerializingExecutor.java:154)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+
+Jun 02, 2017 8:28:08 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+Jun 02, 2017 8:28:13 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
