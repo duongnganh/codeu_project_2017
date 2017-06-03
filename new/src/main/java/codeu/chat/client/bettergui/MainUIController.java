@@ -25,6 +25,9 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import java.net.URL;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 public class MainUIController implements Initializable {
 
     @FXML
@@ -34,7 +37,31 @@ public class MainUIController implements Initializable {
     private BorderPane borderPane;
 
     @FXML
+    private JFXListView<String> listView;
+
+    @FXML
+    private JFXTextField messageView;
+
+    @FXML
     private JFXListView<String> conversationList;
+
+    @FXML
+    private JFXButton sendButton;
+
+    @FXML
+    void sendMessage(ActionEvent event) {
+        String message = this.messageView.getText();
+
+        if (message != null) {
+
+            Calendar cal = Calendar.getInstance();
+            SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+
+            listView.getItems().add( sdf.format(cal.getTime()) + ": " + message);
+
+        }
+        messageView.setPrefHeight(25);
+    }
 
     @Override
     public void initialize (URL url, ResourceBundle rb) {

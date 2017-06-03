@@ -105,7 +105,7 @@ public final class RegistrationController implements Initializable {
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Error!");
             alert.setHeaderText(null);
-            alert.setContentText("Please enter a unique username that only consists of alphabets");
+            alert.setContentText("Please check if you are connected to a server");
             alert.showAndWait();
         }
 
@@ -118,8 +118,8 @@ public final class RegistrationController implements Initializable {
 
         Stage mainStage = (Stage) anchorPane.getScene().getWindow();
 
-        mainStage.setHeight(650);
-        mainStage.setWidth(800);
+        mainStage.setHeight(400);
+        mainStage.setWidth(427);
 
         mainStage.getScene().setRoot(window1);
 

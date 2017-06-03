@@ -97,6 +97,7 @@ public final class LoginController implements Initializable {
 
             mainStage.getScene().setRoot(window1);
         } else {
+
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Error!");
             alert.setHeaderText(null);
@@ -110,7 +111,14 @@ public final class LoginController implements Initializable {
     @FXML
     void onRegisterButtonClick(ActionEvent event) throws Exception {
         LOG.info("Register button gets called");
-        Parent window2 = FXMLLoader.load(getClass().getResource("/codeu/chat/client/bettergui/RegistrationUI.fxml"));
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/codeu/chat/client/bettergui/RegistrationUI.fxml"));
+
+        Parent window2 = loader.load();
+
+        RegistrationController registrationController = loader.getController();
+
+        registrationController.setClientContext(clientContext);
 
         Stage stage = (Stage) anchorPane.getScene().getWindow();
 

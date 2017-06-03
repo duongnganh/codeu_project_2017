@@ -85,9 +85,9 @@ import java.util.ResourceBundle;
 <span class="nc" id="L85">        String username = this.pass.getText();</span>
 <span class="nc" id="L86">        String password = this.username.getText();</span>
 
-<span class="nc" id="L88">        Boolean status = clientContext.user.signInUser(username, password);</span>
+        //Boolean status = clientContext.user.signInUser(username, password);
 
-<span class="nc bnc" id="L90" title="All 2 branches missed.">        if (status) {</span>
+        //if (status) {
 <span class="nc" id="L91">            Parent window1 = FXMLLoader.load(getClass().getResource(&quot;/codeu/chat/client/bettergui/MainUI.fxml&quot;));</span>
 
 <span class="nc" id="L93">            Stage mainStage = (Stage) anchorPane.getScene().getWindow();</span>
@@ -96,29 +96,37 @@ import java.util.ResourceBundle;
 <span class="nc" id="L96">            mainStage.setWidth(800);</span>
 
 <span class="nc" id="L98">            mainStage.getScene().setRoot(window1);</span>
-<span class="nc" id="L99">        } else {</span>
-<span class="nc" id="L100">            Alert alert = new Alert(AlertType.INFORMATION);</span>
-<span class="nc" id="L101">            alert.setTitle(&quot;Error!&quot;);</span>
-<span class="nc" id="L102">            alert.setHeaderText(null);</span>
-<span class="nc" id="L103">            alert.setContentText(&quot;Entered user credentials are not correct!&quot;);</span>
+       /* } else {
 
-<span class="nc" id="L105">            alert.showAndWait();</span>
-        }
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle(&quot;Error!&quot;);
+            alert.setHeaderText(null);
+            alert.setContentText(&quot;Entered user credentials are not correct!&quot;);
 
-<span class="nc" id="L108">    }</span>
+            alert.showAndWait();
+        }*/
+
+<span class="nc" id="L109">    }</span>
 
     @FXML
     void onRegisterButtonClick(ActionEvent event) throws Exception {
-<span class="nc" id="L112">        LOG.info(&quot;Register button gets called&quot;);</span>
-<span class="nc" id="L113">        Parent window2 = FXMLLoader.load(getClass().getResource(&quot;/codeu/chat/client/bettergui/RegistrationUI.fxml&quot;));</span>
+<span class="nc" id="L113">        LOG.info(&quot;Register button gets called&quot;);</span>
 
-<span class="nc" id="L115">        Stage stage = (Stage) anchorPane.getScene().getWindow();</span>
+<span class="nc" id="L115">        FXMLLoader loader = new FXMLLoader(getClass().getResource(&quot;/codeu/chat/client/bettergui/RegistrationUI.fxml&quot;));</span>
 
-<span class="nc" id="L117">        stage.setHeight(475);</span>
-<span class="nc" id="L118">        stage.setWidth(427);</span>
-<span class="nc" id="L119">        stage.getScene().setRoot(window2);</span>
+<span class="nc" id="L117">        Parent window2 = loader.load();</span>
 
-<span class="nc" id="L121">    }</span>
+<span class="nc" id="L119">        RegistrationController registrationController = loader.getController();</span>
+
+<span class="nc" id="L121">        registrationController.setClientContext(clientContext);</span>
+
+<span class="nc" id="L123">        Stage stage = (Stage) anchorPane.getScene().getWindow();</span>
+
+<span class="nc" id="L125">        stage.setHeight(475);</span>
+<span class="nc" id="L126">        stage.setWidth(427);</span>
+<span class="nc" id="L127">        stage.getScene().setRoot(window2);</span>
+
+<span class="nc" id="L129">    }</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

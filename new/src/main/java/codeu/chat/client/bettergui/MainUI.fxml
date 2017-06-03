@@ -13,12 +13,24 @@
    <center>
       <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <JFXTextArea disable="true" editable="false" VBox.vgrow="ALWAYS" />
-            <JFXTextField>
-               <VBox.margin>
-                  <Insets bottom="12.0" left="8.0" right="8.0" top="12.0" />
-               </VBox.margin>
-            </JFXTextField>
+            <JFXListView fx:id="listView" VBox.vgrow="ALWAYS" />
+            <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="NEVER">
+               <children>
+                  <JFXTextField fx:id="messageView" maxHeight="-Infinity" minHeight="-Infinity" prefColumnCount="14" HBox.hgrow="ALWAYS">
+                     <HBox.margin>
+                        <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                     </HBox.margin>
+                     <padding>
+                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                     </padding>
+                  </JFXTextField>
+                  <JFXButton fx:id="sendButton" buttonType="RAISED" onAction="#sendMessage" ripplerFill="WHITE" style="-fx-background-color: #2196F3;" text="Send" textFill="WHITE" HBox.hgrow="NEVER">
+                     <HBox.margin>
+                        <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                     </HBox.margin>
+                  </JFXButton>
+               </children>
+            </HBox>
          </children>
       </VBox>
    </center>
@@ -34,7 +46,7 @@
                      <graphic>
                         <ImageView fitHeight="65.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../../../../../../Desktop/offscreen-master/PNG/logo_small.png" />
+                              <Image url="@icons/PNG/logo_small.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -65,7 +77,7 @@
                      <graphic>
                         <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" smooth="false">
                            <image>
-                              <Image url="@../../../../../../../../Desktop/offscreen-master/PNG/paris_small.png" />
+                              <Image url="@icons/PNG/paris_small.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -74,7 +86,7 @@
                      <graphic>
                         <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../../../../../../Desktop/offscreen-master/PNG/berlin.png" />
+                              <Image url="@icons/PNG/berlin.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -83,7 +95,7 @@
                      <graphic>
                         <ImageView cache="true" fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../../../../../../Desktop/offscreen-master/PNG/new-york.png" />
+                              <Image url="@icons/PNG/new-york.png" />
                            </image>
                         </ImageView>
                      </graphic>
