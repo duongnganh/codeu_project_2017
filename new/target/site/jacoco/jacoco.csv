@@ -45,9 +45,9 @@ cloud-bigtable-hello-world,codeu.chat,RelayMain.new Runnable() {...},23,0,0,0,6,
 cloud-bigtable-hello-world,codeu.chat,deleteTable,152,0,12,0,27,0,11,0,5,0
 cloud-bigtable-hello-world,codeu.chat,createTable,172,0,12,0,29,0,12,0,6,0
 cloud-bigtable-hello-world,codeu.chat.client.bettergui,RegistrationController,111,0,2,0,30,0,7,0,6,0
-cloud-bigtable-hello-world,codeu.chat.client.bettergui,LoginController,96,0,0,0,25,0,6,0,6,0
+cloud-bigtable-hello-world,codeu.chat.client.bettergui,LoginController,125,0,2,0,33,0,7,0,6,0
 cloud-bigtable-hello-world,codeu.chat.client.bettergui,ChatBetterGui,152,0,8,0,29,0,7,0,3,0
-cloud-bigtable-hello-world,codeu.chat.client.bettergui,MainUIController,96,0,2,0,19,0,5,0,4,0
+cloud-bigtable-hello-world,codeu.chat.client.bettergui,MainUIController,92,0,2,0,18,0,5,0,4,0
 cloud-bigtable-hello-world,codeu.chat.util.store,StoreLink,0,12,0,0,0,5,0,1,0,1
 cloud-bigtable-hello-world,codeu.chat.util.store,Store,49,177,10,14,11,26,6,20,1,13
 cloud-bigtable-hello-world,codeu.chat.util.store,LinkIterable,0,22,0,0,0,6,0,2,0,2

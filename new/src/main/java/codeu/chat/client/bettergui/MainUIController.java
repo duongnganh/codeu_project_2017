@@ -60,7 +60,6 @@ public class MainUIController implements Initializable {
             listView.getItems().add( sdf.format(cal.getTime()) + ": " + message);
 
         }
-        messageView.setPrefHeight(25);
     }
 
     @Override
