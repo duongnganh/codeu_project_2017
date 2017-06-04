@@ -59,378 +59,370 @@ public final class Server {
 
   public final String projectId;
   public final String instanceId;
-  // public final String userTable;
-  // public final String conversationTable;
-  // public final String groupTable;
-  // public final String messageTable;
-
 
   public Server(final Uuid id, 
                 final byte[] secret, 
                 final Relay relay, 
                 final String projectId,
                 final String instanceId,
-<span class="nc" id="L73">                final String[] tableNames) {</span>
+<span class="nc" id="L68">                final String[] tableNames) {</span>
 
-<span class="nc" id="L75">    this.id = id;</span>
-<span class="nc" id="L76">    this.secret = Arrays.copyOf(secret, secret.length);</span>
+<span class="nc" id="L70">    this.id = id;</span>
+<span class="nc" id="L71">    this.secret = Arrays.copyOf(secret, secret.length);</span>
 
-<span class="nc" id="L78">    this.model = new Model(projectId, instanceId, tableNames);</span>
-<span class="nc" id="L79">    this.view = new View(model);</span>
-<span class="nc" id="L80">    this.controller = new Controller(id, model);</span>
-<span class="nc" id="L81">    this.relay = relay;</span>
+<span class="nc" id="L73">    this.model = new Model(projectId, instanceId, tableNames);</span>
+<span class="nc" id="L74">    this.view = new View(model);</span>
+<span class="nc" id="L75">    this.controller = new Controller(id, model);</span>
+<span class="nc" id="L76">    this.relay = relay;</span>
 
-<span class="nc" id="L83">    this.projectId = projectId;</span>
-<span class="nc" id="L84">    this.instanceId = instanceId;</span>
+<span class="nc" id="L78">    this.projectId = projectId;</span>
+<span class="nc" id="L79">    this.instanceId = instanceId;</span>
 
-    // this.userTable = tableNames[0];
-    // this.conversationTable = tableNames[1];
-    // this.groupTable = tableNames[2];
-    // this.messageTable = tableNames[3];
-
-<span class="nc" id="L91">    timeline.scheduleNow(new Runnable() {</span>
+<span class="nc" id="L81">    timeline.scheduleNow(new Runnable() {</span>
       @Override
       public void run() {
         try {
 
-<span class="nc" id="L96">          LOG.info(&quot;Reading update from relay...&quot;);</span>
+<span class="nc" id="L86">          LOG.info(&quot;Reading update from relay...&quot;);</span>
 
-<span class="nc bnc" id="L98" title="All 2 branches missed.">          for (final Relay.Bundle bundle : relay.read(id, secret, lastSeen, 32)) {</span>
-<span class="nc" id="L99">            onBundle(bundle);</span>
-<span class="nc" id="L100">            lastSeen = bundle.id();</span>
-<span class="nc" id="L101">          }</span>
+<span class="nc bnc" id="L88" title="All 2 branches missed.">          for (final Relay.Bundle bundle : relay.read(id, secret, lastSeen, 32)) {</span>
+<span class="nc" id="L89">            onBundle(bundle);</span>
+<span class="nc" id="L90">            lastSeen = bundle.id();</span>
+<span class="nc" id="L91">          }</span>
 
-<span class="nc" id="L103">        } catch (Exception ex) {</span>
+<span class="nc" id="L93">        } catch (Exception ex) {</span>
 
-<span class="nc" id="L105">          LOG.error(ex, &quot;Failed to read update from relay.&quot;);</span>
+<span class="nc" id="L95">          LOG.error(ex, &quot;Failed to read update from relay.&quot;);</span>
 
-<span class="nc" id="L107">        }</span>
+<span class="nc" id="L97">        }</span>
 
-<span class="nc" id="L109">        timeline.scheduleIn(RELAY_REFRESH_MS, this);</span>
-<span class="nc" id="L110">      }</span>
+<span class="nc" id="L99">        timeline.scheduleIn(RELAY_REFRESH_MS, this);</span>
+<span class="nc" id="L100">      }</span>
     });
-<span class="nc" id="L112">  }</span>
+<span class="nc" id="L102">  }</span>
 
   public void handleConnection(final Connection connection) {
-<span class="nc" id="L115">    timeline.scheduleNow(new Runnable() {</span>
+<span class="nc" id="L105">    timeline.scheduleNow(new Runnable() {</span>
       @Override
       public void run() {
         try {
 
-<span class="nc" id="L120">          LOG.info(&quot;Handling connection...&quot;);</span>
+<span class="nc" id="L110">          LOG.info(&quot;Handling connection...&quot;);</span>
 
-<span class="nc" id="L122">          final boolean success = onMessage(</span>
-<span class="nc" id="L123">              connection.in(),</span>
-<span class="nc" id="L124">              connection.out());</span>
+<span class="nc" id="L112">          final boolean success = onMessage(</span>
+<span class="nc" id="L113">              connection.in(),</span>
+<span class="nc" id="L114">              connection.out());</span>
 
-<span class="nc bnc" id="L126" title="All 2 branches missed.">          LOG.info(&quot;Connection handled: %s&quot;, success ? &quot;ACCEPTED&quot; : &quot;REJECTED&quot;);</span>
-<span class="nc" id="L127">        } catch (Exception ex) {</span>
+<span class="nc bnc" id="L116" title="All 2 branches missed.">          LOG.info(&quot;Connection handled: %s&quot;, success ? &quot;ACCEPTED&quot; : &quot;REJECTED&quot;);</span>
+<span class="nc" id="L117">        } catch (Exception ex) {</span>
 
-<span class="nc" id="L129">          LOG.error(ex, &quot;Exception while handling connection.&quot;);</span>
+<span class="nc" id="L119">          LOG.error(ex, &quot;Exception while handling connection.&quot;);</span>
 
-<span class="nc" id="L131">        }</span>
+<span class="nc" id="L121">        }</span>
 
         try {
-<span class="nc" id="L134">          connection.close();</span>
-<span class="nc" id="L135">        } catch (Exception ex) {</span>
-<span class="nc" id="L136">          LOG.error(ex, &quot;Exception while closing connection.&quot;);</span>
-<span class="nc" id="L137">        }</span>
-<span class="nc" id="L138">      }</span>
+<span class="nc" id="L124">          connection.close();</span>
+<span class="nc" id="L125">        } catch (Exception ex) {</span>
+<span class="nc" id="L126">          LOG.error(ex, &quot;Exception while closing connection.&quot;);</span>
+<span class="nc" id="L127">        }</span>
+<span class="nc" id="L128">      }</span>
     });
-<span class="nc" id="L140">  }</span>
+<span class="nc" id="L130">  }</span>
+
+  // Receive and send messages from/to clients
 
   private boolean onMessage(InputStream in, OutputStream out) throws IOException {
-<span class="nc" id="L143">    final int type = Serializers.INTEGER.read(in);</span>
+<span class="nc" id="L135">    final int type = Serializers.INTEGER.read(in);</span>
 
-<span class="nc bnc" id="L145" title="All 2 branches missed.">    if (type == NetworkCode.NEW_MESSAGE_REQUEST) {</span>
+<span class="nc bnc" id="L137" title="All 2 branches missed.">    if (type == NetworkCode.NEW_MESSAGE_REQUEST) {</span>
 
-<span class="nc" id="L147">      final Uuid author = Uuid.SERIALIZER.read(in);</span>
-<span class="nc" id="L148">      final Uuid conversation = Uuid.SERIALIZER.read(in);</span>
-<span class="nc" id="L149">      final Uuid group = Uuid.SERIALIZER.read(in);</span>
-<span class="nc" id="L150">      final String content = Serializers.STRING.read(in);</span>
+<span class="nc" id="L139">      final Uuid author = Uuid.SERIALIZER.read(in);</span>
+<span class="nc" id="L140">      final Uuid conversation = Uuid.SERIALIZER.read(in);</span>
+<span class="nc" id="L141">      final Uuid group = Uuid.SERIALIZER.read(in);</span>
+<span class="nc" id="L142">      final String content = Serializers.STRING.read(in);</span>
 
-<span class="nc" id="L152">      final Message message = controller.newMessage(author, conversation, group, content);</span>
+<span class="nc" id="L144">      final Message message = controller.newMessage(author, conversation, group, content);</span>
 
-<span class="nc" id="L154">      Serializers.INTEGER.write(out, NetworkCode.NEW_MESSAGE_RESPONSE);</span>
-<span class="nc" id="L155">      Serializers.nullable(Message.SERIALIZER).write(out, message);</span>
+<span class="nc" id="L146">      Serializers.INTEGER.write(out, NetworkCode.NEW_MESSAGE_RESPONSE);</span>
+<span class="nc" id="L147">      Serializers.nullable(Message.SERIALIZER).write(out, message);</span>
 
-<span class="nc" id="L157">      timeline.scheduleNow(createSendToRelayEvent(</span>
+<span class="nc" id="L149">      timeline.scheduleNow(createSendToRelayEvent(</span>
           author,
           conversation,
           group,
           message.id));
 
-<span class="nc bnc" id="L163" title="All 2 branches missed.">    } else if (type == NetworkCode.NEW_USER_REQUEST) {</span>
+<span class="nc bnc" id="L155" title="All 2 branches missed.">    } else if (type == NetworkCode.NEW_USER_REQUEST) {</span>
 
-<span class="nc" id="L165">      final String name = Serializers.STRING.read(in);</span>
-<span class="nc" id="L166">      final String nickname = Serializers.STRING.read(in);</span>
-<span class="nc" id="L167">      final String pass = Serializers.STRING.read(in);</span>
+<span class="nc" id="L157">      final String name = Serializers.STRING.read(in);</span>
+<span class="nc" id="L158">      final String nickname = Serializers.STRING.read(in);</span>
+<span class="nc" id="L159">      final String pass = Serializers.STRING.read(in);</span>
 
-<span class="nc" id="L169">      final User user = controller.newUser(name, nickname, pass);</span>
+<span class="nc" id="L161">      final User user = controller.newUser(name, nickname, pass);</span>
 
-<span class="nc" id="L171">      Serializers.INTEGER.write(out, NetworkCode.NEW_USER_RESPONSE);</span>
+<span class="nc" id="L163">      Serializers.INTEGER.write(out, NetworkCode.NEW_USER_RESPONSE);</span>
 
-<span class="nc" id="L173">      Serializers.nullable(User.SERIALIZER).write(out, user);</span>
+<span class="nc" id="L165">      Serializers.nullable(User.SERIALIZER).write(out, user);</span>
 
-<span class="nc bnc" id="L175" title="All 2 branches missed.">    } else if (type == NetworkCode.NEW_NICKNAME_REQUEST) {</span>
+<span class="nc bnc" id="L167" title="All 2 branches missed.">    } else if (type == NetworkCode.NEW_NICKNAME_REQUEST) {</span>
 
-<span class="nc" id="L177">      final Uuid uuid = Uuid.SERIALIZER.read(in);</span>
-<span class="nc" id="L178">      final String nickname = Serializers.STRING.read(in);</span>
+<span class="nc" id="L169">      final Uuid uuid = Uuid.SERIALIZER.read(in);</span>
+<span class="nc" id="L170">      final String nickname = Serializers.STRING.read(in);</span>
 
-<span class="nc" id="L180">      final User response = controller.setNickname(uuid, nickname);</span>
+<span class="nc" id="L172">      final User response = controller.setNickname(uuid, nickname);</span>
 
-<span class="nc" id="L182">      Serializers.INTEGER.write(out, NetworkCode.NEW_NICKNAME_RESPONSE);</span>
-<span class="nc" id="L183">      Serializers.nullable(User.SERIALIZER).write(out, response);</span>
-<span class="nc bnc" id="L184" title="All 2 branches missed.">    } else if (type == NetworkCode.REMOVE_USER_REQUEST) {</span>
+<span class="nc" id="L174">      Serializers.INTEGER.write(out, NetworkCode.NEW_NICKNAME_RESPONSE);</span>
+<span class="nc" id="L175">      Serializers.nullable(User.SERIALIZER).write(out, response);</span>
+<span class="nc bnc" id="L176" title="All 2 branches missed.">    } else if (type == NetworkCode.REMOVE_USER_REQUEST) {</span>
 
       //final Uuid id = Uuid.SERIALIZER.read(in);
-<span class="nc" id="L187">      final String name = Serializers.STRING.read(in);</span>
+<span class="nc" id="L179">      final String name = Serializers.STRING.read(in);</span>
 
-<span class="nc" id="L189">      final User user = controller.deleteUser(name);</span>
+<span class="nc" id="L181">      final User user = controller.deleteUser(name);</span>
 
-<span class="nc" id="L191">      Serializers.INTEGER.write(out, NetworkCode.REMOVE_USER_RESPONSE);</span>
-<span class="nc" id="L192">      Serializers.nullable(User.SERIALIZER).write(out, user);</span>
-<span class="nc bnc" id="L193" title="All 2 branches missed.">    } else if (type == NetworkCode.NEW_CONVERSATION_REQUEST) {</span>
-<span class="nc" id="L194">      LOG.info(&quot;servernewConversation1&quot;);</span>
+<span class="nc" id="L183">      Serializers.INTEGER.write(out, NetworkCode.REMOVE_USER_RESPONSE);</span>
+<span class="nc" id="L184">      Serializers.nullable(User.SERIALIZER).write(out, user);</span>
+<span class="nc bnc" id="L185" title="All 2 branches missed.">    } else if (type == NetworkCode.NEW_CONVERSATION_REQUEST) {</span>
+<span class="nc" id="L186">      LOG.info(&quot;servernewConversation1&quot;);</span>
 
-<span class="nc" id="L196">      final String title = Serializers.STRING.read(in);</span>
-<span class="nc" id="L197">      final Uuid owner = Uuid.SERIALIZER.read(in);</span>
-<span class="nc" id="L198">      final Uuid group = Uuid.SERIALIZER.read(in);</span>
+<span class="nc" id="L188">      final String title = Serializers.STRING.read(in);</span>
+<span class="nc" id="L189">      final Uuid owner = Uuid.SERIALIZER.read(in);</span>
+<span class="nc" id="L190">      final Uuid group = Uuid.SERIALIZER.read(in);</span>
 
-<span class="nc" id="L200">      LOG.info(&quot;servernewConversation2donereading&quot;+title+owner+group);</span>
+<span class="nc" id="L192">      LOG.info(&quot;servernewConversation2donereading&quot;+title+owner+group);</span>
 
-<span class="nc" id="L202">      final Conversation conversation = controller.newConversation(title, owner, group);</span>
+<span class="nc" id="L194">      final Conversation conversation = controller.newConversation(title, owner, group);</span>
 
-<span class="nc" id="L204">      Serializers.INTEGER.write(out, NetworkCode.NEW_CONVERSATION_RESPONSE);</span>
-<span class="nc" id="L205">      Serializers.nullable(Conversation.SERIALIZER).write(out, conversation);</span>
+<span class="nc" id="L196">      Serializers.INTEGER.write(out, NetworkCode.NEW_CONVERSATION_RESPONSE);</span>
+<span class="nc" id="L197">      Serializers.nullable(Conversation.SERIALIZER).write(out, conversation);</span>
 
-<span class="nc bnc" id="L207" title="All 2 branches missed.">    } else if (type == NetworkCode.DELETE_CONVERSATION_REQUEST) {</span>
+<span class="nc bnc" id="L199" title="All 2 branches missed.">    } else if (type == NetworkCode.DELETE_CONVERSATION_REQUEST) {</span>
 
-<span class="nc" id="L209">      final String title = Serializers.STRING.read(in);</span>
+<span class="nc" id="L201">      final String title = Serializers.STRING.read(in);</span>
 
-<span class="nc" id="L211">      final Conversation conversation = controller.deleteConversation(title);</span>
+<span class="nc" id="L203">      final Conversation conversation = controller.deleteConversation(title);</span>
 
-<span class="nc" id="L213">      Serializers.INTEGER.write(out, NetworkCode.DELETE_CONVERSATION_RESPONSE);</span>
-<span class="nc" id="L214">      Serializers.nullable(Conversation.SERIALIZER).write(out, conversation);</span>
+<span class="nc" id="L205">      Serializers.INTEGER.write(out, NetworkCode.DELETE_CONVERSATION_RESPONSE);</span>
+<span class="nc" id="L206">      Serializers.nullable(Conversation.SERIALIZER).write(out, conversation);</span>
 
-<span class="nc bnc" id="L216" title="All 2 branches missed.">    } else if (type == NetworkCode.NEW_GROUP_REQUEST) {</span>
+<span class="nc bnc" id="L208" title="All 2 branches missed.">    } else if (type == NetworkCode.NEW_GROUP_REQUEST) {</span>
 
-<span class="nc" id="L218">      final String title = Serializers.STRING.read(in);</span>
-<span class="nc" id="L219">      final Uuid owner = Uuid.SERIALIZER.read(in);</span>
+<span class="nc" id="L210">      final String title = Serializers.STRING.read(in);</span>
+<span class="nc" id="L211">      final Uuid owner = Uuid.SERIALIZER.read(in);</span>
 
-<span class="nc" id="L221">      final Group group = controller.newGroup(title, owner);</span>
+<span class="nc" id="L213">      final Group group = controller.newGroup(title, owner);</span>
 
-<span class="nc" id="L223">      Serializers.INTEGER.write(out, NetworkCode.NEW_GROUP_RESPONSE);</span>
-<span class="nc" id="L224">      Serializers.nullable(Group.SERIALIZER).write(out, group);</span>
+<span class="nc" id="L215">      Serializers.INTEGER.write(out, NetworkCode.NEW_GROUP_RESPONSE);</span>
+<span class="nc" id="L216">      Serializers.nullable(Group.SERIALIZER).write(out, group);</span>
 
-<span class="nc bnc" id="L226" title="All 2 branches missed.">    } else if (type == NetworkCode.GET_USERS_BY_ID_REQUEST) {</span>
+<span class="nc bnc" id="L218" title="All 2 branches missed.">    } else if (type == NetworkCode.GET_USERS_BY_ID_REQUEST) {</span>
 
-<span class="nc" id="L228">      final Collection&lt;Uuid&gt; ids = Serializers.collection(Uuid.SERIALIZER).read(in);</span>
+<span class="nc" id="L220">      final Collection&lt;Uuid&gt; ids = Serializers.collection(Uuid.SERIALIZER).read(in);</span>
 
-<span class="nc" id="L230">      final Collection&lt;User&gt; users = view.getUsers(ids);</span>
+<span class="nc" id="L222">      final Collection&lt;User&gt; users = view.getUsers(ids);</span>
 
-<span class="nc" id="L232">      Serializers.INTEGER.write(out, NetworkCode.GET_USERS_BY_ID_RESPONSE);</span>
-<span class="nc" id="L233">      Serializers.collection(User.SERIALIZER).write(out, users);</span>
+<span class="nc" id="L224">      Serializers.INTEGER.write(out, NetworkCode.GET_USERS_BY_ID_RESPONSE);</span>
+<span class="nc" id="L225">      Serializers.collection(User.SERIALIZER).write(out, users);</span>
 
-<span class="nc bnc" id="L235" title="All 2 branches missed.">    } else if (type == NetworkCode.GET_ALL_CONVERSATIONS_REQUEST) {</span>
+<span class="nc bnc" id="L227" title="All 2 branches missed.">    } else if (type == NetworkCode.GET_ALL_CONVERSATIONS_REQUEST) {</span>
 
-<span class="nc" id="L237">      final Collection&lt;ConversationSummary&gt; conversations = view.getAllConversations();</span>
+<span class="nc" id="L229">      final Collection&lt;ConversationSummary&gt; conversations = view.getAllConversations();</span>
 
-<span class="nc" id="L239">      Serializers.INTEGER.write(out, NetworkCode.GET_ALL_CONVERSATIONS_RESPONSE);</span>
-<span class="nc" id="L240">      Serializers.collection(ConversationSummary.SERIALIZER).write(out, conversations);</span>
+<span class="nc" id="L231">      Serializers.INTEGER.write(out, NetworkCode.GET_ALL_CONVERSATIONS_RESPONSE);</span>
+<span class="nc" id="L232">      Serializers.collection(ConversationSummary.SERIALIZER).write(out, conversations);</span>
 
-<span class="nc bnc" id="L242" title="All 2 branches missed.">    } else if (type == NetworkCode.GET_CONVERSATIONS_BY_ID_REQUEST) {</span>
+<span class="nc bnc" id="L234" title="All 2 branches missed.">    } else if (type == NetworkCode.GET_CONVERSATIONS_BY_ID_REQUEST) {</span>
 
-<span class="nc" id="L244">      final Collection&lt;Uuid&gt; ids = Serializers.collection(Uuid.SERIALIZER).read(in);</span>
+<span class="nc" id="L236">      final Collection&lt;Uuid&gt; ids = Serializers.collection(Uuid.SERIALIZER).read(in);</span>
 
-<span class="nc" id="L246">      final Collection&lt;Conversation&gt; conversations = view.getConversations(ids);</span>
+<span class="nc" id="L238">      final Collection&lt;Conversation&gt; conversations = view.getConversations(ids);</span>
 
-<span class="nc" id="L248">      Serializers.INTEGER.write(out, NetworkCode.GET_CONVERSATIONS_BY_ID_RESPONSE);</span>
-<span class="nc" id="L249">      Serializers.collection(Conversation.SERIALIZER).write(out, conversations);</span>
+<span class="nc" id="L240">      Serializers.INTEGER.write(out, NetworkCode.GET_CONVERSATIONS_BY_ID_RESPONSE);</span>
+<span class="nc" id="L241">      Serializers.collection(Conversation.SERIALIZER).write(out, conversations);</span>
 
-<span class="nc bnc" id="L251" title="All 2 branches missed.">    } else if (type == NetworkCode.GET_ALL_GROUPS_REQUEST) {</span>
+<span class="nc bnc" id="L243" title="All 2 branches missed.">    } else if (type == NetworkCode.GET_ALL_GROUPS_REQUEST) {</span>
 
-<span class="nc" id="L253">      final Collection&lt;GroupSummary&gt; groups = view.getAllGroups();</span>
+<span class="nc" id="L245">      final Collection&lt;GroupSummary&gt; groups = view.getAllGroups();</span>
 
-<span class="nc" id="L255">      Serializers.INTEGER.write(out, NetworkCode.GET_ALL_GROUPS_RESPONSE);</span>
-<span class="nc" id="L256">      Serializers.collection(GroupSummary.SERIALIZER).write(out, groups);</span>
+<span class="nc" id="L247">      Serializers.INTEGER.write(out, NetworkCode.GET_ALL_GROUPS_RESPONSE);</span>
+<span class="nc" id="L248">      Serializers.collection(GroupSummary.SERIALIZER).write(out, groups);</span>
 
-<span class="nc bnc" id="L258" title="All 2 branches missed.">    } else if (type == NetworkCode.GET_GROUPS_BY_ID_REQUEST) {</span>
+<span class="nc bnc" id="L250" title="All 2 branches missed.">    } else if (type == NetworkCode.GET_GROUPS_BY_ID_REQUEST) {</span>
 
-<span class="nc" id="L260">      final Collection&lt;Uuid&gt; ids = Serializers.collection(Uuid.SERIALIZER).read(in);</span>
+<span class="nc" id="L252">      final Collection&lt;Uuid&gt; ids = Serializers.collection(Uuid.SERIALIZER).read(in);</span>
 
-<span class="nc" id="L262">      final Collection&lt;Group&gt; groups = view.getGroups(ids);</span>
+<span class="nc" id="L254">      final Collection&lt;Group&gt; groups = view.getGroups(ids);</span>
 
-<span class="nc" id="L264">      Serializers.INTEGER.write(out, NetworkCode.GET_GROUPS_BY_ID_RESPONSE);</span>
-<span class="nc" id="L265">      Serializers.collection(Group.SERIALIZER).write(out, groups);</span>
+<span class="nc" id="L256">      Serializers.INTEGER.write(out, NetworkCode.GET_GROUPS_BY_ID_RESPONSE);</span>
+<span class="nc" id="L257">      Serializers.collection(Group.SERIALIZER).write(out, groups);</span>
 
-<span class="nc bnc" id="L267" title="All 2 branches missed.">    } else if (type == NetworkCode.GET_MESSAGES_BY_ID_REQUEST) {</span>
+<span class="nc bnc" id="L259" title="All 2 branches missed.">    } else if (type == NetworkCode.GET_MESSAGES_BY_ID_REQUEST) {</span>
 
-<span class="nc" id="L269">      final Collection&lt;Uuid&gt; ids = Serializers.collection(Uuid.SERIALIZER).read(in);</span>
+<span class="nc" id="L261">      final Collection&lt;Uuid&gt; ids = Serializers.collection(Uuid.SERIALIZER).read(in);</span>
 
-<span class="nc" id="L271">      final Collection&lt;Message&gt; messages = view.getMessages(ids);</span>
+<span class="nc" id="L263">      final Collection&lt;Message&gt; messages = view.getMessages(ids);</span>
 
-<span class="nc" id="L273">      Serializers.INTEGER.write(out, NetworkCode.GET_MESSAGES_BY_ID_RESPONSE);</span>
-<span class="nc" id="L274">      Serializers.collection(Message.SERIALIZER).write(out, messages);</span>
+<span class="nc" id="L265">      Serializers.INTEGER.write(out, NetworkCode.GET_MESSAGES_BY_ID_RESPONSE);</span>
+<span class="nc" id="L266">      Serializers.collection(Message.SERIALIZER).write(out, messages);</span>
 
-<span class="nc bnc" id="L276" title="All 2 branches missed.">    } else if (type == NetworkCode.GET_USER_GENERATION_REQUEST) {</span>
+<span class="nc bnc" id="L268" title="All 2 branches missed.">    } else if (type == NetworkCode.GET_USER_GENERATION_REQUEST) {</span>
 
-<span class="nc" id="L278">      Serializers.INTEGER.write(out, NetworkCode.GET_USER_GENERATION_RESPONSE);</span>
-<span class="nc" id="L279">      Uuid.SERIALIZER.write(out, view.getUserGeneration());</span>
+<span class="nc" id="L270">      Serializers.INTEGER.write(out, NetworkCode.GET_USER_GENERATION_RESPONSE);</span>
+<span class="nc" id="L271">      Uuid.SERIALIZER.write(out, view.getUserGeneration());</span>
 
-<span class="nc bnc" id="L281" title="All 2 branches missed.">    } else if (type == NetworkCode.GET_USERS_EXCLUDING_REQUEST) {</span>
+<span class="nc bnc" id="L273" title="All 2 branches missed.">    } else if (type == NetworkCode.GET_USERS_EXCLUDING_REQUEST) {</span>
 
-<span class="nc" id="L283">      final Collection&lt;Uuid&gt; ids = Serializers.collection(Uuid.SERIALIZER).read(in);</span>
+<span class="nc" id="L275">      final Collection&lt;Uuid&gt; ids = Serializers.collection(Uuid.SERIALIZER).read(in);</span>
 
-<span class="nc" id="L285">      final Collection&lt;User&gt; users = view.getUsersExcluding(ids);</span>
+<span class="nc" id="L277">      final Collection&lt;User&gt; users = view.getUsersExcluding(ids);</span>
 
-<span class="nc" id="L287">      Serializers.INTEGER.write(out, NetworkCode.GET_USERS_EXCLUDING_RESPONSE);</span>
-<span class="nc" id="L288">      Serializers.collection(User.SERIALIZER).write(out, users);</span>
+<span class="nc" id="L279">      Serializers.INTEGER.write(out, NetworkCode.GET_USERS_EXCLUDING_RESPONSE);</span>
+<span class="nc" id="L280">      Serializers.collection(User.SERIALIZER).write(out, users);</span>
 
-<span class="nc bnc" id="L290" title="All 2 branches missed.">    } else if (type == NetworkCode.GET_CONVERSATIONS_BY_TIME_REQUEST) {</span>
+<span class="nc bnc" id="L282" title="All 2 branches missed.">    } else if (type == NetworkCode.GET_CONVERSATIONS_BY_TIME_REQUEST) {</span>
 
-<span class="nc" id="L292">      final Time startTime = Time.SERIALIZER.read(in);</span>
-<span class="nc" id="L293">      final Time endTime = Time.SERIALIZER.read(in);</span>
+<span class="nc" id="L284">      final Time startTime = Time.SERIALIZER.read(in);</span>
+<span class="nc" id="L285">      final Time endTime = Time.SERIALIZER.read(in);</span>
 
-<span class="nc" id="L295">      final Collection&lt;Conversation&gt; conversations = view.getConversations(startTime, endTime);</span>
+<span class="nc" id="L287">      final Collection&lt;Conversation&gt; conversations = view.getConversations(startTime, endTime);</span>
 
-<span class="nc" id="L297">      Serializers.INTEGER.write(out, NetworkCode.GET_CONVERSATIONS_BY_TIME_RESPONSE);</span>
-<span class="nc" id="L298">      Serializers.collection(Conversation.SERIALIZER).write(out, conversations);</span>
+<span class="nc" id="L289">      Serializers.INTEGER.write(out, NetworkCode.GET_CONVERSATIONS_BY_TIME_RESPONSE);</span>
+<span class="nc" id="L290">      Serializers.collection(Conversation.SERIALIZER).write(out, conversations);</span>
 
-<span class="nc bnc" id="L300" title="All 2 branches missed.">    } else if (type == NetworkCode.GET_CONVERSATIONS_BY_TITLE_REQUEST) {</span>
+<span class="nc bnc" id="L292" title="All 2 branches missed.">    } else if (type == NetworkCode.GET_CONVERSATIONS_BY_TITLE_REQUEST) {</span>
 
-<span class="nc" id="L302">      final String filter = Serializers.STRING.read(in);</span>
+<span class="nc" id="L294">      final String filter = Serializers.STRING.read(in);</span>
 
-<span class="nc" id="L304">      final Collection&lt;Conversation&gt; conversations = view.getConversations(filter);</span>
+<span class="nc" id="L296">      final Collection&lt;Conversation&gt; conversations = view.getConversations(filter);</span>
 
-<span class="nc" id="L306">      Serializers.INTEGER.write(out, NetworkCode.GET_CONVERSATIONS_BY_TITLE_RESPONSE);</span>
-<span class="nc" id="L307">      Serializers.collection(Conversation.SERIALIZER).write(out, conversations);</span>
+<span class="nc" id="L298">      Serializers.INTEGER.write(out, NetworkCode.GET_CONVERSATIONS_BY_TITLE_RESPONSE);</span>
+<span class="nc" id="L299">      Serializers.collection(Conversation.SERIALIZER).write(out, conversations);</span>
 
-<span class="nc bnc" id="L309" title="All 2 branches missed.">    } else if (type == NetworkCode.GET_GROUPS_BY_TIME_REQUEST) {</span>
+<span class="nc bnc" id="L301" title="All 2 branches missed.">    } else if (type == NetworkCode.GET_GROUPS_BY_TIME_REQUEST) {</span>
 
-<span class="nc" id="L311">      final Time startTime = Time.SERIALIZER.read(in);</span>
-<span class="nc" id="L312">      final Time endTime = Time.SERIALIZER.read(in);</span>
+<span class="nc" id="L303">      final Time startTime = Time.SERIALIZER.read(in);</span>
+<span class="nc" id="L304">      final Time endTime = Time.SERIALIZER.read(in);</span>
 
-<span class="nc" id="L314">      final Collection&lt;Group&gt; groups = view.getGroups(startTime, endTime);</span>
+<span class="nc" id="L306">      final Collection&lt;Group&gt; groups = view.getGroups(startTime, endTime);</span>
 
-<span class="nc" id="L316">      Serializers.INTEGER.write(out, NetworkCode.GET_GROUPS_BY_TIME_RESPONSE);</span>
-<span class="nc" id="L317">      Serializers.collection(Group.SERIALIZER).write(out, groups);</span>
+<span class="nc" id="L308">      Serializers.INTEGER.write(out, NetworkCode.GET_GROUPS_BY_TIME_RESPONSE);</span>
+<span class="nc" id="L309">      Serializers.collection(Group.SERIALIZER).write(out, groups);</span>
 
-<span class="nc bnc" id="L319" title="All 2 branches missed.">  } else if (type == NetworkCode.GET_GROUPS_BY_TITLE_REQUEST) {</span>
+<span class="nc bnc" id="L311" title="All 2 branches missed.">  } else if (type == NetworkCode.GET_GROUPS_BY_TITLE_REQUEST) {</span>
 
-<span class="nc" id="L321">      final String filter = Serializers.STRING.read(in);</span>
+<span class="nc" id="L313">      final String filter = Serializers.STRING.read(in);</span>
 
-<span class="nc" id="L323">      final Collection&lt;Group&gt; groups = view.getGroups(filter);</span>
+<span class="nc" id="L315">      final Collection&lt;Group&gt; groups = view.getGroups(filter);</span>
 
-<span class="nc" id="L325">      Serializers.INTEGER.write(out, NetworkCode.GET_GROUPS_BY_TITLE_RESPONSE);</span>
-<span class="nc" id="L326">      Serializers.collection(Group.SERIALIZER).write(out, groups);</span>
+<span class="nc" id="L317">      Serializers.INTEGER.write(out, NetworkCode.GET_GROUPS_BY_TITLE_RESPONSE);</span>
+<span class="nc" id="L318">      Serializers.collection(Group.SERIALIZER).write(out, groups);</span>
 
-<span class="nc bnc" id="L328" title="All 2 branches missed.">    } else if (type == NetworkCode.GET_MESSAGES_BY_TIME_REQUEST) {</span>
+<span class="nc bnc" id="L320" title="All 2 branches missed.">    } else if (type == NetworkCode.GET_MESSAGES_BY_TIME_REQUEST) {</span>
 
-<span class="nc" id="L330">      final Uuid conversation = Uuid.SERIALIZER.read(in);</span>
-<span class="nc" id="L331">      final Time startTime = Time.SERIALIZER.read(in);</span>
-<span class="nc" id="L332">      final Time endTime = Time.SERIALIZER.read(in);</span>
+<span class="nc" id="L322">      final Uuid conversation = Uuid.SERIALIZER.read(in);</span>
+<span class="nc" id="L323">      final Time startTime = Time.SERIALIZER.read(in);</span>
+<span class="nc" id="L324">      final Time endTime = Time.SERIALIZER.read(in);</span>
 
-<span class="nc" id="L334">      final Collection&lt;Message&gt; messages = view.getMessages(conversation, startTime, endTime);</span>
+<span class="nc" id="L326">      final Collection&lt;Message&gt; messages = view.getMessages(conversation, startTime, endTime);</span>
 
-<span class="nc" id="L336">      Serializers.INTEGER.write(out, NetworkCode.GET_MESSAGES_BY_TIME_RESPONSE);</span>
-<span class="nc" id="L337">      Serializers.collection(Message.SERIALIZER).write(out, messages);</span>
+<span class="nc" id="L328">      Serializers.INTEGER.write(out, NetworkCode.GET_MESSAGES_BY_TIME_RESPONSE);</span>
+<span class="nc" id="L329">      Serializers.collection(Message.SERIALIZER).write(out, messages);</span>
 
-<span class="nc bnc" id="L339" title="All 2 branches missed.">    } else if (type == NetworkCode.GET_MESSAGES_BY_RANGE_REQUEST) {</span>
+<span class="nc bnc" id="L331" title="All 2 branches missed.">    } else if (type == NetworkCode.GET_MESSAGES_BY_RANGE_REQUEST) {</span>
 
-<span class="nc" id="L341">      final Uuid rootMessage = Uuid.SERIALIZER.read(in);</span>
-<span class="nc" id="L342">      final int range = Serializers.INTEGER.read(in);</span>
+<span class="nc" id="L333">      final Uuid rootMessage = Uuid.SERIALIZER.read(in);</span>
+<span class="nc" id="L334">      final int range = Serializers.INTEGER.read(in);</span>
 
-<span class="nc" id="L344">      final Collection&lt;Message&gt; messages = view.getMessages(rootMessage, range);</span>
+<span class="nc" id="L336">      final Collection&lt;Message&gt; messages = view.getMessages(rootMessage, range);</span>
 
-<span class="nc" id="L346">      Serializers.INTEGER.write(out, NetworkCode.GET_MESSAGES_BY_RANGE_RESPONSE);</span>
-<span class="nc" id="L347">      Serializers.collection(Message.SERIALIZER).write(out, messages);</span>
+<span class="nc" id="L338">      Serializers.INTEGER.write(out, NetworkCode.GET_MESSAGES_BY_RANGE_RESPONSE);</span>
+<span class="nc" id="L339">      Serializers.collection(Message.SERIALIZER).write(out, messages);</span>
 
-<span class="nc bnc" id="L349" title="All 2 branches missed.">    } else if (type == NetworkCode.CHECK_PASSWORD_REQUEST) {</span>
+<span class="nc bnc" id="L341" title="All 2 branches missed.">    } else if (type == NetworkCode.CHECK_PASSWORD_REQUEST) {</span>
 
-<span class="nc" id="L351">      final Uuid uuid = Uuid.SERIALIZER.read(in);</span>
-<span class="nc" id="L352">      final String pass = Serializers.STRING.read(in);</span>
+<span class="nc" id="L343">      final Uuid uuid = Uuid.SERIALIZER.read(in);</span>
+<span class="nc" id="L344">      final String pass = Serializers.STRING.read(in);</span>
 
-<span class="nc" id="L354">      final User response = controller.ifCorrectPassword(uuid, pass);</span>
+<span class="nc" id="L346">      final User response = controller.ifCorrectPassword(uuid, pass);</span>
 
-<span class="nc" id="L356">      Serializers.INTEGER.write(out, NetworkCode.CHECK_PASSWORD_RESPONSE);</span>
-<span class="nc" id="L357">      Serializers.nullable(User.SERIALIZER).write(out, response);</span>
+<span class="nc" id="L348">      Serializers.INTEGER.write(out, NetworkCode.CHECK_PASSWORD_RESPONSE);</span>
+<span class="nc" id="L349">      Serializers.nullable(User.SERIALIZER).write(out, response);</span>
 
-<span class="nc" id="L359">    } else {</span>
+<span class="nc" id="L351">    } else {</span>
 
       // In the case that the message was not handled make a dummy message with
       // the type &quot;NO_MESSAGE&quot; so that the client still gets something.
 
-<span class="nc" id="L364">      Serializers.INTEGER.write(out, NetworkCode.NO_MESSAGE);</span>
+<span class="nc" id="L356">      Serializers.INTEGER.write(out, NetworkCode.NO_MESSAGE);</span>
 
     }
 
-<span class="nc" id="L368">    return true;</span>
+<span class="nc" id="L360">    return true;</span>
   }
 
   private void onBundle(Relay.Bundle bundle) {
 
-<span class="nc" id="L373">    final Relay.Bundle.Component relayUser = bundle.user();</span>
-<span class="nc" id="L374">    final Relay.Bundle.Component relayConversation = bundle.conversation();</span>
-<span class="nc" id="L375">    final Relay.Bundle.Component relayGroup = bundle.group();</span>
-<span class="nc" id="L376">    final Relay.Bundle.Component relayMessage = bundle.user();</span>
+<span class="nc" id="L365">    final Relay.Bundle.Component relayUser = bundle.user();</span>
+<span class="nc" id="L366">    final Relay.Bundle.Component relayConversation = bundle.conversation();</span>
+<span class="nc" id="L367">    final Relay.Bundle.Component relayGroup = bundle.group();</span>
+<span class="nc" id="L368">    final Relay.Bundle.Component relayMessage = bundle.user();</span>
 
-<span class="nc" id="L378">    User user = model.userById().first(relayUser.id());</span>
+<span class="nc" id="L370">    User user = model.userById().first(relayUser.id());</span>
 
-<span class="nc bnc" id="L380" title="All 2 branches missed.">    if (user == null) {</span>
-<span class="nc" id="L381">      user = controller.newUser(relayUser.id(), relayUser.text(), relayUser.time());</span>
+<span class="nc bnc" id="L372" title="All 2 branches missed.">    if (user == null) {</span>
+<span class="nc" id="L373">      user = controller.newUser(relayUser.id(), relayUser.text(), relayUser.time());</span>
     }
 
-<span class="nc" id="L384">    Group group = model.groupById().first(relayGroup.id());</span>
+<span class="nc" id="L376">    Group group = model.groupById().first(relayGroup.id());</span>
 
-<span class="nc bnc" id="L386" title="All 2 branches missed.">    if (group == null) {</span>
-<span class="nc" id="L387">      group = controller.newGroup(relayGroup.id(), relayGroup.text(), user.id, relayGroup.time());</span>
+<span class="nc bnc" id="L378" title="All 2 branches missed.">    if (group == null) {</span>
+<span class="nc" id="L379">      group = controller.newGroup(relayGroup.id(), relayGroup.text(), user.id, relayGroup.time());</span>
     }
 
-<span class="nc" id="L390">    Conversation conversation = model.conversationById().first(relayConversation.id());</span>
+<span class="nc" id="L382">    Conversation conversation = model.conversationById().first(relayConversation.id());</span>
 
-<span class="nc bnc" id="L392" title="All 2 branches missed.">    if (conversation == null) {</span>
+<span class="nc bnc" id="L384" title="All 2 branches missed.">    if (conversation == null) {</span>
 
       // As the relay does not tell us who made the conversation - the first person who
       // has a message in the conversation will get ownership over this server's copy
       // of the conversation.
-<span class="nc" id="L397">      conversation = controller.newConversation(relayConversation.id(),</span>
-<span class="nc" id="L398">                                                relayConversation.text(),</span>
+<span class="nc" id="L389">      conversation = controller.newConversation(relayConversation.id(),</span>
+<span class="nc" id="L390">                                                relayConversation.text(),</span>
                                                 user.id,
                                                 group.id,
-<span class="nc" id="L401">                                                relayConversation.time());</span>
+<span class="nc" id="L393">                                                relayConversation.time());</span>
     }
 
-<span class="nc" id="L404">    Message message = model.messageById().first(relayMessage.id());</span>
+<span class="nc" id="L396">    Message message = model.messageById().first(relayMessage.id());</span>
 
-<span class="nc bnc" id="L406" title="All 2 branches missed.">    if (message == null) {</span>
-<span class="nc" id="L407">      message = controller.newMessage(relayMessage.id(),</span>
+<span class="nc bnc" id="L398" title="All 2 branches missed.">    if (message == null) {</span>
+<span class="nc" id="L399">      message = controller.newMessage(relayMessage.id(),</span>
                                       user.id,
                                       conversation.id,
                                       group.id,
-<span class="nc" id="L411">                                      relayMessage.text(),</span>
-<span class="nc" id="L412">                                      relayMessage.time());</span>
+<span class="nc" id="L403">                                      relayMessage.text(),</span>
+<span class="nc" id="L404">                                      relayMessage.time());</span>
     }
-<span class="nc" id="L414">  }</span>
+<span class="nc" id="L406">  }</span>
 
   private Runnable createSendToRelayEvent(final Uuid userId,
                                           final Uuid conversationId,
                                           final Uuid groupId,
                                           final Uuid messageId) {
-<span class="nc" id="L420">    return new Runnable() {</span>
+<span class="nc" id="L412">    return new Runnable() {</span>
       @Override
       public void run() {
-<span class="nc" id="L423">        final User user = view.findUser(userId);</span>
-<span class="nc" id="L424">        final Conversation conversation = view.findConversation(conversationId);</span>
-<span class="nc" id="L425">        final Group group = view.findGroup(groupId);</span>
-<span class="nc" id="L426">        final Message message = view.findMessage(messageId);</span>
-<span class="nc" id="L427">        relay.write(id,</span>
-<span class="nc" id="L428">                    secret,</span>
-<span class="nc" id="L429">                    relay.pack(user.id, user.name, user.creation),</span>
-<span class="nc" id="L430">                    relay.pack(conversation.id, conversation.title, conversation.creation),</span>
-<span class="nc" id="L431">                    relay.pack(group.id, group.title, group.creation),</span>
-<span class="nc" id="L432">                    relay.pack(message.id, message.content, message.creation));</span>
-<span class="nc" id="L433">      }</span>
+<span class="nc" id="L415">        final User user = view.findUser(userId);</span>
+<span class="nc" id="L416">        final Conversation conversation = view.findConversation(conversationId);</span>
+<span class="nc" id="L417">        final Group group = view.findGroup(groupId);</span>
+<span class="nc" id="L418">        final Message message = view.findMessage(messageId);</span>
+<span class="nc" id="L419">        relay.write(id,</span>
+<span class="nc" id="L420">                    secret,</span>
+<span class="nc" id="L421">                    relay.pack(user.id, user.name, user.creation),</span>
+<span class="nc" id="L422">                    relay.pack(conversation.id, conversation.title, conversation.creation),</span>
+<span class="nc" id="L423">                    relay.pack(group.id, group.title, group.creation),</span>
+<span class="nc" id="L424">                    relay.pack(message.id, message.content, message.creation));</span>
+<span class="nc" id="L425">      }</span>
     };
   }
 }

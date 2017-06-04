@@ -87,24 +87,24 @@ public final class ChatBetterGui extends Application {
             LOG.info("Creating client...");
             //runClient(controller, view);
 
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/codeu/chat/client/bettergui/LoginUI.fxml"));
+
+            Parent root = loader.load();
+
+            LoginController loginController = loader.getController();
+
+            loginController.setClientContext(clientContext);
+
+            s1 = new Scene(root);
+
+            primaryStage.setScene(s1);
+
+            primaryStage.show();
+
         } catch (Exception ex) {
             System.out.println("ERROR: Exception setting up client. Check log for details.");
             LOG.error(ex, "Exception setting up client.");
         }
-
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/codeu/chat/client/bettergui/LoginUI.fxml"));
-
-        Parent root = loader.load();
-
-        LoginController loginController = loader.getController();
-
-        loginController.setClientContext(clientContext);
-
-        s1 = new Scene(root);
-
-        primaryStage.setScene(s1);
-
-        primaryStage.show();
     }
 
 }
