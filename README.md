@@ -1,6 +1,6 @@
 
 # TRAVEL CHAT
-[![Java 8](https://img.shields.io/badge/Java-8-blue.svg)](https://img.shields.io/badge/Java-8-blue.svg)  [![JavaFX 8](https://img.shields.io/badge/JavaFX-8-blue.svg)](https://img.shields.io/badge/JavaFX-8-blue.svg)  [![Google Cloud Bigtable](https://img.shields.io/badge/Google Cloud Bigtable-0.9.5.1-blue.svg)](https://img.shields.io/badge/Google Cloud Bigtable-0.9.5.1-blue.svg)  [![Maven](https://img.shields.io/badge/Maven-3.5.0 -orange.svg)](https://img.shields.io/badge/Maven-3.5.0-orange.svg)  [![JFoenix](https://img.shields.io/badge/JFoenix-1.4.0-42ebf4.svg)](https://img.shields.io/badge/JFoenix-1.4.0-42ebf4.svg)
+[![Java 8](https://img.shields.io/badge/Java-8-blue.svg)](https://img.shields.io/badge/Java-8-blue.svg)  [![JavaFX 8](https://img.shields.io/badge/JavaFX-8-blue.svg)](https://img.shields.io/badge/JavaFX-8-blue.svg)  [![Google Cloud Bigtable](https://img.shields.io/badge/Google Cloud Bigtable-0.9.5.1-blue.svg)](https://img.shields.io/badge/Google Cloud Bigtable-0.9.5.1-blue.svg)  [![Maven](https://img.shields.io/badge/Maven-3.5.0 -orange.svg)](https://img.shields.io/badge/Maven-3.5.0 -orange.svg)  [![JFoenix](https://img.shields.io/badge/JFoenix-1.4.0-42ebf4.svg)](https://img.shields.io/badge/JFoenix-1.4.0-42ebf4.svg)
 
 ## DISCLAIMER
 
