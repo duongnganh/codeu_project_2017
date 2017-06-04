@@ -273,9 +273,9 @@ New Features:
 * Password-based sign-in
 
 Known Bugs and Defects:
-* Pressing the <enter> button on the message panel, login and registration forms crashes the app. It is recommended 
-* that you click on the "Send", "Register", and "Login" buttons provided in the UI.
-* Certain features such as deleting users/conversations, manually adding conversations/groups is implemented for the
-* command line only.
+* Pressing the <enter> button on the message panel, login and registration forms crashes the app. It is
+* recommended that you click on the "Send", "Register", and "Login" buttons provided in the UI.
+* Certain features such as deleting users/conversations, manually adding conversations/groups is
+* implemented for the command line only.
 ```
 
