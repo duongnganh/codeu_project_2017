@@ -18,4 +18,4 @@ set -e
 
 rm -rf ./target/classes/*
 rm -rf ./target/test-classes/*
-rm -rf ./*.log
+rm -rf ./bin/*

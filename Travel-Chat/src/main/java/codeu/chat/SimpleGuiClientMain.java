@@ -31,7 +31,7 @@ final class SimpleGuiClientMain {
   public static void main(String [] args) {
 
     try {
-      Logger.enableFileOutput("chat_simple_gui_client_log.log");
+      Logger.enableFileOutput("bin/chat_simple_gui_client_log.log");
     } catch (IOException ex) {
       LOG.error(ex, "Failed to set logger to write to file");
     }
