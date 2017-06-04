@@ -150,6 +150,7 @@ public final class ClientUser {
           (!validInputs) ? "bad input value" : ((existed) ? "existed username/nickname" : "server failure"));
     } else {
       LOG.info("New user complete, Name= \"%s\" Nickname= \"%s\" UUID=%s", user.name, user.nickname, user.id);
+      current = user;
       updateUsers();
       return true;
     }
