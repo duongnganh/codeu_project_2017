@@ -1,6 +1,10 @@
 
 # TRAVEL CHAT
-[![Java 8](https://img.shields.io/badge/Java-8-blue.svg)](https://img.shields.io/badge/Java-8-blue.svg)  [![JavaFX 8](https://img.shields.io/badge/JavaFX-8-blue.svg)](https://img.shields.io/badge/JavaFX-8-blue.svg)  [![Google Cloud Bigtable](https://img.shields.io/badge/GoogleCloudBigtable-0.9.5.1-blue.svg)](https://img.shields.io/badge/GoogleCloudBigtable-0.9.5.1-blue.svg)  [![Maven](https://img.shields.io/badge/Maven-3.5.0-orange.svg)](https://img.shields.io/badge/Maven-3.5.0-orange.svg)  [![JFoenix](https://img.shields.io/badge/JFoenix-1.4.0-42ebf4.svg)](https://img.shields.io/badge/JFoenix-1.4.0-42ebf4.svg)
+[![Java 7](https://img.shields.io/badge/Java-7-blue.svg)](https://img.shields.io/badge/Java-7-blue.svg)  [![JavaFX 7](https://img.shields.io/badge/JavaFX-7-blue.svg)](https://img.shields.io/badge/JavaFX-7-blue.svg)  [![Google Cloud Bigtable](https://img.shields.io/badge/GoogleCloudBigtable-0.9.5.1-blue.svg)](https://img.shields.io/badge/GoogleCloudBigtable-0.9.5.1-blue.svg)  [![Maven](https://img.shields.io/badge/Maven-3.5.0-orange.svg)](https://img.shields.io/badge/Maven-3.5.0-orange.svg)  [![JFoenix](https://img.shields.io/badge/JFoenix-1.4.0-42ebf4.svg)](https://img.shields.io/badge/JFoenix-1.4.0-42ebf4.svg)
+
+Travel Chat is a chat application designed for travellers to connect and explore the cities they are visiting. This could include communicating with locals and sharing tips, and meeting up with other tourists at their favorite locations. Users can join cities and topics of conversation within them to chat other users. Travel Chat is built using Java 7, JavaFX 7 and it implements Google's Material UI design. It uses Google Cloud Bigtable to achieve data persistence. Please see Design Doc for more information.
+
+Please note that the latest version is on the master branch.
 
 ## DISCLAIMER
 
@@ -53,50 +57,9 @@ This project uses the native HBase API to connect to and interact with Cloud Big
 [github-repo]: https://github.com/neilbarooah/codeu_project_2017
 
 
+## Google Cloud Bigtable
 
-## Finding your way around the project
-
-All the source files (except test-related source files) are in
-`./src/main/java/codeu/chat`.  The test source files are in `./src/test/codeu/chat`. If you
-use the supplied scripts to build the project, the `.class` files will be placed
-in `./target/classes`.
-
-Finally, there are some high-level design documents in the project Wiki. Please
-review them as they can help you find your way around the sources.
-
-
-
-## Source Directories
-
-The major project components have been separated into their own packages. The
-main packages/directories under `src/main/java/codeu/chat` are:
-
-### codeu.chat.client
-
-Classes for building the three clients (`codeu.chat.ClientMain` and
-`codeu.chat.SimpleGuiClientMain` and `codeu.chat.BetterGuiClientMain`).
-
-### codeu.chat.server
-
-Classes for building the server (`codeu.chat.ServerMain`).
-
-### codeu.chat.relay
-
-Classes for building the Relay Server (`codeu.chat.RelayMain`). The Relay Server
-is not needed to get started.
-
-### codeu.chat.common
-
-Classes that are shared by the clients and servers.
-
-### codeu.chat.util
-
-Some basic infrastructure classes used throughout the project.
-
-
-## GOOGLE BIGTABLE
-
-## Costs
+### Costs
 
 This sample uses billable components of Cloud Platform, including:
 
@@ -312,7 +275,9 @@ New Features:
 * Password-based sign-in
 
 Known Bugs and Defects:
-* Pressing the <enter> button on the message panel, login and registration forms crashes the app. It is recommended that you click on the "Send", "Register", and "Login" buttons provided in the UI.
-* Certain features such as deleting users/conversations, manually adding conversations/groups is implemented for the command line only.
+* Pressing the <enter> button on the message panel, login and registration forms crashes the app. It is
+* recommended that you click on the "Send", "Register", and "Login" buttons provided in the UI.
+* Certain features such as deleting users/conversations, manually adding conversations/groups is
+* implemented for the command line only.
 ```
 
