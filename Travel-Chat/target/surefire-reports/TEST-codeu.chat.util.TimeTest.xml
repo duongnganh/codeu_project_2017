@@ -6,7 +6,7 @@
     <property name="java.vm.version" value="25.131-b11"/>
     <property name="gopherProxySet" value="false"/>
     <property name="java.vm.vendor" value="Oracle Corporation"/>
-    <property name="maven.multiModuleProjectDirectory" value="/Users/nbarooa/Desktop/Test/codeu_project_2017/Travel-CHat"/>
+    <property name="maven.multiModuleProjectDirectory" value="/Users/nbarooa/Desktop/Test/codeu_project_2017/Travel-Chat"/>
     <property name="java.vendor.url" value="http://java.oracle.com/"/>
     <property name="path.separator" value=":"/>
     <property name="guice.disable.misplaced.annotation.check" value="true"/>
