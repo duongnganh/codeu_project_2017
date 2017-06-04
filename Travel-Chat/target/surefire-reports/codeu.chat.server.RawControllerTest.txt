@@ -1,8 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: codeu.chat.server.RawControllerTest
 -------------------------------------------------------------------------------
-Tests run: 6, Failures: 6, Errors: 0, Skipped: 0, Time elapsed: 149.811 sec <<< FAILURE! - in codeu.chat.server.RawControllerTest
-testAddMessage(codeu.chat.server.RawControllerTest)  Time elapsed: 79.163 sec  <<< FAILURE!
+Tests run: 6, Failures: 6, Errors: 0, Skipped: 0, Time elapsed: 133.609 sec <<< FAILURE! - in codeu.chat.server.RawControllerTest
+testAddMessage(codeu.chat.server.RawControllerTest)  Time elapsed: 59.995 sec  <<< FAILURE!
 java.lang.AssertionError: Check that the message has a valid reference
 	at org.junit.Assert.fail(Assert.java:88)
 	at org.junit.Assert.assertTrue(Assert.java:41)
@@ -34,7 +34,7 @@ java.lang.AssertionError: Check that the message has a valid reference
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:242)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:121)
 
-testAddConversation(codeu.chat.server.RawControllerTest)  Time elapsed: 14.43 sec  <<< FAILURE!
+testAddConversation(codeu.chat.server.RawControllerTest)  Time elapsed: 12.776 sec  <<< FAILURE!
 java.lang.AssertionError: Check that user has a valid reference
 	at org.junit.Assert.fail(Assert.java:88)
 	at org.junit.Assert.assertTrue(Assert.java:41)
@@ -66,7 +66,7 @@ java.lang.AssertionError: Check that user has a valid reference
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:242)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:121)
 
-testAddUser(codeu.chat.server.RawControllerTest)  Time elapsed: 12.085 sec  <<< FAILURE!
+testAddUser(codeu.chat.server.RawControllerTest)  Time elapsed: 15.777 sec  <<< FAILURE!
 java.lang.AssertionError: Check that user has a valid reference
 	at org.junit.Assert.fail(Assert.java:88)
 	at org.junit.Assert.assertTrue(Assert.java:41)
@@ -98,7 +98,7 @@ java.lang.AssertionError: Check that user has a valid reference
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:242)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:121)
 
-testAddGroup(codeu.chat.server.RawControllerTest)  Time elapsed: 15.564 sec  <<< FAILURE!
+testAddGroup(codeu.chat.server.RawControllerTest)  Time elapsed: 15.353 sec  <<< FAILURE!
 java.lang.AssertionError: Check that user has a valid reference
 	at org.junit.Assert.fail(Assert.java:88)
 	at org.junit.Assert.assertTrue(Assert.java:41)
@@ -130,7 +130,7 @@ java.lang.AssertionError: Check that user has a valid reference
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:242)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:121)
 
-testDeleteUser(codeu.chat.server.RawControllerTest)  Time elapsed: 13.43 sec  <<< FAILURE!
+testDeleteUser(codeu.chat.server.RawControllerTest)  Time elapsed: 15.26 sec  <<< FAILURE!
 java.lang.AssertionError: Check that user has a valid reference
 	at org.junit.Assert.fail(Assert.java:88)
 	at org.junit.Assert.assertTrue(Assert.java:41)
@@ -162,7 +162,7 @@ java.lang.AssertionError: Check that user has a valid reference
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:242)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:121)
 
-testDeleteConversation(codeu.chat.server.RawControllerTest)  Time elapsed: 15.139 sec  <<< FAILURE!
+testDeleteConversation(codeu.chat.server.RawControllerTest)  Time elapsed: 14.446 sec  <<< FAILURE!
 java.lang.AssertionError: Check that user has a valid reference
 	at org.junit.Assert.fail(Assert.java:88)
 	at org.junit.Assert.assertTrue(Assert.java:41)

@@ -15,7 +15,6 @@
 package codeu.chat;
 
 import java.io.IOException;
-
 import codeu.chat.client.Controller;
 import codeu.chat.client.bettergui.ChatBetterGui;
 import codeu.chat.client.View;
@@ -37,6 +36,7 @@ final class BetterGuiClientMain {
       final String myAddress = host+"@"+myPort;
 
       Application.launch(ChatBetterGui.class, myAddress);
+
   }
 
   private static void runClient(Controller controller, View view) {
