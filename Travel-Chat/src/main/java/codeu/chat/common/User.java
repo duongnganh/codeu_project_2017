@@ -29,7 +29,6 @@ public final class User {
 
     @Override
     public void write(OutputStream out, User value) throws IOException {
-      // System.out.println("in write User");
       Uuid.SERIALIZER.write(out, value.id);
       Serializers.STRING.write(out, value.name);
       Time.SERIALIZER.write(out, value.creation);
@@ -38,14 +37,11 @@ public final class User {
 
     @Override
     public User read(InputStream in) throws IOException {
-      // System.out.println("in read User");
       User user = new User(
           Uuid.SERIALIZER.read(in),
           Serializers.STRING.read(in),
           Time.SERIALIZER.read(in),
           Serializers.STRING.read(in));
-      //TODO: encrypt password
-      // user.setPassword(Serializers.STRING.read(in));
       return user;
     }
   };
@@ -78,10 +74,6 @@ public final class User {
   public String getNickname(){
     return this.nickname;
   }
-
-  // public boolean ifCorrectPassword(String pass){
-  //   return this.password.equals(pass);
-  // }
 
   public void setPassword(String password){
     this.password = password;

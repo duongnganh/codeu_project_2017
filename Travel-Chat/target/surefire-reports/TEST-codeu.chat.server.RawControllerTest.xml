@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="codeu.chat.server.RawControllerTest" time="22.845" tests="6" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="codeu.chat.server.RawControllerTest" time="5.402" tests="6" errors="6" skipped="0" failures="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
-    <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home/jre/lib"/>
-    <property name="java.vm.version" value="25.131-b11"/>
-    <property name="user.country.format" value="VN"/>
+    <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_91.jdk/Contents/Home/jre/lib"/>
+    <property name="java.vm.version" value="25.91-b14"/>
+    <property name="user.country.format" value="KR"/>
     <property name="gopherProxySet" value="false"/>
     <property name="java.vm.vendor" value="Oracle Corporation"/>
-    <property name="maven.multiModuleProjectDirectory" value="/Users/anhduongnguyen/Desktop/newparent/new"/>
+    <property name="maven.multiModuleProjectDirectory" value="/Users/macbookair/Desktop/codeu_project_2017/Travel-Chat"/>
     <property name="java.vendor.url" value="http://java.oracle.com/"/>
     <property name="path.separator" value=":"/>
     <property name="guice.disable.misplaced.annotation.check" value="true"/>
@@ -17,43 +17,43 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.os.patch.level" value="unknown"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
-    <property name="user.dir" value="/Users/anhduongnguyen/Desktop/newparent/new"/>
-    <property name="java.runtime.version" value="1.8.0_131-b11"/>
+    <property name="user.dir" value="/Users/macbookair/Desktop/codeu_project_2017/Travel-Chat"/>
+    <property name="java.runtime.version" value="1.8.0_91-b14"/>
     <property name="java.awt.graphicsenv" value="sun.awt.CGraphicsEnvironment"/>
-    <property name="java.endorsed.dirs" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home/jre/lib/endorsed"/>
+    <property name="java.endorsed.dirs" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_91.jdk/Contents/Home/jre/lib/endorsed"/>
     <property name="os.arch" value="x86_64"/>
-    <property name="java.io.tmpdir" value="/var/folders/kw/dscb1kgx6svfp62t4sbm1qwh0000gn/T/"/>
+    <property name="java.io.tmpdir" value="/var/folders/01/fnsdxp5j2mqbw93rjd7f3gcc0000gn/T/"/>
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="os.name" value="Mac OS X"/>
     <property name="classworlds.conf" value="/usr/local/Cellar/maven/3.5.0/libexec/bin/m2.conf"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
-    <property name="java.library.path" value="/Users/anhduongnguyen/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:."/>
+    <property name="java.library.path" value=":/usr/local/instantclient/12.1.0.2.0//lib:/Library/Python/2.7/site-packages/PySide:/usr/local/lib:/Users/macbookair/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:."/>
     <property name="maven.conf" value="/usr/local/Cellar/maven/3.5.0/libexec/conf"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.class.version" value="52.0"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
-    <property name="os.version" value="10.12.3"/>
+    <property name="os.version" value="10.11.6"/>
     <property name="library.jansi.path" value="/usr/local/Cellar/maven/3.5.0/libexec/lib/jansi-native/osx64"/>
     <property name="http.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
-    <property name="user.home" value="/Users/anhduongnguyen"/>
+    <property name="user.home" value="/Users/macbookair"/>
     <property name="user.timezone" value="Asia/Ho_Chi_Minh"/>
     <property name="java.awt.printerjob" value="sun.lwawt.macosx.CPrinterJob"/>
     <property name="java.specification.version" value="1.8"/>
     <property name="file.encoding" value="UTF-8"/>
-    <property name="user.name" value="anhduongnguyen"/>
+    <property name="user.name" value="macbookair"/>
     <property name="java.class.path" value="/usr/local/Cellar/maven/3.5.0/libexec/boot/plexus-classworlds-2.5.2.jar"/>
     <property name="java.vm.specification.version" value="1.8"/>
     <property name="sun.arch.data.model" value="64"/>
-    <property name="java.home" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home/jre"/>
+    <property name="java.home" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_91.jdk/Contents/Home/jre"/>
     <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher package"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
     <property name="user.language" value="en"/>
     <property name="awt.toolkit" value="sun.lwawt.macosx.LWCToolkit"/>
     <property name="java.vm.info" value="mixed mode"/>
-    <property name="java.version" value="1.8.0_131"/>
-    <property name="java.ext.dirs" value="/Users/anhduongnguyen/Library/Java/Extensions:/Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home/jre/lib/ext:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java"/>
-    <property name="sun.boot.class.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home/jre/lib/resources.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home/jre/lib/rt.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home/jre/lib/sunrsasign.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home/jre/lib/jsse.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home/jre/lib/jce.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home/jre/lib/charsets.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home/jre/lib/jfr.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home/jre/classes"/>
+    <property name="java.version" value="1.8.0_91"/>
+    <property name="java.ext.dirs" value="/Users/macbookair/Library/Java/Extensions:/Library/Java/JavaVirtualMachines/jdk1.8.0_91.jdk/Contents/Home/jre/lib/ext:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java"/>
+    <property name="sun.boot.class.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_91.jdk/Contents/Home/jre/lib/resources.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_91.jdk/Contents/Home/jre/lib/rt.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_91.jdk/Contents/Home/jre/lib/sunrsasign.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_91.jdk/Contents/Home/jre/lib/jsse.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_91.jdk/Contents/Home/jre/lib/jce.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_91.jdk/Contents/Home/jre/lib/charsets.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_91.jdk/Contents/Home/jre/lib/jfr.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_91.jdk/Contents/Home/jre/classes"/>
     <property name="java.vendor" value="Oracle Corporation"/>
     <property name="maven.home" value="/usr/local/Cellar/maven/3.5.0/libexec"/>
     <property name="file.separator" value="/"/>
@@ -64,10 +64,622 @@
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase name="testAddMessage" classname="codeu.chat.server.RawControllerTest" time="5.607"/>
-  <testcase name="testAddConversation" classname="codeu.chat.server.RawControllerTest" time="4.144"/>
-  <testcase name="testAddUser" classname="codeu.chat.server.RawControllerTest" time="2.168"/>
-  <testcase name="testAddGroup" classname="codeu.chat.server.RawControllerTest" time="3.677"/>
-  <testcase name="testDeleteUser" classname="codeu.chat.server.RawControllerTest" time="2.656"/>
-  <testcase name="testDeleteConversation" classname="codeu.chat.server.RawControllerTest" time="4.592"/>
+  <testcase name="testAddMessage" classname="codeu.chat.server.RawControllerTest" time="0.795">
+    <error message="com.google.cloud.bigtable.grpc.scanner.BigtableRetriesExhaustedException: Exhausted streaming retries." type="java.lang.RuntimeException">java.lang.RuntimeException: com.google.cloud.bigtable.grpc.scanner.BigtableRetriesExhaustedException: Exhausted streaming retries.
+	at org.apache.hadoop.hbase.client.AbstractClientScanner$1.hasNext(AbstractClientScanner.java:97)
+	at codeu.chat.server.Model.updateMessages(Model.java:471)
+	at codeu.chat.server.Model.messageById(Model.java:444)
+	at codeu.chat.server.Controller.isIdInUse(Controller.java:275)
+	at codeu.chat.server.Controller.isIdFree(Controller.java:281)
+	at codeu.chat.server.Controller.newUser(Controller.java:145)
+	at codeu.chat.server.RawControllerTest.testAddMessage(RawControllerTest.java:210)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:367)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeWithRerun(JUnit4Provider.java:274)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:238)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:161)
+	at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:290)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:242)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:121)
+Caused by: com.google.cloud.bigtable.grpc.scanner.BigtableRetriesExhaustedException: Exhausted streaming retries.
+	at com.google.cloud.bigtable.grpc.scanner.ResumingStreamingResultScanner.next(ResumingStreamingResultScanner.java:89)
+	at com.google.cloud.bigtable.grpc.scanner.ResumingStreamingResultScanner.next(ResumingStreamingResultScanner.java:34)
+	at com.google.cloud.bigtable.hbase.adapters.read.BigtableResultScannerAdapter$1.next(BigtableResultScannerAdapter.java:57)
+	at org.apache.hadoop.hbase.client.AbstractClientScanner$1.hasNext(AbstractClientScanner.java:94)
+	... 31 more
+Caused by: com.google.cloud.bigtable.grpc.io.IOExceptionWithStatus: Error in response stream
+	at com.google.cloud.bigtable.grpc.scanner.ResultQueueEntry$ExceptionResultQueueEntry.getResponseOrThrow(ResultQueueEntry.java:88)
+	at com.google.cloud.bigtable.grpc.scanner.ResponseQueueReader.getNextMergedRow(ResponseQueueReader.java:91)
+	at com.google.cloud.bigtable.grpc.scanner.ResumingStreamingResultScanner.next(ResumingStreamingResultScanner.java:79)
+	... 34 more
+Caused by: com.google.bigtable.repackaged.io.grpc.StatusRuntimeException: PERMISSION_DENIED: User can't access: projects/codeuproject12345/instances/codeuinstance12345/tables/message
+	at com.google.bigtable.repackaged.io.grpc.Status.asRuntimeException(Status.java:536)
+	at com.google.cloud.bigtable.grpc.async.AbstractRetryingRpcListener.onClose(AbstractRetryingRpcListener.java:147)
+	at com.google.cloud.bigtable.grpc.scanner.ReadRowsRetryListener.onClose(ReadRowsRetryListener.java:141)
+	at com.google.cloud.bigtable.grpc.io.ChannelPool$InstrumentedChannel$2.onClose(ChannelPool.java:209)
+	at com.google.bigtable.repackaged.io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl.close(ClientCallImpl.java:481)
+	at com.google.bigtable.repackaged.io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl.access$600(ClientCallImpl.java:398)
+	at com.google.bigtable.repackaged.io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl$1StreamClosed.runInContext(ClientCallImpl.java:513)
+	at com.google.bigtable.repackaged.io.grpc.internal.ContextRunnable.run(ContextRunnable.java:52)
+	at com.google.bigtable.repackaged.io.grpc.internal.SerializingExecutor$TaskRunner.run(SerializingExecutor.java:154)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+</error>
+    <system-out><![CDATA[Scan for all messages:
+]]></system-out>
+    <system-err><![CDATA[Jun 04, 2017 2:47:14 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@29b5e7db] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:47:14 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@286dfa20] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:47:14 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@1468e880] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:47:14 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@508f4bb5] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:47:14 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@5602e540] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:47:14 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@11f9b95a] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:47:14 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@42066f0d] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:47:14 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@687e561b] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:47:14 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@299786b1] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:47:14 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@75f8d9b0] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:47:15 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@286dfa20] Terminated
+Jun 04, 2017 2:47:15 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@1468e880] Terminated
+Jun 04, 2017 2:47:15 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@508f4bb5] Terminated
+Jun 04, 2017 2:47:15 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@5602e540] Terminated
+Jun 04, 2017 2:47:15 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@11f9b95a] Terminated
+Jun 04, 2017 2:47:15 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@42066f0d] Terminated
+Jun 04, 2017 2:47:15 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@687e561b] Terminated
+Jun 04, 2017 2:47:15 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@299786b1] Terminated
+Jun 04, 2017 2:47:15 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@75f8d9b0] Terminated
+Jun 04, 2017 2:47:15 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@29b5e7db] Terminated
+]]></system-err>
+  </testcase>
+  <testcase name="testAddConversation" classname="codeu.chat.server.RawControllerTest" time="1.032">
+    <error message="com.google.cloud.bigtable.grpc.scanner.BigtableRetriesExhaustedException: Exhausted streaming retries." type="java.lang.RuntimeException">java.lang.RuntimeException: com.google.cloud.bigtable.grpc.scanner.BigtableRetriesExhaustedException: Exhausted streaming retries.
+	at org.apache.hadoop.hbase.client.AbstractClientScanner$1.hasNext(AbstractClientScanner.java:97)
+	at codeu.chat.server.Model.updateMessages(Model.java:471)
+	at codeu.chat.server.Model.messageById(Model.java:444)
+	at codeu.chat.server.Controller.isIdInUse(Controller.java:275)
+	at codeu.chat.server.Controller.isIdFree(Controller.java:281)
+	at codeu.chat.server.Controller.newUser(Controller.java:145)
+	at codeu.chat.server.RawControllerTest.testAddConversation(RawControllerTest.java:92)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:367)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeWithRerun(JUnit4Provider.java:274)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:238)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:161)
+	at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:290)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:242)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:121)
+Caused by: com.google.cloud.bigtable.grpc.scanner.BigtableRetriesExhaustedException: Exhausted streaming retries.
+	at com.google.cloud.bigtable.grpc.scanner.ResumingStreamingResultScanner.next(ResumingStreamingResultScanner.java:89)
+	at com.google.cloud.bigtable.grpc.scanner.ResumingStreamingResultScanner.next(ResumingStreamingResultScanner.java:34)
+	at com.google.cloud.bigtable.hbase.adapters.read.BigtableResultScannerAdapter$1.next(BigtableResultScannerAdapter.java:57)
+	at org.apache.hadoop.hbase.client.AbstractClientScanner$1.hasNext(AbstractClientScanner.java:94)
+	... 31 more
+Caused by: com.google.cloud.bigtable.grpc.io.IOExceptionWithStatus: Error in response stream
+	at com.google.cloud.bigtable.grpc.scanner.ResultQueueEntry$ExceptionResultQueueEntry.getResponseOrThrow(ResultQueueEntry.java:88)
+	at com.google.cloud.bigtable.grpc.scanner.ResponseQueueReader.getNextMergedRow(ResponseQueueReader.java:91)
+	at com.google.cloud.bigtable.grpc.scanner.ResumingStreamingResultScanner.next(ResumingStreamingResultScanner.java:79)
+	... 34 more
+Caused by: com.google.bigtable.repackaged.io.grpc.StatusRuntimeException: PERMISSION_DENIED: User can't access: projects/codeuproject12345/instances/codeuinstance12345/tables/message
+	at com.google.bigtable.repackaged.io.grpc.Status.asRuntimeException(Status.java:536)
+	at com.google.cloud.bigtable.grpc.async.AbstractRetryingRpcListener.onClose(AbstractRetryingRpcListener.java:147)
+	at com.google.cloud.bigtable.grpc.scanner.ReadRowsRetryListener.onClose(ReadRowsRetryListener.java:141)
+	at com.google.cloud.bigtable.grpc.io.ChannelPool$InstrumentedChannel$2.onClose(ChannelPool.java:209)
+	at com.google.bigtable.repackaged.io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl.close(ClientCallImpl.java:481)
+	at com.google.bigtable.repackaged.io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl.access$600(ClientCallImpl.java:398)
+	at com.google.bigtable.repackaged.io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl$1StreamClosed.runInContext(ClientCallImpl.java:513)
+	at com.google.bigtable.repackaged.io.grpc.internal.ContextRunnable.run(ContextRunnable.java:52)
+	at com.google.bigtable.repackaged.io.grpc.internal.SerializingExecutor$TaskRunner.run(SerializingExecutor.java:154)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+</error>
+    <system-out><![CDATA[Scan for all messages:
+]]></system-out>
+    <system-err><![CDATA[Jun 04, 2017 2:47:15 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@14ad42] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:47:15 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@608b906d] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:47:15 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@173cfb01] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:47:15 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@7e1762e6] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:47:15 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@5bccaedb] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:47:15 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@67784537] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:47:15 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@17ec5e2a] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:47:15 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@52290e63] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:47:15 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@6c2dd88b] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:47:15 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@49d979c4] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:47:16 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@608b906d] Terminated
+Jun 04, 2017 2:47:16 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@173cfb01] Terminated
+Jun 04, 2017 2:47:16 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@7e1762e6] Terminated
+Jun 04, 2017 2:47:16 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@5bccaedb] Terminated
+Jun 04, 2017 2:47:16 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@67784537] Terminated
+Jun 04, 2017 2:47:16 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@17ec5e2a] Terminated
+Jun 04, 2017 2:47:16 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@52290e63] Terminated
+Jun 04, 2017 2:47:16 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@6c2dd88b] Terminated
+Jun 04, 2017 2:47:16 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@49d979c4] Terminated
+Jun 04, 2017 2:47:16 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@14ad42] Terminated
+]]></system-err>
+  </testcase>
+  <testcase name="testAddUser" classname="codeu.chat.server.RawControllerTest" time="0.91">
+    <error message="com.google.cloud.bigtable.grpc.scanner.BigtableRetriesExhaustedException: Exhausted streaming retries." type="java.lang.RuntimeException">java.lang.RuntimeException: com.google.cloud.bigtable.grpc.scanner.BigtableRetriesExhaustedException: Exhausted streaming retries.
+	at org.apache.hadoop.hbase.client.AbstractClientScanner$1.hasNext(AbstractClientScanner.java:97)
+	at codeu.chat.server.Model.updateMessages(Model.java:471)
+	at codeu.chat.server.Model.messageById(Model.java:444)
+	at codeu.chat.server.Controller.isIdInUse(Controller.java:275)
+	at codeu.chat.server.Controller.isIdFree(Controller.java:281)
+	at codeu.chat.server.Controller.newUser(Controller.java:145)
+	at codeu.chat.server.RawControllerTest.testAddUser(RawControllerTest.java:55)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:367)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeWithRerun(JUnit4Provider.java:274)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:238)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:161)
+	at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:290)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:242)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:121)
+Caused by: com.google.cloud.bigtable.grpc.scanner.BigtableRetriesExhaustedException: Exhausted streaming retries.
+	at com.google.cloud.bigtable.grpc.scanner.ResumingStreamingResultScanner.next(ResumingStreamingResultScanner.java:89)
+	at com.google.cloud.bigtable.grpc.scanner.ResumingStreamingResultScanner.next(ResumingStreamingResultScanner.java:34)
+	at com.google.cloud.bigtable.hbase.adapters.read.BigtableResultScannerAdapter$1.next(BigtableResultScannerAdapter.java:57)
+	at org.apache.hadoop.hbase.client.AbstractClientScanner$1.hasNext(AbstractClientScanner.java:94)
+	... 31 more
+Caused by: com.google.cloud.bigtable.grpc.io.IOExceptionWithStatus: Error in response stream
+	at com.google.cloud.bigtable.grpc.scanner.ResultQueueEntry$ExceptionResultQueueEntry.getResponseOrThrow(ResultQueueEntry.java:88)
+	at com.google.cloud.bigtable.grpc.scanner.ResponseQueueReader.getNextMergedRow(ResponseQueueReader.java:91)
+	at com.google.cloud.bigtable.grpc.scanner.ResumingStreamingResultScanner.next(ResumingStreamingResultScanner.java:79)
+	... 34 more
+Caused by: com.google.bigtable.repackaged.io.grpc.StatusRuntimeException: PERMISSION_DENIED: User can't access: projects/codeuproject12345/instances/codeuinstance12345/tables/message
+	at com.google.bigtable.repackaged.io.grpc.Status.asRuntimeException(Status.java:536)
+	at com.google.cloud.bigtable.grpc.async.AbstractRetryingRpcListener.onClose(AbstractRetryingRpcListener.java:147)
+	at com.google.cloud.bigtable.grpc.scanner.ReadRowsRetryListener.onClose(ReadRowsRetryListener.java:141)
+	at com.google.cloud.bigtable.grpc.io.ChannelPool$InstrumentedChannel$2.onClose(ChannelPool.java:209)
+	at com.google.bigtable.repackaged.io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl.close(ClientCallImpl.java:481)
+	at com.google.bigtable.repackaged.io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl.access$600(ClientCallImpl.java:398)
+	at com.google.bigtable.repackaged.io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl$1StreamClosed.runInContext(ClientCallImpl.java:513)
+	at com.google.bigtable.repackaged.io.grpc.internal.ContextRunnable.run(ContextRunnable.java:52)
+	at com.google.bigtable.repackaged.io.grpc.internal.SerializingExecutor$TaskRunner.run(SerializingExecutor.java:154)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+</error>
+    <system-out><![CDATA[Scan for all messages:
+]]></system-out>
+    <system-err><![CDATA[Jun 04, 2017 2:47:16 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@16e5344c] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:47:16 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@3ba5c4dd] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:47:16 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@47fca3cc] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:47:16 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@55746340] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:47:16 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@6a0c7af6] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:47:16 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@7f1ad846] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:47:16 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@5d5ae6aa] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:47:16 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@2bc2e022] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:47:16 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@2210e466] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:47:16 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@be1c08a] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:47:17 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@3ba5c4dd] Terminated
+Jun 04, 2017 2:47:17 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@47fca3cc] Terminated
+Jun 04, 2017 2:47:17 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@55746340] Terminated
+Jun 04, 2017 2:47:17 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@6a0c7af6] Terminated
+Jun 04, 2017 2:47:17 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@7f1ad846] Terminated
+Jun 04, 2017 2:47:17 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@5d5ae6aa] Terminated
+Jun 04, 2017 2:47:17 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@16e5344c] Terminated
+Jun 04, 2017 2:47:17 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@2bc2e022] Terminated
+Jun 04, 2017 2:47:17 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@2210e466] Terminated
+Jun 04, 2017 2:47:17 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@be1c08a] Terminated
+]]></system-err>
+  </testcase>
+  <testcase name="testAddGroup" classname="codeu.chat.server.RawControllerTest" time="0.856">
+    <error message="com.google.cloud.bigtable.grpc.scanner.BigtableRetriesExhaustedException: Exhausted streaming retries." type="java.lang.RuntimeException">java.lang.RuntimeException: com.google.cloud.bigtable.grpc.scanner.BigtableRetriesExhaustedException: Exhausted streaming retries.
+	at org.apache.hadoop.hbase.client.AbstractClientScanner$1.hasNext(AbstractClientScanner.java:97)
+	at codeu.chat.server.Model.updateMessages(Model.java:471)
+	at codeu.chat.server.Model.messageById(Model.java:444)
+	at codeu.chat.server.Controller.isIdInUse(Controller.java:275)
+	at codeu.chat.server.Controller.isIdFree(Controller.java:281)
+	at codeu.chat.server.Controller.newUser(Controller.java:145)
+	at codeu.chat.server.RawControllerTest.testAddGroup(RawControllerTest.java:181)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:367)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeWithRerun(JUnit4Provider.java:274)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:238)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:161)
+	at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:290)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:242)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:121)
+Caused by: com.google.cloud.bigtable.grpc.scanner.BigtableRetriesExhaustedException: Exhausted streaming retries.
+	at com.google.cloud.bigtable.grpc.scanner.ResumingStreamingResultScanner.next(ResumingStreamingResultScanner.java:89)
+	at com.google.cloud.bigtable.grpc.scanner.ResumingStreamingResultScanner.next(ResumingStreamingResultScanner.java:34)
+	at com.google.cloud.bigtable.hbase.adapters.read.BigtableResultScannerAdapter$1.next(BigtableResultScannerAdapter.java:57)
+	at org.apache.hadoop.hbase.client.AbstractClientScanner$1.hasNext(AbstractClientScanner.java:94)
+	... 31 more
+Caused by: com.google.cloud.bigtable.grpc.io.IOExceptionWithStatus: Error in response stream
+	at com.google.cloud.bigtable.grpc.scanner.ResultQueueEntry$ExceptionResultQueueEntry.getResponseOrThrow(ResultQueueEntry.java:88)
+	at com.google.cloud.bigtable.grpc.scanner.ResponseQueueReader.getNextMergedRow(ResponseQueueReader.java:91)
+	at com.google.cloud.bigtable.grpc.scanner.ResumingStreamingResultScanner.next(ResumingStreamingResultScanner.java:79)
+	... 34 more
+Caused by: com.google.bigtable.repackaged.io.grpc.StatusRuntimeException: PERMISSION_DENIED: User can't access: projects/codeuproject12345/instances/codeuinstance12345/tables/message
+	at com.google.bigtable.repackaged.io.grpc.Status.asRuntimeException(Status.java:536)
+	at com.google.cloud.bigtable.grpc.async.AbstractRetryingRpcListener.onClose(AbstractRetryingRpcListener.java:147)
+	at com.google.cloud.bigtable.grpc.scanner.ReadRowsRetryListener.onClose(ReadRowsRetryListener.java:141)
+	at com.google.cloud.bigtable.grpc.io.ChannelPool$InstrumentedChannel$2.onClose(ChannelPool.java:209)
+	at com.google.bigtable.repackaged.io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl.close(ClientCallImpl.java:481)
+	at com.google.bigtable.repackaged.io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl.access$600(ClientCallImpl.java:398)
+	at com.google.bigtable.repackaged.io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl$1StreamClosed.runInContext(ClientCallImpl.java:513)
+	at com.google.bigtable.repackaged.io.grpc.internal.ContextRunnable.run(ContextRunnable.java:52)
+	at com.google.bigtable.repackaged.io.grpc.internal.SerializingExecutor$TaskRunner.run(SerializingExecutor.java:154)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+</error>
+    <system-out><![CDATA[Scan for all messages:
+]]></system-out>
+    <system-err><![CDATA[Jun 04, 2017 2:47:17 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@5e7e7a7e] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:47:17 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@1ff81b0d] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:47:17 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@1c610f] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:47:17 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@773c7147] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:47:17 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@5abc5854] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:47:17 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@5c3007d] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:47:17 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@66b40dd3] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:47:17 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@7296fe0b] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:47:17 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@4a5066f5] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:47:17 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@578d472a] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:47:17 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@1ff81b0d] Terminated
+Jun 04, 2017 2:47:17 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@1c610f] Terminated
+Jun 04, 2017 2:47:17 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@773c7147] Terminated
+Jun 04, 2017 2:47:17 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@5abc5854] Terminated
+Jun 04, 2017 2:47:17 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@5c3007d] Terminated
+Jun 04, 2017 2:47:17 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@66b40dd3] Terminated
+Jun 04, 2017 2:47:17 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@5e7e7a7e] Terminated
+Jun 04, 2017 2:47:17 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@7296fe0b] Terminated
+Jun 04, 2017 2:47:17 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@4a5066f5] Terminated
+Jun 04, 2017 2:47:17 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@578d472a] Terminated
+]]></system-err>
+  </testcase>
+  <testcase name="testDeleteUser" classname="codeu.chat.server.RawControllerTest" time="0.799">
+    <error message="com.google.cloud.bigtable.grpc.scanner.BigtableRetriesExhaustedException: Exhausted streaming retries." type="java.lang.RuntimeException">java.lang.RuntimeException: com.google.cloud.bigtable.grpc.scanner.BigtableRetriesExhaustedException: Exhausted streaming retries.
+	at org.apache.hadoop.hbase.client.AbstractClientScanner$1.hasNext(AbstractClientScanner.java:97)
+	at codeu.chat.server.Model.updateMessages(Model.java:471)
+	at codeu.chat.server.Model.messageById(Model.java:444)
+	at codeu.chat.server.Controller.isIdInUse(Controller.java:275)
+	at codeu.chat.server.Controller.isIdFree(Controller.java:281)
+	at codeu.chat.server.Controller.newUser(Controller.java:145)
+	at codeu.chat.server.RawControllerTest.testDeleteUser(RawControllerTest.java:70)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:367)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeWithRerun(JUnit4Provider.java:274)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:238)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:161)
+	at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:290)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:242)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:121)
+Caused by: com.google.cloud.bigtable.grpc.scanner.BigtableRetriesExhaustedException: Exhausted streaming retries.
+	at com.google.cloud.bigtable.grpc.scanner.ResumingStreamingResultScanner.next(ResumingStreamingResultScanner.java:89)
+	at com.google.cloud.bigtable.grpc.scanner.ResumingStreamingResultScanner.next(ResumingStreamingResultScanner.java:34)
+	at com.google.cloud.bigtable.hbase.adapters.read.BigtableResultScannerAdapter$1.next(BigtableResultScannerAdapter.java:57)
+	at org.apache.hadoop.hbase.client.AbstractClientScanner$1.hasNext(AbstractClientScanner.java:94)
+	... 31 more
+Caused by: com.google.cloud.bigtable.grpc.io.IOExceptionWithStatus: Error in response stream
+	at com.google.cloud.bigtable.grpc.scanner.ResultQueueEntry$ExceptionResultQueueEntry.getResponseOrThrow(ResultQueueEntry.java:88)
+	at com.google.cloud.bigtable.grpc.scanner.ResponseQueueReader.getNextMergedRow(ResponseQueueReader.java:91)
+	at com.google.cloud.bigtable.grpc.scanner.ResumingStreamingResultScanner.next(ResumingStreamingResultScanner.java:79)
+	... 34 more
+Caused by: com.google.bigtable.repackaged.io.grpc.StatusRuntimeException: PERMISSION_DENIED: User can't access: projects/codeuproject12345/instances/codeuinstance12345/tables/message
+	at com.google.bigtable.repackaged.io.grpc.Status.asRuntimeException(Status.java:536)
+	at com.google.cloud.bigtable.grpc.async.AbstractRetryingRpcListener.onClose(AbstractRetryingRpcListener.java:147)
+	at com.google.cloud.bigtable.grpc.scanner.ReadRowsRetryListener.onClose(ReadRowsRetryListener.java:141)
+	at com.google.cloud.bigtable.grpc.io.ChannelPool$InstrumentedChannel$2.onClose(ChannelPool.java:209)
+	at com.google.bigtable.repackaged.io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl.close(ClientCallImpl.java:481)
+	at com.google.bigtable.repackaged.io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl.access$600(ClientCallImpl.java:398)
+	at com.google.bigtable.repackaged.io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl$1StreamClosed.runInContext(ClientCallImpl.java:513)
+	at com.google.bigtable.repackaged.io.grpc.internal.ContextRunnable.run(ContextRunnable.java:52)
+	at com.google.bigtable.repackaged.io.grpc.internal.SerializingExecutor$TaskRunner.run(SerializingExecutor.java:154)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+</error>
+    <system-out><![CDATA[Scan for all messages:
+]]></system-out>
+    <system-err><![CDATA[Jun 04, 2017 2:47:17 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@b849fa6] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:47:17 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@7fbbdd8a] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:47:17 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@4e9ea32f] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:47:17 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@79ec57b8] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:47:17 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@56ba8e8c] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:47:17 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@774c5e5c] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:47:17 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@4cf01c41] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:47:17 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@57bac3f0] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:47:17 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@55f6f965] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:47:17 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@40ddf339] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:47:18 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@7fbbdd8a] Terminated
+Jun 04, 2017 2:47:18 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@4e9ea32f] Terminated
+Jun 04, 2017 2:47:18 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@79ec57b8] Terminated
+Jun 04, 2017 2:47:18 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@56ba8e8c] Terminated
+Jun 04, 2017 2:47:18 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@774c5e5c] Terminated
+Jun 04, 2017 2:47:18 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@4cf01c41] Terminated
+Jun 04, 2017 2:47:18 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@57bac3f0] Terminated
+Jun 04, 2017 2:47:18 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@b849fa6] Terminated
+Jun 04, 2017 2:47:18 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@55f6f965] Terminated
+Jun 04, 2017 2:47:18 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@40ddf339] Terminated
+]]></system-err>
+  </testcase>
+  <testcase name="testDeleteConversation" classname="codeu.chat.server.RawControllerTest" time="1.008">
+    <error message="com.google.cloud.bigtable.grpc.scanner.BigtableRetriesExhaustedException: Exhausted streaming retries." type="java.lang.RuntimeException">java.lang.RuntimeException: com.google.cloud.bigtable.grpc.scanner.BigtableRetriesExhaustedException: Exhausted streaming retries.
+	at org.apache.hadoop.hbase.client.AbstractClientScanner$1.hasNext(AbstractClientScanner.java:97)
+	at codeu.chat.server.Model.updateMessages(Model.java:471)
+	at codeu.chat.server.Model.messageById(Model.java:444)
+	at codeu.chat.server.Controller.isIdInUse(Controller.java:275)
+	at codeu.chat.server.Controller.isIdFree(Controller.java:281)
+	at codeu.chat.server.Controller.newUser(Controller.java:145)
+	at codeu.chat.server.RawControllerTest.testDeleteConversation(RawControllerTest.java:132)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:367)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeWithRerun(JUnit4Provider.java:274)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:238)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:161)
+	at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:290)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:242)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:121)
+Caused by: com.google.cloud.bigtable.grpc.scanner.BigtableRetriesExhaustedException: Exhausted streaming retries.
+	at com.google.cloud.bigtable.grpc.scanner.ResumingStreamingResultScanner.next(ResumingStreamingResultScanner.java:89)
+	at com.google.cloud.bigtable.grpc.scanner.ResumingStreamingResultScanner.next(ResumingStreamingResultScanner.java:34)
+	at com.google.cloud.bigtable.hbase.adapters.read.BigtableResultScannerAdapter$1.next(BigtableResultScannerAdapter.java:57)
+	at org.apache.hadoop.hbase.client.AbstractClientScanner$1.hasNext(AbstractClientScanner.java:94)
+	... 31 more
+Caused by: com.google.cloud.bigtable.grpc.io.IOExceptionWithStatus: Error in response stream
+	at com.google.cloud.bigtable.grpc.scanner.ResultQueueEntry$ExceptionResultQueueEntry.getResponseOrThrow(ResultQueueEntry.java:88)
+	at com.google.cloud.bigtable.grpc.scanner.ResponseQueueReader.getNextMergedRow(ResponseQueueReader.java:91)
+	at com.google.cloud.bigtable.grpc.scanner.ResumingStreamingResultScanner.next(ResumingStreamingResultScanner.java:79)
+	... 34 more
+Caused by: com.google.bigtable.repackaged.io.grpc.StatusRuntimeException: PERMISSION_DENIED: User can't access: projects/codeuproject12345/instances/codeuinstance12345/tables/message
+	at com.google.bigtable.repackaged.io.grpc.Status.asRuntimeException(Status.java:536)
+	at com.google.cloud.bigtable.grpc.async.AbstractRetryingRpcListener.onClose(AbstractRetryingRpcListener.java:147)
+	at com.google.cloud.bigtable.grpc.scanner.ReadRowsRetryListener.onClose(ReadRowsRetryListener.java:141)
+	at com.google.cloud.bigtable.grpc.io.ChannelPool$InstrumentedChannel$2.onClose(ChannelPool.java:209)
+	at com.google.bigtable.repackaged.io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl.close(ClientCallImpl.java:481)
+	at com.google.bigtable.repackaged.io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl.access$600(ClientCallImpl.java:398)
+	at com.google.bigtable.repackaged.io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl$1StreamClosed.runInContext(ClientCallImpl.java:513)
+	at com.google.bigtable.repackaged.io.grpc.internal.ContextRunnable.run(ContextRunnable.java:52)
+	at com.google.bigtable.repackaged.io.grpc.internal.SerializingExecutor$TaskRunner.run(SerializingExecutor.java:154)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+</error>
+    <system-out><![CDATA[Scan for all messages:
+]]></system-out>
+    <system-err><![CDATA[Jun 04, 2017 2:47:18 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@12200670] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:47:18 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@5e80d5] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:47:18 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@257b3561] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:47:18 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@78861d9e] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:47:18 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@6a878778] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:47:18 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@1eabfad5] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:47:18 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@6207145c] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:47:18 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@2a259f6f] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:47:18 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@7ccf6114] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:47:18 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@3df3410a] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:47:19 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@5e80d5] Terminated
+Jun 04, 2017 2:47:19 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@257b3561] Terminated
+Jun 04, 2017 2:47:19 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@78861d9e] Terminated
+Jun 04, 2017 2:47:19 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@6a878778] Terminated
+Jun 04, 2017 2:47:19 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@1eabfad5] Terminated
+Jun 04, 2017 2:47:19 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@6207145c] Terminated
+Jun 04, 2017 2:47:19 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@2a259f6f] Terminated
+Jun 04, 2017 2:47:19 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@7ccf6114] Terminated
+Jun 04, 2017 2:47:19 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@3df3410a] Terminated
+Jun 04, 2017 2:47:19 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@12200670] Terminated
+]]></system-err>
+  </testcase>
 </testsuite>

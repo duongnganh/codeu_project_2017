@@ -44,13 +44,13 @@ This project uses the native HBase API to connect to and interact with Cloud Big
 1.  Clone the [FIX HERE repository][github-repo], to your local
     machine:
 
-        INSERT HERE
+        https://github.com/neilbarooah/codeu_project_2017
 
 2.  Change to the Hello World code sample directory.
 
-        cd codeu/codeu_project_2017
+        cd codeu_project_2017/Travel-Chat
 
-[github-repo]: FIXIT
+[github-repo]: https://github.com/neilbarooah/codeu_project_2017
 
 
 
@@ -134,7 +134,7 @@ access control, billing, and services.
 
 1. Open the [Cloud Platform Console][cloud-console].
 1. In the drop-down menu at the top, select **Create a project**.
-1. Give your project a name "codeuproject12345".
+1. Give your project a name.
 1. Make a note of the project ID, which might be different from the project
    name. The project ID is used in commands and in configurations.
 
@@ -171,6 +171,9 @@ Or with the [application-default login](https://cloud.google.com/sdk/gcloud/refe
 [cloud-sdk-init]: https://cloud.google.com/sdk/docs/initializing
 [application-default-credentials]: https://developers.google.com/identity/protocols/application-default-credentials
 
+If you get Application Default Credentials are not available, include the following in the ~/.bash_profile:
+    export GOOGLE_APPLICATION_CREDENTIALS=/Users/YOUR-LAPTOP/.config/gcloud/application_default_credentials.json
+
 
 ## Provisioning an instance
 
@@ -179,28 +182,32 @@ documentation](https://cloud.google.com/bigtable/docs/creating-instance) to
 create a Google Cloud Platform project and Cloud Bigtable instance if necessary.
 You'll need to reference your project id and instance id to run the
 application.
-Please name your instance "codeuinstance12345".
 
 
 
 ## Running the application
+
+Place your projectId and instanceId in the following files:
+  codeu_project_2017/Travel-Chat/IDs
+  codeu_project_2017/Travel-Chat/src/main/java/codeu/chat/common/IDs.java
 
 Build and run the sample using Maven.
 
     1. To build the project:
        ```
        $ sh clean.sh
-       $ sh make-no-test.sh
+       $ sh build.sh
        ```
 
   1. To build and test the project:
        ```
        $ sh clean.sh
-       $ sh make-and-test.sh
+       $ sh test.sh
        ```
 
   1. If the tables are not yet created, creat tables. This is done once.
        $ sh run_createTable.sh
+       $ sh run_createTableForMainUI.sh
 
      To delete the created tables:
        $ sh run_deleteTable.sh
@@ -212,6 +219,12 @@ Build and run the sample using Maven.
        $ sh run_server.sh <team_id> <team_secret> <port> <persistent-dir>
        $ sh run_client.sh <host> <port>
        ```
+
+       To run the GUI:
+       $ sh run_simple_gui_client.sh <host> <port>
+       OR
+       $ sh run_better_gui_client.sh <host> <port>
+
 
      You must specify the following startup arguments for `run_server.sh:
      + `<team_id>` and `<team_secret>`: a numeric id for your team, and a secret

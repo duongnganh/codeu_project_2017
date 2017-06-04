@@ -55,8 +55,6 @@ public final class ClientUser {
 
   private User current = null;
 
-  // private final Map<String, User> usersByUsername = new HashMap<>();
-  // private final Map<Uuid, User> usersById = new HashMap<>();
 
   // This is the set of users known to the server, sorted by name.
   private Store<Uuid, User> usersById = new Store<>(UUID_COMPARE);
@@ -68,7 +66,6 @@ public final class ClientUser {
     this.view = view;
   }
 
-  // TODO: Decide what to do with existed name and nickname
 
   // Validate the username string
   static public boolean isValidName(String userName) {
@@ -114,7 +111,6 @@ public final class ClientUser {
   }
 
   public boolean signInUser(String name, String pass) {
-    // System.out.println("Pass in signInUser "+ pass);
     updateUsers();
     final User prev = current;
     if (name != null) {
@@ -149,14 +145,11 @@ public final class ClientUser {
 
     final User user = !valid ? null : controller.newUser(name, nickname, pass);
 
-    // System.out.println("in addUser clientUser");
-
     if (user == null) {
       System.out.format("Error: user not created - %s.\n",
           (!validInputs) ? "bad input value" : ((existed) ? "existed username/nickname" : "server failure"));
     } else {
       LOG.info("New user complete, Name= \"%s\" Nickname= \"%s\" UUID=%s", user.name, user.nickname, user.id);
-      // usersByUsername.put(user.name, user);
       updateUsers();
       return true;
     }
@@ -188,7 +181,6 @@ public final class ClientUser {
 
   public void deleteUser(String name) {
     
-    // check if user exists in the system OR usersById.containsKey(id)
     updateUsers();
 
     if (usersByName.first(name) != null) {
@@ -213,7 +205,6 @@ public final class ClientUser {
 
   public User lookup(Uuid id) {
     updateUsers();
-    // return (usersById.containsKey(id)) ? usersById.get(id) : null;
     return usersById.first(id);
   }
 
@@ -254,7 +245,6 @@ public final class ClientUser {
     return getUserInfoString(usersByName.first(uname));
   }
 
-  // Move to User's toString()
   public static void printUser(User user) {
     System.out.println(getUserInfoString(user));
   }

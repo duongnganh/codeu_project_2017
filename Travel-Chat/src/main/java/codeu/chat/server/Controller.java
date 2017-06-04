@@ -144,7 +144,7 @@ public final class Controller implements RawController, BasicController {
 
     if (isIdFree(id)) {
       user = new User(id, name, creationTime, nickname);
-      //Generated hashed password
+      //Generated encrypted password
       String generatedPassword = getSecurePassword(pass, salt);
       user.setPassword(generatedPassword);
       model.add(user);

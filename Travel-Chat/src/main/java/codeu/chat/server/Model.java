@@ -60,7 +60,6 @@ public final class Model {
 
   private static final Comparator<String> STRING_COMPARE = String.CASE_INSENSITIVE_ORDER;
 
-  // note: change final to none final
   private Store<Uuid, User> userById = new Store<>(UUID_COMPARE);
   private Store<Time, User> userByTime = new Store<>(TIME_COMPARE);
   private Store<String, User> userByText = new Store<>(STRING_COMPARE);
@@ -75,7 +74,6 @@ public final class Model {
 
   private Store<Uuid, Message> messageById = new Store<>(UUID_COMPARE);
   private Store<Time, Message> messageByTime = new Store<>(TIME_COMPARE);
-  private Store<String, Message> messageByText = new Store<>(STRING_COMPARE);
 
   private final Uuid.Generator userGenerations = new LinearUuidGenerator(null, 1, Integer.MAX_VALUE);
   private Uuid currentUserGeneration = userGenerations.make();
@@ -106,29 +104,11 @@ public final class Model {
     this.tableNames = tableNames;
   }
 
-  public void refresh(){
-    //Delete all contents. For test purpose
-    if (ifUserUpdated) updateUsers();
-    if (ifConversationUpdated) updateConversations();
-    if (ifGroupUpdated) updateGroups();
-    if (ifMessageUpdated) updateMessages();
+  // ======================== OPERATIONS WITH BIGTABLE =============================
 
-    for (User user : userByText.all())
-      remove(user);
-    for (Conversation conversation : conversationByText.all())
-      remove(conversation);
-    for (Group group : groupByText.all())
-      remove(group);
-    for (Message message : messageByText.all())
-      remove(message);
-
-    ifUserUpdated = false;
-    ifConversationUpdated = false;
-    ifGroupUpdated = false;
-    ifMessageUpdated = false;
-  }
   // ================================= USER ========================================
 
+  // Add a new user to the database
   public void add(User user) {
     currentUserGeneration = userGenerations.make();
 
@@ -138,7 +118,6 @@ public final class Model {
       String rowKey = user.name;
 
       Put put = new Put(Bytes.toBytes(rowKey));
-      //Uuid id, String name, Time creation, String nickname
       put.addColumn(COLUMN_FAMILY_NAME, Bytes.toBytes("id"), Bytes.toBytes(Uuid.toUuidString(user.id)));
       put.addColumn(COLUMN_FAMILY_NAME, Bytes.toBytes("name"), Bytes.toBytes(user.name));
       put.addColumn(COLUMN_FAMILY_NAME, Bytes.toBytes("creation"), Bytes.toBytes(user.creation.inMs()));
@@ -153,6 +132,7 @@ public final class Model {
     ifUserUpdated = true;
   }
 
+  // Remove a user to the database  
   public void remove(User user) {
 
     try (Connection connection = BigtableConfiguration.connect(projectId, instanceId)) {
@@ -171,20 +151,21 @@ public final class Model {
   }
 
   public StoreAccessor<Uuid, User> userById() {
-    if (ifUserUpdated) updateUsers();
+    updateUsers();
     return userById;
   }
 
   public StoreAccessor<Time, User> userByTime() {
-    if (ifUserUpdated) updateUsers();
+    updateUsers();
     return userByTime;
   }
 
   public StoreAccessor<String, User> userByText() {
-    if (ifUserUpdated) updateUsers();
+    updateUsers();
     return userByText;
   }
 
+  // Retrieve users from the database
   private void updateUsers(){
     userById = new Store<>(UUID_COMPARE);
     userByTime = new Store<>(TIME_COMPARE);
@@ -222,6 +203,7 @@ public final class Model {
 
   // ================================= CONVERSATION ========================================
 
+  // Add a new conversation
   public void add(Conversation conversation) {
 
     try (Connection connection = BigtableConfiguration.connect(projectId, instanceId)) {
@@ -230,7 +212,7 @@ public final class Model {
       String rowKey = conversation.title;
 
       Put put = new Put(Bytes.toBytes(rowKey));
-      //Uuid id, Uuid owner, Uuid group, Time creation, String title
+
       put.addColumn(COLUMN_FAMILY_NAME, Bytes.toBytes("id"), Bytes.toBytes(Uuid.toUuidString(conversation.id)));
       put.addColumn(COLUMN_FAMILY_NAME, Bytes.toBytes("owner"), Bytes.toBytes(Uuid.toUuidString(conversation.owner)));
       put.addColumn(COLUMN_FAMILY_NAME, Bytes.toBytes("group"), Bytes.toBytes(Uuid.toUuidString(conversation.group)));
@@ -245,6 +227,7 @@ public final class Model {
     ifConversationUpdated = true;
   }
 
+  // Remove a conversation
   public void remove(Conversation conversation) {
     
     try (Connection connection = BigtableConfiguration.connect(projectId, instanceId)) {
@@ -262,20 +245,21 @@ public final class Model {
   }
 
   public StoreAccessor<Uuid, Conversation> conversationById() {
-    if (ifConversationUpdated) updateConversations();
+    updateConversations();
     return conversationById;
   }
 
   public StoreAccessor<Time, Conversation> conversationByTime() {
-    if (ifConversationUpdated) updateConversations();
+    updateConversations();
     return conversationByTime;
   }
 
   public StoreAccessor<String, Conversation> conversationByText() {
-    if (ifConversationUpdated) updateConversations();
+    updateConversations();
     return conversationByText;
   }
 
+  // Retrieve conversations from the database
   private void updateConversations(){
 
     conversationById = new Store<>(UUID_COMPARE);
@@ -288,7 +272,7 @@ public final class Model {
 
       System.out.println("Scan for all conversations:");
       ResultScanner scanner = table.getScanner(scan);
-      //Uuid id, Uuid owner, Uuid group, Time creation, String title
+
       for (Result row : scanner) {
         Uuid id = Uuid.fromUuidString(Bytes.toString(row.getValue(COLUMN_FAMILY_NAME, Bytes.toBytes("id"))));
         Uuid owner = Uuid.fromUuidString(Bytes.toString(row.getValue(COLUMN_FAMILY_NAME, Bytes.toBytes("owner"))));
@@ -319,7 +303,7 @@ public final class Model {
       String rowKey = group.title;
 
       Put put = new Put(Bytes.toBytes(rowKey));
-      // Uuid id, Uuid owner, Time creation, String title
+
       put.addColumn(COLUMN_FAMILY_NAME, Bytes.toBytes("id"), Bytes.toBytes(Uuid.toUuidString(group.id)));
       put.addColumn(COLUMN_FAMILY_NAME, Bytes.toBytes("owner"), Bytes.toBytes(Uuid.toUuidString(group.owner)));
       put.addColumn(COLUMN_FAMILY_NAME, Bytes.toBytes("creation"), Bytes.toBytes(group.creation.inMs()));
@@ -350,17 +334,17 @@ public final class Model {
   }
 
   public StoreAccessor<Uuid, Group> groupById() {
-    if (ifGroupUpdated) updateGroups();
+    updateGroups();
     return groupById;
   }
 
   public StoreAccessor<Time, Group> groupByTime() {
-    if (ifGroupUpdated) updateGroups();
+    updateGroups();
     return groupByTime;
   }
 
   public StoreAccessor<String, Group> groupByText() {
-    if (ifGroupUpdated) updateGroups();
+    updateGroups();
     return groupByText;
   }
 
@@ -376,7 +360,7 @@ public final class Model {
 
       System.out.println("Scan for all groups:");
       ResultScanner scanner = table.getScanner(scan);
-      //Uuid id, Uuid owner, Time creation, String title
+
       for (Result row : scanner) {
         Uuid id = Uuid.fromUuidString(Bytes.toString(row.getValue(COLUMN_FAMILY_NAME, Bytes.toBytes("id"))));
         Uuid owner = Uuid.fromUuidString(Bytes.toString(row.getValue(COLUMN_FAMILY_NAME, Bytes.toBytes("owner"))));
@@ -406,7 +390,7 @@ public final class Model {
       String rowKey = Uuid.toUuidString(message.id);
 
       Put put = new Put(Bytes.toBytes(rowKey));
-      // Uuid id, Uuid next, Uuid previous, Time creation, Uuid author, String content
+
       put.addColumn(COLUMN_FAMILY_NAME, Bytes.toBytes("id"), Bytes.toBytes(Uuid.toUuidString(message.id)));
       put.addColumn(COLUMN_FAMILY_NAME, Bytes.toBytes("next"), Bytes.toBytes(Uuid.toUuidString(message.next)));
       put.addColumn(COLUMN_FAMILY_NAME, Bytes.toBytes("previous"), Bytes.toBytes(Uuid.toUuidString(message.previous)));
@@ -441,25 +425,19 @@ public final class Model {
   }
 
   public StoreAccessor<Uuid, Message> messageById() {
-    if (ifMessageUpdated) updateMessages();
+    updateMessages();
     return messageById;
   }
 
   public StoreAccessor<Time, Message> messageByTime() {
-    if (ifMessageUpdated) updateMessages();
+    updateMessages();
     return messageByTime;
-  }
-
-  public StoreAccessor<String, Message> messageByText() {
-    if (ifMessageUpdated) updateMessages();
-    return messageByText;
   }
 
   private void updateMessages(){
 
     messageById = new Store<>(UUID_COMPARE);
     messageByTime = new Store<>(TIME_COMPARE);
-    messageByText = new Store<>(STRING_COMPARE);
 
     try (Connection connection = BigtableConfiguration.connect(projectId, instanceId)) {
       Table table = connection.getTable(TableName.valueOf(Bytes.toBytes(messageTable)));
@@ -467,7 +445,7 @@ public final class Model {
 
       System.out.println("Scan for all messages:");
       ResultScanner scanner = table.getScanner(scan);
-      //Uuid id, Uuid next, Uuid previous, Time creation, Uuid author, String content
+
       for (Result row : scanner) {
         Uuid id = Uuid.fromUuidString(Bytes.toString(row.getValue(COLUMN_FAMILY_NAME, Bytes.toBytes("id"))));
         Uuid next = Uuid.fromUuidString(Bytes.toString(row.getValue(COLUMN_FAMILY_NAME, Bytes.toBytes("next"))));
@@ -481,8 +459,6 @@ public final class Model {
         Message message = new Message(id, next, previous, creation, author, conversation, group, content);
         messageById.insert(message.id, message);
         messageByTime.insert(message.creation, message);
-        // TODO: check here
-        messageByText.insert(message.content, message);
       }
 
     } catch (IOException e) {
