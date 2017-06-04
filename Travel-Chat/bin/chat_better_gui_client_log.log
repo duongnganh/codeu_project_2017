@@ -1,0 +1,40 @@
+Jun 04, 2017 1:07:03 PM codeu.chat.client.bettergui.ChatBetterGui start
+INFO: ============================= START OF LOG =============================
+Jun 04, 2017 1:07:03 PM codeu.chat.client.bettergui.ChatBetterGui start
+INFO: Starting chat client...
+Jun 04, 2017 1:07:03 PM codeu.chat.client.bettergui.ChatBetterGui start
+INFO: Creating client...
+Jun 04, 2017 1:07:04 PM codeu.chat.client.bettergui.LoginController initialize
+INFO: initializing
+Jun 04, 2017 1:07:04 PM codeu.chat.client.bettergui.LoginController setClientContext
+INFO: setting client context
+Jun 04, 2017 1:07:23 PM codeu.chat.client.Controller ifCorrectPassword
+INFO: checkPassword: Request completed.
+Jun 04, 2017 1:07:27 PM codeu.chat.client.Controller ifCorrectPassword
+INFO: checkPassword: Response completed.
+Jun 04, 2017 1:07:32 PM codeu.chat.client.bettergui.MainUIController setClientContext
+INFO: setting client context
+Jun 04, 2017 1:08:19 PM codeu.chat.client.bettergui.LoginController initialize
+INFO: initializing
+Jun 04, 2017 1:08:19 PM codeu.chat.client.bettergui.LoginController setClientContext
+INFO: setting client context
+Jun 04, 2017 1:08:30 PM codeu.chat.client.Controller ifCorrectPassword
+INFO: checkPassword: Request completed.
+Jun 04, 2017 1:08:34 PM codeu.chat.client.Controller ifCorrectPassword
+INFO: checkPassword: Response completed.
+Jun 04, 2017 1:08:37 PM codeu.chat.client.bettergui.MainUIController setClientContext
+INFO: setting client context
+Jun 04, 2017 1:08:54 PM codeu.chat.client.bettergui.MainUIController$1 changed
+INFO: ListView selection changed from oldValue = null to newValue = Attractions
+Jun 04, 2017 1:08:56 PM codeu.chat.client.bettergui.MainUIController$1 changed
+INFO: ListView selection changed from oldValue = Attractions to newValue = Food
+Jun 04, 2017 1:10:51 PM codeu.chat.client.bettergui.LoginController initialize
+INFO: initializing
+Jun 04, 2017 1:10:51 PM codeu.chat.client.bettergui.LoginController setClientContext
+INFO: setting client context
+Jun 04, 2017 1:11:10 PM codeu.chat.client.Controller ifCorrectPassword
+INFO: checkPassword: Request completed.
+Jun 04, 2017 1:11:13 PM codeu.chat.client.Controller ifCorrectPassword
+INFO: checkPassword: Response completed.
+Jun 04, 2017 1:11:17 PM codeu.chat.client.bettergui.MainUIController setClientContext
+INFO: setting client context

@@ -37,6 +37,7 @@ import codeu.chat.util.Logger;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 //for big table
 import com.google.cloud.bigtable.hbase.BigtableConfiguration;
@@ -160,6 +161,8 @@ public class MainUIController implements Initializable {
 
             String tsp = sdf.format(cal.getTime());
 
+            //String user = clientContext.user.getCurrent().getNickname();
+
             String user = clientContext.user.getCurrent().getNickname();
 
             String msg = tsp + " - " + user  +": " + message;
@@ -168,8 +171,10 @@ public class MainUIController implements Initializable {
 
             this.messageView.clear();
 
+            counter = (int) (new Date().getTime()/1000);
+
             insert(this.city, this.topic, user, message, tsp, counter);
-            counter++;
+
         }
     }
 
@@ -178,7 +183,7 @@ public class MainUIController implements Initializable {
     @Override
     public void initialize (URL url, ResourceBundle rb) {
 
-        counter = 0;
+        counter = (int) (new Date().getTime()/1000);
         ListView<String> list = new ListView<String>();
         ObservableList<String> items = FXCollections.observableArrayList (
             "Food", "Attractions", "Culture");
