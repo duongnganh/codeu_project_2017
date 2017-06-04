@@ -291,3 +291,28 @@ the resources created for this sample.
 1. Type the cluster ID, then click **Delete** to delete the cluster.
 
 
+## Acknowledgments
+
+* CodeU team at Google for giving us the opportunity to participate in the program. Special thanks to Andrew Smith from Google for his ideas and continued guidance.
+
+# Release Notes
+
+```
+Version 1.0.0
+```
+```
+New Features:
+* Data Persistence and Google Cloud Bigtable integration
+* Add groups/cities.
+* Material UI implemented for GUI
+* Delete user
+* Delete conversation/topic
+* Users have nicknames
+* Handles duplicate usernames/topics
+* Password-based sign-in
+
+Known Bugs and Defects:
+* Pressing the <enter> button on the message panel, login and registration forms crashes the app. It is recommended that you click on the "Send", "Register", and "Login" buttons provided in the UI.
+* Certain features such as deleting users/conversations, manually adding conversations/groups is implemented for the command line only.
+```
+
