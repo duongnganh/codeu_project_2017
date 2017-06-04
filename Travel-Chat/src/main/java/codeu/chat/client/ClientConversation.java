@@ -153,7 +153,6 @@ public final class ClientConversation {
     updateAllConversations(false);
 
     for (final ConversationSummary c : summariesByUuid.values()) {
-      // if (c.group == group_id)
         printConversation(c, userContext, groupContext);
     }
   }

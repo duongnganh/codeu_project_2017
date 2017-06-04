@@ -77,13 +77,11 @@ public class Controller implements BasicController {
       Serializers.STRING.write(connection.out(), nickname);
       Serializers.STRING.write(connection.out(), pass);
       LOG.info("newUser: Request completed.");
-      // System.out.println("in newUser Controller client");
 
       if (Serializers.INTEGER.read(connection.in()) == NetworkCode.NEW_USER_RESPONSE) {
         response = Serializers.nullable(User.SERIALIZER).read(connection.in());
         LOG.info("newUser: Response completed.");
-        // System.out.println("in client " + response.nickname);
-      } else {
+]      } else {
         LOG.error("Response from server failed.");
       }
     } catch (Exception ex) {

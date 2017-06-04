@@ -41,11 +41,9 @@ final class ClientMain {
 
     LOG.info("Starting chat client...");
 
-    // final RemoteAddress address = RemoteAddress.parse(args[0]);
     final String host = System.getProperty("host");
     final int myPort = Integer.parseInt(System.getProperty("port"));
 
-    // final ConnectionSource source = new ClientConnectionSource(address.host, address.port);
     final ConnectionSource source = new ClientConnectionSource(host, myPort);
     final Controller controller = new Controller(source);
     final View view = new View(source);

@@ -36,15 +36,10 @@ import org.apache.hadoop.hbase.util.Bytes;
 
 import java.io.IOException;
 
-/**
- * A minimal application that connects to Cloud Bigtable using the native HBase API
- * and performs some basic operations.
- */
+
 public class deleteTable {
 
-  /**
-   * Connects to Cloud Bigtable, runs some basic operations and prints the results.
-   */
+
   private static void delete(String projectId, String instanceId, String[] tableNames) {
 
     // [START connecting_to_bigtable]

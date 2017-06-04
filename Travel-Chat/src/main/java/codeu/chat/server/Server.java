@@ -59,11 +59,6 @@ public final class Server {
 
   public final String projectId;
   public final String instanceId;
-  // public final String userTable;
-  // public final String conversationTable;
-  // public final String groupTable;
-  // public final String messageTable;
-
 
   public Server(final Uuid id, 
                 final byte[] secret, 
@@ -82,11 +77,6 @@ public final class Server {
 
     this.projectId = projectId;
     this.instanceId = instanceId;
-
-    // this.userTable = tableNames[0];
-    // this.conversationTable = tableNames[1];
-    // this.groupTable = tableNames[2];
-    // this.messageTable = tableNames[3];
 
     timeline.scheduleNow(new Runnable() {
       @Override
@@ -138,6 +128,8 @@ public final class Server {
       }
     });
   }
+
+  // Receive and send messages from/to clients
 
   private boolean onMessage(InputStream in, OutputStream out) throws IOException {
     final int type = Serializers.INTEGER.read(in);

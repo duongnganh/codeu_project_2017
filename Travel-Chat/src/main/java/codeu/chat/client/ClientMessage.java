@@ -121,9 +121,7 @@ public final class ClientMessage {
       System.out.println(" Current Conversation has no messages");
     } else {
       for (final Message m : conversationContents) {
-        // System.out.println(m.group+""+group_id);
-        // System.out.println(m.conversation+""+conversation_id);
-        // if (m.group == group_id && m.conversation == conversation_id)
+        if (m.group == group_id && m.conversation == conversation_id)
           printMessage(m, userContext);
       }
     }
