@@ -94,6 +94,7 @@ Classes that are shared by the clients and servers.
 Some basic infrastructure classes used throughout the project.
 
 
+## GOOGLE BIGTABLE
 
 ## Costs
 
@@ -193,37 +194,42 @@ Place your projectId and instanceId in the following files:
 
 Build and run the sample using Maven.
 
-    1. To build the project:
-       ```
-       $ sh clean.sh
-       $ sh build.sh
-       ```
 
   1. To build and test the project:
        ```
-       $ sh clean.sh
-       $ sh test.sh
+       $ sh build.sh
        ```
+       
+     Although there is a script to clean (clean.sh), please don't use it for testing purposes as it gets rid of all the media      files being used for the project.
 
-  1. If the tables are not yet created, creat tables. This is done once.
+  2. If the tables are not yet created, creat tables. This is done once.
        $ sh run_createTable.sh
        $ sh run_createTableForMainUI.sh
 
      To delete the created tables:
        $ sh run_deleteTable.sh
 
-  1. To run the project you will need to run both the client and the server. Run
+  3. To run the project you will need to run both the client and the server. Run
      the following two commands in separate shells:
 
        ```
        $ sh run_server.sh <team_id> <team_secret> <port> <persistent-dir>
-       $ sh run_client.sh <host> <port>
+       $ sh run_better_gui_client.sh <host> <port>
+       ```
+       
+       For testing purposes, use these:
+       
+       ```
+       $ sh run_server.sh 0 0 2000 bin
+       $ sh run_client.sh 0 2000
        ```
 
-       To run the GUI:
+       Although it is recommended that you use our GUI as posted above, you can also access the simple GUI provided by CodeU:
+       
+       ```
+       $ sh run_server.sh <team_id> <team_secret> <port> <persistent-dir>
        $ sh run_simple_gui_client.sh <host> <port>
-       OR
-       $ sh run_better_gui_client.sh <host> <port>
+       ```
 
 
      You must specify the following startup arguments for `run_server.sh:
