@@ -87,24 +87,24 @@ import codeu.chat.util.connections.ConnectionSource;
 <span class="nc" id="L87">            LOG.info(&quot;Creating client...&quot;);</span>
             //runClient(controller, view);
 
-<span class="nc bnc" id="L90" title="All 8 branches missed.">        } catch (Exception ex) {</span>
-<span class="nc" id="L91">            System.out.println(&quot;ERROR: Exception setting up client. Check log for details.&quot;);</span>
-<span class="nc" id="L92">            LOG.error(ex, &quot;Exception setting up client.&quot;);</span>
-<span class="nc" id="L93">        }</span>
+<span class="nc" id="L90">            FXMLLoader loader = new FXMLLoader(getClass().getResource(&quot;/codeu/chat/client/bettergui/LoginUI.fxml&quot;));</span>
 
-<span class="nc" id="L95">        FXMLLoader loader = new FXMLLoader(getClass().getResource(&quot;/codeu/chat/client/bettergui/LoginUI.fxml&quot;));</span>
+<span class="nc" id="L92">            Parent root = loader.load();</span>
 
-<span class="nc" id="L97">        Parent root = loader.load();</span>
+<span class="nc" id="L94">            LoginController loginController = loader.getController();</span>
 
-<span class="nc" id="L99">        LoginController loginController = loader.getController();</span>
+<span class="nc" id="L96">            loginController.setClientContext(clientContext);</span>
 
-<span class="nc" id="L101">        loginController.setClientContext(clientContext);</span>
+<span class="nc" id="L98">            s1 = new Scene(root);</span>
 
-<span class="nc" id="L103">        s1 = new Scene(root);</span>
+<span class="nc" id="L100">            primaryStage.setScene(s1);</span>
 
-<span class="nc" id="L105">        primaryStage.setScene(s1);</span>
+<span class="nc" id="L102">            primaryStage.show();</span>
 
-<span class="nc" id="L107">        primaryStage.show();</span>
+<span class="nc bnc" id="L104" title="All 8 branches missed.">        } catch (Exception ex) {</span>
+<span class="nc" id="L105">            System.out.println(&quot;ERROR: Exception setting up client. Check log for details.&quot;);</span>
+<span class="nc" id="L106">            LOG.error(ex, &quot;Exception setting up client.&quot;);</span>
+<span class="nc" id="L107">        }</span>
 <span class="nc" id="L108">    }</span>
 
 }

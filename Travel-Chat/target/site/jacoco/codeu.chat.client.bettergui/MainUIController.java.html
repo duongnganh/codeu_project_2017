@@ -136,161 +136,114 @@ import java.util.ArrayList;
 
 <span class="nc" id="L137">            listView.getItems().add( sdf.format(cal.getTime()) + &quot;: &quot; + message);</span>
 
-            /*clientContext.message.addMessage(
-            clientContext.user.getCurrent().id,
-                    clientContext.conversation.getCurrentId(),
-                    clientContext.group.getCurrent().id,
-                    messageText);*/
 
         }
-<span class="nc" id="L146">    }</span>
+<span class="nc" id="L141">    }</span>
 
 
 
     @Override
     public void initialize (URL url, ResourceBundle rb) {
 
-<span class="nc" id="L153">        ListView&lt;String&gt; list = new ListView&lt;String&gt;();</span>
-<span class="nc" id="L154">        ObservableList&lt;String&gt; items = FXCollections.observableArrayList (</span>
+<span class="nc" id="L148">        ListView&lt;String&gt; list = new ListView&lt;String&gt;();</span>
+<span class="nc" id="L149">        ObservableList&lt;String&gt; items = FXCollections.observableArrayList (</span>
             &quot;Food&quot;, &quot;Attractions&quot;, &quot;Culture&quot;);
-<span class="nc" id="L156">        conversationList.setItems(items);</span>
-<span class="nc" id="L157">        conversationList.setMinWidth(190);</span>
+<span class="nc" id="L151">        conversationList.setItems(items);</span>
+<span class="nc" id="L152">        conversationList.setMinWidth(190);</span>
 
-<span class="nc" id="L159">        conversationList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener&lt;String&gt;() {</span>
+<span class="nc" id="L154">        conversationList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener&lt;String&gt;() {</span>
             @Override
             public void changed(ObservableValue&lt;? extends String&gt; observable, String oldValue, String newValue) {
-<span class="nc" id="L162">                LOG.info(&quot;ListView selection changed from oldValue = &quot;</span>
+<span class="nc" id="L157">                LOG.info(&quot;ListView selection changed from oldValue = &quot;</span>
                         + oldValue + &quot; to newValue = &quot; + newValue);
-<span class="nc" id="L164">                topic = newValue;</span>
-<span class="nc" id="L165">                ArrayList&lt;ArrayList&lt;String&gt;&gt; a = retrieveAllMessages(city, topic);</span>
-<span class="nc" id="L166">            }</span>
+<span class="nc" id="L159">                topic = newValue;</span>
+<span class="nc" id="L160">                ArrayList&lt;ArrayList&lt;String&gt;&gt; a = retrieveAllMessages(city, topic);</span>
+<span class="nc" id="L161">            }</span>
         });
 
-        /*
-        *
 
-         for (final Message m : clientContext.message.getConversationContents(conversation)) {
-            // Display author name if available.  Otherwise display the author UUID.
-            final String authorName = clientContext.user.getName(m.author);
-
-            final String displayString = String.format(&quot;%s: [%s]: %s&quot;,
-                ((authorName == null) ? m.author : authorName), m.creation, m.content);
-
-                messageListModel.addElement(displayString);
-            }
-
-        *
-        * */
-
-        //clientContext.conversation.startConversation(s, clientContext.user.getCurrent().id, clientContext.group.getCurrent().id);
-
-        /*
-
-            final int index = objectList.getSelectedIndex();
-            final String data = objectList.getSelectedValue();
-            final ConversationSummary cs = ConversationPanel.this.lookupByTitle(data, index);
-
-            clientContext.conversation.setCurrent(cs);
-
-            messagePanel.update(cs);
-
-
-            *******
-
-
-            private ConversationSummary lookupByTitle(String title, int index) {
-
-            int localIndex = 0;
-                for (final ConversationSummary cs : clientContext.conversation.getConversationSummaries()) {
-                    if ((localIndex &gt;= index) &amp;&amp; cs.title.equals(title)) {
-                        return cs;
-                    }
-                    localIndex++;
-                }
-            return null;
-            }
-
-        * */
-
-<span class="nc" id="L215">    }</span>
+<span class="nc" id="L165">    }</span>
 
     @FXML
     void onBackClick(ActionEvent event) throws Exception {
 
-<span class="nc" id="L220">        Parent window1 = FXMLLoader.load(getClass().getResource(&quot;/codeu/chat/client/bettergui/LoginUI.fxml&quot;));</span>
-
-<span class="nc" id="L222">        Stage mainStage = (Stage) borderPane.getScene().getWindow();</span>
-
-<span class="nc" id="L224">        mainStage.setHeight(400);</span>
-<span class="nc" id="L225">        mainStage.setWidth(427);</span>
-
         //logout
+<span class="nc" id="L171">        clientContext.user.signOutUser();</span>
 
-<span class="nc" id="L229">        clientContext.user.signOutUser();</span>
+<span class="nc" id="L173">        FXMLLoader loader = new FXMLLoader(getClass().getResource(&quot;/codeu/chat/client/bettergui/LoginUI.fxml&quot;));</span>
 
+<span class="nc" id="L175">        Parent window2 = loader.load();</span>
 
-<span class="nc" id="L232">        mainStage.getScene().setRoot(window1);</span>
+<span class="nc" id="L177">        LoginController loginController = loader.getController();</span>
 
-<span class="nc" id="L234">    }</span>
+<span class="nc" id="L179">        loginController.setClientContext(clientContext);</span>
+
+<span class="nc" id="L181">        Stage stage = (Stage) borderPane.getScene().getWindow();</span>
+
+<span class="nc" id="L183">        stage.setHeight(410);</span>
+<span class="nc" id="L184">        stage.setWidth(427);</span>
+<span class="nc" id="L185">        stage.getScene().setRoot(window2);</span>
+
+<span class="nc" id="L187">    }</span>
 
     // For big table
-<span class="nc" id="L237">    private static final byte[] COLUMN_FAMILY_NAME = Bytes.toBytes(&quot;cf1&quot;);</span>
+<span class="nc" id="L190">    private static final byte[] COLUMN_FAMILY_NAME = Bytes.toBytes(&quot;cf1&quot;);</span>
 
     void insert(String city, String conversation, String username, String message, String timestamp, int counter){
         
-<span class="nc" id="L241">        String table_name = city+&quot;-&quot;+conversation;</span>
+<span class="nc" id="L194">        String table_name = city+&quot;-&quot;+conversation;</span>
 
-<span class="nc" id="L243">        try (Connection connection = BigtableConfiguration.connect(IDs.projectId, IDs.instanceId)) {</span>
+<span class="nc" id="L196">        try (Connection connection = BigtableConfiguration.connect(IDs.projectId, IDs.instanceId)) {</span>
             
-<span class="nc" id="L245">            Table table = connection.getTable(TableName.valueOf(Bytes.toBytes(table_name)));</span>
+<span class="nc" id="L198">            Table table = connection.getTable(TableName.valueOf(Bytes.toBytes(table_name)));</span>
 
-<span class="nc" id="L247">            int rowKey = counter;</span>
+<span class="nc" id="L200">            int rowKey = counter;</span>
 
-<span class="nc" id="L249">            Put put = new Put(Bytes.toBytes(rowKey));</span>
+<span class="nc" id="L202">            Put put = new Put(Bytes.toBytes(rowKey));</span>
             //Uuid id, String name, Time creation, String nickname
-<span class="nc" id="L251">            put.addColumn(COLUMN_FAMILY_NAME, Bytes.toBytes(&quot;username&quot;), Bytes.toBytes(username));</span>
-<span class="nc" id="L252">            put.addColumn(COLUMN_FAMILY_NAME, Bytes.toBytes(&quot;message&quot;), Bytes.toBytes(message));</span>
-<span class="nc" id="L253">            put.addColumn(COLUMN_FAMILY_NAME, Bytes.toBytes(&quot;timestamp&quot;), Bytes.toBytes(timestamp));</span>
-<span class="nc" id="L254">            table.put(put);</span>
+<span class="nc" id="L204">            put.addColumn(COLUMN_FAMILY_NAME, Bytes.toBytes(&quot;username&quot;), Bytes.toBytes(username));</span>
+<span class="nc" id="L205">            put.addColumn(COLUMN_FAMILY_NAME, Bytes.toBytes(&quot;message&quot;), Bytes.toBytes(message));</span>
+<span class="nc" id="L206">            put.addColumn(COLUMN_FAMILY_NAME, Bytes.toBytes(&quot;timestamp&quot;), Bytes.toBytes(timestamp));</span>
+<span class="nc" id="L207">            table.put(put);</span>
 
-<span class="nc bnc" id="L256" title="All 8 branches missed.">        } catch (IOException e) {</span>
-<span class="nc" id="L257">            System.err.println(&quot;Exception while running Bigtable: &quot; + e.getMessage());</span>
-<span class="nc" id="L258">            e.printStackTrace();</span>
-<span class="nc" id="L259">        }</span>
-<span class="nc" id="L260">    }</span>
+<span class="nc bnc" id="L209" title="All 8 branches missed.">        } catch (IOException e) {</span>
+<span class="nc" id="L210">            System.err.println(&quot;Exception while running Bigtable: &quot; + e.getMessage());</span>
+<span class="nc" id="L211">            e.printStackTrace();</span>
+<span class="nc" id="L212">        }</span>
+<span class="nc" id="L213">    }</span>
 
     // return List of rows. each row is an arraylist of 3 Strings: username, message and timestamp
     // change the return if you need so.
     ArrayList&lt;ArrayList&lt;String&gt;&gt; retrieveAllMessages(String city, String conversation){
         
-<span class="nc" id="L266">        String table_name = city+&quot;-&quot;+conversation;</span>
+<span class="nc" id="L219">        String table_name = city+&quot;-&quot;+conversation;</span>
 
-<span class="nc" id="L268">        try (Connection connection = BigtableConfiguration.connect(IDs.projectId, IDs.instanceId)) {</span>
-<span class="nc" id="L269">            Table table = connection.getTable(TableName.valueOf(Bytes.toBytes(table_name)));</span>
-<span class="nc" id="L270">            Scan scan = new Scan();</span>
+<span class="nc" id="L221">        try (Connection connection = BigtableConfiguration.connect(IDs.projectId, IDs.instanceId)) {</span>
+<span class="nc" id="L222">            Table table = connection.getTable(TableName.valueOf(Bytes.toBytes(table_name)));</span>
+<span class="nc" id="L223">            Scan scan = new Scan();</span>
 
-<span class="nc" id="L272">            System.out.println(&quot;Scan for all message for mainUI:&quot;);</span>
-<span class="nc" id="L273">            ResultScanner scanner = table.getScanner(scan);</span>
+<span class="nc" id="L225">            System.out.println(&quot;Scan for all message for mainUI:&quot;);</span>
+<span class="nc" id="L226">            ResultScanner scanner = table.getScanner(scan);</span>
 
-<span class="nc" id="L275">            ArrayList&lt;ArrayList&lt;String&gt;&gt; al_rows = new ArrayList&lt;&gt;();</span>
-<span class="nc bnc" id="L276" title="All 2 branches missed.">            for (Result row : scanner) {</span>
-<span class="nc" id="L277">                String username = Bytes.toString(row.getValue(COLUMN_FAMILY_NAME, Bytes.toBytes(&quot;username&quot;)));</span>
-<span class="nc" id="L278">                String message = Bytes.toString(row.getValue(COLUMN_FAMILY_NAME, Bytes.toBytes(&quot;message&quot;)));</span>
-<span class="nc" id="L279">                String timestamp = Bytes.toString(row.getValue(COLUMN_FAMILY_NAME, Bytes.toBytes(&quot;timestamp&quot;)));</span>
+<span class="nc" id="L228">            ArrayList&lt;ArrayList&lt;String&gt;&gt; al_rows = new ArrayList&lt;&gt;();</span>
+<span class="nc bnc" id="L229" title="All 2 branches missed.">            for (Result row : scanner) {</span>
+<span class="nc" id="L230">                String username = Bytes.toString(row.getValue(COLUMN_FAMILY_NAME, Bytes.toBytes(&quot;username&quot;)));</span>
+<span class="nc" id="L231">                String message = Bytes.toString(row.getValue(COLUMN_FAMILY_NAME, Bytes.toBytes(&quot;message&quot;)));</span>
+<span class="nc" id="L232">                String timestamp = Bytes.toString(row.getValue(COLUMN_FAMILY_NAME, Bytes.toBytes(&quot;timestamp&quot;)));</span>
 
-<span class="nc" id="L281">                ArrayList&lt;String&gt; al_row = new ArrayList&lt;&gt;();</span>
-<span class="nc" id="L282">                al_row.add(username);</span>
-<span class="nc" id="L283">                al_row.add(message);</span>
-<span class="nc" id="L284">                al_row.add(timestamp);</span>
+<span class="nc" id="L234">                ArrayList&lt;String&gt; al_row = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L235">                al_row.add(username);</span>
+<span class="nc" id="L236">                al_row.add(message);</span>
+<span class="nc" id="L237">                al_row.add(timestamp);</span>
 
-<span class="nc" id="L286">                al_rows.add(al_row);</span>
-<span class="nc" id="L287">            }</span>
-<span class="nc" id="L288">            return al_rows;</span>
-<span class="nc bnc" id="L289" title="All 8 branches missed.">        } catch (IOException e) {</span>
-<span class="nc" id="L290">            System.err.println(&quot;Exception while running GetUsers in Model: &quot; + e.getMessage());</span>
-<span class="nc" id="L291">            e.printStackTrace();</span>
+<span class="nc" id="L239">                al_rows.add(al_row);</span>
+<span class="nc" id="L240">            }</span>
+<span class="nc" id="L241">            return al_rows;</span>
+<span class="nc bnc" id="L242" title="All 8 branches missed.">        } catch (IOException e) {</span>
+<span class="nc" id="L243">            System.err.println(&quot;Exception while running GetUsers in Model: &quot; + e.getMessage());</span>
+<span class="nc" id="L244">            e.printStackTrace();</span>
         }
-<span class="nc" id="L293">        return null;</span>
+<span class="nc" id="L246">        return null;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>
