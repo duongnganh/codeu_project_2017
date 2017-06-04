@@ -32,7 +32,7 @@ import codeu.chat.util.connections.ConnectionSource;
   public static void main(String [] args) {
 
     try {
-<span class="nc" id="L35">      Logger.enableFileOutput(&quot;chat_client_log.log&quot;);</span>
+<span class="nc" id="L35">      Logger.enableFileOutput(&quot;bin/chat_client_log.log&quot;);</span>
 <span class="nc" id="L36">    } catch (IOException ex) {</span>
 <span class="nc" id="L37">      LOG.error(ex, &quot;Failed to set logger to write to file&quot;);</span>
 <span class="nc" id="L38">    }</span>
@@ -41,29 +41,27 @@ import codeu.chat.util.connections.ConnectionSource;
 
 <span class="nc" id="L42">    LOG.info(&quot;Starting chat client...&quot;);</span>
 
-    // final RemoteAddress address = RemoteAddress.parse(args[0]);
-<span class="nc" id="L45">    final String host = System.getProperty(&quot;host&quot;);</span>
-<span class="nc" id="L46">    final int myPort = Integer.parseInt(System.getProperty(&quot;port&quot;));</span>
+<span class="nc" id="L44">    final String host = System.getProperty(&quot;host&quot;);</span>
+<span class="nc" id="L45">    final int myPort = Integer.parseInt(System.getProperty(&quot;port&quot;));</span>
 
-    // final ConnectionSource source = new ClientConnectionSource(address.host, address.port);
-<span class="nc" id="L49">    final ConnectionSource source = new ClientConnectionSource(host, myPort);</span>
-<span class="nc" id="L50">    final Controller controller = new Controller(source);</span>
-<span class="nc" id="L51">    final View view = new View(source);</span>
+<span class="nc" id="L47">    final ConnectionSource source = new ClientConnectionSource(host, myPort);</span>
+<span class="nc" id="L48">    final Controller controller = new Controller(source);</span>
+<span class="nc" id="L49">    final View view = new View(source);</span>
 
-<span class="nc" id="L53">    LOG.info(&quot;Creating client...&quot;);</span>
-<span class="nc" id="L54">    final Chat chat = new Chat(controller, view);</span>
+<span class="nc" id="L51">    LOG.info(&quot;Creating client...&quot;);</span>
+<span class="nc" id="L52">    final Chat chat = new Chat(controller, view);</span>
 
-<span class="nc" id="L56">    LOG.info(&quot;Created client&quot;);</span>
+<span class="nc" id="L54">    LOG.info(&quot;Created client&quot;);</span>
 
-<span class="nc" id="L58">    final Scanner input = new Scanner(System.in);</span>
+<span class="nc" id="L56">    final Scanner input = new Scanner(System.in);</span>
 
-<span class="nc bnc" id="L60" title="All 2 branches missed.">    while (chat.handleCommand(input)) {</span>
+<span class="nc bnc" id="L58" title="All 2 branches missed.">    while (chat.handleCommand(input)) {</span>
       // everything is done in &quot;run&quot;
     }
 
-<span class="nc" id="L64">    input.close();</span>
+<span class="nc" id="L62">    input.close();</span>
 
-<span class="nc" id="L66">    LOG.info(&quot;chat client has exited.&quot;);</span>
-<span class="nc" id="L67">  }</span>
+<span class="nc" id="L64">    LOG.info(&quot;chat client has exited.&quot;);</span>
+<span class="nc" id="L65">  }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

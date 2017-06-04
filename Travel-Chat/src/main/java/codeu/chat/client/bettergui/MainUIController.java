@@ -136,11 +136,6 @@ public class MainUIController implements Initializable {
 
             listView.getItems().add( sdf.format(cal.getTime()) + ": " + message);
 
-            /*clientContext.message.addMessage(
-            clientContext.user.getCurrent().id,
-                    clientContext.conversation.getCurrentId(),
-                    clientContext.group.getCurrent().id,
-                    messageText);*/
 
         }
     }
@@ -166,70 +161,28 @@ public class MainUIController implements Initializable {
             }
         });
 
-        /*
-        *
-
-         for (final Message m : clientContext.message.getConversationContents(conversation)) {
-            // Display author name if available.  Otherwise display the author UUID.
-            final String authorName = clientContext.user.getName(m.author);
-
-            final String displayString = String.format("%s: [%s]: %s",
-                ((authorName == null) ? m.author : authorName), m.creation, m.content);
-
-                messageListModel.addElement(displayString);
-            }
-
-        *
-        * */
-
-        //clientContext.conversation.startConversation(s, clientContext.user.getCurrent().id, clientContext.group.getCurrent().id);
-
-        /*
-
-            final int index = objectList.getSelectedIndex();
-            final String data = objectList.getSelectedValue();
-            final ConversationSummary cs = ConversationPanel.this.lookupByTitle(data, index);
-
-            clientContext.conversation.setCurrent(cs);
-
-            messagePanel.update(cs);
-
-
-            *******
-
-
-            private ConversationSummary lookupByTitle(String title, int index) {
-
-            int localIndex = 0;
-                for (final ConversationSummary cs : clientContext.conversation.getConversationSummaries()) {
-                    if ((localIndex >= index) && cs.title.equals(title)) {
-                        return cs;
-                    }
-                    localIndex++;
-                }
-            return null;
-            }
-
-        * */
 
     }
 
     @FXML
     void onBackClick(ActionEvent event) throws Exception {
 
-        Parent window1 = FXMLLoader.load(getClass().getResource("/codeu/chat/client/bettergui/LoginUI.fxml"));
-
-        Stage mainStage = (Stage) borderPane.getScene().getWindow();
-
-        mainStage.setHeight(400);
-        mainStage.setWidth(427);
-
         //logout
-
         clientContext.user.signOutUser();
 
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/codeu/chat/client/bettergui/LoginUI.fxml"));
 
-        mainStage.getScene().setRoot(window1);
+        Parent window2 = loader.load();
+
+        LoginController loginController = loader.getController();
+
+        loginController.setClientContext(clientContext);
+
+        Stage stage = (Stage) borderPane.getScene().getWindow();
+
+        stage.setHeight(410);
+        stage.setWidth(427);
+        stage.getScene().setRoot(window2);
 
     }
 

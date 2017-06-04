@@ -93,14 +93,20 @@ public final class RegistrationController implements Initializable {
         Boolean status = clientContext.user.addUser(username, nickname, password);
 
         if (status) {
-            Parent window1 = FXMLLoader.load(getClass().getResource("/codeu/chat/client/bettergui/MainUI.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/codeu/chat/client/bettergui/MainUI.fxml"));
 
-            Stage mainStage = (Stage) anchorPane.getScene().getWindow();
+            Parent window2 = loader.load();
 
-            mainStage.setHeight(650);
-            mainStage.setWidth(800);
+            MainUIController mainController = loader.getController();
 
-            mainStage.getScene().setRoot(window1);
+            mainController.setClientContext(clientContext);
+
+            Stage stage = (Stage) anchorPane.getScene().getWindow();
+
+            stage.setHeight(650);
+            stage.setWidth(800);
+
+            stage.getScene().setRoot(window2);
         } else {
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Error!");
@@ -114,14 +120,21 @@ public final class RegistrationController implements Initializable {
     @FXML
     void onBackButtonClick(ActionEvent event) throws Exception {
 
-        Parent window1 = FXMLLoader.load(getClass().getResource("/codeu/chat/client/bettergui/LoginUI.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/codeu/chat/client/bettergui/LoginUI.fxml"));
 
-        Stage mainStage = (Stage) anchorPane.getScene().getWindow();
+        Parent window2 = loader.load();
 
-        mainStage.setHeight(400);
-        mainStage.setWidth(427);
+        LoginController loginController = loader.getController();
 
-        mainStage.getScene().setRoot(window1);
+        loginController.setClientContext(clientContext);
+
+        Stage stage = (Stage) anchorPane.getScene().getWindow();
+
+        stage.setHeight(475);
+        stage.setWidth(427);
+        stage.getScene().setRoot(window2);
+
+
 
     }
 

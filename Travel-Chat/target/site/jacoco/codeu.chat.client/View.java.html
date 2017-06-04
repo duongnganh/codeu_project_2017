@@ -33,347 +33,342 @@ import codeu.chat.util.Uuid;
 import codeu.chat.util.connections.Connection;
 import codeu.chat.util.connections.ConnectionSource;
 
-// VIEW
-//
-// This is the view component of the Model-View-Controller pattern used by the
-// the client to reterive readonly data from the server. All methods are blocking
-// calls.
 public final class View implements BasicView, LogicalView{
 
-<span class="nc" id="L43">  private final static Logger.Log LOG = Logger.newLog(View.class);</span>
+<span class="nc" id="L38">  private final static Logger.Log LOG = Logger.newLog(View.class);</span>
 
   private final ConnectionSource source;
 
-<span class="nc" id="L47">  public View(ConnectionSource source) {</span>
-<span class="nc" id="L48">    this.source = source;</span>
-<span class="nc" id="L49">  }</span>
+<span class="nc" id="L42">  public View(ConnectionSource source) {</span>
+<span class="nc" id="L43">    this.source = source;</span>
+<span class="nc" id="L44">  }</span>
 
   @Override
   public Collection&lt;User&gt; getUsers(Collection&lt;Uuid&gt; ids) {
 
-<span class="nc" id="L54">    final Collection&lt;User&gt; users = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L49">    final Collection&lt;User&gt; users = new ArrayList&lt;&gt;();</span>
 
-<span class="nc" id="L56">    try (final Connection connection = source.connect()) {</span>
+<span class="nc" id="L51">    try (final Connection connection = source.connect()) {</span>
 
-<span class="nc" id="L58">      Serializers.INTEGER.write(connection.out(), NetworkCode.GET_USERS_BY_ID_REQUEST);</span>
-<span class="nc" id="L59">      Serializers.collection(Uuid.SERIALIZER).write(connection.out(), ids);</span>
+<span class="nc" id="L53">      Serializers.INTEGER.write(connection.out(), NetworkCode.GET_USERS_BY_ID_REQUEST);</span>
+<span class="nc" id="L54">      Serializers.collection(Uuid.SERIALIZER).write(connection.out(), ids);</span>
 
-<span class="nc bnc" id="L61" title="All 2 branches missed.">      if (Serializers.INTEGER.read(connection.in()) == NetworkCode.GET_USERS_BY_ID_RESPONSE) {</span>
-<span class="nc" id="L62">        users.addAll(Serializers.collection(User.SERIALIZER).read(connection.in()));</span>
+<span class="nc bnc" id="L56" title="All 2 branches missed.">      if (Serializers.INTEGER.read(connection.in()) == NetworkCode.GET_USERS_BY_ID_RESPONSE) {</span>
+<span class="nc" id="L57">        users.addAll(Serializers.collection(User.SERIALIZER).read(connection.in()));</span>
       } else {
-<span class="nc" id="L64">        LOG.error(&quot;Response from server failed.&quot;);</span>
+<span class="nc" id="L59">        LOG.error(&quot;Response from server failed.&quot;);</span>
       }
 
-<span class="nc bnc" id="L67" title="All 8 branches missed.">    } catch (Exception ex) {</span>
-<span class="nc" id="L68">      System.out.println(&quot;ERROR: Exception during call on server. Check log for details.&quot;);</span>
-<span class="nc" id="L69">      LOG.error(ex, &quot;Exception during call on server.&quot;);</span>
-<span class="nc" id="L70">    }</span>
+<span class="nc bnc" id="L62" title="All 8 branches missed.">    } catch (Exception ex) {</span>
+<span class="nc" id="L63">      System.out.println(&quot;ERROR: Exception during call on server. Check log for details.&quot;);</span>
+<span class="nc" id="L64">      LOG.error(ex, &quot;Exception during call on server.&quot;);</span>
+<span class="nc" id="L65">    }</span>
 
-<span class="nc" id="L72">    return users;</span>
+<span class="nc" id="L67">    return users;</span>
   }
 
   @Override
   public Collection&lt;ConversationSummary&gt; getAllConversations() {
 
-<span class="nc" id="L78">    final Collection&lt;ConversationSummary&gt; summaries = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L73">    final Collection&lt;ConversationSummary&gt; summaries = new ArrayList&lt;&gt;();</span>
 
-<span class="nc" id="L80">    try (final Connection connection = source.connect()) {</span>
+<span class="nc" id="L75">    try (final Connection connection = source.connect()) {</span>
 
-<span class="nc" id="L82">      Serializers.INTEGER.write(connection.out(), NetworkCode.GET_ALL_CONVERSATIONS_REQUEST);</span>
+<span class="nc" id="L77">      Serializers.INTEGER.write(connection.out(), NetworkCode.GET_ALL_CONVERSATIONS_REQUEST);</span>
 
-<span class="nc bnc" id="L84" title="All 2 branches missed.">      if (Serializers.INTEGER.read(connection.in()) == NetworkCode.GET_ALL_CONVERSATIONS_RESPONSE) {</span>
-<span class="nc" id="L85">        summaries.addAll(Serializers.collection(ConversationSummary.SERIALIZER).read(connection.in()));</span>
+<span class="nc bnc" id="L79" title="All 2 branches missed.">      if (Serializers.INTEGER.read(connection.in()) == NetworkCode.GET_ALL_CONVERSATIONS_RESPONSE) {</span>
+<span class="nc" id="L80">        summaries.addAll(Serializers.collection(ConversationSummary.SERIALIZER).read(connection.in()));</span>
       } else {
-<span class="nc" id="L87">        LOG.error(&quot;Response from server failed.&quot;);</span>
+<span class="nc" id="L82">        LOG.error(&quot;Response from server failed.&quot;);</span>
       }
 
-<span class="nc bnc" id="L90" title="All 8 branches missed.">    } catch (Exception ex) {</span>
-<span class="nc" id="L91">      System.out.println(&quot;ERROR: Exception during call on server. Check log for details.&quot;);</span>
-<span class="nc" id="L92">      LOG.error(ex, &quot;Exception during call on server.&quot;);</span>
-<span class="nc" id="L93">    }</span>
+<span class="nc bnc" id="L85" title="All 8 branches missed.">    } catch (Exception ex) {</span>
+<span class="nc" id="L86">      System.out.println(&quot;ERROR: Exception during call on server. Check log for details.&quot;);</span>
+<span class="nc" id="L87">      LOG.error(ex, &quot;Exception during call on server.&quot;);</span>
+<span class="nc" id="L88">    }</span>
 
-<span class="nc" id="L95">    return summaries;</span>
+<span class="nc" id="L90">    return summaries;</span>
   }
 
   @Override
   public Collection&lt;Conversation&gt; getConversations(Collection&lt;Uuid&gt; ids) {
 
-<span class="nc" id="L101">    final Collection&lt;Conversation&gt; conversations = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L96">    final Collection&lt;Conversation&gt; conversations = new ArrayList&lt;&gt;();</span>
 
-<span class="nc" id="L103">    try (final Connection connection = source.connect()) {</span>
+<span class="nc" id="L98">    try (final Connection connection = source.connect()) {</span>
 
-<span class="nc" id="L105">      Serializers.INTEGER.write(connection.out(), NetworkCode.GET_CONVERSATIONS_BY_ID_REQUEST);</span>
-<span class="nc" id="L106">      Serializers.collection(Uuid.SERIALIZER).write(connection.out(), ids);</span>
+<span class="nc" id="L100">      Serializers.INTEGER.write(connection.out(), NetworkCode.GET_CONVERSATIONS_BY_ID_REQUEST);</span>
+<span class="nc" id="L101">      Serializers.collection(Uuid.SERIALIZER).write(connection.out(), ids);</span>
 
-<span class="nc bnc" id="L108" title="All 2 branches missed.">      if (Serializers.INTEGER.read(connection.in()) == NetworkCode.GET_CONVERSATIONS_BY_ID_RESPONSE) {</span>
-<span class="nc" id="L109">        conversations.addAll(Serializers.collection(Conversation.SERIALIZER).read(connection.in()));</span>
+<span class="nc bnc" id="L103" title="All 2 branches missed.">      if (Serializers.INTEGER.read(connection.in()) == NetworkCode.GET_CONVERSATIONS_BY_ID_RESPONSE) {</span>
+<span class="nc" id="L104">        conversations.addAll(Serializers.collection(Conversation.SERIALIZER).read(connection.in()));</span>
       } else {
-<span class="nc" id="L111">        LOG.error(&quot;Response from server failed.&quot;);</span>
+<span class="nc" id="L106">        LOG.error(&quot;Response from server failed.&quot;);</span>
       }
-<span class="nc bnc" id="L113" title="All 8 branches missed.">    } catch (Exception ex) {</span>
-<span class="nc" id="L114">      System.out.println(&quot;ERROR: Exception during call on server. Check log for details.&quot;);</span>
-<span class="nc" id="L115">      LOG.error(ex, &quot;Exception during call on server.&quot;);</span>
-<span class="nc" id="L116">    }</span>
+<span class="nc bnc" id="L108" title="All 8 branches missed.">    } catch (Exception ex) {</span>
+<span class="nc" id="L109">      System.out.println(&quot;ERROR: Exception during call on server. Check log for details.&quot;);</span>
+<span class="nc" id="L110">      LOG.error(ex, &quot;Exception during call on server.&quot;);</span>
+<span class="nc" id="L111">    }</span>
 
-<span class="nc" id="L118">    return conversations;</span>
+<span class="nc" id="L113">    return conversations;</span>
   }
 
   @Override
   public Collection&lt;GroupSummary&gt; getAllGroups() {
 
-<span class="nc" id="L124">    final Collection&lt;GroupSummary&gt; summaries = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L119">    final Collection&lt;GroupSummary&gt; summaries = new ArrayList&lt;&gt;();</span>
 
-<span class="nc" id="L126">    try (final Connection connection = source.connect()) {</span>
+<span class="nc" id="L121">    try (final Connection connection = source.connect()) {</span>
 
-<span class="nc" id="L128">      Serializers.INTEGER.write(connection.out(), NetworkCode.GET_ALL_GROUPS_REQUEST);</span>
+<span class="nc" id="L123">      Serializers.INTEGER.write(connection.out(), NetworkCode.GET_ALL_GROUPS_REQUEST);</span>
 
-<span class="nc bnc" id="L130" title="All 2 branches missed.">      if (Serializers.INTEGER.read(connection.in()) == NetworkCode.GET_ALL_GROUPS_RESPONSE) {</span>
-<span class="nc" id="L131">        summaries.addAll(Serializers.collection(GroupSummary.SERIALIZER).read(connection.in()));</span>
+<span class="nc bnc" id="L125" title="All 2 branches missed.">      if (Serializers.INTEGER.read(connection.in()) == NetworkCode.GET_ALL_GROUPS_RESPONSE) {</span>
+<span class="nc" id="L126">        summaries.addAll(Serializers.collection(GroupSummary.SERIALIZER).read(connection.in()));</span>
       } else {
-<span class="nc" id="L133">        LOG.error(&quot;Response from server failed.&quot;);</span>
+<span class="nc" id="L128">        LOG.error(&quot;Response from server failed.&quot;);</span>
       }
 
-<span class="nc bnc" id="L136" title="All 8 branches missed.">    } catch (Exception ex) {</span>
-<span class="nc" id="L137">      System.out.println(&quot;ERROR: Exception during call on server. Check log for details.&quot;);</span>
-<span class="nc" id="L138">      LOG.error(ex, &quot;Exception during call on server.&quot;);</span>
-<span class="nc" id="L139">    }</span>
+<span class="nc bnc" id="L131" title="All 8 branches missed.">    } catch (Exception ex) {</span>
+<span class="nc" id="L132">      System.out.println(&quot;ERROR: Exception during call on server. Check log for details.&quot;);</span>
+<span class="nc" id="L133">      LOG.error(ex, &quot;Exception during call on server.&quot;);</span>
+<span class="nc" id="L134">    }</span>
 
-<span class="nc" id="L141">    return summaries;</span>
+<span class="nc" id="L136">    return summaries;</span>
   }
 
   @Override
   public Collection&lt;Group&gt; getGroups(Collection&lt;Uuid&gt; ids) {
 
-<span class="nc" id="L147">    final Collection&lt;Group&gt; groups = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L142">    final Collection&lt;Group&gt; groups = new ArrayList&lt;&gt;();</span>
 
-<span class="nc" id="L149">    try (final Connection connection = source.connect()) {</span>
+<span class="nc" id="L144">    try (final Connection connection = source.connect()) {</span>
 
-<span class="nc" id="L151">      Serializers.INTEGER.write(connection.out(), NetworkCode.GET_GROUPS_BY_ID_REQUEST);</span>
-<span class="nc" id="L152">      Serializers.collection(Uuid.SERIALIZER).write(connection.out(), ids);</span>
+<span class="nc" id="L146">      Serializers.INTEGER.write(connection.out(), NetworkCode.GET_GROUPS_BY_ID_REQUEST);</span>
+<span class="nc" id="L147">      Serializers.collection(Uuid.SERIALIZER).write(connection.out(), ids);</span>
 
-<span class="nc bnc" id="L154" title="All 2 branches missed.">      if (Serializers.INTEGER.read(connection.in()) == NetworkCode.GET_GROUPS_BY_ID_RESPONSE) {</span>
-<span class="nc" id="L155">        groups.addAll(Serializers.collection(Group.SERIALIZER).read(connection.in()));</span>
+<span class="nc bnc" id="L149" title="All 2 branches missed.">      if (Serializers.INTEGER.read(connection.in()) == NetworkCode.GET_GROUPS_BY_ID_RESPONSE) {</span>
+<span class="nc" id="L150">        groups.addAll(Serializers.collection(Group.SERIALIZER).read(connection.in()));</span>
       } else {
-<span class="nc" id="L157">        LOG.error(&quot;Response from server failed.&quot;);</span>
+<span class="nc" id="L152">        LOG.error(&quot;Response from server failed.&quot;);</span>
       }
-<span class="nc bnc" id="L159" title="All 8 branches missed.">    } catch (Exception ex) {</span>
-<span class="nc" id="L160">      System.out.println(&quot;ERROR: Exception during call on server. Check log for details.&quot;);</span>
-<span class="nc" id="L161">      LOG.error(ex, &quot;Exception during call on server.&quot;);</span>
-<span class="nc" id="L162">    }</span>
+<span class="nc bnc" id="L154" title="All 8 branches missed.">    } catch (Exception ex) {</span>
+<span class="nc" id="L155">      System.out.println(&quot;ERROR: Exception during call on server. Check log for details.&quot;);</span>
+<span class="nc" id="L156">      LOG.error(ex, &quot;Exception during call on server.&quot;);</span>
+<span class="nc" id="L157">    }</span>
 
-<span class="nc" id="L164">    return groups;</span>
+<span class="nc" id="L159">    return groups;</span>
   }
 
   @Override
   public Collection&lt;Message&gt; getMessages(Collection&lt;Uuid&gt; ids) {
 
-<span class="nc" id="L170">    final Collection&lt;Message&gt; messages = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L165">    final Collection&lt;Message&gt; messages = new ArrayList&lt;&gt;();</span>
 
-<span class="nc" id="L172">    try (final Connection connection = source.connect()) {</span>
+<span class="nc" id="L167">    try (final Connection connection = source.connect()) {</span>
 
-<span class="nc" id="L174">      Serializers.INTEGER.write(connection.out(), NetworkCode.GET_MESSAGES_BY_ID_REQUEST);</span>
-<span class="nc" id="L175">      Serializers.collection(Uuid.SERIALIZER).write(connection.out(), ids);</span>
+<span class="nc" id="L169">      Serializers.INTEGER.write(connection.out(), NetworkCode.GET_MESSAGES_BY_ID_REQUEST);</span>
+<span class="nc" id="L170">      Serializers.collection(Uuid.SERIALIZER).write(connection.out(), ids);</span>
 
-<span class="nc bnc" id="L177" title="All 2 branches missed.">      if (Serializers.INTEGER.read(connection.in()) == NetworkCode.GET_MESSAGES_BY_ID_RESPONSE) {</span>
-<span class="nc" id="L178">        messages.addAll(Serializers.collection(Message.SERIALIZER).read(connection.in()));</span>
+<span class="nc bnc" id="L172" title="All 2 branches missed.">      if (Serializers.INTEGER.read(connection.in()) == NetworkCode.GET_MESSAGES_BY_ID_RESPONSE) {</span>
+<span class="nc" id="L173">        messages.addAll(Serializers.collection(Message.SERIALIZER).read(connection.in()));</span>
       } else {
-<span class="nc" id="L180">        LOG.error(&quot;Response from server failed.&quot;);</span>
+<span class="nc" id="L175">        LOG.error(&quot;Response from server failed.&quot;);</span>
       }
-<span class="nc bnc" id="L182" title="All 8 branches missed.">    } catch (Exception ex) {</span>
-<span class="nc" id="L183">      System.out.println(&quot;ERROR: Exception during call on server. Check log for details.&quot;);</span>
-<span class="nc" id="L184">      LOG.error(ex, &quot;Exception during call on server.&quot;);</span>
-<span class="nc" id="L185">    }</span>
+<span class="nc bnc" id="L177" title="All 8 branches missed.">    } catch (Exception ex) {</span>
+<span class="nc" id="L178">      System.out.println(&quot;ERROR: Exception during call on server. Check log for details.&quot;);</span>
+<span class="nc" id="L179">      LOG.error(ex, &quot;Exception during call on server.&quot;);</span>
+<span class="nc" id="L180">    }</span>
 
-<span class="nc" id="L187">    return messages;</span>
+<span class="nc" id="L182">    return messages;</span>
   }
 
   @Override
   public Uuid getUserGeneration() {
 
-<span class="nc" id="L193">    Uuid generation = Uuid.NULL;</span>
+<span class="nc" id="L188">    Uuid generation = Uuid.NULL;</span>
 
-<span class="nc" id="L195">    try (final Connection connection = source.connect()) {</span>
+<span class="nc" id="L190">    try (final Connection connection = source.connect()) {</span>
 
-<span class="nc" id="L197">      Serializers.INTEGER.write(connection.out(), NetworkCode.GET_USER_GENERATION_REQUEST);</span>
+<span class="nc" id="L192">      Serializers.INTEGER.write(connection.out(), NetworkCode.GET_USER_GENERATION_REQUEST);</span>
 
-<span class="nc bnc" id="L199" title="All 2 branches missed.">      if (Serializers.INTEGER.read(connection.in()) == NetworkCode.GET_USER_GENERATION_RESPONSE) {</span>
-<span class="nc" id="L200">        generation = Uuid.SERIALIZER.read(connection.in());</span>
+<span class="nc bnc" id="L194" title="All 2 branches missed.">      if (Serializers.INTEGER.read(connection.in()) == NetworkCode.GET_USER_GENERATION_RESPONSE) {</span>
+<span class="nc" id="L195">        generation = Uuid.SERIALIZER.read(connection.in());</span>
       } else {
-<span class="nc" id="L202">        LOG.error(&quot;Response from server failed&quot;);</span>
+<span class="nc" id="L197">        LOG.error(&quot;Response from server failed&quot;);</span>
       }
-<span class="nc bnc" id="L204" title="All 8 branches missed.">    } catch (Exception ex) {</span>
-<span class="nc" id="L205">      System.out.println(&quot;ERROR: Exception during call on server. Check log for details.&quot;);</span>
-<span class="nc" id="L206">      LOG.error(ex, &quot;Exception during call on server.&quot;);</span>
-<span class="nc" id="L207">    }</span>
+<span class="nc bnc" id="L199" title="All 8 branches missed.">    } catch (Exception ex) {</span>
+<span class="nc" id="L200">      System.out.println(&quot;ERROR: Exception during call on server. Check log for details.&quot;);</span>
+<span class="nc" id="L201">      LOG.error(ex, &quot;Exception during call on server.&quot;);</span>
+<span class="nc" id="L202">    }</span>
 
-<span class="nc" id="L209">    return generation;</span>
+<span class="nc" id="L204">    return generation;</span>
   }
 
   @Override
   public Collection&lt;User&gt; getUsersExcluding(Collection&lt;Uuid&gt; ids) {
 
-<span class="nc" id="L215">    final Collection&lt;User&gt; users = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L210">    final Collection&lt;User&gt; users = new ArrayList&lt;&gt;();</span>
 
-<span class="nc" id="L217">    try (final Connection connection = source.connect()) {</span>
+<span class="nc" id="L212">    try (final Connection connection = source.connect()) {</span>
 
-<span class="nc" id="L219">      Serializers.INTEGER.write(connection.out(), NetworkCode.GET_USERS_EXCLUDING_REQUEST);</span>
-<span class="nc" id="L220">      Serializers.collection(Uuid.SERIALIZER).write(connection.out(), ids);</span>
+<span class="nc" id="L214">      Serializers.INTEGER.write(connection.out(), NetworkCode.GET_USERS_EXCLUDING_REQUEST);</span>
+<span class="nc" id="L215">      Serializers.collection(Uuid.SERIALIZER).write(connection.out(), ids);</span>
 
-<span class="nc bnc" id="L222" title="All 2 branches missed.">      if (Serializers.INTEGER.read(connection.in()) == NetworkCode.GET_USERS_EXCLUDING_RESPONSE) {</span>
-<span class="nc" id="L223">        users.addAll(Serializers.collection(User.SERIALIZER).read(connection.in()));</span>
+<span class="nc bnc" id="L217" title="All 2 branches missed.">      if (Serializers.INTEGER.read(connection.in()) == NetworkCode.GET_USERS_EXCLUDING_RESPONSE) {</span>
+<span class="nc" id="L218">        users.addAll(Serializers.collection(User.SERIALIZER).read(connection.in()));</span>
       } else {
-<span class="nc" id="L225">        LOG.error(&quot;Response from server failed.&quot;);</span>
+<span class="nc" id="L220">        LOG.error(&quot;Response from server failed.&quot;);</span>
       }
-<span class="nc bnc" id="L227" title="All 8 branches missed.">    } catch (Exception ex) {</span>
-<span class="nc" id="L228">      System.out.println(&quot;ERROR: Exception during call on server. Check log for details.&quot;);</span>
-<span class="nc" id="L229">      LOG.error(ex, &quot;Exception during call on server.&quot;);</span>
-<span class="nc" id="L230">    }</span>
+<span class="nc bnc" id="L222" title="All 8 branches missed.">    } catch (Exception ex) {</span>
+<span class="nc" id="L223">      System.out.println(&quot;ERROR: Exception during call on server. Check log for details.&quot;);</span>
+<span class="nc" id="L224">      LOG.error(ex, &quot;Exception during call on server.&quot;);</span>
+<span class="nc" id="L225">    }</span>
 
-<span class="nc" id="L232">    return users;</span>
+<span class="nc" id="L227">    return users;</span>
   }
 
   @Override
   public Collection&lt;Conversation&gt; getConversations(Time start, Time end) {
 
-<span class="nc" id="L238">    final Collection&lt;Conversation&gt; conversations = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L233">    final Collection&lt;Conversation&gt; conversations = new ArrayList&lt;&gt;();</span>
 
-<span class="nc" id="L240">    try (final Connection connection = source.connect()) {</span>
+<span class="nc" id="L235">    try (final Connection connection = source.connect()) {</span>
 
-<span class="nc" id="L242">      Serializers.INTEGER.write(connection.out(), NetworkCode.GET_CONVERSATIONS_BY_TIME_REQUEST);</span>
-<span class="nc" id="L243">      Time.SERIALIZER.write(connection.out(), start);</span>
-<span class="nc" id="L244">      Time.SERIALIZER.write(connection.out(), end);</span>
+<span class="nc" id="L237">      Serializers.INTEGER.write(connection.out(), NetworkCode.GET_CONVERSATIONS_BY_TIME_REQUEST);</span>
+<span class="nc" id="L238">      Time.SERIALIZER.write(connection.out(), start);</span>
+<span class="nc" id="L239">      Time.SERIALIZER.write(connection.out(), end);</span>
 
-<span class="nc bnc" id="L246" title="All 2 branches missed.">      if (Serializers.INTEGER.read(connection.in()) == NetworkCode.GET_CONVERSATIONS_BY_TIME_RESPONSE) {</span>
-<span class="nc" id="L247">        conversations.addAll(Serializers.collection(Conversation.SERIALIZER).read(connection.in()));</span>
+<span class="nc bnc" id="L241" title="All 2 branches missed.">      if (Serializers.INTEGER.read(connection.in()) == NetworkCode.GET_CONVERSATIONS_BY_TIME_RESPONSE) {</span>
+<span class="nc" id="L242">        conversations.addAll(Serializers.collection(Conversation.SERIALIZER).read(connection.in()));</span>
       } else {
-<span class="nc" id="L249">        LOG.error(&quot;Response from server failed.&quot;);</span>
+<span class="nc" id="L244">        LOG.error(&quot;Response from server failed.&quot;);</span>
       }
-<span class="nc bnc" id="L251" title="All 8 branches missed.">    } catch (Exception ex) {</span>
-<span class="nc" id="L252">      System.out.println(&quot;ERROR: Exception during call on server. Check log for details.&quot;);</span>
-<span class="nc" id="L253">      LOG.error(ex, &quot;Exception during call on server.&quot;);</span>
-<span class="nc" id="L254">    }</span>
+<span class="nc bnc" id="L246" title="All 8 branches missed.">    } catch (Exception ex) {</span>
+<span class="nc" id="L247">      System.out.println(&quot;ERROR: Exception during call on server. Check log for details.&quot;);</span>
+<span class="nc" id="L248">      LOG.error(ex, &quot;Exception during call on server.&quot;);</span>
+<span class="nc" id="L249">    }</span>
 
-<span class="nc" id="L256">    return conversations;</span>
+<span class="nc" id="L251">    return conversations;</span>
   }
 
   @Override
   public Collection&lt;Conversation&gt; getConversations(String filter) {
 
-<span class="nc" id="L262">    final Collection&lt;Conversation&gt; conversations = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L257">    final Collection&lt;Conversation&gt; conversations = new ArrayList&lt;&gt;();</span>
 
-<span class="nc" id="L264">    try (final Connection connection = source.connect()) {</span>
+<span class="nc" id="L259">    try (final Connection connection = source.connect()) {</span>
 
-<span class="nc" id="L266">      Serializers.INTEGER.write(connection.out(), NetworkCode.GET_CONVERSATIONS_BY_TITLE_REQUEST);</span>
-<span class="nc" id="L267">      Serializers.STRING.write(connection.out(), filter);</span>
+<span class="nc" id="L261">      Serializers.INTEGER.write(connection.out(), NetworkCode.GET_CONVERSATIONS_BY_TITLE_REQUEST);</span>
+<span class="nc" id="L262">      Serializers.STRING.write(connection.out(), filter);</span>
 
-<span class="nc bnc" id="L269" title="All 2 branches missed.">      if (Serializers.INTEGER.read(connection.in()) == NetworkCode.GET_CONVERSATIONS_BY_TITLE_RESPONSE) {</span>
-<span class="nc" id="L270">        conversations.addAll(Serializers.collection(Conversation.SERIALIZER).read(connection.in()));</span>
+<span class="nc bnc" id="L264" title="All 2 branches missed.">      if (Serializers.INTEGER.read(connection.in()) == NetworkCode.GET_CONVERSATIONS_BY_TITLE_RESPONSE) {</span>
+<span class="nc" id="L265">        conversations.addAll(Serializers.collection(Conversation.SERIALIZER).read(connection.in()));</span>
       } else {
-<span class="nc" id="L272">        LOG.error(&quot;Response from server failed.&quot;);</span>
+<span class="nc" id="L267">        LOG.error(&quot;Response from server failed.&quot;);</span>
       }
-<span class="nc bnc" id="L274" title="All 8 branches missed.">    } catch (Exception ex) {</span>
-<span class="nc" id="L275">      System.out.println(&quot;ERROR: Exception during call on server. Check log for details.&quot;);</span>
-<span class="nc" id="L276">      LOG.error(ex, &quot;Exception during call on server.&quot;);</span>
-<span class="nc" id="L277">    }</span>
+<span class="nc bnc" id="L269" title="All 8 branches missed.">    } catch (Exception ex) {</span>
+<span class="nc" id="L270">      System.out.println(&quot;ERROR: Exception during call on server. Check log for details.&quot;);</span>
+<span class="nc" id="L271">      LOG.error(ex, &quot;Exception during call on server.&quot;);</span>
+<span class="nc" id="L272">    }</span>
 
-<span class="nc" id="L279">    return conversations;</span>
+<span class="nc" id="L274">    return conversations;</span>
   }
 
   @Override
   public Collection&lt;Group&gt; getGroups(Time start, Time end) {
 
-<span class="nc" id="L285">    final Collection&lt;Group&gt; groups = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L280">    final Collection&lt;Group&gt; groups = new ArrayList&lt;&gt;();</span>
 
-<span class="nc" id="L287">    try (final Connection connection = source.connect()) {</span>
+<span class="nc" id="L282">    try (final Connection connection = source.connect()) {</span>
 
-<span class="nc" id="L289">      Serializers.INTEGER.write(connection.out(), NetworkCode.GET_GROUPS_BY_TIME_REQUEST);</span>
-<span class="nc" id="L290">      Time.SERIALIZER.write(connection.out(), start);</span>
-<span class="nc" id="L291">      Time.SERIALIZER.write(connection.out(), end);</span>
+<span class="nc" id="L284">      Serializers.INTEGER.write(connection.out(), NetworkCode.GET_GROUPS_BY_TIME_REQUEST);</span>
+<span class="nc" id="L285">      Time.SERIALIZER.write(connection.out(), start);</span>
+<span class="nc" id="L286">      Time.SERIALIZER.write(connection.out(), end);</span>
 
-<span class="nc bnc" id="L293" title="All 2 branches missed.">      if (Serializers.INTEGER.read(connection.in()) == NetworkCode.GET_CONVERSATIONS_BY_TIME_RESPONSE) {</span>
-<span class="nc" id="L294">        groups.addAll(Serializers.collection(Group.SERIALIZER).read(connection.in()));</span>
+<span class="nc bnc" id="L288" title="All 2 branches missed.">      if (Serializers.INTEGER.read(connection.in()) == NetworkCode.GET_CONVERSATIONS_BY_TIME_RESPONSE) {</span>
+<span class="nc" id="L289">        groups.addAll(Serializers.collection(Group.SERIALIZER).read(connection.in()));</span>
       } else {
-<span class="nc" id="L296">        LOG.error(&quot;Response from server failed.&quot;);</span>
+<span class="nc" id="L291">        LOG.error(&quot;Response from server failed.&quot;);</span>
       }
-<span class="nc bnc" id="L298" title="All 8 branches missed.">    } catch (Exception ex) {</span>
-<span class="nc" id="L299">      System.out.println(&quot;ERROR: Exception during call on server. Check log for details.&quot;);</span>
-<span class="nc" id="L300">      LOG.error(ex, &quot;Exception during call on server.&quot;);</span>
-<span class="nc" id="L301">    }</span>
+<span class="nc bnc" id="L293" title="All 8 branches missed.">    } catch (Exception ex) {</span>
+<span class="nc" id="L294">      System.out.println(&quot;ERROR: Exception during call on server. Check log for details.&quot;);</span>
+<span class="nc" id="L295">      LOG.error(ex, &quot;Exception during call on server.&quot;);</span>
+<span class="nc" id="L296">    }</span>
 
-<span class="nc" id="L303">    return groups;</span>
+<span class="nc" id="L298">    return groups;</span>
   }
 
   @Override
   public Collection&lt;Group&gt; getGroups(String filter) {
 
-<span class="nc" id="L309">    final Collection&lt;Group&gt; groups = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L304">    final Collection&lt;Group&gt; groups = new ArrayList&lt;&gt;();</span>
 
-<span class="nc" id="L311">    try (final Connection connection = source.connect()) {</span>
+<span class="nc" id="L306">    try (final Connection connection = source.connect()) {</span>
 
-<span class="nc" id="L313">      Serializers.INTEGER.write(connection.out(), NetworkCode.GET_GROUPS_BY_TITLE_REQUEST);</span>
-<span class="nc" id="L314">      Serializers.STRING.write(connection.out(), filter);</span>
+<span class="nc" id="L308">      Serializers.INTEGER.write(connection.out(), NetworkCode.GET_GROUPS_BY_TITLE_REQUEST);</span>
+<span class="nc" id="L309">      Serializers.STRING.write(connection.out(), filter);</span>
 
-<span class="nc bnc" id="L316" title="All 2 branches missed.">      if (Serializers.INTEGER.read(connection.in()) == NetworkCode.GET_GROUPS_BY_TITLE_RESPONSE) {</span>
-<span class="nc" id="L317">        groups.addAll(Serializers.collection(Group.SERIALIZER).read(connection.in()));</span>
+<span class="nc bnc" id="L311" title="All 2 branches missed.">      if (Serializers.INTEGER.read(connection.in()) == NetworkCode.GET_GROUPS_BY_TITLE_RESPONSE) {</span>
+<span class="nc" id="L312">        groups.addAll(Serializers.collection(Group.SERIALIZER).read(connection.in()));</span>
       } else {
-<span class="nc" id="L319">        LOG.error(&quot;Response from server failed.&quot;);</span>
+<span class="nc" id="L314">        LOG.error(&quot;Response from server failed.&quot;);</span>
       }
-<span class="nc bnc" id="L321" title="All 8 branches missed.">    } catch (Exception ex) {</span>
-<span class="nc" id="L322">      System.out.println(&quot;ERROR: Exception during call on server. Check log for details.&quot;);</span>
-<span class="nc" id="L323">      LOG.error(ex, &quot;Exception during call on server.&quot;);</span>
-<span class="nc" id="L324">    }</span>
+<span class="nc bnc" id="L316" title="All 8 branches missed.">    } catch (Exception ex) {</span>
+<span class="nc" id="L317">      System.out.println(&quot;ERROR: Exception during call on server. Check log for details.&quot;);</span>
+<span class="nc" id="L318">      LOG.error(ex, &quot;Exception during call on server.&quot;);</span>
+<span class="nc" id="L319">    }</span>
 
-<span class="nc" id="L326">    return groups;</span>
+<span class="nc" id="L321">    return groups;</span>
   }
 
   @Override
   public Collection&lt;Message&gt; getMessages(Uuid conversation, Time start, Time end) {
 
-<span class="nc" id="L332">    final Collection&lt;Message&gt; messages = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L327">    final Collection&lt;Message&gt; messages = new ArrayList&lt;&gt;();</span>
 
-<span class="nc" id="L334">    try (final Connection connection = source.connect()) {</span>
+<span class="nc" id="L329">    try (final Connection connection = source.connect()) {</span>
 
-<span class="nc" id="L336">      Serializers.INTEGER.write(connection.out(), NetworkCode.GET_MESSAGES_BY_TIME_REQUEST);</span>
-<span class="nc" id="L337">      Time.SERIALIZER.write(connection.out(), start);</span>
-<span class="nc" id="L338">      Time.SERIALIZER.write(connection.out(), end);</span>
+<span class="nc" id="L331">      Serializers.INTEGER.write(connection.out(), NetworkCode.GET_MESSAGES_BY_TIME_REQUEST);</span>
+<span class="nc" id="L332">      Time.SERIALIZER.write(connection.out(), start);</span>
+<span class="nc" id="L333">      Time.SERIALIZER.write(connection.out(), end);</span>
 
-<span class="nc bnc" id="L340" title="All 2 branches missed.">      if (Serializers.INTEGER.read(connection.in()) == NetworkCode.GET_MESSAGES_BY_TIME_RESPONSE) {</span>
-<span class="nc" id="L341">        messages.addAll(Serializers.collection(Message.SERIALIZER).read(connection.in()));</span>
+<span class="nc bnc" id="L335" title="All 2 branches missed.">      if (Serializers.INTEGER.read(connection.in()) == NetworkCode.GET_MESSAGES_BY_TIME_RESPONSE) {</span>
+<span class="nc" id="L336">        messages.addAll(Serializers.collection(Message.SERIALIZER).read(connection.in()));</span>
       } else {
-<span class="nc" id="L343">        LOG.error(&quot;Response from server failed.&quot;);</span>
+<span class="nc" id="L338">        LOG.error(&quot;Response from server failed.&quot;);</span>
       }
 
-<span class="nc bnc" id="L346" title="All 8 branches missed.">    } catch (Exception ex) {</span>
-<span class="nc" id="L347">      System.out.println(&quot;ERROR: Exception during call on server. Check log for details.&quot;);</span>
-<span class="nc" id="L348">      LOG.error(ex, &quot;Exception during call on server.&quot;);</span>
-<span class="nc" id="L349">    }</span>
+<span class="nc bnc" id="L341" title="All 8 branches missed.">    } catch (Exception ex) {</span>
+<span class="nc" id="L342">      System.out.println(&quot;ERROR: Exception during call on server. Check log for details.&quot;);</span>
+<span class="nc" id="L343">      LOG.error(ex, &quot;Exception during call on server.&quot;);</span>
+<span class="nc" id="L344">    }</span>
 
-<span class="nc" id="L351">    return messages;</span>
+<span class="nc" id="L346">    return messages;</span>
   }
 
   @Override
   public Collection&lt;Message&gt; getMessages(Uuid rootMessage, int range) {
 
-<span class="nc" id="L357">    final Collection&lt;Message&gt; messages = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L352">    final Collection&lt;Message&gt; messages = new ArrayList&lt;&gt;();</span>
 
-<span class="nc" id="L359">    try (final Connection connection = source.connect()) {</span>
+<span class="nc" id="L354">    try (final Connection connection = source.connect()) {</span>
 
-<span class="nc" id="L361">      Serializers.INTEGER.write(connection.out(), NetworkCode.GET_MESSAGES_BY_RANGE_REQUEST);</span>
-<span class="nc" id="L362">      Uuid.SERIALIZER.write(connection.out(), rootMessage);</span>
-<span class="nc" id="L363">      Serializers.INTEGER.write(connection.out(), range);</span>
+<span class="nc" id="L356">      Serializers.INTEGER.write(connection.out(), NetworkCode.GET_MESSAGES_BY_RANGE_REQUEST);</span>
+<span class="nc" id="L357">      Uuid.SERIALIZER.write(connection.out(), rootMessage);</span>
+<span class="nc" id="L358">      Serializers.INTEGER.write(connection.out(), range);</span>
 
-<span class="nc bnc" id="L365" title="All 2 branches missed.">      if (Serializers.INTEGER.read(connection.in()) == NetworkCode.GET_MESSAGES_BY_RANGE_RESPONSE) {</span>
-<span class="nc" id="L366">        messages.addAll(Serializers.collection(Message.SERIALIZER).read(connection.in()));</span>
+<span class="nc bnc" id="L360" title="All 2 branches missed.">      if (Serializers.INTEGER.read(connection.in()) == NetworkCode.GET_MESSAGES_BY_RANGE_RESPONSE) {</span>
+<span class="nc" id="L361">        messages.addAll(Serializers.collection(Message.SERIALIZER).read(connection.in()));</span>
       } else {
-<span class="nc" id="L368">        LOG.error(&quot;Response from server failed.&quot;);</span>
+<span class="nc" id="L363">        LOG.error(&quot;Response from server failed.&quot;);</span>
       }
 
-<span class="nc bnc" id="L371" title="All 8 branches missed.">    } catch (Exception ex) {</span>
-<span class="nc" id="L372">      System.out.println(&quot;ERROR: Exception during call on server. Check log for details.&quot;);</span>
-<span class="nc" id="L373">      LOG.error(ex, &quot;Exception during call on server.&quot;);</span>
-<span class="nc" id="L374">    }</span>
+<span class="nc bnc" id="L366" title="All 8 branches missed.">    } catch (Exception ex) {</span>
+<span class="nc" id="L367">      System.out.println(&quot;ERROR: Exception during call on server. Check log for details.&quot;);</span>
+<span class="nc" id="L368">      LOG.error(ex, &quot;Exception during call on server.&quot;);</span>
+<span class="nc" id="L369">    }</span>
 
-<span class="nc" id="L376">    return messages;</span>
+<span class="nc" id="L371">    return messages;</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

@@ -32,53 +32,18 @@ import javafx.application.Application;
 
   public static void main(String [] args) {
 
-/*    try {
-      Logger.enableFileOutput(&quot;chat_better_gui_client_log.log&quot;);
-    } catch (IOException ex) {
-      LOG.error(ex, &quot;Failed to set logger to write to file&quot;);
-    }
+<span class="nc" id="L35">      final String host = System.getProperty(&quot;host&quot;);</span>
+<span class="nc" id="L36">      final int myPort = Integer.parseInt(System.getProperty(&quot;port&quot;));</span>
+<span class="nc" id="L37">      final String myAddress = host+&quot;@&quot;+myPort;</span>
 
-    LOG.info(&quot;============================= START OF LOG =============================&quot;);
-
-    LOG.info(&quot;Starting chat client...&quot;);
-
-    // Start up server connection/interface.
-
-    final RemoteAddress address = RemoteAddress.parse(args[0]);
-
-    try (
-      final ConnectionSource source = new ClientConnectionSource(address.host, address.port)
-    ) {
-      final Controller controller = new Controller(source);
-      final View view = new View(source);
-
-      LOG.info(&quot;Creating client...&quot;);
-
-      runClient(controller, view);
-
-    } catch (Exception ex) {
-      System.out.println(&quot;ERROR: Exception setting up client. Check log for details.&quot;);
-      LOG.error(ex, &quot;Exception setting up client.&quot;);
-    }*/
-<span class="nc" id="L63">      final String host = System.getProperty(&quot;host&quot;);</span>
-<span class="nc" id="L64">      final int myPort = Integer.parseInt(System.getProperty(&quot;port&quot;));</span>
-<span class="nc" id="L65">      final String myAddress = host+&quot;@&quot;+myPort;</span>
-
-<span class="nc" id="L67">      Application.launch(ChatBetterGui.class, myAddress);</span>
-<span class="nc" id="L68">  }</span>
+<span class="nc" id="L39">      Application.launch(ChatBetterGui.class, myAddress);</span>
+<span class="nc" id="L40">  }</span>
 
   private static void runClient(Controller controller, View view) {
 
-    //final ChatSimpleGui chatSimpleGui = new ChatSimpleGui(controller, view);
-    //final ChatBetterGui chatSimpleGui = new ChatBetterGui(controller, view);
+<span class="nc" id="L44">    LOG.info(&quot;Created client&quot;);</span>
 
-
-
-<span class="nc" id="L77">    LOG.info(&quot;Created client&quot;);</span>
-
-    //chatSimpleGui.run();
-
-<span class="nc" id="L81">    LOG.info(&quot;chat client is running.&quot;);</span>
-<span class="nc" id="L82">  }</span>
+<span class="nc" id="L46">    LOG.info(&quot;chat client is running.&quot;);</span>
+<span class="nc" id="L47">  }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

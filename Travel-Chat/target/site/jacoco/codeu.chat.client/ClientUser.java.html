@@ -55,208 +55,198 @@ public final class ClientUser {
 
 <span class="nc" id="L56">  private User current = null;</span>
 
-  // private final Map&lt;String, User&gt; usersByUsername = new HashMap&lt;&gt;();
-  // private final Map&lt;Uuid, User&gt; usersById = new HashMap&lt;&gt;();
 
   // This is the set of users known to the server, sorted by name.
-<span class="nc" id="L62">  private Store&lt;Uuid, User&gt; usersById = new Store&lt;&gt;(UUID_COMPARE);</span>
-<span class="nc" id="L63">  private Store&lt;String, User&gt; usersByName = new Store&lt;&gt;(String.CASE_INSENSITIVE_ORDER);</span>
-<span class="nc" id="L64">  private Store&lt;String, User&gt; usersByNickname = new Store&lt;&gt;(String.CASE_INSENSITIVE_ORDER);</span>
+<span class="nc" id="L60">  private Store&lt;Uuid, User&gt; usersById = new Store&lt;&gt;(UUID_COMPARE);</span>
+<span class="nc" id="L61">  private Store&lt;String, User&gt; usersByName = new Store&lt;&gt;(String.CASE_INSENSITIVE_ORDER);</span>
+<span class="nc" id="L62">  private Store&lt;String, User&gt; usersByNickname = new Store&lt;&gt;(String.CASE_INSENSITIVE_ORDER);</span>
 
-<span class="nc" id="L66">  public ClientUser(Controller controller, View view) {</span>
-<span class="nc" id="L67">    this.controller = controller;</span>
-<span class="nc" id="L68">    this.view = view;</span>
-<span class="nc" id="L69">  }</span>
+<span class="nc" id="L64">  public ClientUser(Controller controller, View view) {</span>
+<span class="nc" id="L65">    this.controller = controller;</span>
+<span class="nc" id="L66">    this.view = view;</span>
+<span class="nc" id="L67">  }</span>
 
-  // TODO: Decide what to do with existed name and nickname
 
   // Validate the username string
   static public boolean isValidName(String userName) {
-<span class="nc" id="L75">    boolean clean = true;</span>
-<span class="nc bnc" id="L76" title="All 2 branches missed.">    if (userName.length() == 0) {</span>
-<span class="nc" id="L77">      clean = false;</span>
+<span class="nc" id="L72">    boolean clean = true;</span>
+<span class="nc bnc" id="L73" title="All 2 branches missed.">    if (userName.length() == 0) {</span>
+<span class="nc" id="L74">      clean = false;</span>
     } else {
 
       // only accepts names that contain alphabets and spaces.
-<span class="nc" id="L81">      Pattern validPattern = Pattern.compile(&quot;^[ A-z]+$&quot;);</span>
-<span class="nc" id="L82">      Matcher match = validPattern.matcher(userName);</span>
-<span class="nc" id="L83">      clean = match.matches();</span>
+<span class="nc" id="L78">      Pattern validPattern = Pattern.compile(&quot;^[ A-z]+$&quot;);</span>
+<span class="nc" id="L79">      Matcher match = validPattern.matcher(userName);</span>
+<span class="nc" id="L80">      clean = match.matches();</span>
 
     }
-<span class="nc" id="L86">    return clean;</span>
+<span class="nc" id="L83">    return clean;</span>
   }
 
   // Check if this userName has already existed
   public boolean ifExistedName(String userName) {
-<span class="nc" id="L91">    updateUsers();</span>
-<span class="nc" id="L92">    final User user = usersByName.first(userName);</span>
-<span class="nc bnc" id="L93" title="All 2 branches missed.">    return (user != null);</span>
+<span class="nc" id="L88">    updateUsers();</span>
+<span class="nc" id="L89">    final User user = usersByName.first(userName);</span>
+<span class="nc bnc" id="L90" title="All 2 branches missed.">    return (user != null);</span>
   }
 
   // Validate the nickname string
   static public boolean isValidNickname(String nickname) {
     //TODO: check for valid nickname
-<span class="nc" id="L99">    return true;</span>
+<span class="nc" id="L96">    return true;</span>
   }
   
   // Check if this nickname has already existed
   public boolean ifExistedNickname(String nickname) {
     // TODO: check for existed nickname
-<span class="nc" id="L105">    return false;</span>
+<span class="nc" id="L102">    return false;</span>
   }
 
   public boolean hasCurrent() {
-<span class="nc bnc" id="L109" title="All 2 branches missed.">    return (current != null);</span>
+<span class="nc bnc" id="L106" title="All 2 branches missed.">    return (current != null);</span>
   }
 
   public User getCurrent() {
-<span class="nc" id="L113">    return current;</span>
+<span class="nc" id="L110">    return current;</span>
   }
 
   public boolean signInUser(String name, String pass) {
-    // System.out.println(&quot;Pass in signInUser &quot;+ pass);
-<span class="nc" id="L118">    updateUsers();</span>
-<span class="nc" id="L119">    final User prev = current;</span>
-<span class="nc bnc" id="L120" title="All 2 branches missed.">    if (name != null) {</span>
-<span class="nc" id="L121">      final User newCurrent = usersByName.first(name);</span>
-<span class="nc" id="L122">      final boolean ifCorrectPassword = controller.ifCorrectPassword(newCurrent, pass);</span>
-<span class="nc bnc" id="L123" title="All 4 branches missed.">      if (newCurrent != null &amp;&amp; ifCorrectPassword) {</span>
-<span class="nc" id="L124">        current = newCurrent;</span>
+<span class="nc" id="L114">    updateUsers();</span>
+<span class="nc" id="L115">    final User prev = current;</span>
+<span class="nc bnc" id="L116" title="All 2 branches missed.">    if (name != null) {</span>
+<span class="nc" id="L117">      final User newCurrent = usersByName.first(name);</span>
+<span class="nc" id="L118">      final boolean ifCorrectPassword = controller.ifCorrectPassword(newCurrent, pass);</span>
+<span class="nc bnc" id="L119" title="All 4 branches missed.">      if (newCurrent != null &amp;&amp; ifCorrectPassword) {</span>
+<span class="nc" id="L120">        current = newCurrent;</span>
       }
     }
-<span class="nc bnc" id="L127" title="All 2 branches missed.">    return (prev != current);</span>
+<span class="nc bnc" id="L123" title="All 2 branches missed.">    return (prev != current);</span>
   }
 
   public boolean signOutUser() {
-<span class="nc" id="L131">    boolean hadCurrent = hasCurrent();</span>
-<span class="nc" id="L132">    current = null;</span>
-<span class="nc" id="L133">    return hadCurrent;</span>
+<span class="nc" id="L127">    boolean hadCurrent = hasCurrent();</span>
+<span class="nc" id="L128">    current = null;</span>
+<span class="nc" id="L129">    return hadCurrent;</span>
   }
 
   public void showCurrent() {
-<span class="nc" id="L137">    updateUsers();</span>
-<span class="nc" id="L138">    printUser(usersById.first(current.id));</span>
-<span class="nc" id="L139">  }</span>
+<span class="nc" id="L133">    updateUsers();</span>
+<span class="nc" id="L134">    printUser(usersById.first(current.id));</span>
+<span class="nc" id="L135">  }</span>
 
   public void addUser(String name) {
-<span class="nc" id="L142">    addUser(name, &quot;&quot;, &quot;&quot;);</span>
-<span class="nc" id="L143">  }</span>
+<span class="nc" id="L138">    addUser(name, &quot;&quot;, &quot;&quot;);</span>
+<span class="nc" id="L139">  }</span>
 
   public Boolean addUser(String name, String nickname, String pass) {
-<span class="nc bnc" id="L146" title="All 4 branches missed.">    final boolean validInputs = isValidName(name) &amp;&amp; isValidNickname(nickname);</span>
-<span class="nc bnc" id="L147" title="All 4 branches missed.">    final boolean existed = ifExistedName(name) || ifExistedNickname(nickname);</span>
-<span class="nc bnc" id="L148" title="All 4 branches missed.">    final boolean valid = (validInputs &amp;&amp; !existed);</span>
+<span class="nc bnc" id="L142" title="All 4 branches missed.">    final boolean validInputs = isValidName(name) &amp;&amp; isValidNickname(nickname);</span>
+<span class="nc bnc" id="L143" title="All 4 branches missed.">    final boolean existed = ifExistedName(name) || ifExistedNickname(nickname);</span>
+<span class="nc bnc" id="L144" title="All 4 branches missed.">    final boolean valid = (validInputs &amp;&amp; !existed);</span>
 
-<span class="nc bnc" id="L150" title="All 2 branches missed.">    final User user = !valid ? null : controller.newUser(name, nickname, pass);</span>
+<span class="nc bnc" id="L146" title="All 2 branches missed.">    final User user = !valid ? null : controller.newUser(name, nickname, pass);</span>
 
-    // System.out.println(&quot;in addUser clientUser&quot;);
-
-<span class="nc bnc" id="L154" title="All 2 branches missed.">    if (user == null) {</span>
-<span class="nc bnc" id="L155" title="All 2 branches missed.">      System.out.format(&quot;Error: user not created - %s.\n&quot;,</span>
-<span class="nc bnc" id="L156" title="All 2 branches missed.">          (!validInputs) ? &quot;bad input value&quot; : ((existed) ? &quot;existed username/nickname&quot; : &quot;server failure&quot;));</span>
+<span class="nc bnc" id="L148" title="All 2 branches missed.">    if (user == null) {</span>
+<span class="nc bnc" id="L149" title="All 2 branches missed.">      System.out.format(&quot;Error: user not created - %s.\n&quot;,</span>
+<span class="nc bnc" id="L150" title="All 2 branches missed.">          (!validInputs) ? &quot;bad input value&quot; : ((existed) ? &quot;existed username/nickname&quot; : &quot;server failure&quot;));</span>
     } else {
-<span class="nc" id="L158">      LOG.info(&quot;New user complete, Name= \&quot;%s\&quot; Nickname= \&quot;%s\&quot; UUID=%s&quot;, user.name, user.nickname, user.id);</span>
-      // usersByUsername.put(user.name, user);
-<span class="nc" id="L160">      updateUsers();</span>
-<span class="nc" id="L161">      return true;</span>
+<span class="nc" id="L152">      LOG.info(&quot;New user complete, Name= \&quot;%s\&quot; Nickname= \&quot;%s\&quot; UUID=%s&quot;, user.name, user.nickname, user.id);</span>
+<span class="nc" id="L153">      updateUsers();</span>
+<span class="nc" id="L154">      return true;</span>
     }
-<span class="nc" id="L163">    return false;</span>
+<span class="nc" id="L156">    return false;</span>
   }
 
   public void addNickname(String name) {
-<span class="nc" id="L167">    final boolean validInputs = isValidNickname(name);</span>
-<span class="nc" id="L168">    final boolean existed = ifExistedNickname(name);</span>
+<span class="nc" id="L160">    final boolean validInputs = isValidNickname(name);</span>
+<span class="nc" id="L161">    final boolean existed = ifExistedNickname(name);</span>
 
-<span class="nc bnc" id="L170" title="All 4 branches missed.">    final boolean valid = (validInputs &amp;&amp; !existed);</span>
+<span class="nc bnc" id="L163" title="All 4 branches missed.">    final boolean valid = (validInputs &amp;&amp; !existed);</span>
 
-<span class="nc bnc" id="L172" title="All 2 branches missed.">    if (current == null){</span>
-<span class="nc" id="L173">      System.out.println(&quot;Please sign in before setting nickname&quot;);</span>
-<span class="nc bnc" id="L174" title="All 2 branches missed.">    } else if (!valid) {</span>
-<span class="nc bnc" id="L175" title="All 2 branches missed.">      System.out.format(&quot;Error: nickname not added - %s.\n&quot;,</span>
-<span class="nc bnc" id="L176" title="All 2 branches missed.">          (!validInputs) ? &quot;bad input value&quot; : ((existed) ? &quot;existed nickname&quot; : &quot;server failure&quot;));</span>
+<span class="nc bnc" id="L165" title="All 2 branches missed.">    if (current == null){</span>
+<span class="nc" id="L166">      System.out.println(&quot;Please sign in before setting nickname&quot;);</span>
+<span class="nc bnc" id="L167" title="All 2 branches missed.">    } else if (!valid) {</span>
+<span class="nc bnc" id="L168" title="All 2 branches missed.">      System.out.format(&quot;Error: nickname not added - %s.\n&quot;,</span>
+<span class="nc bnc" id="L169" title="All 2 branches missed.">          (!validInputs) ? &quot;bad input value&quot; : ((existed) ? &quot;existed nickname&quot; : &quot;server failure&quot;));</span>
     } else {
-<span class="nc" id="L178">      final boolean response = controller.setNickname(current, name);</span>
-<span class="nc bnc" id="L179" title="All 2 branches missed.">      if (response){</span>
-<span class="nc" id="L180">        LOG.info(&quot;Nickname added complete for the current user, Name= \&quot;%s\&quot; Nickname= \&quot;%s\&quot; UUID=%s&quot;, current.name, current.nickname, current.id);</span>
-<span class="nc" id="L181">        updateUsers();</span>
+<span class="nc" id="L171">      final boolean response = controller.setNickname(current, name);</span>
+<span class="nc bnc" id="L172" title="All 2 branches missed.">      if (response){</span>
+<span class="nc" id="L173">        LOG.info(&quot;Nickname added complete for the current user, Name= \&quot;%s\&quot; Nickname= \&quot;%s\&quot; UUID=%s&quot;, current.name, current.nickname, current.id);</span>
+<span class="nc" id="L174">        updateUsers();</span>
       }
       else{
-<span class="nc" id="L184">        LOG.info(&quot;Cannot set nickname&quot;);</span>
+<span class="nc" id="L177">        LOG.info(&quot;Cannot set nickname&quot;);</span>
       }
     }
-<span class="nc" id="L187">  }</span>
+<span class="nc" id="L180">  }</span>
 
   public void deleteUser(String name) {
     
-    // check if user exists in the system OR usersById.containsKey(id)
-<span class="nc" id="L192">    updateUsers();</span>
+<span class="nc" id="L184">    updateUsers();</span>
 
-<span class="nc bnc" id="L194" title="All 2 branches missed.">    if (usersByName.first(name) != null) {</span>
-<span class="nc" id="L195">      final User user = controller.deleteUser(name);</span>
-<span class="nc bnc" id="L196" title="All 2 branches missed.">      if (user == null) {</span>
-<span class="nc" id="L197">        System.out.format(&quot;Error: user not deleted - server failure&quot;);</span>
+<span class="nc bnc" id="L186" title="All 2 branches missed.">    if (usersByName.first(name) != null) {</span>
+<span class="nc" id="L187">      final User user = controller.deleteUser(name);</span>
+<span class="nc bnc" id="L188" title="All 2 branches missed.">      if (user == null) {</span>
+<span class="nc" id="L189">        System.out.format(&quot;Error: user not deleted - server failure&quot;);</span>
       } else {
-<span class="nc" id="L199">        LOG.info(&quot;Remove user complete, Name=\&quot;%s\&quot; UUID=%s&quot;, user.name, user.id);</span>
-<span class="nc" id="L200">        updateUsers();</span>
+<span class="nc" id="L191">        LOG.info(&quot;Remove user complete, Name=\&quot;%s\&quot; UUID=%s&quot;, user.name, user.id);</span>
+<span class="nc" id="L192">        updateUsers();</span>
       }
-<span class="nc" id="L202">    } else {</span>
-<span class="nc" id="L203">      System.out.format(&quot;Error: user not deleted - user not found, check input!&quot;);</span>
+<span class="nc" id="L194">    } else {</span>
+<span class="nc" id="L195">      System.out.format(&quot;Error: user not deleted - user not found, check input!&quot;);</span>
     }
-<span class="nc" id="L205">  }</span>
+<span class="nc" id="L197">  }</span>
 
   public void showAllUsers() {
-<span class="nc" id="L208">    updateUsers();</span>
-<span class="nc bnc" id="L209" title="All 2 branches missed.">    for (final User u : usersByName.all()) {</span>
-<span class="nc" id="L210">      printUser(u);</span>
-<span class="nc" id="L211">    }</span>
-<span class="nc" id="L212">  }</span>
+<span class="nc" id="L200">    updateUsers();</span>
+<span class="nc bnc" id="L201" title="All 2 branches missed.">    for (final User u : usersByName.all()) {</span>
+<span class="nc" id="L202">      printUser(u);</span>
+<span class="nc" id="L203">    }</span>
+<span class="nc" id="L204">  }</span>
 
   public User lookup(Uuid id) {
-<span class="nc" id="L215">    updateUsers();</span>
-    // return (usersById.containsKey(id)) ? usersById.get(id) : null;
-<span class="nc" id="L217">    return usersById.first(id);</span>
+<span class="nc" id="L207">    updateUsers();</span>
+<span class="nc" id="L208">    return usersById.first(id);</span>
   }
 
   public String getName(Uuid id) {
-<span class="nc" id="L221">    updateUsers();</span>
-<span class="nc" id="L222">    final User user = lookup(id);</span>
-<span class="nc bnc" id="L223" title="All 2 branches missed.">    if (user == null) {</span>
-<span class="nc" id="L224">      LOG.warning(&quot;userContext.lookup() failed on ID: %s&quot;, id);</span>
-<span class="nc" id="L225">      return null;</span>
+<span class="nc" id="L212">    updateUsers();</span>
+<span class="nc" id="L213">    final User user = lookup(id);</span>
+<span class="nc bnc" id="L214" title="All 2 branches missed.">    if (user == null) {</span>
+<span class="nc" id="L215">      LOG.warning(&quot;userContext.lookup() failed on ID: %s&quot;, id);</span>
+<span class="nc" id="L216">      return null;</span>
     } else {
-<span class="nc" id="L227">      return user.name;</span>
+<span class="nc" id="L218">      return user.name;</span>
     }
   }
 
   public Iterable&lt;User&gt; getUsers() {
-<span class="nc" id="L232">    updateUsers();</span>
-<span class="nc" id="L233">    return usersByName.all();</span>
+<span class="nc" id="L223">    updateUsers();</span>
+<span class="nc" id="L224">    return usersByName.all();</span>
   }
 
   public void updateUsers() {
-<span class="nc" id="L237">    usersById = new Store&lt;&gt;(UUID_COMPARE);</span>
-<span class="nc" id="L238">    usersByName = new Store&lt;&gt;(String.CASE_INSENSITIVE_ORDER);</span>
-<span class="nc" id="L239">    usersByNickname = new Store&lt;&gt;(String.CASE_INSENSITIVE_ORDER);</span>
+<span class="nc" id="L228">    usersById = new Store&lt;&gt;(UUID_COMPARE);</span>
+<span class="nc" id="L229">    usersByName = new Store&lt;&gt;(String.CASE_INSENSITIVE_ORDER);</span>
+<span class="nc" id="L230">    usersByNickname = new Store&lt;&gt;(String.CASE_INSENSITIVE_ORDER);</span>
 
-<span class="nc bnc" id="L241" title="All 2 branches missed.">    for (final User user : view.getUsersExcluding(EMPTY)) {</span>
-<span class="nc" id="L242">      usersById.insert(user.id, user);</span>
-<span class="nc" id="L243">      usersByName.insert(user.name, user);</span>
-<span class="nc" id="L244">      usersByNickname.insert(user.nickname, user);</span>
-<span class="nc" id="L245">    }</span>
-<span class="nc" id="L246">  }</span>
+<span class="nc bnc" id="L232" title="All 2 branches missed.">    for (final User user : view.getUsersExcluding(EMPTY)) {</span>
+<span class="nc" id="L233">      usersById.insert(user.id, user);</span>
+<span class="nc" id="L234">      usersByName.insert(user.name, user);</span>
+<span class="nc" id="L235">      usersByNickname.insert(user.nickname, user);</span>
+<span class="nc" id="L236">    }</span>
+<span class="nc" id="L237">  }</span>
 
   public static String getUserInfoString(User user) {
-<span class="nc bnc" id="L249" title="All 2 branches missed.">    return (user == null) ? &quot;Null user&quot; :</span>
-<span class="nc" id="L250">        String.format(&quot; User: %s\n   Nickname: %s\n   Id: %s\n   created: %s\n&quot;, user.name, user.nickname, user.id, user.creation);</span>
+<span class="nc bnc" id="L240" title="All 2 branches missed.">    return (user == null) ? &quot;Null user&quot; :</span>
+<span class="nc" id="L241">        String.format(&quot; User: %s\n   Nickname: %s\n   Id: %s\n   created: %s\n&quot;, user.name, user.nickname, user.id, user.creation);</span>
   }
 
   public String showUserInfo(String uname) {
-<span class="nc" id="L254">    return getUserInfoString(usersByName.first(uname));</span>
+<span class="nc" id="L245">    return getUserInfoString(usersByName.first(uname));</span>
   }
 
-  // Move to User's toString()
   public static void printUser(User user) {
-<span class="nc" id="L259">    System.out.println(getUserInfoString(user));</span>
-<span class="nc" id="L260">  }</span>
+<span class="nc" id="L249">    System.out.println(getUserInfoString(user));</span>
+<span class="nc" id="L250">  }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

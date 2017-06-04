@@ -85,9 +85,9 @@ public final class LoginController implements Initializable {
         String username = this.pass.getText();
         String password = this.username.getText();
 
-        //Boolean status = clientContext.user.signInUser(username, password);
+        Boolean status = clientContext.user.signInUser(username, password);
 
-       // if (status) {
+        if (status) {
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/codeu/chat/client/bettergui/MainUI.fxml"));
 
@@ -104,7 +104,7 @@ public final class LoginController implements Initializable {
 
             stage.getScene().setRoot(window2);
 
-        /*} else {
+        } else {
 
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Error!");
@@ -112,7 +112,7 @@ public final class LoginController implements Initializable {
             alert.setContentText("Entered user credentials are not correct!");
 
             alert.showAndWait();
-        }*/
+        }
 
     }
 

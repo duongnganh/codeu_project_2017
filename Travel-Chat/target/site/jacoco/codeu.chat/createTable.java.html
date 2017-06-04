@@ -36,68 +36,60 @@ import org.apache.hadoop.hbase.util.Bytes;
 
 import java.io.IOException;
 
-/**
- * A minimal application that connects to Cloud Bigtable using the native HBase API
- * and performs some basic operations.
- */
-<span class="nc" id="L43">public class createTable {</span>
+<span class="nc" id="L39">public class createTable {</span>
 
-  // Refer to table metadata names by byte array in the HBase API
-<span class="nc" id="L46">  private static final byte[] COLUMN_FAMILY_NAME = Bytes.toBytes(&quot;cf1&quot;);</span>
+<span class="nc" id="L41">  private static final byte[] COLUMN_FAMILY_NAME = Bytes.toBytes(&quot;cf1&quot;);</span>
 
-  /**
-   * Connects to Cloud Bigtable, runs some basic operations and prints the results.
-   */
   private static void create(String projectId, String instanceId, String[] tableNames) {
 
     // [START connecting_to_bigtable]
     // Create the Bigtable connection, use try-with-resources to make sure it gets closed
-<span class="nc" id="L55">    try (Connection connection = BigtableConfiguration.connect(projectId, instanceId)) {</span>
+<span class="nc" id="L47">    try (Connection connection = BigtableConfiguration.connect(projectId, instanceId)) {</span>
 
       // The admin API lets us create, manage and delete tables
-<span class="nc" id="L58">      Admin admin = connection.getAdmin();</span>
+<span class="nc" id="L50">      Admin admin = connection.getAdmin();</span>
       // [END connecting_to_bigtable]
 
       // [START creating_a_table]
       // Create a table with a single column family
-<span class="nc bnc" id="L63" title="All 2 branches missed.">      for (String tableName : tableNames){</span>
-<span class="nc" id="L64">        HTableDescriptor descriptor = new HTableDescriptor(TableName.valueOf(tableName));</span>
-<span class="nc" id="L65">        descriptor.addFamily(new HColumnDescriptor(COLUMN_FAMILY_NAME));</span>
+<span class="nc bnc" id="L55" title="All 2 branches missed.">      for (String tableName : tableNames){</span>
+<span class="nc" id="L56">        HTableDescriptor descriptor = new HTableDescriptor(TableName.valueOf(tableName));</span>
+<span class="nc" id="L57">        descriptor.addFamily(new HColumnDescriptor(COLUMN_FAMILY_NAME));</span>
 
-<span class="nc" id="L67">        print(&quot;Create table &quot; + descriptor.getNameAsString());</span>
-<span class="nc" id="L68">        admin.createTable(descriptor);</span>
+<span class="nc" id="L59">        print(&quot;Create table &quot; + descriptor.getNameAsString());</span>
+<span class="nc" id="L60">        admin.createTable(descriptor);</span>
       }
       // [END creating_a_table]
 
-<span class="nc bnc" id="L72" title="All 8 branches missed.">    } catch (IOException e) {</span>
-<span class="nc" id="L73">      System.err.println(&quot;Exception while running HelloWorld: &quot; + e.getMessage());</span>
-<span class="nc" id="L74">      e.printStackTrace();</span>
-<span class="nc" id="L75">      System.exit(1);</span>
-<span class="nc" id="L76">    }</span>
+<span class="nc bnc" id="L64" title="All 8 branches missed.">    } catch (IOException e) {</span>
+<span class="nc" id="L65">      System.err.println(&quot;Exception while running HelloWorld: &quot; + e.getMessage());</span>
+<span class="nc" id="L66">      e.printStackTrace();</span>
+<span class="nc" id="L67">      System.exit(1);</span>
+<span class="nc" id="L68">    }</span>
 
-<span class="nc" id="L78">    System.exit(0);</span>
-<span class="nc" id="L79">  }</span>
+<span class="nc" id="L70">    System.exit(0);</span>
+<span class="nc" id="L71">  }</span>
 
   private static void print(String msg) {
-<span class="nc" id="L82">    System.out.println(msg);</span>
-<span class="nc" id="L83">  }</span>
+<span class="nc" id="L74">    System.out.println(msg);</span>
+<span class="nc" id="L75">  }</span>
 
   public static void main(String[] args) {
-<span class="nc" id="L86">    String projectId = requiredProperty(&quot;projectId&quot;);</span>
-<span class="nc" id="L87">    String instanceId = requiredProperty(&quot;instanceId&quot;);</span>
-<span class="nc" id="L88">    String[] tableNames = </span>
-<span class="nc" id="L89">    {requiredProperty(&quot;userTable&quot;), requiredProperty(&quot;conversationTable&quot;), </span>
-<span class="nc" id="L90">    requiredProperty(&quot;groupTable&quot;), requiredProperty(&quot;messageTable&quot;)};</span>
+<span class="nc" id="L78">    String projectId = requiredProperty(&quot;projectId&quot;);</span>
+<span class="nc" id="L79">    String instanceId = requiredProperty(&quot;instanceId&quot;);</span>
+<span class="nc" id="L80">    String[] tableNames = </span>
+<span class="nc" id="L81">    {requiredProperty(&quot;userTable&quot;), requiredProperty(&quot;conversationTable&quot;), </span>
+<span class="nc" id="L82">    requiredProperty(&quot;groupTable&quot;), requiredProperty(&quot;messageTable&quot;)};</span>
 
-<span class="nc" id="L92">    create(projectId, instanceId, tableNames);</span>
-<span class="nc" id="L93">  }</span>
+<span class="nc" id="L84">    create(projectId, instanceId, tableNames);</span>
+<span class="nc" id="L85">  }</span>
 
   private static String requiredProperty(String prop) {
-<span class="nc" id="L96">    String value = System.getProperty(prop);</span>
-<span class="nc bnc" id="L97" title="All 2 branches missed.">    if (value == null) {</span>
-<span class="nc" id="L98">      throw new IllegalArgumentException(&quot;Missing required system property: &quot; + prop);</span>
+<span class="nc" id="L88">    String value = System.getProperty(prop);</span>
+<span class="nc bnc" id="L89" title="All 2 branches missed.">    if (value == null) {</span>
+<span class="nc" id="L90">      throw new IllegalArgumentException(&quot;Missing required system property: &quot; + prop);</span>
     }
-<span class="nc" id="L100">    return value;</span>
+<span class="nc" id="L92">    return value;</span>
   }
 
 }
