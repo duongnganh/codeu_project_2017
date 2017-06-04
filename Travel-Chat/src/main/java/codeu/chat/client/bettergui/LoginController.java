@@ -63,7 +63,6 @@ public final class LoginController implements Initializable {
         this.clientContext = clientContext;
     }
 
-
     @FXML
     private AnchorPane anchorPane;
 

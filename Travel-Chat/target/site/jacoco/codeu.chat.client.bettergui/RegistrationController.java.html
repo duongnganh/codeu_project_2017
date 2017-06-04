@@ -93,37 +93,50 @@ import java.util.ResourceBundle;
 <span class="nc" id="L93">        Boolean status = clientContext.user.addUser(username, nickname, password);</span>
 
 <span class="nc bnc" id="L95" title="All 2 branches missed.">        if (status) {</span>
-<span class="nc" id="L96">            Parent window1 = FXMLLoader.load(getClass().getResource(&quot;/codeu/chat/client/bettergui/MainUI.fxml&quot;));</span>
+<span class="nc" id="L96">            FXMLLoader loader = new FXMLLoader(getClass().getResource(&quot;/codeu/chat/client/bettergui/MainUI.fxml&quot;));</span>
 
-<span class="nc" id="L98">            Stage mainStage = (Stage) anchorPane.getScene().getWindow();</span>
+<span class="nc" id="L98">            Parent window2 = loader.load();</span>
 
-<span class="nc" id="L100">            mainStage.setHeight(650);</span>
-<span class="nc" id="L101">            mainStage.setWidth(800);</span>
+<span class="nc" id="L100">            MainUIController mainController = loader.getController();</span>
 
-<span class="nc" id="L103">            mainStage.getScene().setRoot(window1);</span>
-<span class="nc" id="L104">        } else {</span>
-<span class="nc" id="L105">            Alert alert = new Alert(AlertType.INFORMATION);</span>
-<span class="nc" id="L106">            alert.setTitle(&quot;Error!&quot;);</span>
-<span class="nc" id="L107">            alert.setHeaderText(null);</span>
-<span class="nc" id="L108">            alert.setContentText(&quot;Please check if you are connected to a server&quot;);</span>
-<span class="nc" id="L109">            alert.showAndWait();</span>
+<span class="nc" id="L102">            mainController.setClientContext(clientContext);</span>
+
+<span class="nc" id="L104">            Stage stage = (Stage) anchorPane.getScene().getWindow();</span>
+
+<span class="nc" id="L106">            stage.setHeight(650);</span>
+<span class="nc" id="L107">            stage.setWidth(800);</span>
+
+<span class="nc" id="L109">            stage.getScene().setRoot(window2);</span>
+<span class="nc" id="L110">        } else {</span>
+<span class="nc" id="L111">            Alert alert = new Alert(AlertType.INFORMATION);</span>
+<span class="nc" id="L112">            alert.setTitle(&quot;Error!&quot;);</span>
+<span class="nc" id="L113">            alert.setHeaderText(null);</span>
+<span class="nc" id="L114">            alert.setContentText(&quot;Please check if you are connected to a server&quot;);</span>
+<span class="nc" id="L115">            alert.showAndWait();</span>
         }
 
-<span class="nc" id="L112">    }</span>
+<span class="nc" id="L118">    }</span>
 
     @FXML
     void onBackButtonClick(ActionEvent event) throws Exception {
 
-<span class="nc" id="L117">        Parent window1 = FXMLLoader.load(getClass().getResource(&quot;/codeu/chat/client/bettergui/LoginUI.fxml&quot;));</span>
+<span class="nc" id="L123">        FXMLLoader loader = new FXMLLoader(getClass().getResource(&quot;/codeu/chat/client/bettergui/LoginUI.fxml&quot;));</span>
 
-<span class="nc" id="L119">        Stage mainStage = (Stage) anchorPane.getScene().getWindow();</span>
+<span class="nc" id="L125">        Parent window2 = loader.load();</span>
 
-<span class="nc" id="L121">        mainStage.setHeight(400);</span>
-<span class="nc" id="L122">        mainStage.setWidth(427);</span>
+<span class="nc" id="L127">        LoginController loginController = loader.getController();</span>
 
-<span class="nc" id="L124">        mainStage.getScene().setRoot(window1);</span>
+<span class="nc" id="L129">        loginController.setClientContext(clientContext);</span>
 
-<span class="nc" id="L126">    }</span>
+<span class="nc" id="L131">        Stage stage = (Stage) anchorPane.getScene().getWindow();</span>
+
+<span class="nc" id="L133">        stage.setHeight(475);</span>
+<span class="nc" id="L134">        stage.setWidth(427);</span>
+<span class="nc" id="L135">        stage.getScene().setRoot(window2);</span>
+
+
+
+<span class="nc" id="L139">    }</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

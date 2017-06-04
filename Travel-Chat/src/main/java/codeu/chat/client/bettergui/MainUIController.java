@@ -67,6 +67,8 @@ public class MainUIController implements Initializable {
 
     private final static Logger.Log LOG = Logger.newLog(MainUIController.class);
 
+    private static int counter;
+
     ClientContext clientContext;
 
     @FXML
@@ -96,27 +98,49 @@ public class MainUIController implements Initializable {
 
     @FXML
     void clickParis(ActionEvent event) {
-        LOG.info("Paris got clicked");
         city = "Paris";
         ArrayList<ArrayList<String>> a = retrieveAllMessages(this.city, this.topic);
+        listView.getItems().clear();
         for (ArrayList<String> arr : a) {
-            for (String s : arr) {
-                LOG.info(s);
-            }
+
+            String message = arr.get(1);
+            String tsp = arr.get(2);
+            String user = arr.get(0);
+
+            String msg = tsp + " - " + user  +": " + message;
+            listView.getItems().add(msg);
         }
     }
 
     @FXML
     void clickBerlin(ActionEvent event) {
-        LOG.info("Berlin got clicked");
         city = "Berlin";
         ArrayList<ArrayList<String>> a = retrieveAllMessages(this.city, this.topic);
+        listView.getItems().clear();
+        for (ArrayList<String> arr : a) {
+
+            String message = arr.get(1);
+            String tsp = arr.get(2);
+            String user = arr.get(0);
+
+            String msg = tsp + " - " + user  +": " + message;
+            listView.getItems().add(msg);
+        }
     }
     @FXML
     void clickNewYork(ActionEvent event) {
-        LOG.info("New York got clicked");
         city = "NewYork";
         ArrayList<ArrayList<String>> a = retrieveAllMessages(this.city, this.topic);
+        listView.getItems().clear();
+        for (ArrayList<String> arr : a) {
+
+            String message = arr.get(1);
+            String tsp = arr.get(2);
+            String user = arr.get(0);
+
+            String msg = tsp + " - " + user  +": " + message;
+            listView.getItems().add(msg);
+        }
     }
 
 
@@ -132,11 +156,20 @@ public class MainUIController implements Initializable {
         if (message != null) {
 
             Calendar cal = Calendar.getInstance();
-            SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+            SimpleDateFormat sdf = new SimpleDateFormat("MMM d HH:mm:ss");
 
-            listView.getItems().add( sdf.format(cal.getTime()) + ": " + message);
+            String tsp = sdf.format(cal.getTime());
 
+            String user = clientContext.user.getCurrent().getNickname();
 
+            String msg = tsp + " - " + user  +": " + message;
+
+            listView.getItems().add(msg);
+
+            this.messageView.clear();
+
+            insert(this.city, this.topic, user, message, tsp, counter);
+            counter++;
         }
     }
 
@@ -145,11 +178,21 @@ public class MainUIController implements Initializable {
     @Override
     public void initialize (URL url, ResourceBundle rb) {
 
+        counter = 0;
         ListView<String> list = new ListView<String>();
         ObservableList<String> items = FXCollections.observableArrayList (
             "Food", "Attractions", "Culture");
         conversationList.setItems(items);
         conversationList.setMinWidth(190);
+
+        ArrayList<ArrayList<String>> a = retrieveAllMessages(this.city, this.topic);
+        for (ArrayList<String> arr : a) {
+            String message = arr.get(1);
+            String tsp = arr.get(2);
+            String user = arr.get(0);
+            String msg = tsp + " - " + user  +": " + message;
+            listView.getItems().add(msg);
+        }
 
         conversationList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
             @Override
@@ -158,6 +201,16 @@ public class MainUIController implements Initializable {
                         + oldValue + " to newValue = " + newValue);
                 topic = newValue;
                 ArrayList<ArrayList<String>> a = retrieveAllMessages(city, topic);
+                listView.getItems().clear();
+                for (ArrayList<String> arr : a) {
+
+                    String message = arr.get(1);
+                    String tsp = arr.get(2);
+                    String user = arr.get(0);
+
+                    String msg = tsp + " - " + user  +": " + message;
+                    listView.getItems().add(msg);
+                }
             }
         });
 

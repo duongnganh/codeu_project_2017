@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="codeu.chat.server.RawControllerTest" time="355.517" tests="6" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="codeu.chat.server.RawControllerTest" time="77.463" tests="6" errors="0" skipped="0" failures="6">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_65.jdk/Contents/Home/jre/lib"/>
@@ -64,10 +64,1851 @@
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase name="testAddMessage" classname="codeu.chat.server.RawControllerTest" time="116.413"/>
-  <testcase name="testAddConversation" classname="codeu.chat.server.RawControllerTest" time="74.344"/>
-  <testcase name="testAddUser" classname="codeu.chat.server.RawControllerTest" time="25.622"/>
-  <testcase name="testAddGroup" classname="codeu.chat.server.RawControllerTest" time="44.645"/>
-  <testcase name="testDeleteUser" classname="codeu.chat.server.RawControllerTest" time="20.322"/>
-  <testcase name="testDeleteConversation" classname="codeu.chat.server.RawControllerTest" time="74.17"/>
+  <testcase name="testAddMessage" classname="codeu.chat.server.RawControllerTest" time="44.144">
+    <failure message="Check that the message has a valid reference" type="java.lang.AssertionError">java.lang.AssertionError: Check that the message has a valid reference
+	at org.junit.Assert.fail(Assert.java:88)
+	at org.junit.Assert.assertTrue(Assert.java:41)
+	at org.junit.Assert.assertFalse(Assert.java:64)
+	at codeu.chat.server.RawControllerTest.testAddMessage(RawControllerTest.java:250)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:367)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeWithRerun(JUnit4Provider.java:274)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:238)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:161)
+	at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:290)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:242)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:121)
+</failure>
+    <system-out><![CDATA[Scan for all messages:
+Scan for all conversations:
+Scan for all groups:
+Scan for all users:
+Scan for all users:
+Scan for all messages:
+Scan for all conversations:
+Scan for all groups:
+Scan for all users:
+Scan for all users:
+Scan for all messages:
+Scan for all conversations:
+Scan for all groups:
+Scan for all users:
+Scan for all users:
+Scan for all conversations:
+Scan for all messages:
+]]></system-out>
+    <system-err><![CDATA[Jun 04, 2017 2:52:21 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@1e27bb89] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:21 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@6108fd23] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:21 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@746f8520] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:21 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@3d3a28b5] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:21 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@1ee22768] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:21 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@38a52072] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:21 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@306bf4c3] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:21 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@5cf80dfb] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:21 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@532ea86b] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:21 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@4219a4cc] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:25 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@6108fd23] Terminated
+Jun 04, 2017 2:52:25 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@746f8520] Terminated
+Jun 04, 2017 2:52:25 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@3d3a28b5] Terminated
+Jun 04, 2017 2:52:25 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@1ee22768] Terminated
+Jun 04, 2017 2:52:25 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@38a52072] Terminated
+Jun 04, 2017 2:52:25 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@306bf4c3] Terminated
+Jun 04, 2017 2:52:25 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@5cf80dfb] Terminated
+Jun 04, 2017 2:52:25 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@532ea86b] Terminated
+Jun 04, 2017 2:52:25 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@4219a4cc] Terminated
+Jun 04, 2017 2:52:25 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@1e27bb89] Terminated
+Jun 04, 2017 2:52:25 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@184bb873] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:25 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@696ce057] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:25 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@5eba9e41] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:25 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@13809363] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:25 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@564d3940] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:25 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@58ad0586] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:25 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@526fc044] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:25 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@45635ae1] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:25 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@7adbec34] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:25 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@4aea57dc] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:27 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@696ce057] Terminated
+Jun 04, 2017 2:52:27 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@5eba9e41] Terminated
+Jun 04, 2017 2:52:27 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@13809363] Terminated
+Jun 04, 2017 2:52:27 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@564d3940] Terminated
+Jun 04, 2017 2:52:27 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@58ad0586] Terminated
+Jun 04, 2017 2:52:27 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@526fc044] Terminated
+Jun 04, 2017 2:52:27 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@184bb873] Terminated
+Jun 04, 2017 2:52:27 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@45635ae1] Terminated
+Jun 04, 2017 2:52:27 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@7adbec34] Terminated
+Jun 04, 2017 2:52:27 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@4aea57dc] Terminated
+Jun 04, 2017 2:52:27 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@49338f3] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:27 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@3c9971af] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:27 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@4abdd5e] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:27 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@66d61298] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:27 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@7b9fea11] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:27 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@c7cf8c4] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:27 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@56e78538] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:27 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@731fae] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:27 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@438a2d3] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:27 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@6fe9c048] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:32 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@3c9971af] Terminated
+Jun 04, 2017 2:52:32 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@4abdd5e] Terminated
+Jun 04, 2017 2:52:32 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@66d61298] Terminated
+Jun 04, 2017 2:52:32 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@7b9fea11] Terminated
+Jun 04, 2017 2:52:32 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@c7cf8c4] Terminated
+Jun 04, 2017 2:52:32 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@56e78538] Terminated
+Jun 04, 2017 2:52:32 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@731fae] Terminated
+Jun 04, 2017 2:52:32 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@438a2d3] Terminated
+Jun 04, 2017 2:52:32 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@49338f3] Terminated
+Jun 04, 2017 2:52:32 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@6fe9c048] Terminated
+Jun 04, 2017 2:52:32 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@7dfec0bc] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:32 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@12eaa2cd] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:32 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@52ccf197] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:32 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@2b06681c] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:32 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@20f6b6e0] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:32 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@67cd84f9] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:32 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@52b891de] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:32 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@4ae6451d] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:32 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@5f32ab17] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:32 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@54530644] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:33 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@12eaa2cd] Terminated
+Jun 04, 2017 2:52:33 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@52ccf197] Terminated
+Jun 04, 2017 2:52:33 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@2b06681c] Terminated
+Jun 04, 2017 2:52:33 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@20f6b6e0] Terminated
+Jun 04, 2017 2:52:33 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@7dfec0bc] Terminated
+Jun 04, 2017 2:52:33 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@67cd84f9] Terminated
+Jun 04, 2017 2:52:33 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@52b891de] Terminated
+Jun 04, 2017 2:52:33 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@4ae6451d] Terminated
+Jun 04, 2017 2:52:33 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@5f32ab17] Terminated
+Jun 04, 2017 2:52:33 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@54530644] Terminated
+Jun 04, 2017 2:52:33 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@3cc817bd] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:33 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@64b8eb96] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:33 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@776a7ec6] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:33 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@2d23a5be] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:33 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@51aa2a58] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:33 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@726d8fa0] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:33 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@56554365] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:33 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@666b1244] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:33 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@66130c3b] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:33 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@789d8fd6] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:35 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@64b8eb96] Terminated
+Jun 04, 2017 2:52:35 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@776a7ec6] Terminated
+Jun 04, 2017 2:52:35 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@2d23a5be] Terminated
+Jun 04, 2017 2:52:35 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@51aa2a58] Terminated
+Jun 04, 2017 2:52:35 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@726d8fa0] Terminated
+Jun 04, 2017 2:52:35 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@56554365] Terminated
+Jun 04, 2017 2:52:35 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@666b1244] Terminated
+Jun 04, 2017 2:52:35 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@66130c3b] Terminated
+Jun 04, 2017 2:52:35 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@789d8fd6] Terminated
+Jun 04, 2017 2:52:35 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@3cc817bd] Terminated
+Jun 04, 2017 2:52:35 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@50930bff] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:35 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@296bfddb] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:35 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@508b4f70] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:35 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@32f14274] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:35 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@7af56b26] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:35 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@c86c486] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:35 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@67ceaa9] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:35 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@3ea6faf0] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:35 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@6fdb1a59] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:35 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@55c341d0] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:37 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@296bfddb] Terminated
+Jun 04, 2017 2:52:37 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@508b4f70] Terminated
+Jun 04, 2017 2:52:37 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@32f14274] Terminated
+Jun 04, 2017 2:52:37 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@7af56b26] Terminated
+Jun 04, 2017 2:52:37 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@c86c486] Terminated
+Jun 04, 2017 2:52:37 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@50930bff] Terminated
+Jun 04, 2017 2:52:37 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@67ceaa9] Terminated
+Jun 04, 2017 2:52:37 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@3ea6faf0] Terminated
+Jun 04, 2017 2:52:37 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@6fdb1a59] Terminated
+Jun 04, 2017 2:52:37 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@55c341d0] Terminated
+Jun 04, 2017 2:52:37 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@45cf0c15] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:37 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@2f2dc407] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:37 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@c96c497] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:37 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@6e337ba1] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:37 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@53a16dd6] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:37 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@126d8659] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:37 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@28654aff] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:37 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@5dfec221] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:37 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@5e9cb95] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:37 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@7bc8da3f] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:41 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@2f2dc407] Terminated
+Jun 04, 2017 2:52:41 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@c96c497] Terminated
+Jun 04, 2017 2:52:41 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@6e337ba1] Terminated
+Jun 04, 2017 2:52:41 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@53a16dd6] Terminated
+Jun 04, 2017 2:52:41 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@126d8659] Terminated
+Jun 04, 2017 2:52:41 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@28654aff] Terminated
+Jun 04, 2017 2:52:41 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@45cf0c15] Terminated
+Jun 04, 2017 2:52:41 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@5dfec221] Terminated
+Jun 04, 2017 2:52:41 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@5e9cb95] Terminated
+Jun 04, 2017 2:52:41 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@7bc8da3f] Terminated
+Jun 04, 2017 2:52:41 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@24668b5b] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:41 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@1f8d42d1] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:41 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@2e7e84f8] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:41 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@22ab1b8a] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:41 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@320770d7] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:41 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@4769378c] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:41 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@1d6a22dd] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:41 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@67671db1] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:41 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@6e6f5842] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:41 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@60b4c754] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:42 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@1f8d42d1] Terminated
+Jun 04, 2017 2:52:42 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@2e7e84f8] Terminated
+Jun 04, 2017 2:52:42 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@22ab1b8a] Terminated
+Jun 04, 2017 2:52:42 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@320770d7] Terminated
+Jun 04, 2017 2:52:42 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@4769378c] Terminated
+Jun 04, 2017 2:52:42 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@1d6a22dd] Terminated
+Jun 04, 2017 2:52:42 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@67671db1] Terminated
+Jun 04, 2017 2:52:42 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@6e6f5842] Terminated
+Jun 04, 2017 2:52:42 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@24668b5b] Terminated
+Jun 04, 2017 2:52:42 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@60b4c754] Terminated
+Jun 04, 2017 2:52:42 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@56d742ad] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:42 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@75784062] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:42 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@5730b513] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:42 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@73e25780] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:42 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@1f4cb17b] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:42 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@280099a0] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:42 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@7aca299e] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:42 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@1bf52f10] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:42 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@6148827c] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:42 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@4da9da6c] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:43 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@75784062] Terminated
+Jun 04, 2017 2:52:43 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@5730b513] Terminated
+Jun 04, 2017 2:52:43 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@73e25780] Terminated
+Jun 04, 2017 2:52:43 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@1f4cb17b] Terminated
+Jun 04, 2017 2:52:43 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@280099a0] Terminated
+Jun 04, 2017 2:52:43 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@7aca299e] Terminated
+Jun 04, 2017 2:52:43 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@56d742ad] Terminated
+Jun 04, 2017 2:52:43 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@1bf52f10] Terminated
+Jun 04, 2017 2:52:43 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@6148827c] Terminated
+Jun 04, 2017 2:52:43 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@4da9da6c] Terminated
+Jun 04, 2017 2:52:43 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@723c5f86] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:43 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@301e5d23] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:43 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@393bcd6b] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:43 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@64a8d575] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:43 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@74787609] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:43 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@36cdcae0] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:43 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@51fa09c7] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:43 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@73db7df0] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:43 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@44a485bc] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:43 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@1c66cd02] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:46 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@301e5d23] Terminated
+Jun 04, 2017 2:52:46 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@393bcd6b] Terminated
+Jun 04, 2017 2:52:46 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@64a8d575] Terminated
+Jun 04, 2017 2:52:46 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@74787609] Terminated
+Jun 04, 2017 2:52:46 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@36cdcae0] Terminated
+Jun 04, 2017 2:52:46 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@51fa09c7] Terminated
+Jun 04, 2017 2:52:46 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@73db7df0] Terminated
+Jun 04, 2017 2:52:46 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@44a485bc] Terminated
+Jun 04, 2017 2:52:46 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@723c5f86] Terminated
+Jun 04, 2017 2:52:46 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@1c66cd02] Terminated
+Jun 04, 2017 2:52:46 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@7f02b2d4] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:46 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@780dbed7] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:46 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@31859960] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:46 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@5718e77c] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:46 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@3d667b59] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:46 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@28888124] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:46 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@355b53cc] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:46 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@2568611c] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:46 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@2bda7a5b] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:46 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@47374fa5] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:48 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@780dbed7] Terminated
+Jun 04, 2017 2:52:48 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@31859960] Terminated
+Jun 04, 2017 2:52:48 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@5718e77c] Terminated
+Jun 04, 2017 2:52:48 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@3d667b59] Terminated
+Jun 04, 2017 2:52:48 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@28888124] Terminated
+Jun 04, 2017 2:52:48 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@355b53cc] Terminated
+Jun 04, 2017 2:52:48 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@2568611c] Terminated
+Jun 04, 2017 2:52:48 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@2bda7a5b] Terminated
+Jun 04, 2017 2:52:48 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@47374fa5] Terminated
+Jun 04, 2017 2:52:48 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@7f02b2d4] Terminated
+Jun 04, 2017 2:52:48 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@4b5cdd07] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:48 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@e890591] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:48 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@1aaf73b7] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:48 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@731d0d5c] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:48 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@5e0442dd] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:48 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@18e76101] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:48 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@79349b61] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:48 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@62581ef6] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:48 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@1e36baca] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:48 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@3dfa2f64] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:49 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@e890591] Terminated
+Jun 04, 2017 2:52:49 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@1aaf73b7] Terminated
+Jun 04, 2017 2:52:49 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@731d0d5c] Terminated
+Jun 04, 2017 2:52:49 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@5e0442dd] Terminated
+Jun 04, 2017 2:52:49 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@18e76101] Terminated
+Jun 04, 2017 2:52:49 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@79349b61] Terminated
+Jun 04, 2017 2:52:49 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@4b5cdd07] Terminated
+Jun 04, 2017 2:52:49 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@62581ef6] Terminated
+Jun 04, 2017 2:52:49 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@1e36baca] Terminated
+Jun 04, 2017 2:52:49 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@3dfa2f64] Terminated
+Jun 04, 2017 2:52:49 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@5e3d84a] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:49 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@2728add3] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:49 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@4fce3ed7] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:49 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@54033a65] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:49 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@4fb99927] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:49 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@2d9df336] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:49 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@131b58d4] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:49 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@5e8698c0] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:49 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@5df54296] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:49 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@1fb30e5d] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:52 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@2728add3] Terminated
+Jun 04, 2017 2:52:52 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@4fce3ed7] Terminated
+Jun 04, 2017 2:52:52 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@54033a65] Terminated
+Jun 04, 2017 2:52:52 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@4fb99927] Terminated
+Jun 04, 2017 2:52:52 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@2d9df336] Terminated
+Jun 04, 2017 2:52:52 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@131b58d4] Terminated
+Jun 04, 2017 2:52:52 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@5e8698c0] Terminated
+Jun 04, 2017 2:52:52 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@5df54296] Terminated
+Jun 04, 2017 2:52:52 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@5e3d84a] Terminated
+Jun 04, 2017 2:52:52 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@1fb30e5d] Terminated
+Jun 04, 2017 2:52:52 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@4cddc036] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:52 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@23d12a3a] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:52 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@70df41f9] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:52 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@64a7ad02] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:52 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@46590dd0] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:52 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@6c737fdb] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:52 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@66a93b25] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:52 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@3f3f554f] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:52 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@3186f8f5] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:52 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@467cd4b9] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:53 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@23d12a3a] Terminated
+Jun 04, 2017 2:52:53 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@70df41f9] Terminated
+Jun 04, 2017 2:52:53 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@64a7ad02] Terminated
+Jun 04, 2017 2:52:53 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@46590dd0] Terminated
+Jun 04, 2017 2:52:53 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@6c737fdb] Terminated
+Jun 04, 2017 2:52:53 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@66a93b25] Terminated
+Jun 04, 2017 2:52:53 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@3f3f554f] Terminated
+Jun 04, 2017 2:52:53 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@4cddc036] Terminated
+Jun 04, 2017 2:52:53 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@3186f8f5] Terminated
+Jun 04, 2017 2:52:53 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@467cd4b9] Terminated
+Jun 04, 2017 2:52:53 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@a4dcede] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:53 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@7ee02968] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:53 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@4a773f08] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:53 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@40b8158d] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:53 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@24e7087a] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:53 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@5bb3dee7] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:53 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@284f25e6] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:53 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@285b491f] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:53 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@346330b6] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:53 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@71e2843b] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:54 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@7ee02968] Terminated
+Jun 04, 2017 2:52:54 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@4a773f08] Terminated
+Jun 04, 2017 2:52:54 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@40b8158d] Terminated
+Jun 04, 2017 2:52:54 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@24e7087a] Terminated
+Jun 04, 2017 2:52:54 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@5bb3dee7] Terminated
+Jun 04, 2017 2:52:54 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@a4dcede] Terminated
+Jun 04, 2017 2:52:54 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@284f25e6] Terminated
+Jun 04, 2017 2:52:54 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@285b491f] Terminated
+Jun 04, 2017 2:52:54 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@346330b6] Terminated
+Jun 04, 2017 2:52:54 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@71e2843b] Terminated
+Jun 04, 2017 2:52:54 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@1adfb5b8] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:54 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@254cc548] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:54 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@65f470f8] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:54 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@531299d3] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:54 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@3487947c] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:54 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@77226121] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:54 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@3117ac8d] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:54 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@760c777d] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:54 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@7ea039b4] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:54 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@1aef7428] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:56 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@254cc548] Terminated
+Jun 04, 2017 2:52:56 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@65f470f8] Terminated
+Jun 04, 2017 2:52:56 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@531299d3] Terminated
+Jun 04, 2017 2:52:56 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@3487947c] Terminated
+Jun 04, 2017 2:52:56 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@77226121] Terminated
+Jun 04, 2017 2:52:56 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@3117ac8d] Terminated
+Jun 04, 2017 2:52:56 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@1adfb5b8] Terminated
+Jun 04, 2017 2:52:56 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@760c777d] Terminated
+Jun 04, 2017 2:52:56 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@7ea039b4] Terminated
+Jun 04, 2017 2:52:56 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@1aef7428] Terminated
+Jun 04, 2017 2:52:56 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@1d0f7bcf] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:56 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@d0e4972] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:56 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@1978b0d5] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:56 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@6556471b] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:56 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@3e1897d] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:56 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@7cdb05aa] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:56 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@2079fcfc] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:56 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@77401977] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:56 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@7865cc83] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:56 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@5cb76070] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:58 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@d0e4972] Terminated
+Jun 04, 2017 2:52:58 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@1978b0d5] Terminated
+Jun 04, 2017 2:52:58 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@6556471b] Terminated
+Jun 04, 2017 2:52:58 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@3e1897d] Terminated
+Jun 04, 2017 2:52:58 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@7cdb05aa] Terminated
+Jun 04, 2017 2:52:58 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@2079fcfc] Terminated
+Jun 04, 2017 2:52:58 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@77401977] Terminated
+Jun 04, 2017 2:52:58 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@7865cc83] Terminated
+Jun 04, 2017 2:52:58 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@5cb76070] Terminated
+Jun 04, 2017 2:52:58 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@1d0f7bcf] Terminated
+Jun 04, 2017 2:52:58 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@753e4eb5] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:58 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@713497cd] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:58 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@63318b56] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:58 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@19e5e110] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:58 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@1e295f7f] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:58 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@4b762988] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:58 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@24f2608b] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:58 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@12a9e864] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:58 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@462f8fe9] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:58 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@3c6fc4cd] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:59 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@713497cd] Terminated
+Jun 04, 2017 2:52:59 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@63318b56] Terminated
+Jun 04, 2017 2:52:59 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@19e5e110] Terminated
+Jun 04, 2017 2:52:59 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@1e295f7f] Terminated
+Jun 04, 2017 2:52:59 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@4b762988] Terminated
+Jun 04, 2017 2:52:59 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@24f2608b] Terminated
+Jun 04, 2017 2:52:59 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@753e4eb5] Terminated
+Jun 04, 2017 2:52:59 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@12a9e864] Terminated
+Jun 04, 2017 2:52:59 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@462f8fe9] Terminated
+Jun 04, 2017 2:52:59 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@3c6fc4cd] Terminated
+Jun 04, 2017 2:52:59 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@2e785b28] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:59 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@55c20a91] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:59 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@4a3516fd] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:59 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@3ba96967] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:59 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@5764d421] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:59 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@1237cade] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:59 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@70d7a49b] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:59 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@4509b7] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:59 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@71f10042] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:52:59 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@5dbc4598] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:04 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@55c20a91] Terminated
+Jun 04, 2017 2:53:04 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@4a3516fd] Terminated
+Jun 04, 2017 2:53:04 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@3ba96967] Terminated
+Jun 04, 2017 2:53:04 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@5764d421] Terminated
+Jun 04, 2017 2:53:04 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@1237cade] Terminated
+Jun 04, 2017 2:53:04 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@70d7a49b] Terminated
+Jun 04, 2017 2:53:04 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@2e785b28] Terminated
+Jun 04, 2017 2:53:04 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@4509b7] Terminated
+Jun 04, 2017 2:53:04 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@71f10042] Terminated
+Jun 04, 2017 2:53:04 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@5dbc4598] Terminated
+Jun 04, 2017 2:53:04 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@7e8783b0] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:04 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@788d9139] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:04 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@53d2f0ec] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:04 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@560be8c0] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:04 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@14d36bb2] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:04 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@432448] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:04 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@4452e13c] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:04 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@4d964c9e] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:04 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@42172065] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:04 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@5b6f3d0b] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:05 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@788d9139] Terminated
+Jun 04, 2017 2:53:05 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@53d2f0ec] Terminated
+Jun 04, 2017 2:53:05 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@560be8c0] Terminated
+Jun 04, 2017 2:53:05 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@14d36bb2] Terminated
+Jun 04, 2017 2:53:05 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@432448] Terminated
+Jun 04, 2017 2:53:05 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@4452e13c] Terminated
+Jun 04, 2017 2:53:05 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@4d964c9e] Terminated
+Jun 04, 2017 2:53:05 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@42172065] Terminated
+Jun 04, 2017 2:53:05 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@5b6f3d0b] Terminated
+Jun 04, 2017 2:53:05 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@7e8783b0] Terminated
+]]></system-err>
+  </testcase>
+  <testcase name="testAddConversation" classname="codeu.chat.server.RawControllerTest" time="7.201">
+    <failure message="Check that user has a valid reference" type="java.lang.AssertionError">java.lang.AssertionError: Check that user has a valid reference
+	at org.junit.Assert.fail(Assert.java:88)
+	at org.junit.Assert.assertTrue(Assert.java:41)
+	at org.junit.Assert.assertFalse(Assert.java:64)
+	at codeu.chat.server.RawControllerTest.testAddConversation(RawControllerTest.java:94)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:367)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeWithRerun(JUnit4Provider.java:274)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:238)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:161)
+	at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:290)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:242)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:121)
+</failure>
+    <system-out><![CDATA[Scan for all messages:
+Scan for all conversations:
+Scan for all groups:
+Scan for all users:
+]]></system-out>
+    <system-err><![CDATA[Jun 04, 2017 2:53:05 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@4cefa0be] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:05 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@5a3be84] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:05 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@4850d66b] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:05 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@21f479cd] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:05 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@102fd71d] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:05 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@8e00c02] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:05 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@464d60fb] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:05 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@447543ee] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:05 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@2a0ce342] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:05 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@22846a1d] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:07 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@5a3be84] Terminated
+Jun 04, 2017 2:53:07 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@4850d66b] Terminated
+Jun 04, 2017 2:53:07 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@21f479cd] Terminated
+Jun 04, 2017 2:53:07 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@102fd71d] Terminated
+Jun 04, 2017 2:53:07 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@8e00c02] Terminated
+Jun 04, 2017 2:53:07 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@464d60fb] Terminated
+Jun 04, 2017 2:53:07 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@4cefa0be] Terminated
+Jun 04, 2017 2:53:07 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@447543ee] Terminated
+Jun 04, 2017 2:53:07 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@2a0ce342] Terminated
+Jun 04, 2017 2:53:07 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@22846a1d] Terminated
+Jun 04, 2017 2:53:07 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@2de96eba] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:07 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@3ef914f5] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:07 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@61e0f9b9] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:07 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@2c7c898a] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:07 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@4a86be01] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:07 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@3cae4518] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:07 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@5a654e05] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:07 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@121dac1a] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:07 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@6d946eee] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:07 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@23dc70c1] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:09 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@3ef914f5] Terminated
+Jun 04, 2017 2:53:09 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@61e0f9b9] Terminated
+Jun 04, 2017 2:53:09 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@2c7c898a] Terminated
+Jun 04, 2017 2:53:09 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@4a86be01] Terminated
+Jun 04, 2017 2:53:09 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@3cae4518] Terminated
+Jun 04, 2017 2:53:09 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@2de96eba] Terminated
+Jun 04, 2017 2:53:09 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@5a654e05] Terminated
+Jun 04, 2017 2:53:09 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@121dac1a] Terminated
+Jun 04, 2017 2:53:09 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@6d946eee] Terminated
+Jun 04, 2017 2:53:09 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@23dc70c1] Terminated
+Jun 04, 2017 2:53:09 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@220cda54] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:09 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@39109603] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:09 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@4d3990a5] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:09 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@18df26a1] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:09 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@5c459194] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:09 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@61d8a491] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:09 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@6065bcb7] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:09 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@1ee6434] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:09 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@71d78cac] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:09 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@550f522b] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:12 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@39109603] Terminated
+Jun 04, 2017 2:53:12 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@4d3990a5] Terminated
+Jun 04, 2017 2:53:12 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@18df26a1] Terminated
+Jun 04, 2017 2:53:12 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@5c459194] Terminated
+Jun 04, 2017 2:53:12 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@61d8a491] Terminated
+Jun 04, 2017 2:53:12 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@6065bcb7] Terminated
+Jun 04, 2017 2:53:12 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@1ee6434] Terminated
+Jun 04, 2017 2:53:12 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@220cda54] Terminated
+Jun 04, 2017 2:53:12 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@71d78cac] Terminated
+Jun 04, 2017 2:53:12 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@550f522b] Terminated
+Jun 04, 2017 2:53:12 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@8b1170f] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:12 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@69cb134] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:12 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@125124ea] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:12 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@314c6f89] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:12 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@31450fc0] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:12 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@52b30dcd] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:12 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@49de1505] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:12 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@1bbc1b90] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:12 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@29e3c28] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:12 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@480994d3] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:13 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@69cb134] Terminated
+Jun 04, 2017 2:53:13 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@125124ea] Terminated
+Jun 04, 2017 2:53:13 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@314c6f89] Terminated
+Jun 04, 2017 2:53:13 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@31450fc0] Terminated
+Jun 04, 2017 2:53:13 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@52b30dcd] Terminated
+Jun 04, 2017 2:53:13 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@49de1505] Terminated
+Jun 04, 2017 2:53:13 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@1bbc1b90] Terminated
+Jun 04, 2017 2:53:13 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@8b1170f] Terminated
+Jun 04, 2017 2:53:13 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@29e3c28] Terminated
+Jun 04, 2017 2:53:13 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@480994d3] Terminated
+]]></system-err>
+  </testcase>
+  <testcase name="testAddUser" classname="codeu.chat.server.RawControllerTest" time="4.474">
+    <failure message="Check that user has a valid reference" type="java.lang.AssertionError">java.lang.AssertionError: Check that user has a valid reference
+	at org.junit.Assert.fail(Assert.java:88)
+	at org.junit.Assert.assertTrue(Assert.java:41)
+	at org.junit.Assert.assertFalse(Assert.java:64)
+	at codeu.chat.server.RawControllerTest.testAddUser(RawControllerTest.java:57)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:367)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeWithRerun(JUnit4Provider.java:274)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:238)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:161)
+	at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:290)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:242)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:121)
+</failure>
+    <system-out><![CDATA[Scan for all messages:
+Scan for all conversations:
+Scan for all groups:
+Scan for all users:
+]]></system-out>
+    <system-err><![CDATA[Jun 04, 2017 2:53:13 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@3acc65f0] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:13 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@59ec5a0b] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:13 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@29431f61] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:13 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@f98cff] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:13 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@59c38af5] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:13 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@6244afc4] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:13 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@534d0cfa] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:13 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@1f1ffc18] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:13 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@5a4e492c] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:13 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@1d33e72e] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:14 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@59ec5a0b] Terminated
+Jun 04, 2017 2:53:14 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@29431f61] Terminated
+Jun 04, 2017 2:53:14 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@f98cff] Terminated
+Jun 04, 2017 2:53:14 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@59c38af5] Terminated
+Jun 04, 2017 2:53:14 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@6244afc4] Terminated
+Jun 04, 2017 2:53:14 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@534d0cfa] Terminated
+Jun 04, 2017 2:53:14 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@1f1ffc18] Terminated
+Jun 04, 2017 2:53:14 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@5a4e492c] Terminated
+Jun 04, 2017 2:53:14 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@3acc65f0] Terminated
+Jun 04, 2017 2:53:14 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@1d33e72e] Terminated
+Jun 04, 2017 2:53:14 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@6c1a63f7] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:14 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@5a9baba8] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:14 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@72240290] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:14 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@b5311cb] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:14 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@34e9de8d] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:14 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@33a8f553] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:14 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@61ca5134] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:14 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@7204d98f] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:14 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@8636cf4] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:14 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@7c9512c6] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:15 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@5a9baba8] Terminated
+Jun 04, 2017 2:53:15 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@72240290] Terminated
+Jun 04, 2017 2:53:15 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@b5311cb] Terminated
+Jun 04, 2017 2:53:15 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@34e9de8d] Terminated
+Jun 04, 2017 2:53:15 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@33a8f553] Terminated
+Jun 04, 2017 2:53:15 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@61ca5134] Terminated
+Jun 04, 2017 2:53:15 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@7204d98f] Terminated
+Jun 04, 2017 2:53:15 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@8636cf4] Terminated
+Jun 04, 2017 2:53:15 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@6c1a63f7] Terminated
+Jun 04, 2017 2:53:15 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@7c9512c6] Terminated
+Jun 04, 2017 2:53:15 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@5c3924fd] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:15 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@3ec211cc] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:15 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@6b94c200] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:15 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@1322b542] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:15 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@6a97517] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:15 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@284b487f] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:15 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@65021bb4] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:15 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@630c3af3] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:15 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@2e40ea48] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:15 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@5cba474f] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:16 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@3ec211cc] Terminated
+Jun 04, 2017 2:53:16 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@6b94c200] Terminated
+Jun 04, 2017 2:53:16 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@1322b542] Terminated
+Jun 04, 2017 2:53:16 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@6a97517] Terminated
+Jun 04, 2017 2:53:16 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@284b487f] Terminated
+Jun 04, 2017 2:53:16 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@65021bb4] Terminated
+Jun 04, 2017 2:53:16 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@630c3af3] Terminated
+Jun 04, 2017 2:53:16 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@2e40ea48] Terminated
+Jun 04, 2017 2:53:16 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@5c3924fd] Terminated
+Jun 04, 2017 2:53:16 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@5cba474f] Terminated
+Jun 04, 2017 2:53:16 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@cfc4601] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:16 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@240291d9] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:16 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@450f0d89] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:16 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@50a1af86] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:16 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@3e0327dd] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:16 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@ebff59d] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:16 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@3361d286] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:16 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@6ee186f3] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:16 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@49fb693d] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:16 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@38197e82] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:17 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@240291d9] Terminated
+Jun 04, 2017 2:53:17 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@450f0d89] Terminated
+Jun 04, 2017 2:53:17 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@50a1af86] Terminated
+Jun 04, 2017 2:53:17 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@3e0327dd] Terminated
+Jun 04, 2017 2:53:17 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@ebff59d] Terminated
+Jun 04, 2017 2:53:17 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@3361d286] Terminated
+Jun 04, 2017 2:53:17 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@6ee186f3] Terminated
+Jun 04, 2017 2:53:17 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@49fb693d] Terminated
+Jun 04, 2017 2:53:17 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@cfc4601] Terminated
+Jun 04, 2017 2:53:17 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@38197e82] Terminated
+]]></system-err>
+  </testcase>
+  <testcase name="testAddGroup" classname="codeu.chat.server.RawControllerTest" time="8.329">
+    <failure message="Check that user has a valid reference" type="java.lang.AssertionError">java.lang.AssertionError: Check that user has a valid reference
+	at org.junit.Assert.fail(Assert.java:88)
+	at org.junit.Assert.assertTrue(Assert.java:41)
+	at org.junit.Assert.assertFalse(Assert.java:64)
+	at codeu.chat.server.RawControllerTest.testAddGroup(RawControllerTest.java:183)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:367)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeWithRerun(JUnit4Provider.java:274)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:238)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:161)
+	at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:290)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:242)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:121)
+</failure>
+    <system-out><![CDATA[Scan for all messages:
+Scan for all conversations:
+Scan for all groups:
+Scan for all users:
+]]></system-out>
+    <system-err><![CDATA[Jun 04, 2017 2:53:17 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@8f374de] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:17 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@426913c4] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:17 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@1bba9862] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:17 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@451a4187] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:17 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@565c887e] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:17 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@5c215642] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:17 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@1317ac2c] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:17 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@416c1b0] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:17 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@363ba634] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:17 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@60fe75f7] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:21 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@426913c4] Terminated
+Jun 04, 2017 2:53:21 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@1bba9862] Terminated
+Jun 04, 2017 2:53:21 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@451a4187] Terminated
+Jun 04, 2017 2:53:21 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@565c887e] Terminated
+Jun 04, 2017 2:53:21 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@5c215642] Terminated
+Jun 04, 2017 2:53:21 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@1317ac2c] Terminated
+Jun 04, 2017 2:53:21 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@416c1b0] Terminated
+Jun 04, 2017 2:53:21 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@363ba634] Terminated
+Jun 04, 2017 2:53:21 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@8f374de] Terminated
+Jun 04, 2017 2:53:21 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@60fe75f7] Terminated
+Jun 04, 2017 2:53:21 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@4ac0d49] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:21 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@7c6ab057] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:21 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@7ce4498f] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:21 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@1f7557fe] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:21 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@7bd7d71c] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:21 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@52963839] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:21 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@ce0bbd5] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:21 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@399fd710] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:21 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@7c359808] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:21 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@1f013047] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:22 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@7c6ab057] Terminated
+Jun 04, 2017 2:53:22 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@7ce4498f] Terminated
+Jun 04, 2017 2:53:22 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@1f7557fe] Terminated
+Jun 04, 2017 2:53:22 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@7bd7d71c] Terminated
+Jun 04, 2017 2:53:22 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@52963839] Terminated
+Jun 04, 2017 2:53:22 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@4ac0d49] Terminated
+Jun 04, 2017 2:53:22 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@ce0bbd5] Terminated
+Jun 04, 2017 2:53:22 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@399fd710] Terminated
+Jun 04, 2017 2:53:22 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@7c359808] Terminated
+Jun 04, 2017 2:53:22 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@1f013047] Terminated
+Jun 04, 2017 2:53:22 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@17e6d07b] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:22 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@318511f0] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:22 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@53564a4c] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:22 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@4866e0a7] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:22 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@69a294d8] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:22 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@70b1028d] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:22 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@11d422fd] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:22 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@6e489bb8] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:22 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@1331d6fd] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:22 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@6b6c0b7c] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:24 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@318511f0] Terminated
+Jun 04, 2017 2:53:24 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@53564a4c] Terminated
+Jun 04, 2017 2:53:24 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@4866e0a7] Terminated
+Jun 04, 2017 2:53:24 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@69a294d8] Terminated
+Jun 04, 2017 2:53:24 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@70b1028d] Terminated
+Jun 04, 2017 2:53:24 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@17e6d07b] Terminated
+Jun 04, 2017 2:53:24 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@11d422fd] Terminated
+Jun 04, 2017 2:53:24 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@6e489bb8] Terminated
+Jun 04, 2017 2:53:24 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@1331d6fd] Terminated
+Jun 04, 2017 2:53:24 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@6b6c0b7c] Terminated
+Jun 04, 2017 2:53:24 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@6787bd41] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:24 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@44c2e8a8] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:24 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@3340ff7c] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:24 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@42e4431] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:24 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@5e198c40] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:24 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@dcdb883] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:24 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@39420d59] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:24 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@4fbbd98c] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:24 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@5dd227b7] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:24 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@3d3b852e] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:25 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@44c2e8a8] Terminated
+Jun 04, 2017 2:53:25 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@3340ff7c] Terminated
+Jun 04, 2017 2:53:25 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@42e4431] Terminated
+Jun 04, 2017 2:53:25 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@5e198c40] Terminated
+Jun 04, 2017 2:53:25 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@dcdb883] Terminated
+Jun 04, 2017 2:53:25 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@39420d59] Terminated
+Jun 04, 2017 2:53:25 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@4fbbd98c] Terminated
+Jun 04, 2017 2:53:25 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@5dd227b7] Terminated
+Jun 04, 2017 2:53:25 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@3d3b852e] Terminated
+Jun 04, 2017 2:53:25 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@6787bd41] Terminated
+]]></system-err>
+  </testcase>
+  <testcase name="testDeleteUser" classname="codeu.chat.server.RawControllerTest" time="6.392">
+    <failure message="Check that user has a valid reference" type="java.lang.AssertionError">java.lang.AssertionError: Check that user has a valid reference
+	at org.junit.Assert.fail(Assert.java:88)
+	at org.junit.Assert.assertTrue(Assert.java:41)
+	at org.junit.Assert.assertFalse(Assert.java:64)
+	at codeu.chat.server.RawControllerTest.testDeleteUser(RawControllerTest.java:72)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:367)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeWithRerun(JUnit4Provider.java:274)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:238)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:161)
+	at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:290)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:242)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:121)
+</failure>
+    <system-out><![CDATA[Scan for all messages:
+Scan for all conversations:
+Scan for all groups:
+Scan for all users:
+]]></system-out>
+    <system-err><![CDATA[Jun 04, 2017 2:53:25 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@6f89ad03] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:25 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@f287a4e] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:25 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@3879feec] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:25 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@71d2261e] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:25 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@53917c92] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:25 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@1fa796a4] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:25 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@68de8522] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:25 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@8dcacf1] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:25 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@50f13494] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:25 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@73c09a98] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:27 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@f287a4e] Terminated
+Jun 04, 2017 2:53:27 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@3879feec] Terminated
+Jun 04, 2017 2:53:27 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@71d2261e] Terminated
+Jun 04, 2017 2:53:27 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@53917c92] Terminated
+Jun 04, 2017 2:53:27 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@1fa796a4] Terminated
+Jun 04, 2017 2:53:27 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@68de8522] Terminated
+Jun 04, 2017 2:53:27 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@6f89ad03] Terminated
+Jun 04, 2017 2:53:27 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@8dcacf1] Terminated
+Jun 04, 2017 2:53:27 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@50f13494] Terminated
+Jun 04, 2017 2:53:27 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@73c09a98] Terminated
+Jun 04, 2017 2:53:27 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@2c92f094] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:27 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@1c3b221f] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:27 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@750c23a3] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:27 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@238280df] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:27 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@182fd26b] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:27 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@5dc120ab] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:27 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@49c4118b] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:27 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@7ef7f414] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:27 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@182dcd2b] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:27 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@4c3d72fd] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:29 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@1c3b221f] Terminated
+Jun 04, 2017 2:53:29 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@750c23a3] Terminated
+Jun 04, 2017 2:53:29 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@238280df] Terminated
+Jun 04, 2017 2:53:29 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@182fd26b] Terminated
+Jun 04, 2017 2:53:29 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@5dc120ab] Terminated
+Jun 04, 2017 2:53:29 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@49c4118b] Terminated
+Jun 04, 2017 2:53:29 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@7ef7f414] Terminated
+Jun 04, 2017 2:53:29 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@182dcd2b] Terminated
+Jun 04, 2017 2:53:29 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@4c3d72fd] Terminated
+Jun 04, 2017 2:53:29 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@2c92f094] Terminated
+Jun 04, 2017 2:53:29 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@35b58254] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:29 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@73baf7f0] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:29 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@446dacf9] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:29 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@13018f00] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:29 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@abf1816] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:29 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@2e1e7bc6] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:29 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@7bd1098] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:29 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@185bf6e0] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:29 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@6a562255] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:29 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@374ba492] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:30 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@73baf7f0] Terminated
+Jun 04, 2017 2:53:30 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@446dacf9] Terminated
+Jun 04, 2017 2:53:30 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@13018f00] Terminated
+Jun 04, 2017 2:53:30 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@abf1816] Terminated
+Jun 04, 2017 2:53:30 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@2e1e7bc6] Terminated
+Jun 04, 2017 2:53:30 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@7bd1098] Terminated
+Jun 04, 2017 2:53:30 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@185bf6e0] Terminated
+Jun 04, 2017 2:53:30 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@6a562255] Terminated
+Jun 04, 2017 2:53:30 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@374ba492] Terminated
+Jun 04, 2017 2:53:30 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@35b58254] Terminated
+Jun 04, 2017 2:53:30 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@2e2cd42c] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:30 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@1cdad619] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:30 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@319058ce] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:30 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@3909308c] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:30 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@71cc0e35] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:30 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@3b6c740b] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:30 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@8091d80] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:30 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@78f4d15d] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:30 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@6958d5d0] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:30 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@314c28dc] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:32 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@1cdad619] Terminated
+Jun 04, 2017 2:53:32 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@319058ce] Terminated
+Jun 04, 2017 2:53:32 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@3909308c] Terminated
+Jun 04, 2017 2:53:32 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@71cc0e35] Terminated
+Jun 04, 2017 2:53:32 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@3b6c740b] Terminated
+Jun 04, 2017 2:53:32 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@8091d80] Terminated
+Jun 04, 2017 2:53:32 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@78f4d15d] Terminated
+Jun 04, 2017 2:53:32 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@6958d5d0] Terminated
+Jun 04, 2017 2:53:32 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@314c28dc] Terminated
+Jun 04, 2017 2:53:32 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@2e2cd42c] Terminated
+]]></system-err>
+  </testcase>
+  <testcase name="testDeleteConversation" classname="codeu.chat.server.RawControllerTest" time="6.923">
+    <failure message="Check that user has a valid reference" type="java.lang.AssertionError">java.lang.AssertionError: Check that user has a valid reference
+	at org.junit.Assert.fail(Assert.java:88)
+	at org.junit.Assert.assertTrue(Assert.java:41)
+	at org.junit.Assert.assertFalse(Assert.java:64)
+	at codeu.chat.server.RawControllerTest.testDeleteConversation(RawControllerTest.java:134)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:367)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeWithRerun(JUnit4Provider.java:274)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:238)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:161)
+	at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:290)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:242)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:121)
+</failure>
+    <system-out><![CDATA[Scan for all messages:
+Scan for all conversations:
+Scan for all groups:
+Scan for all users:
+]]></system-out>
+    <system-err><![CDATA[Jun 04, 2017 2:53:32 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@6fafbdac] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:32 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@c7c07ff] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:32 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@d271d6c] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:32 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@a302f30] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:32 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@1860b107] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:32 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@744f0e0b] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:32 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@4136b193] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:32 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@4af44f2a] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:32 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@570127fa] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:32 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@5b324447] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:33 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@c7c07ff] Terminated
+Jun 04, 2017 2:53:33 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@d271d6c] Terminated
+Jun 04, 2017 2:53:33 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@a302f30] Terminated
+Jun 04, 2017 2:53:33 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@1860b107] Terminated
+Jun 04, 2017 2:53:33 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@744f0e0b] Terminated
+Jun 04, 2017 2:53:33 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@4136b193] Terminated
+Jun 04, 2017 2:53:33 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@6fafbdac] Terminated
+Jun 04, 2017 2:53:33 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@4af44f2a] Terminated
+Jun 04, 2017 2:53:33 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@570127fa] Terminated
+Jun 04, 2017 2:53:33 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@5b324447] Terminated
+Jun 04, 2017 2:53:33 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@5020e5ab] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:33 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@19f1f330] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:33 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@143fe09c] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:33 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@41463c56] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:33 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@161c9468] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:33 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@629de8] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:33 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@6b32b678] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:33 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@1b6683c4] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:33 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@69abeb14] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:33 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@7db2b614] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:35 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@19f1f330] Terminated
+Jun 04, 2017 2:53:35 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@143fe09c] Terminated
+Jun 04, 2017 2:53:35 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@41463c56] Terminated
+Jun 04, 2017 2:53:35 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@161c9468] Terminated
+Jun 04, 2017 2:53:35 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@629de8] Terminated
+Jun 04, 2017 2:53:35 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@6b32b678] Terminated
+Jun 04, 2017 2:53:35 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@1b6683c4] Terminated
+Jun 04, 2017 2:53:35 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@69abeb14] Terminated
+Jun 04, 2017 2:53:35 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@5020e5ab] Terminated
+Jun 04, 2017 2:53:35 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@7db2b614] Terminated
+Jun 04, 2017 2:53:35 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@72b53f27] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:35 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@1be4a7e3] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:35 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@632b96b8] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:35 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@544e6b] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:35 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@5b430541] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:35 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@65a66a75] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:35 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@5a07ae2f] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:35 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@78829412] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:35 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@3ba8ef4e] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:35 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@6d0bcf8c] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:37 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@1be4a7e3] Terminated
+Jun 04, 2017 2:53:37 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@632b96b8] Terminated
+Jun 04, 2017 2:53:37 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@544e6b] Terminated
+Jun 04, 2017 2:53:37 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@5b430541] Terminated
+Jun 04, 2017 2:53:37 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@65a66a75] Terminated
+Jun 04, 2017 2:53:37 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@5a07ae2f] Terminated
+Jun 04, 2017 2:53:37 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@72b53f27] Terminated
+Jun 04, 2017 2:53:37 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@78829412] Terminated
+Jun 04, 2017 2:53:37 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@3ba8ef4e] Terminated
+Jun 04, 2017 2:53:37 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@6d0bcf8c] Terminated
+Jun 04, 2017 2:53:37 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@293ecff6] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:37 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@70eb94d7] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:37 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@34d72f06] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:37 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@7e43b342] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:37 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@21dd9203] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:37 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@dbcf7c3] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:37 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@1e466d] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:37 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@63243c8f] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:37 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@2ea4e762] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:37 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl <init>
+INFO: [ManagedChannelImpl@444c0f9a] Created with target bigtable.googleapis.com:443
+Jun 04, 2017 2:53:39 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@70eb94d7] Terminated
+Jun 04, 2017 2:53:39 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@34d72f06] Terminated
+Jun 04, 2017 2:53:39 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@7e43b342] Terminated
+Jun 04, 2017 2:53:39 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@21dd9203] Terminated
+Jun 04, 2017 2:53:39 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@dbcf7c3] Terminated
+Jun 04, 2017 2:53:39 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@1e466d] Terminated
+Jun 04, 2017 2:53:39 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@63243c8f] Terminated
+Jun 04, 2017 2:53:39 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@2ea4e762] Terminated
+Jun 04, 2017 2:53:39 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@293ecff6] Terminated
+Jun 04, 2017 2:53:39 PM com.google.bigtable.repackaged.io.grpc.internal.ManagedChannelImpl maybeTerminateChannel
+INFO: [ManagedChannelImpl@444c0f9a] Terminated
+]]></system-err>
+  </testcase>
 </testsuite>
