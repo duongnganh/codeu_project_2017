@@ -108,7 +108,7 @@ public final class LoginController implements Initializable {
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Error!");
             alert.setHeaderText(null);
-            alert.setContentText("Entered user credentials are not correct!");
+            alert.setContentText("The credentials provided is not registered!");
 
             alert.showAndWait();
         }

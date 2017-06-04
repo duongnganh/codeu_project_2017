@@ -70,12 +70,12 @@ public final class ClientUser {
   // Validate the username string
   static public boolean isValidName(String userName) {
     boolean clean = true;
-    if (userName.length() == 0) {
+    if (userName.length() < 4) {
       clean = false;
     } else {
 
       // only accepts names that contain alphabets and spaces.
-      Pattern validPattern = Pattern.compile("^[ A-z]+$");
+      Pattern validPattern = Pattern.compile("^[ A-z0-9]+$");
       Matcher match = validPattern.matcher(userName);
       clean = match.matches();
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="codeu.chat.server.BasicControllerTest" time="586.26" tests="6" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="codeu.chat.server.BasicControllerTest" time="580.067" tests="6" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home/jre/lib"/>
@@ -60,10 +60,10 @@
     <property name="sun.io.unicode.encoding" value="UnicodeBig"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase name="testAddMessage" classname="codeu.chat.server.BasicControllerTest" time="177.319"/>
-  <testcase name="testAddConversation" classname="codeu.chat.server.BasicControllerTest" time="115.026"/>
-  <testcase name="testAddUser" classname="codeu.chat.server.BasicControllerTest" time="38.301"/>
-  <testcase name="testAddGroup" classname="codeu.chat.server.BasicControllerTest" time="80.28"/>
-  <testcase name="testDeleteUser" classname="codeu.chat.server.BasicControllerTest" time="41.369"/>
-  <testcase name="testDeleteConversation" classname="codeu.chat.server.BasicControllerTest" time="133.943"/>
+  <testcase name="testAddMessage" classname="codeu.chat.server.BasicControllerTest" time="175.518"/>
+  <testcase name="testAddConversation" classname="codeu.chat.server.BasicControllerTest" time="125.031"/>
+  <testcase name="testAddUser" classname="codeu.chat.server.BasicControllerTest" time="36.88"/>
+  <testcase name="testAddGroup" classname="codeu.chat.server.BasicControllerTest" time="82.839"/>
+  <testcase name="testDeleteUser" classname="codeu.chat.server.BasicControllerTest" time="41.676"/>
+  <testcase name="testDeleteConversation" classname="codeu.chat.server.BasicControllerTest" time="118.102"/>
 </testsuite>

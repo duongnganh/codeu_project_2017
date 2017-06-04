@@ -111,7 +111,8 @@ public final class RegistrationController implements Initializable {
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Error!");
             alert.setHeaderText(null);
-            alert.setContentText("Please check if you are connected to a server");
+            alert.setContentText("Given username/nickname is registered. Also, make sure your username" +
+                " is longer than 4 characters and only contains letters and numbers.");
             alert.showAndWait();
         }
 

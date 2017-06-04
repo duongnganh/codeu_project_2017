@@ -85,8 +85,8 @@ public class Controller implements BasicController {
         LOG.error("Response from server failed.");
       }
     } catch (Exception ex) {
-      System.out.println("ERROR: Exception during call on server. Check log for details.");
-      LOG.error(ex, "Exception during call on server.");
+      System.out.println("This username is already in use. Please try a different one.");
+      LOG.error(ex, "This username is already in use. Please try a different one.");
     }
 
     return response;
