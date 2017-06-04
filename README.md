@@ -94,9 +94,9 @@ Classes that are shared by the clients and servers.
 Some basic infrastructure classes used throughout the project.
 
 
-## GOOGLE BIGTABLE
+## Google Cloud Bigtable
 
-## Costs
+### Costs
 
 This sample uses billable components of Cloud Platform, including:
 
