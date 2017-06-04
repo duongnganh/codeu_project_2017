@@ -59,7 +59,7 @@ public final class ChatBetterGui extends Application {
     public void start(Stage primaryStage) throws Exception {
 
         try {
-            Logger.enableFileOutput("chat_better_gui_client_log.log");
+            Logger.enableFileOutput("bin/chat_better_gui_client_log.log");
         } catch (IOException ex) {
             LOG.error(ex, "Failed to set logger to write to file");
         }

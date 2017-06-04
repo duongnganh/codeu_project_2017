@@ -88,9 +88,9 @@ public class createTableForUI {
 
     // TODO: hard code
     String[] tableNames = 
-    {"Paris-Food", "Paris-Culture", "Paris-Attraction", 
-    "Berlin-Food", "Berlin-Culture", "Berlin-Attraction", 
-    "London-Food", "London-Culture", "London-Attraction"};
+    {"Paris-Food", "Paris-Culture", "Paris-Attractions", 
+    "Berlin-Food", "Berlin-Culture", "Berlin-Attractions", 
+    "London-Food", "London-Culture", "London-Attractions"};
 
     create(projectId, instanceId, tableNames);
   }

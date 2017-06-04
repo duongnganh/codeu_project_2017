@@ -41,7 +41,7 @@ final class ServerMain {
     Logger.enableConsoleOutput();
 
     try {
-      Logger.enableFileOutput("chat_server_log.log");
+      Logger.enableFileOutput("bin/chat_server_log.log");
     } catch (IOException ex) {
       LOG.error(ex, "Failed to set logger to write to file");
     }

@@ -84,9 +84,9 @@ public class deleteTable {
     {requiredProperty("userTable"), requiredProperty("conversationTable"), 
     requiredProperty("groupTable"), requiredProperty("messageTable"),
     //TODO: hard code
-    "Paris-Food", "Paris-Culture", "Paris-Attraction", 
-    "Berlin-Food", "Berlin-Culture", "Berlin-Attraction", 
-    "London-Food", "London-Culture", "London-Attraction"};
+    "Paris-Food", "Paris-Culture", "Paris-Attractions", 
+    "Berlin-Food", "Berlin-Culture", "Berlin-Attractions", 
+    "London-Food", "London-Culture", "London-Attractions"};
     
     delete(projectId, instanceId, tableNames);
   }

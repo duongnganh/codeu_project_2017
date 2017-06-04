@@ -37,7 +37,7 @@ final class RelayMain {
     Logger.enableConsoleOutput();
 
     try {
-      Logger.enableFileOutput("chat_relay_log.log");
+      Logger.enableFileOutput("bin/chat_relay_log.log");
     } catch (IOException ex) {
       LOG.error(ex, "Failed to set logger to write to file");
     }
