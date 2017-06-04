@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Controller.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">cloud-bigtable-hello-world</a> &gt; <a href="index.source.html" class="el_package">codeu.chat.client</a> &gt; <span class="el_source">Controller.java</span></div><h1>Controller.java</h1><pre class="source lang-java linenums">// Copyright 2017 Google Inc.
+//
+// Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+package codeu.chat.client;
+
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.lang.Thread;
+
+import codeu.chat.common.BasicController;
+import codeu.chat.common.Group;
+import codeu.chat.common.Conversation;
+import codeu.chat.common.Message;
+import codeu.chat.common.NetworkCode;
+import codeu.chat.common.User;
+import codeu.chat.util.Logger;
+import codeu.chat.util.Serializers;
+import codeu.chat.util.Uuid;
+import codeu.chat.util.connections.Connection;
+import codeu.chat.util.connections.ConnectionSource;
+
+public class Controller implements BasicController {
+
+<span class="nc" id="L35">  private final static Logger.Log LOG = Logger.newLog(Controller.class);</span>
+
+  private final ConnectionSource source;
+
+<span class="nc" id="L39">  public Controller(ConnectionSource source) {</span>
+<span class="nc" id="L40">    this.source = source;</span>
+<span class="nc" id="L41">  }</span>
+
+  @Override
+  public Message newMessage(Uuid author, Uuid conversation, Uuid group, String body) {
+
+<span class="nc" id="L46">    Message response = null;</span>
+
+<span class="nc" id="L48">    try (final Connection connection = source.connect()) {</span>
+
+<span class="nc" id="L50">      Serializers.INTEGER.write(connection.out(), NetworkCode.NEW_MESSAGE_REQUEST);</span>
+<span class="nc" id="L51">      Uuid.SERIALIZER.write(connection.out(), author);</span>
+<span class="nc" id="L52">      Uuid.SERIALIZER.write(connection.out(), conversation);</span>
+<span class="nc" id="L53">      Uuid.SERIALIZER.write(connection.out(), group);</span>
+<span class="nc" id="L54">      Serializers.STRING.write(connection.out(), body);</span>
+
+<span class="nc bnc" id="L56" title="All 2 branches missed.">      if (Serializers.INTEGER.read(connection.in()) == NetworkCode.NEW_MESSAGE_RESPONSE) {</span>
+<span class="nc" id="L57">        response = Serializers.nullable(Message.SERIALIZER).read(connection.in());</span>
+      } else {
+<span class="nc" id="L59">        LOG.error(&quot;Response from server failed.&quot;);</span>
+      }
+<span class="nc bnc" id="L61" title="All 8 branches missed.">    } catch (Exception ex) {</span>
+<span class="nc" id="L62">      System.out.println(&quot;ERROR: Exception during call on server. Check log for details.&quot;);</span>
+<span class="nc" id="L63">      LOG.error(ex, &quot;Exception during call on server.&quot;);</span>
+<span class="nc" id="L64">    }</span>
+
+<span class="nc" id="L66">    return response;</span>
+  }
+
+  @Override
+  public User newUser(String name, String nickname, String pass) {
+<span class="nc" id="L71">    User response = null;</span>
+
+<span class="nc" id="L73">    try (final Connection connection = source.connect()) {</span>
+
+<span class="nc" id="L75">      Serializers.INTEGER.write(connection.out(), NetworkCode.NEW_USER_REQUEST);</span>
+<span class="nc" id="L76">      Serializers.STRING.write(connection.out(), name);</span>
+<span class="nc" id="L77">      Serializers.STRING.write(connection.out(), nickname);</span>
+<span class="nc" id="L78">      Serializers.STRING.write(connection.out(), pass);</span>
+<span class="nc" id="L79">      LOG.info(&quot;newUser: Request completed.&quot;);</span>
+      // System.out.println(&quot;in newUser Controller client&quot;);
+
+<span class="nc bnc" id="L82" title="All 2 branches missed.">      if (Serializers.INTEGER.read(connection.in()) == NetworkCode.NEW_USER_RESPONSE) {</span>
+<span class="nc" id="L83">        response = Serializers.nullable(User.SERIALIZER).read(connection.in());</span>
+<span class="nc" id="L84">        LOG.info(&quot;newUser: Response completed.&quot;);</span>
+        // System.out.println(&quot;in client &quot; + response.nickname);
+      } else {
+<span class="nc" id="L87">        LOG.error(&quot;Response from server failed.&quot;);</span>
+      }
+<span class="nc bnc" id="L89" title="All 8 branches missed.">    } catch (Exception ex) {</span>
+<span class="nc" id="L90">      System.out.println(&quot;ERROR: Exception during call on server. Check log for details.&quot;);</span>
+<span class="nc" id="L91">      LOG.error(ex, &quot;Exception during call on server.&quot;);</span>
+<span class="nc" id="L92">    }</span>
+
+<span class="nc" id="L94">    return response;</span>
+  }
+
+  public boolean setNickname(User user, String nickname) {
+<span class="nc" id="L98">    User response = null;</span>
+
+<span class="nc" id="L100">    try (final Connection connection = source.connect()) {</span>
+
+<span class="nc" id="L102">      Serializers.INTEGER.write(connection.out(), NetworkCode.NEW_NICKNAME_REQUEST);</span>
+<span class="nc" id="L103">      Uuid.SERIALIZER.write(connection.out(), user.id);</span>
+<span class="nc" id="L104">      Serializers.STRING.write(connection.out(), nickname);</span>
+<span class="nc" id="L105">      LOG.info(&quot;setNickname: Request completed.&quot;);</span>
+
+<span class="nc bnc" id="L107" title="All 2 branches missed.">      if (Serializers.INTEGER.read(connection.in()) == NetworkCode.NEW_NICKNAME_RESPONSE) {</span>
+<span class="nc" id="L108">        response = Serializers.nullable(User.SERIALIZER).read(connection.in());</span>
+<span class="nc" id="L109">        LOG.info(&quot;setNickname: Response completed.&quot;);</span>
+      } else {
+<span class="nc" id="L111">        LOG.error(&quot;Response from server failed.&quot;);</span>
+      }
+<span class="nc bnc" id="L113" title="All 8 branches missed.">    } catch (Exception ex) {</span>
+<span class="nc" id="L114">      System.out.println(&quot;ERROR: Exception during call on server. Check log for details.&quot;);</span>
+<span class="nc" id="L115">      LOG.error(ex, &quot;Exception during call on server.&quot;);</span>
+<span class="nc" id="L116">    }</span>
+
+<span class="nc bnc" id="L118" title="All 2 branches missed.">    return response != null;</span>
+  }
+
+  public boolean ifCorrectPassword(User user, String password) {
+<span class="nc" id="L122">    User response = null;</span>
+
+<span class="nc" id="L124">    try (final Connection connection = source.connect()) {</span>
+
+<span class="nc" id="L126">      Serializers.INTEGER.write(connection.out(), NetworkCode.CHECK_PASSWORD_REQUEST);</span>
+<span class="nc" id="L127">      Uuid.SERIALIZER.write(connection.out(), user.id);</span>
+<span class="nc" id="L128">      Serializers.STRING.write(connection.out(), password);</span>
+<span class="nc" id="L129">      LOG.info(&quot;checkPassword: Request completed.&quot;);</span>
+
+<span class="nc bnc" id="L131" title="All 2 branches missed.">      if (Serializers.INTEGER.read(connection.in()) == NetworkCode.CHECK_PASSWORD_RESPONSE) {</span>
+<span class="nc" id="L132">        response = Serializers.nullable(User.SERIALIZER).read(connection.in());</span>
+<span class="nc" id="L133">        LOG.info(&quot;checkPassword: Response completed.&quot;);</span>
+      } else {
+<span class="nc" id="L135">        LOG.error(&quot;Response from server failed.&quot;);</span>
+      }
+<span class="nc bnc" id="L137" title="All 8 branches missed.">    } catch (Exception ex) {</span>
+<span class="nc" id="L138">      System.out.println(&quot;ERROR: Exception during call on server. Check log for details.&quot;);</span>
+<span class="nc" id="L139">      LOG.error(ex, &quot;Exception during call on server.&quot;);</span>
+<span class="nc" id="L140">    }</span>
+
+<span class="nc bnc" id="L142" title="All 2 branches missed.">    return response != null;</span>
+  }
+
+  @Override
+  public User deleteUser(String name) {
+
+<span class="nc" id="L148">    User response = null;</span>
+
+<span class="nc" id="L150">    try (final Connection connection = source.connect()) {</span>
+<span class="nc" id="L151">      Serializers.INTEGER.write(connection.out(), NetworkCode.REMOVE_USER_REQUEST);</span>
+<span class="nc" id="L152">      Serializers.STRING.write(connection.out(), name);</span>
+<span class="nc" id="L153">      LOG.info(&quot;deleteUser: Request completed.&quot;);</span>
+
+<span class="nc bnc" id="L155" title="All 2 branches missed.">      if (Serializers.INTEGER.read(connection.in()) == NetworkCode.REMOVE_USER_RESPONSE) {</span>
+<span class="nc" id="L156">        response = Serializers.nullable(User.SERIALIZER).read(connection.in());</span>
+<span class="nc" id="L157">        LOG.info(&quot;deleteUser: Response completed.&quot;);</span>
+      } else {
+<span class="nc" id="L159">        LOG.error(&quot;Response from server failed.&quot;);</span>
+      }
+<span class="nc bnc" id="L161" title="All 8 branches missed.">    } catch (Exception ex) {</span>
+<span class="nc" id="L162">      System.out.println(&quot;ERROR: Exception during call on server. Check log for details.&quot;);</span>
+<span class="nc" id="L163">      LOG.error(ex, &quot;Exception during call on server.&quot;);</span>
+<span class="nc" id="L164">    }</span>
+
+<span class="nc" id="L166">    return response;</span>
+  }
+
+  @Override
+  public Conversation newConversation(String title, Uuid owner, Uuid group)  {
+<span class="nc" id="L171">    LOG.info(&quot;clientnewConversation1&quot;);</span>
+
+<span class="nc" id="L173">    Conversation response = null;</span>
+
+<span class="nc" id="L175">    try (final Connection connection = source.connect()) {</span>
+<span class="nc" id="L176">      LOG.info(&quot;clientnewConversation2&quot;);</span>
+
+<span class="nc" id="L178">      Serializers.INTEGER.write(connection.out(), NetworkCode.NEW_CONVERSATION_REQUEST);</span>
+<span class="nc" id="L179">      Serializers.STRING.write(connection.out(), title);</span>
+<span class="nc" id="L180">      Uuid.SERIALIZER.write(connection.out(), owner);</span>
+<span class="nc" id="L181">      Uuid.SERIALIZER.write(connection.out(), group);</span>
+
+<span class="nc" id="L183">      LOG.info(&quot;clientnewConversation3donewriting&quot;);</span>
+
+<span class="nc bnc" id="L185" title="All 2 branches missed.">      if (Serializers.INTEGER.read(connection.in()) == NetworkCode.NEW_CONVERSATION_RESPONSE) {</span>
+<span class="nc" id="L186">        response = Serializers.nullable(Conversation.SERIALIZER).read(connection.in());</span>
+<span class="nc" id="L187">        LOG.info(&quot;clientnewConversation4reading&quot;);</span>
+      } else {
+<span class="nc" id="L189">        LOG.error(&quot;Response from server failed.&quot;);</span>
+      }
+<span class="nc bnc" id="L191" title="All 8 branches missed.">    } catch (Exception ex) {</span>
+<span class="nc" id="L192">      System.out.println(&quot;ERROR: Exception during call on server. Check log for details.&quot;);</span>
+<span class="nc" id="L193">      LOG.error(ex, &quot;Exception during call on server.&quot;);</span>
+<span class="nc" id="L194">    }</span>
+
+<span class="nc" id="L196">    return response;</span>
+  }
+
+  @Override
+  public Conversation deleteConversation(String title) {
+
+<span class="nc" id="L202">    Conversation response = null;</span>
+
+<span class="nc" id="L204">    try (final Connection connection = source.connect()) {</span>
+<span class="nc" id="L205">      Serializers.INTEGER.write(connection.out(), NetworkCode.DELETE_CONVERSATION_REQUEST);</span>
+<span class="nc" id="L206">      Serializers.STRING.write(connection.out(), title);</span>
+
+<span class="nc bnc" id="L208" title="All 2 branches missed.">      if (Serializers.INTEGER.read(connection.in()) == NetworkCode.DELETE_CONVERSATION_RESPONSE) {</span>
+<span class="nc" id="L209">        response = Serializers.nullable(Conversation.SERIALIZER).read(connection.in());</span>
+      } else {
+<span class="nc" id="L211">        LOG.error(&quot;Response from server failed.&quot;);</span>
+      }
+<span class="nc bnc" id="L213" title="All 8 branches missed.">    } catch (Exception ex) {</span>
+<span class="nc" id="L214">      System.out.println(&quot;ERROR: Exception during call on server. Check log for details.&quot;);</span>
+<span class="nc" id="L215">      LOG.error(ex, &quot;Exception during call on server.&quot;);</span>
+<span class="nc" id="L216">    }</span>
+
+<span class="nc" id="L218">    return response;</span>
+  }
+
+  @Override
+  public Group newGroup(String title, Uuid owner)  {
+
+<span class="nc" id="L224">    Group response = null;</span>
+
+<span class="nc" id="L226">    try (final Connection connection = source.connect()) {</span>
+
+<span class="nc" id="L228">      Serializers.INTEGER.write(connection.out(), NetworkCode.NEW_GROUP_REQUEST);</span>
+<span class="nc" id="L229">      Serializers.STRING.write(connection.out(), title);</span>
+<span class="nc" id="L230">      Uuid.SERIALIZER.write(connection.out(), owner);</span>
+
+<span class="nc bnc" id="L232" title="All 2 branches missed.">      if (Serializers.INTEGER.read(connection.in()) == NetworkCode.NEW_GROUP_RESPONSE) {</span>
+<span class="nc" id="L233">        response = Serializers.nullable(Group.SERIALIZER).read(connection.in());</span>
+      } else {
+<span class="nc" id="L235">        LOG.error(&quot;Response from server failed.&quot;);</span>
+      }
+<span class="nc bnc" id="L237" title="All 8 branches missed.">    } catch (Exception ex) {</span>
+<span class="nc" id="L238">      System.out.println(&quot;ERROR: Exception during call on server. Check log for details.&quot;);</span>
+<span class="nc" id="L239">      LOG.error(ex, &quot;Exception during call on server.&quot;);</span>
+<span class="nc" id="L240">    }</span>
+
+<span class="nc" id="L242">    return response;</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

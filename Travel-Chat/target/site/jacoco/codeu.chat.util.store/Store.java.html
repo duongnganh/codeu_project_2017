@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Store.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">cloud-bigtable-hello-world</a> &gt; <a href="index.source.html" class="el_package">codeu.chat.util.store</a> &gt; <span class="el_source">Store.java</span></div><h1>Store.java</h1><pre class="source lang-java linenums">// Copyright 2017 Google Inc.
+//
+// Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+package codeu.chat.util.store;
+
+import java.util.Comparator;
+import java.util.Map;
+import java.util.NavigableMap;
+import java.util.TreeMap;
+import codeu.chat.common.User;
+
+public final class Store&lt;KEY, VALUE&gt; implements StoreAccessor&lt;KEY, VALUE&gt; {
+
+  // To make the code simpler - use a dummy link for the first link in this
+  // list. The root link is never read from. To avoid reading from this link
+  // the &quot;next&quot; value is used more than the &quot;this&quot; or &quot;current&quot; reference.
+<span class="fc" id="L28">  private final StoreLink&lt;KEY, VALUE&gt; rootLink = new StoreLink&lt;&gt;(null, null, null);</span>
+
+  private final NavigableMap&lt;KEY, StoreLink&lt;KEY, VALUE&gt;&gt; index;
+
+  private final Comparator&lt;KEY&gt; comparator;
+
+<span class="fc" id="L34">  public Store(Comparator&lt;KEY&gt; comparator) {</span>
+<span class="fc" id="L35">    this.index = new TreeMap&lt;&gt;(comparator);</span>
+<span class="fc" id="L36">    this.comparator = comparator;</span>
+<span class="fc" id="L37">  }</span>
+
+  public void insert(KEY key, VALUE value) {
+
+<span class="fc" id="L41">    final StoreLink&lt;KEY, VALUE&gt; closestLink = floor(key);</span>
+
+    // Assume that the new value can only come after the current position. Move
+    // through the chain of links until the next link is either the end (null)
+    // or will logically come after the new value.
+<span class="fc bfc" id="L46" title="All 2 branches covered.">    StoreLink&lt;KEY, VALUE&gt; current = (closestLink == null) ? (rootLink) : (closestLink);</span>
+<span class="fc bfc" id="L47" title="All 4 branches covered.">    while(current.next != null &amp;&amp; comparator.compare(current.next.key, key) &lt;= 0) {</span>
+<span class="fc" id="L48">      current = current.next;</span>
+    }
+
+    // &quot;current.next&quot; may be null, but &quot;current&quot; can never be null. So it
+    // should always be safe to call to current.
+<span class="fc" id="L53">    final StoreLink&lt;KEY, VALUE&gt; newLink = new StoreLink&lt;&gt;(key, value, current.next);</span>
+<span class="fc" id="L54">    current.next = newLink;</span>
+
+    // Before adding the link to the index, first check if the hint has an
+    // equal key. If it does - do not add the index.
+    //
+    // There are two reasons for this:
+    //  1. The index class does not handle duplicate keys well (as stated in
+    //     the code for the index).
+    //  2. There is no advantage to having multiple equal keys in the index as
+    //     it would not help with the interators. As long as the key will map
+    //     to the first link, the other links will always be found. This is
+    //     why the insert is always put at the end of the series.
+<span class="fc bfc" id="L66" title="All 4 branches covered.">    if (closestLink == null || comparator.compare(newLink.key, closestLink.key) != 0) {</span>
+<span class="fc" id="L67">      index.put(key, newLink);</span>
+    }
+<span class="fc" id="L69">  }</span>
+
+  public void remove(KEY key) {
+
+<span class="nc" id="L73">    StoreLink&lt;KEY, VALUE&gt; current = rootLink;</span>
+    //System.out.println(&quot;entered method&quot;);
+
+<span class="nc bnc" id="L76" title="All 4 branches missed.">    while (current.next != null &amp;&amp; comparator.compare(current.next.key, key) &lt; 0) {</span>
+<span class="nc" id="L77">      current = current.next;</span>
+      //System.out.println(&quot;entered loop&quot;);
+    }
+
+<span class="nc" id="L81">    StoreLink&lt;KEY, VALUE&gt; previous = current;</span>
+
+<span class="nc bnc" id="L83" title="All 4 branches missed.">    if (current.next != null &amp;&amp; current.next.key.equals(key)) {</span>
+<span class="nc" id="L84">      index.remove(key);</span>
+<span class="nc" id="L85">      current = current.next;</span>
+<span class="nc bnc" id="L86" title="All 2 branches missed.">      if (current.next == null) {</span>
+<span class="nc" id="L87">        previous.next = null;</span>
+      } else {
+<span class="nc" id="L89">        previous.next = current.next;</span>
+      }
+    }
+
+<span class="nc" id="L93">  }</span>
+
+  @Override
+  public VALUE first(KEY key) {
+<span class="fc" id="L97">    final StoreLink&lt;KEY, VALUE&gt; link = index.get(key);</span>
+<span class="fc bfc" id="L98" title="All 2 branches covered.">    return link == null ? null : link.value;</span>
+  }
+
+  @Override
+  public Iterable&lt;VALUE&gt; all() {
+<span class="fc" id="L103">    return new LinkIterable&lt;KEY, VALUE&gt;(comparator, first(), last());</span>
+  }
+
+  @Override
+  public Iterable&lt;VALUE&gt; at(final KEY key) {
+<span class="fc" id="L108">    return new LinkIterable&lt;KEY, VALUE&gt;(comparator, ceiling(key), floor(key));</span>
+  }
+
+  @Override
+  public Iterable&lt;VALUE&gt; after(KEY start) {
+<span class="fc" id="L113">    return new LinkIterable&lt;KEY, VALUE&gt;(comparator, ceiling(start), last());</span>
+  }
+
+  @Override
+  public Iterable&lt;VALUE&gt; before(KEY end) {
+<span class="fc" id="L118">    return new LinkIterable&lt;KEY, VALUE&gt;(comparator, first(), floor(end));</span>
+  }
+
+  @Override
+  public Iterable&lt;VALUE&gt; range(KEY start, KEY end) {
+<span class="fc" id="L123">    return new LinkIterable&lt;KEY, VALUE&gt;(comparator, ceiling(start), floor(end));</span>
+  }
+
+  private StoreLink&lt;KEY, VALUE&gt; first() {
+<span class="fc" id="L127">    return extract(index.firstEntry());</span>
+  }
+
+  private StoreLink&lt;KEY, VALUE&gt; last() {
+<span class="fc" id="L131">    return extract(index.lastEntry());</span>
+  }
+
+  private StoreLink&lt;KEY, VALUE&gt; ceiling(KEY key) {
+<span class="fc" id="L135">    return extract(index.ceilingEntry(key));</span>
+  }
+
+  private StoreLink&lt;KEY, VALUE&gt; floor(KEY key) {
+<span class="fc" id="L139">    return extract(index.floorEntry(key));</span>
+  }
+
+  private StoreLink&lt;KEY, VALUE&gt; extract(Map.Entry&lt;KEY, StoreLink&lt;KEY, VALUE&gt;&gt; entry) {
+<span class="fc bfc" id="L143" title="All 2 branches covered.">    return entry == null ? null : entry.getValue();</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>
