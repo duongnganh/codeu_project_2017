@@ -46,7 +46,7 @@ This project uses the native HBase API to connect to and interact with Cloud Big
 
         https://github.com/neilbarooah/codeu_project_2017
 
-2.  Change to the Hello World code sample directory.
+2.  Navigate to the Travel-Chat directory.
 
         cd codeu_project_2017/Travel-Chat
 
