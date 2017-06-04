@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>User.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">cloud-bigtable-hello-world</a> &gt; <a href="index.source.html" class="el_package">codeu.chat.common</a> &gt; <span class="el_source">User.java</span></div><h1>User.java</h1><pre class="source lang-java linenums">// Copyright 2017 Google Inc.
+//
+// Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+package codeu.chat.common;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+
+import codeu.chat.util.Serializer;
+import codeu.chat.util.Serializers;
+import codeu.chat.util.Time;
+import codeu.chat.util.Uuid;
+
+public final class User {
+
+<span class="fc" id="L28">  public static final Serializer&lt;User&gt; SERIALIZER = new Serializer&lt;User&gt;() {</span>
+
+    @Override
+    public void write(OutputStream out, User value) throws IOException {
+      // System.out.println(&quot;in write User&quot;);
+<span class="nc" id="L33">      Uuid.SERIALIZER.write(out, value.id);</span>
+<span class="nc" id="L34">      Serializers.STRING.write(out, value.name);</span>
+<span class="nc" id="L35">      Time.SERIALIZER.write(out, value.creation);</span>
+<span class="nc" id="L36">      Serializers.STRING.write(out, value.nickname);</span>
+<span class="nc" id="L37">    }</span>
+
+    @Override
+    public User read(InputStream in) throws IOException {
+      // System.out.println(&quot;in read User&quot;);
+<span class="nc" id="L42">      User user = new User(</span>
+<span class="nc" id="L43">          Uuid.SERIALIZER.read(in),</span>
+<span class="nc" id="L44">          Serializers.STRING.read(in),</span>
+<span class="nc" id="L45">          Time.SERIALIZER.read(in),</span>
+<span class="nc" id="L46">          Serializers.STRING.read(in));</span>
+      //TODO: encrypt password
+      // user.setPassword(Serializers.STRING.read(in));
+<span class="nc" id="L49">      return user;</span>
+    }
+  };
+
+  public final Uuid id;
+  public final String name;
+  public final Time creation;
+<span class="fc" id="L56">  public String nickname = &quot;&quot;;</span>
+<span class="fc" id="L57">  public String password = &quot;&quot;;</span>
+
+<span class="fc" id="L59">  public User(Uuid id, String name, Time creation) {</span>
+
+<span class="fc" id="L61">    this.id = id;</span>
+<span class="fc" id="L62">    this.name = name;</span>
+<span class="fc" id="L63">    this.creation = creation;</span>
+
+<span class="fc" id="L65">  }</span>
+
+<span class="fc" id="L67">  public User(Uuid id, String name, Time creation, String nickname) {</span>
+<span class="fc" id="L68">    this.id = id;</span>
+<span class="fc" id="L69">    this.name = name;</span>
+<span class="fc" id="L70">    this.nickname = nickname;</span>
+<span class="fc" id="L71">    this.creation = creation;</span>
+<span class="fc" id="L72">  }</span>
+
+  public void setNickname(String nickname){
+<span class="nc" id="L75">    this.nickname = nickname; </span>
+<span class="nc" id="L76">  }</span>
+
+  public String getNickname(){
+<span class="nc" id="L79">    return this.nickname;</span>
+  }
+
+  // public boolean ifCorrectPassword(String pass){
+  //   return this.password.equals(pass);
+  // }
+
+  public void setPassword(String password){
+<span class="fc" id="L87">    this.password = password;</span>
+<span class="fc" id="L88">  }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ClientMessage.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">cloud-bigtable-hello-world</a> &gt; <a href="index.source.html" class="el_package">codeu.chat.client</a> &gt; <span class="el_source">ClientMessage.java</span></div><h1>ClientMessage.java</h1><pre class="source lang-java linenums">// Copyright 2017 Google Inc.
+//
+// Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+package codeu.chat.client;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import codeu.chat.common.Conversation;
+import codeu.chat.common.ConversationSummary;
+import codeu.chat.common.Message;
+import codeu.chat.util.Logger;
+import codeu.chat.util.Method;
+import codeu.chat.util.Uuid;
+
+public final class ClientMessage {
+
+<span class="nc" id="L31">  private final static Logger.Log LOG = Logger.newLog(ClientMessage.class);</span>
+
+  private final static int MESSAGE_MAX_COUNT = 100;
+  private final static int MESSAGE_FETCH_COUNT = 5;
+
+  private final Controller controller;
+  private final View view;
+
+<span class="nc" id="L39">  private Message current = null;</span>
+
+<span class="nc" id="L41">  private final Map&lt;Uuid, Message&gt; messageByUuid = new HashMap&lt;&gt;();</span>
+
+  private Conversation conversationHead;
+<span class="nc" id="L44">  private final List&lt;Message&gt; conversationContents = new ArrayList&lt;&gt;();</span>
+
+  private final ClientUser userContext;
+  private final ClientConversation conversationContext;
+  private final ClientGroup groupContext;
+
+  public ClientMessage(Controller controller, View view, ClientUser userContext,
+<span class="nc" id="L51">                       ClientConversation conversationContext, ClientGroup groupContext) {</span>
+<span class="nc" id="L52">    this.controller = controller;</span>
+<span class="nc" id="L53">    this.view = view;</span>
+<span class="nc" id="L54">    this.userContext = userContext;</span>
+<span class="nc" id="L55">    this.conversationContext = conversationContext;</span>
+<span class="nc" id="L56">    this.groupContext = groupContext;</span>
+<span class="nc" id="L57">    this.conversationContext.setMessageContext(this);</span>
+<span class="nc" id="L58">  }</span>
+
+  // Validate the message body.
+  public static boolean isValidBody(String body) {
+<span class="nc" id="L62">    boolean clean = true;</span>
+<span class="nc bnc" id="L63" title="All 4 branches missed.">    if ((body.length() &lt;= 0) || (body.length() &gt; 1024)) {</span>
+<span class="nc" id="L64">      clean = false;</span>
+    } else {
+
+      // TODO: check for invalid characters
+
+    }
+<span class="nc" id="L70">    return clean;</span>
+  }
+
+  public boolean hasCurrent() {
+<span class="nc bnc" id="L74" title="All 2 branches missed.">    return (current != null);</span>
+  }
+
+  public Message getCurrent() {
+<span class="nc" id="L78">    return current;</span>
+  }
+
+  public void showCurrent() {
+<span class="nc" id="L82">    printMessage(current, userContext);</span>
+<span class="nc" id="L83">  }</span>
+
+  public void resetCurrent(boolean replaceAll) {
+<span class="nc" id="L86">    updateMessages(replaceAll);</span>
+<span class="nc" id="L87">  }</span>
+
+  public int currentMessageCount() {
+<span class="nc bnc" id="L90" title="All 2 branches missed.">    return (conversationContents == null) ? 0 : conversationContents.size();</span>
+  }
+
+  public List&lt;Message&gt; getConversationContents(ConversationSummary summary) {
+<span class="nc bnc" id="L94" title="All 6 branches missed.">    if (conversationHead == null || summary == null || !conversationHead.id.equals(summary.id)) {</span>
+<span class="nc" id="L95">      updateMessages(summary, true);</span>
+    }
+<span class="nc" id="L97">    return conversationContents;</span>
+  }
+
+  // For m-add command.
+  public void addMessage(Uuid author, Uuid conversation, Uuid group, String body) {
+<span class="nc bnc" id="L102" title="All 6 branches missed.">    final boolean validInputs = isValidBody(body) &amp;&amp; (author != null) &amp;&amp; (conversation != null);</span>
+
+<span class="nc bnc" id="L104" title="All 2 branches missed.">    final Message message = (validInputs) ? controller.newMessage(author, conversation, group, body) : null;</span>
+
+<span class="nc bnc" id="L106" title="All 2 branches missed.">    if (message == null) {</span>
+<span class="nc bnc" id="L107" title="All 2 branches missed.">      System.out.format(&quot;Error: message not created - %s.\n&quot;,</span>
+<span class="nc" id="L108">          (validInputs) ? &quot;server error&quot; : &quot;bad input value&quot;);</span>
+    } else {
+<span class="nc" id="L110">      LOG.info(&quot;New message:, Author= %s UUID= %s&quot;, author, message.id);</span>
+<span class="nc" id="L111">      current = message;</span>
+    }
+<span class="nc" id="L113">    updateMessages(false);</span>
+<span class="nc" id="L114">  }</span>
+
+  // For m-list-all command.
+  // Show all messages attached to the current conversation. This will balk if the conversation
+  // has too many messages (use m-next and m-show instead).
+  public void showAllMessages(Uuid group_id, Uuid conversation_id) {
+<span class="nc bnc" id="L120" title="All 2 branches missed.">    if (conversationContents.size() == 0) {</span>
+<span class="nc" id="L121">      System.out.println(&quot; Current Conversation has no messages&quot;);</span>
+    } else {
+<span class="nc bnc" id="L123" title="All 2 branches missed.">      for (final Message m : conversationContents) {</span>
+        // System.out.println(m.group+&quot;&quot;+group_id);
+        // System.out.println(m.conversation+&quot;&quot;+conversation_id);
+        // if (m.group == group_id &amp;&amp; m.conversation == conversation_id)
+<span class="nc" id="L127">          printMessage(m, userContext);</span>
+<span class="nc" id="L128">      }</span>
+    }
+<span class="nc" id="L130">  }</span>
+
+  // For m-next command.
+  // Accept an index (within the current stream) that indicates the next message to show.
+  // Message 1 is the head of the Conversation's message chain.
+  // Message -1 is the tail of the Conversation's message chain.
+  public void selectMessage(int index) {
+<span class="nc" id="L137">    Method.notImplemented();</span>
+<span class="nc" id="L138">  }</span>
+
+  // Processing for m-show command.
+  // Accept an int for number of messages to attempt to show (1 by default).
+  // Negative values go from newest to oldest.
+  public void showMessages(int count) {
+<span class="nc bnc" id="L144" title="All 2 branches missed.">    for (final Message m : conversationContents) {</span>
+<span class="nc" id="L145">      printMessage(m, userContext);</span>
+<span class="nc" id="L146">    }</span>
+<span class="nc" id="L147">  }</span>
+
+  private void showNextMessages(int count) {
+<span class="nc" id="L150">    Method.notImplemented();</span>
+<span class="nc" id="L151">  }</span>
+
+  private void showPreviousMessages(int count) {
+<span class="nc" id="L154">    Method.notImplemented();</span>
+<span class="nc" id="L155">  }</span>
+
+  // Determine the next message ID of the current conversation to start pulling.
+  // This requires a read of the last read message to determine if the chain has been extended.
+  private Uuid getCurrentMessageFetchId(boolean replaceAll) {
+<span class="nc bnc" id="L160" title="All 4 branches missed.">    if (replaceAll || conversationContents.isEmpty()) {</span>
+      // Fetch/refetch all the messages.
+<span class="nc" id="L162">      conversationContents.clear();</span>
+<span class="nc" id="L163">      LOG.info(&quot;Refetch all messages: replaceAll=%s firstMessage=%s&quot;, replaceAll,</span>
+               conversationHead.firstMessage);
+<span class="nc" id="L165">      return conversationHead.firstMessage;</span>
+    } else {
+      // Locate last known message. Its next, if any, becomes our starting point.
+<span class="nc" id="L168">      return getCurrentTailMessageId();</span>
+    }
+  }
+
+  private Uuid getCurrentTailMessageId() {
+<span class="nc" id="L173">    Uuid nextMessageId = conversationContents.get(conversationContents.size() - 1).id;</span>
+<span class="nc" id="L174">    final List&lt;Message&gt; messageTail = new ArrayList&lt;&gt;(view.getMessages(nextMessageId, 1));</span>
+<span class="nc bnc" id="L175" title="All 2 branches missed.">    if (messageTail.size() &gt; 0) {</span>
+<span class="nc" id="L176">      final Message msg = messageTail.get(0);</span>
+<span class="nc" id="L177">      nextMessageId = msg.next;</span>
+<span class="nc" id="L178">    } else {</span>
+      // fall back.
+<span class="nc" id="L180">      LOG.warning(&quot;Failed to get tail of messages, starting from %s&quot;, nextMessageId);</span>
+<span class="nc" id="L181">      conversationContents.clear();</span>
+<span class="nc" id="L182">      nextMessageId = conversationHead.firstMessage;</span>
+    }
+<span class="nc" id="L184">    return nextMessageId;</span>
+  }
+
+  // Update the list of messages for the current conversation.
+  // Currently rereads the entire message chain.
+  public void updateMessages(boolean replaceAll) {
+<span class="nc" id="L190">    updateMessages(conversationContext.getCurrent(), replaceAll);</span>
+<span class="nc" id="L191">  }</span>
+
+  // Update the list of messages for the given conversation.
+  // Currently rereads the entire message chain.
+  public void updateMessages(ConversationSummary conversation, boolean replaceAll) {
+<span class="nc bnc" id="L196" title="All 2 branches missed.">    if (conversation == null) {</span>
+<span class="nc" id="L197">      LOG.error(&quot;conversation argument is null - do nothing.&quot;);</span>
+<span class="nc" id="L198">      return;</span>
+    }
+<span class="nc" id="L200">    conversationHead = conversationContext.getConversation(conversation.id);</span>
+<span class="nc bnc" id="L201" title="All 2 branches missed.">    if (conversationHead == null) {</span>
+<span class="nc" id="L202">      LOG.info(&quot;ConversationHead is null&quot;);</span>
+    } else {
+<span class="nc" id="L204">      LOG.info(&quot;ConversationHead: Title=\&quot;%s\&quot; UUID=%s first=%s last=%s\n&quot;,</span>
+          conversationHead.title, conversationHead.id, conversationHead.firstMessage,
+          conversationHead.lastMessage);
+
+<span class="nc" id="L208">      Uuid nextMessageId = getCurrentMessageFetchId(replaceAll);</span>
+
+      //  Stay in loop until all messages read (up to safety limit)
+<span class="nc bnc" id="L211" title="All 4 branches missed.">      while (!nextMessageId.equals(Uuid.NULL) &amp;&amp; conversationContents.size() &lt; MESSAGE_MAX_COUNT) {</span>
+
+<span class="nc bnc" id="L213" title="All 2 branches missed.">        for (final Message msg : view.getMessages(nextMessageId, MESSAGE_FETCH_COUNT)) {</span>
+
+<span class="nc" id="L215">          conversationContents.add(msg);</span>
+
+          // Race: message possibly added since conversation fetched.  If that occurs,
+          // pretend the newer messages do not exist - they'll get picked up next time).
+<span class="nc bnc" id="L219" title="All 4 branches missed.">          if (msg.next.equals(Uuid.NULL) || msg.id.equals(conversationHead.lastMessage)) {</span>
+<span class="nc" id="L220">            msg.next = Uuid.NULL;</span>
+<span class="nc" id="L221">            break;</span>
+          }
+<span class="nc" id="L223">        }</span>
+<span class="nc" id="L224">        nextMessageId = conversationContents.get(conversationContents.size() - 1).next;</span>
+      }
+<span class="nc" id="L226">      LOG.info(&quot;Retrieved %d messages for conversation %s (%s).\n&quot;,</span>
+<span class="nc" id="L227">          conversationContents.size(), conversationHead.id, conversationHead.title);</span>
+
+      // Set current to first message of conversation.
+<span class="nc bnc" id="L230" title="All 2 branches missed.">      current = (conversationContents.size() &gt; 0) ? conversationContents.get(0) : null;</span>
+    }
+<span class="nc" id="L232">  }</span>
+
+  // Print Message.  User context is used to map from author UUID to name.
+  public static void printMessage(Message m, ClientUser userContext) {
+<span class="nc bnc" id="L236" title="All 2 branches missed.">    if (m == null) {</span>
+<span class="nc" id="L237">      System.out.println(&quot;Null message.&quot;);</span>
+    } else {
+
+      // Display author name if available.  Otherwise display the author UUID.
+<span class="nc bnc" id="L241" title="All 2 branches missed.">      final String authorName = (userContext == null) ? null : userContext.getName(m.author);</span>
+
+<span class="nc bnc" id="L243" title="All 2 branches missed.">      System.out.format(&quot; Author: %s   Id: %s created: %s\n   Body: %s\n&quot;,</span>
+<span class="nc" id="L244">          (authorName == null) ? m.author : authorName, m.id, m.creation, m.content);</span>
+    }
+<span class="nc" id="L246">  }</span>
+
+  // Print Message outside of user context.
+  public static void printMessage(Message m) {
+<span class="nc" id="L250">    printMessage(m, null);</span>
+<span class="nc" id="L251">  }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

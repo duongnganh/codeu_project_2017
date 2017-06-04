@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ChatSimpleGui.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">cloud-bigtable-hello-world</a> &gt; <a href="index.source.html" class="el_package">codeu.chat.client.simplegui</a> &gt; <span class="el_source">ChatSimpleGui.java</span></div><h1>ChatSimpleGui.java</h1><pre class="source lang-java linenums">// Copyright 2017 Google Inc.
+//
+// Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+package codeu.chat.client.simplegui;
+
+import java.awt.*;
+import javax.swing.*;
+import javax.swing.border.Border;
+
+import codeu.chat.client.ClientContext;
+import codeu.chat.client.Controller;
+import codeu.chat.client.View;
+import codeu.chat.util.Logger;
+
+// Chat - top-level client application - Java Simple GUI (using Java Swing)
+public final class ChatSimpleGui {
+
+<span class="nc" id="L29">  private final static Logger.Log LOG = Logger.newLog(ChatSimpleGui.class);</span>
+
+  private JFrame mainFrame;
+
+  private final ClientContext clientContext;
+
+  // Constructor - sets up the Chat Application
+<span class="nc" id="L36">  public ChatSimpleGui(Controller controller, View view) {</span>
+<span class="nc" id="L37">    clientContext = new ClientContext(controller, view);</span>
+<span class="nc" id="L38">  }</span>
+
+  // Run the GUI client
+  public void run() {
+
+    try {
+
+<span class="nc" id="L45">      initialize();</span>
+<span class="nc" id="L46">      mainFrame.setVisible(true);</span>
+
+<span class="nc" id="L48">    } catch (Exception ex) {</span>
+<span class="nc" id="L49">      System.out.println(&quot;ERROR: Exception in ChatSimpleGui.run. Check log for details.&quot;);</span>
+<span class="nc" id="L50">      LOG.error(ex, &quot;Exception in ChatSimpleGui.run&quot;);</span>
+<span class="nc" id="L51">      System.exit(1);</span>
+<span class="nc" id="L52">    }</span>
+<span class="nc" id="L53">  }</span>
+
+  private Border paneBorder() {
+<span class="nc" id="L56">    Border outside = BorderFactory.createLineBorder(Color.LIGHT_GRAY);</span>
+<span class="nc" id="L57">    Border inside = BorderFactory.createEmptyBorder(8, 8, 8, 8);</span>
+<span class="nc" id="L58">    return BorderFactory.createCompoundBorder(outside, inside);</span>
+  }
+
+  // Initialize the GUI
+  private void initialize() {
+
+    // Outermost frame.
+    // NOTE: may have tweak size, or place in scrollable panel.
+<span class="nc" id="L66">    mainFrame = new JFrame(&quot;Chat&quot;);</span>
+<span class="nc" id="L67">    mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);</span>
+<span class="nc" id="L68">    mainFrame.setSize(790, 450);</span>
+
+    // Main View - outermost graphics panel.
+<span class="nc" id="L71">    final JPanel mainViewPanel = new JPanel(new GridBagLayout());</span>
+<span class="nc" id="L72">    mainViewPanel.setBorder(paneBorder());</span>
+
+    // Build main panels - Users, Conversations, Messages.
+<span class="nc" id="L75">    final JPanel usersViewPanel = new UserPanel(clientContext);</span>
+<span class="nc" id="L76">    usersViewPanel.setBorder(paneBorder());</span>
+<span class="nc" id="L77">    final GridBagConstraints usersViewC = new GridBagConstraints();</span>
+
+<span class="nc" id="L79">    final MessagePanel messagesViewPanel = new MessagePanel(clientContext);</span>
+<span class="nc" id="L80">    messagesViewPanel.setBorder(paneBorder());</span>
+<span class="nc" id="L81">    final GridBagConstraints messagesViewC = new GridBagConstraints();</span>
+
+    // ConversationsPanel gets access to MessagesPanel
+<span class="nc" id="L84">    final JPanel conversationsViewPanel = new ConversationPanel(clientContext, messagesViewPanel);</span>
+<span class="nc" id="L85">    conversationsViewPanel.setBorder(paneBorder());</span>
+<span class="nc" id="L86">    final GridBagConstraints conversationViewC = new GridBagConstraints();</span>
+
+    // Placement of main panels.
+<span class="nc" id="L89">    usersViewC.gridx = 0;</span>
+<span class="nc" id="L90">    usersViewC.gridy = 0;</span>
+<span class="nc" id="L91">    usersViewC.gridwidth = 1;</span>
+<span class="nc" id="L92">    usersViewC.gridheight = 1;</span>
+<span class="nc" id="L93">    usersViewC.fill = GridBagConstraints.BOTH;</span>
+<span class="nc" id="L94">    usersViewC.weightx = 0.3;</span>
+<span class="nc" id="L95">    usersViewC.weighty = 0.3;</span>
+
+<span class="nc" id="L97">    conversationViewC.gridx = 1;</span>
+<span class="nc" id="L98">    conversationViewC.gridy = 0;</span>
+<span class="nc" id="L99">    conversationViewC.gridwidth = 1;</span>
+<span class="nc" id="L100">    conversationViewC.gridheight = 1;</span>
+<span class="nc" id="L101">    conversationViewC.fill = GridBagConstraints.BOTH;</span>
+<span class="nc" id="L102">    conversationViewC.weightx = 0.7;</span>
+<span class="nc" id="L103">    conversationViewC.weighty = 0.3;</span>
+
+<span class="nc" id="L105">    messagesViewC.gridx = 0;</span>
+<span class="nc" id="L106">    messagesViewC.gridy = 1;</span>
+<span class="nc" id="L107">    messagesViewC.gridwidth = 2;</span>
+<span class="nc" id="L108">    messagesViewC.gridheight = 1;</span>
+<span class="nc" id="L109">    messagesViewC.fill = GridBagConstraints.BOTH;</span>
+<span class="nc" id="L110">    messagesViewC.weighty = 0.7;</span>
+
+<span class="nc" id="L112">    mainViewPanel.add(usersViewPanel, usersViewC);</span>
+<span class="nc" id="L113">    mainViewPanel.add(conversationsViewPanel, conversationViewC);</span>
+<span class="nc" id="L114">    mainViewPanel.add(messagesViewPanel, messagesViewC);</span>
+
+<span class="nc" id="L116">    mainFrame.add(mainViewPanel);</span>
+<span class="nc" id="L117">    mainFrame.pack();</span>
+<span class="nc" id="L118">  }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

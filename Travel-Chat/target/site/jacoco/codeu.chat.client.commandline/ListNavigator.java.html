@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ListNavigator.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">cloud-bigtable-hello-world</a> &gt; <a href="index.source.html" class="el_package">codeu.chat.client.commandline</a> &gt; <span class="el_source">ListNavigator.java</span></div><h1>ListNavigator.java</h1><pre class="source lang-java linenums">// Copyright 2017 Google Inc.
+//
+// Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+package codeu.chat.client.commandline;
+
+import java.lang.Math;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.Scanner;
+
+import codeu.chat.common.ListViewable;
+
+// Page up and down through a list of objects and allow user to select one.
+// T must implement ListViewable. This gives access to listView(), which produces
+// the human-readable string that identifies the object in the list.
+public final class ListNavigator&lt;T extends ListViewable&gt; {
+
+<span class="nc" id="L30">  private final List&lt;T&gt; selection = new ArrayList&lt;T&gt;();</span>
+  private final Scanner lineScanner;
+  private int top;
+  private int bottom;
+  private int pageSize;
+  private boolean hasInt;
+  private int intValue;
+  private String choice;
+
+  // Creates a ListNavigator of the desired ListViewable subclass
+<span class="nc" id="L40">  public ListNavigator(Iterable&lt;T&gt; objectList, Scanner scanner, int pageSize) {</span>
+<span class="nc" id="L41">    this.pageSize = pageSize;</span>
+<span class="nc" id="L42">    this.lineScanner = scanner;</span>
+<span class="nc bnc" id="L43" title="All 2 branches missed.">    for (final T e : objectList) {</span>
+<span class="nc" id="L44">      this.selection.add(e);</span>
+<span class="nc" id="L45">    }</span>
+<span class="nc" id="L46">    moveUp();  // set top and bottom for first page.</span>
+<span class="nc" id="L47">  }</span>
+
+  // Run the chooser. Returns true when a selection has been made, or false on an error
+  // or if the user cancels the operation.
+  public boolean chooseFromList() {
+<span class="nc bnc" id="L52" title="All 2 branches missed.">    if (selection.size() == 0) {</span>
+<span class="nc" id="L53">      System.out.println(&quot;ERROR: selection is empty - cannot select&quot;);</span>
+<span class="nc" id="L54">      return false;</span>
+    } else {
+      while (true) {
+<span class="nc" id="L57">        displayChoices();</span>
+<span class="nc" id="L58">        issuePrompt();</span>
+<span class="nc" id="L59">        getChoice();</span>
+<span class="nc bnc" id="L60" title="All 2 branches missed.">        if (indexSelected()) {</span>
+<span class="nc" id="L61">          return true;</span>
+<span class="nc bnc" id="L62" title="All 2 branches missed.">        } else if (moveDownSelected()) {</span>
+<span class="nc" id="L63">          moveDown();</span>
+<span class="nc bnc" id="L64" title="All 2 branches missed.">        } else if (moveUpSelected()) {</span>
+<span class="nc" id="L65">          moveUp();</span>
+<span class="nc bnc" id="L66" title="All 2 branches missed.">        } else if (cancelSelected()) {</span>
+<span class="nc" id="L67">          return false;</span>
+        } else {
+<span class="nc" id="L69">          System.out.println(&quot;Poor choice - try again.&quot;);</span>
+        }
+      }
+    }
+  }
+
+  // Get the selectes object from the chooser.
+  // Should be called after chooseFromList returns true (otherwise returns null).
+  public T getSelectedChoice() {
+<span class="nc bnc" id="L78" title="All 2 branches missed.">    return (hasInt) ? selection.get(intValue - 1) : null;</span>
+  }
+
+  // Print a prompt that tells the user their options:
+  // 1) &lt;n&gt;  the index of a list item that is currently on view. Return the object.
+  // 2) '+'  page down
+  // 3) '-'  page back up
+  // 4) '*'  cancel (return null)
+  private void issuePrompt() {
+<span class="nc bnc" id="L87" title="All 2 branches missed.">    System.out.format(&quot;Enter index (%s)%s%s or '*' to cancel: &quot;,</span>
+<span class="nc" id="L88">        (top != bottom) ? String.format(&quot;%d-%d&quot;, top, bottom) : String.format(&quot;%d&quot;, top),</span>
+<span class="nc bnc" id="L89" title="All 2 branches missed.">        (canMoveUp()) ? &quot; or '-' to back up&quot; : &quot;&quot;,</span>
+<span class="nc bnc" id="L90" title="All 2 branches missed.">        (canMoveDown()) ? &quot; or '+' to advance&quot; : &quot;&quot;);</span>
+<span class="nc" id="L91">  }</span>
+
+  // Display a set of entries with index numbers.
+  // Number of entries displayed is determined by pageSize.
+  private void displayChoices() {
+<span class="nc bnc" id="L96" title="All 2 branches missed.">    for (int i = top; i &lt;= bottom; i++) {</span>
+<span class="nc" id="L97">      System.out.format(&quot; [%d]: %s\n&quot;, i, selection.get(i - 1).listView());</span>
+    }
+<span class="nc" id="L99">  }</span>
+
+  // Process user's response to issuePrompt() prompt.
+  private void getChoice() {
+<span class="nc" id="L103">    final Scanner tokenScanner = new Scanner(lineScanner.nextLine());</span>
+<span class="nc" id="L104">    choice = tokenScanner.nextLine().trim();</span>
+    try {
+<span class="nc" id="L106">      intValue = Integer.parseInt(choice);</span>
+<span class="nc" id="L107">      hasInt = true;</span>
+<span class="nc" id="L108">    } catch (NumberFormatException ex) {</span>
+<span class="nc" id="L109">      hasInt = false;</span>
+<span class="nc" id="L110">    }</span>
+<span class="nc" id="L111">    tokenScanner.close();</span>
+<span class="nc" id="L112">  }</span>
+
+  // Unseen entries precede the current view.
+  private boolean canMoveUp() {
+<span class="nc bnc" id="L116" title="All 2 branches missed.">    return top &gt; 1;</span>
+  }
+
+  // Unseen entries follow the current view.
+  private boolean canMoveDown() {
+<span class="nc bnc" id="L121" title="All 2 branches missed.">    return bottom &lt; selection.size();</span>
+  }
+
+  private boolean indexSelected() {
+<span class="nc bnc" id="L125" title="All 6 branches missed.">    return hasInt &amp;&amp; (intValue &gt;= top) &amp;&amp; (intValue &lt;= bottom);</span>
+  }
+
+  private final boolean moveDownSelected() {
+<span class="nc bnc" id="L129" title="All 4 branches missed.">    return choice.equals(&quot;+&quot;) &amp;&amp; canMoveDown();</span>
+  }
+
+  private final boolean moveUpSelected() {
+<span class="nc bnc" id="L133" title="All 4 branches missed.">    return choice.equals(&quot;-&quot;) &amp;&amp; canMoveUp();</span>
+  }
+
+  private final boolean cancelSelected() {
+<span class="nc" id="L137">    return choice.equals(&quot;*&quot;);</span>
+  }
+
+  // Move the view up one page (or to top of page).
+  private void moveUp() {
+<span class="nc" id="L142">    top = Math.max(top - pageSize, 1);</span>
+<span class="nc" id="L143">    bottom = Math.min(top + pageSize - 1, selection.size());</span>
+<span class="nc" id="L144">  }</span>
+
+  // Move the view down one page (or to bottom of page).
+  private void moveDown() {
+<span class="nc bnc" id="L148" title="All 2 branches missed.">    if (selection.size() == 0) return;</span>
+<span class="nc" id="L149">    bottom = Math.min(bottom + pageSize, selection.size());</span>
+<span class="nc" id="L150">    top = bottom - pageSize + 1;</span>
+<span class="nc" id="L151">  }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>LoginController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">cloud-bigtable-hello-world</a> &gt; <a href="index.source.html" class="el_package">codeu.chat.client.bettergui</a> &gt; <span class="el_source">LoginController.java</span></div><h1>LoginController.java</h1><pre class="source lang-java linenums">// Copyright 2017 Google Inc.
+//
+// Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+package codeu.chat.client.bettergui;
+
+import java.io.*;
+import java.util.*;
+import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.Parent;
+import javafx.scene.Node;
+import javafx.scene.control.Button;
+import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+
+import com.jfoenix.controls.*;
+import javafx.fxml.FXML;
+import javafx.scene.layout.AnchorPane;
+
+import codeu.chat.client.ClientContext;
+import codeu.chat.common.User;
+import codeu.chat.client.Controller;
+import codeu.chat.client.View;
+import codeu.chat.util.Logger;
+
+
+import javafx.fxml.Initializable;
+
+import java.net.URL;
+import java.util.ResourceBundle;
+
+
+<span class="nc" id="L50">public final class LoginController implements Initializable {</span>
+
+<span class="nc" id="L52">    private final static Logger.Log LOG = Logger.newLog(LoginController.class);</span>
+
+    ClientContext clientContext;
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+<span class="nc" id="L58">        LOG.info(&quot;initializing&quot;);</span>
+<span class="nc" id="L59">    }</span>
+
+    public void setClientContext(ClientContext clientContext) {
+<span class="nc" id="L62">        LOG.info(&quot;setting client context&quot;);</span>
+<span class="nc" id="L63">        this.clientContext = clientContext;</span>
+<span class="nc" id="L64">    }</span>
+
+
+    @FXML
+    private AnchorPane anchorPane;
+
+    @FXML
+    private JFXPasswordField pass;
+
+    @FXML
+    private JFXButton login;
+
+    @FXML
+    private JFXButton register;
+
+    @FXML
+    private JFXTextField username;
+
+    @FXML
+    void onLoginButtonClick(ActionEvent event) throws Exception {
+
+<span class="nc" id="L85">        String username = this.pass.getText();</span>
+<span class="nc" id="L86">        String password = this.username.getText();</span>
+
+        //Boolean status = clientContext.user.signInUser(username, password);
+
+       // if (status) {
+
+<span class="nc" id="L92">            FXMLLoader loader = new FXMLLoader(getClass().getResource(&quot;/codeu/chat/client/bettergui/MainUI.fxml&quot;));</span>
+
+<span class="nc" id="L94">            Parent window2 = loader.load();</span>
+
+<span class="nc" id="L96">            MainUIController mainController = loader.getController();</span>
+
+<span class="nc" id="L98">            mainController.setClientContext(clientContext);</span>
+
+<span class="nc" id="L100">            Stage stage = (Stage) anchorPane.getScene().getWindow();</span>
+
+<span class="nc" id="L102">            stage.setHeight(650);</span>
+<span class="nc" id="L103">            stage.setWidth(800);</span>
+
+<span class="nc" id="L105">            stage.getScene().setRoot(window2);</span>
+
+        /*} else {
+
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle(&quot;Error!&quot;);
+            alert.setHeaderText(null);
+            alert.setContentText(&quot;Entered user credentials are not correct!&quot;);
+
+            alert.showAndWait();
+        }*/
+
+<span class="nc" id="L117">    }</span>
+
+    @FXML
+    void onRegisterButtonClick(ActionEvent event) throws Exception {
+<span class="nc" id="L121">        LOG.info(&quot;Register button gets called&quot;);</span>
+
+<span class="nc" id="L123">        FXMLLoader loader = new FXMLLoader(getClass().getResource(&quot;/codeu/chat/client/bettergui/RegistrationUI.fxml&quot;));</span>
+
+<span class="nc" id="L125">        Parent window2 = loader.load();</span>
+
+<span class="nc" id="L127">        RegistrationController registrationController = loader.getController();</span>
+
+<span class="nc" id="L129">        registrationController.setClientContext(clientContext);</span>
+
+<span class="nc" id="L131">        Stage stage = (Stage) anchorPane.getScene().getWindow();</span>
+
+<span class="nc" id="L133">        stage.setHeight(475);</span>
+<span class="nc" id="L134">        stage.setWidth(427);</span>
+<span class="nc" id="L135">        stage.getScene().setRoot(window2);</span>
+
+<span class="nc" id="L137">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

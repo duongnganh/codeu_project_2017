@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MessagePanel.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">cloud-bigtable-hello-world</a> &gt; <a href="index.source.html" class="el_package">codeu.chat.client.simplegui</a> &gt; <span class="el_source">MessagePanel.java</span></div><h1>MessagePanel.java</h1><pre class="source lang-java linenums">// Copyright 2017 Google Inc.
+//
+// Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+package codeu.chat.client.simplegui;
+
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.*;
+
+import codeu.chat.client.ClientContext;
+import codeu.chat.common.ConversationSummary;
+import codeu.chat.common.Message;
+import codeu.chat.common.User;
+
+// NOTE: JPanel is serializable, but there is no need to serialize MessagePanel
+// without the @SuppressWarnings, the compiler will complain of no override for serialVersionUID
+@SuppressWarnings(&quot;serial&quot;)
+public final class MessagePanel extends JPanel {
+
+  // These objects are modified by the Conversation Panel.
+<span class="nc" id="L33">  private final JLabel messageOwnerLabel = new JLabel(&quot;Owner:&quot;, JLabel.RIGHT);</span>
+<span class="nc" id="L34">  private final JLabel messageConversationLabel = new JLabel(&quot;Conversation:&quot;, JLabel.LEFT);</span>
+<span class="nc" id="L35">  private final DefaultListModel&lt;String&gt; messageListModel = new DefaultListModel&lt;&gt;();</span>
+
+  private final ClientContext clientContext;
+
+  public MessagePanel(ClientContext clientContext) {
+<span class="nc" id="L40">    super(new GridBagLayout());</span>
+<span class="nc" id="L41">    this.clientContext = clientContext;</span>
+<span class="nc" id="L42">    initialize();</span>
+<span class="nc" id="L43">  }</span>
+
+  // External agent calls this to trigger an update of this panel's contents.
+  public void update(ConversationSummary owningConversation) {
+
+<span class="nc bnc" id="L48" title="All 2 branches missed.">    final User u = (owningConversation == null) ?</span>
+<span class="nc" id="L49">        null :</span>
+<span class="nc" id="L50">        clientContext.user.lookup(owningConversation.owner);</span>
+
+<span class="nc bnc" id="L52" title="All 2 branches missed.">    messageOwnerLabel.setText(&quot;Owner: &quot; +</span>
+        ((u==null) ?
+<span class="nc bnc" id="L54" title="All 2 branches missed.">            ((owningConversation==null) ? &quot;&quot; : owningConversation.owner) :</span>
+<span class="nc" id="L55">            u.name));</span>
+
+<span class="nc" id="L57">    messageConversationLabel.setText(&quot;Conversation: &quot; + owningConversation.title);</span>
+
+<span class="nc" id="L59">    getAllMessages(owningConversation);</span>
+<span class="nc" id="L60">  }</span>
+
+  private void initialize() {
+
+    // This panel contains the messages in the current conversation.
+    // It has a title bar with the current conversation and owner,
+    // then a list panel with the messages, then a button bar.
+
+    // Title bar - current conversation and owner
+<span class="nc" id="L69">    final JPanel titlePanel = new JPanel(new GridBagLayout());</span>
+<span class="nc" id="L70">    final GridBagConstraints titlePanelC = new GridBagConstraints();</span>
+
+<span class="nc" id="L72">    final JPanel titleConvPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));</span>
+<span class="nc" id="L73">    final GridBagConstraints titleConvPanelC = new GridBagConstraints();</span>
+<span class="nc" id="L74">    titleConvPanelC.gridx = 0;</span>
+<span class="nc" id="L75">    titleConvPanelC.gridy = 0;</span>
+<span class="nc" id="L76">    titleConvPanelC.anchor = GridBagConstraints.PAGE_START;</span>
+
+<span class="nc" id="L78">    final JPanel titleOwnerPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));</span>
+<span class="nc" id="L79">    final GridBagConstraints titleOwnerPanelC = new GridBagConstraints();</span>
+<span class="nc" id="L80">    titleOwnerPanelC.gridx = 0;</span>
+<span class="nc" id="L81">    titleOwnerPanelC.gridy = 1;</span>
+<span class="nc" id="L82">    titleOwnerPanelC.anchor = GridBagConstraints.PAGE_START;</span>
+
+    // messageConversationLabel is an instance variable of Conversation panel
+    // can update it.
+<span class="nc" id="L86">    messageConversationLabel.setAlignmentX(Component.LEFT_ALIGNMENT);</span>
+<span class="nc" id="L87">    titleConvPanel.add(messageConversationLabel);</span>
+
+    // messageOwnerLabel is an instance variable of Conversation panel
+    // can update it.
+<span class="nc" id="L91">    messageOwnerLabel.setAlignmentX(Component.LEFT_ALIGNMENT);</span>
+<span class="nc" id="L92">    titleOwnerPanel.add(messageOwnerLabel);</span>
+
+<span class="nc" id="L94">    titlePanel.add(titleConvPanel, titleConvPanelC);</span>
+<span class="nc" id="L95">    titlePanel.add(titleOwnerPanel, titleOwnerPanelC);</span>
+<span class="nc" id="L96">    titlePanel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));</span>
+
+    // User List panel.
+<span class="nc" id="L99">    final JPanel listShowPanel = new JPanel();</span>
+<span class="nc" id="L100">    final GridBagConstraints listPanelC = new GridBagConstraints();</span>
+
+    // messageListModel is an instance variable so Conversation panel
+    // can update it.
+<span class="nc" id="L104">    final JList&lt;String&gt; userList = new JList&lt;&gt;(messageListModel);</span>
+<span class="nc" id="L105">    userList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);</span>
+<span class="nc" id="L106">    userList.setVisibleRowCount(15);</span>
+<span class="nc" id="L107">    userList.setSelectedIndex(-1);</span>
+
+<span class="nc" id="L109">    final JScrollPane userListScrollPane = new JScrollPane(userList);</span>
+<span class="nc" id="L110">    listShowPanel.add(userListScrollPane);</span>
+<span class="nc" id="L111">    userListScrollPane.setMinimumSize(new Dimension(500, 200));</span>
+<span class="nc" id="L112">    userListScrollPane.setPreferredSize(new Dimension(500, 200));</span>
+
+    // Button panel
+<span class="nc" id="L115">    final JPanel buttonPanel = new JPanel();</span>
+<span class="nc" id="L116">    final GridBagConstraints buttonPanelC = new GridBagConstraints();</span>
+
+<span class="nc" id="L118">    final JButton addButton = new JButton(&quot;Add&quot;);</span>
+<span class="nc" id="L119">    buttonPanel.add(addButton);</span>
+
+    // Placement of title, list panel, buttons, and current user panel.
+<span class="nc" id="L122">    titlePanelC.gridx = 0;</span>
+<span class="nc" id="L123">    titlePanelC.gridy = 0;</span>
+<span class="nc" id="L124">    titlePanelC.gridwidth = 10;</span>
+<span class="nc" id="L125">    titlePanelC.gridheight = 1;</span>
+<span class="nc" id="L126">    titlePanelC.fill = GridBagConstraints.HORIZONTAL;</span>
+<span class="nc" id="L127">    titlePanelC.anchor = GridBagConstraints.FIRST_LINE_START;</span>
+
+<span class="nc" id="L129">    listPanelC.gridx = 0;</span>
+<span class="nc" id="L130">    listPanelC.gridy = 1;</span>
+<span class="nc" id="L131">    listPanelC.gridwidth = 10;</span>
+<span class="nc" id="L132">    listPanelC.gridheight = 8;</span>
+<span class="nc" id="L133">    listPanelC.fill = GridBagConstraints.BOTH;</span>
+<span class="nc" id="L134">    listPanelC.anchor = GridBagConstraints.FIRST_LINE_START;</span>
+<span class="nc" id="L135">    listPanelC.weighty = 0.8;</span>
+
+<span class="nc" id="L137">    buttonPanelC.gridx = 0;</span>
+<span class="nc" id="L138">    buttonPanelC.gridy = 11;</span>
+<span class="nc" id="L139">    buttonPanelC.gridwidth = 10;</span>
+<span class="nc" id="L140">    buttonPanelC.gridheight = 1;</span>
+<span class="nc" id="L141">    buttonPanelC.fill = GridBagConstraints.HORIZONTAL;</span>
+<span class="nc" id="L142">    buttonPanelC.anchor = GridBagConstraints.FIRST_LINE_START;</span>
+
+<span class="nc" id="L144">    this.add(titlePanel, titlePanelC);</span>
+<span class="nc" id="L145">    this.add(listShowPanel, listPanelC);</span>
+<span class="nc" id="L146">    this.add(buttonPanel, buttonPanelC);</span>
+
+    // User click Messages Add button - prompt for message body and add new Message to Conversation
+<span class="nc" id="L149">    addButton.addActionListener(new ActionListener() {</span>
+      @Override
+      public void actionPerformed(ActionEvent e) {
+<span class="nc bnc" id="L152" title="All 2 branches missed.">        if (!clientContext.user.hasCurrent()) {</span>
+<span class="nc" id="L153">          JOptionPane.showMessageDialog(MessagePanel.this, &quot;You are not signed in.&quot;);</span>
+<span class="nc bnc" id="L154" title="All 2 branches missed.">        } else if (!clientContext.conversation.hasCurrent()) {</span>
+<span class="nc" id="L155">          JOptionPane.showMessageDialog(MessagePanel.this, &quot;You must select a conversation.&quot;);</span>
+        } else {
+<span class="nc" id="L157">          final String messageText = (String) JOptionPane.showInputDialog(</span>
+              MessagePanel.this, &quot;Enter message:&quot;, &quot;Add Message&quot;, JOptionPane.PLAIN_MESSAGE,
+              null, null, &quot;&quot;);
+<span class="nc bnc" id="L160" title="All 4 branches missed.">          if (messageText != null &amp;&amp; messageText.length() &gt; 0) {</span>
+<span class="nc" id="L161">            clientContext.message.addMessage(</span>
+<span class="nc" id="L162">                clientContext.user.getCurrent().id,</span>
+<span class="nc" id="L163">                clientContext.conversation.getCurrentId(),</span>
+<span class="nc" id="L164">                clientContext.group.getCurrent().id,</span>
+                messageText);
+<span class="nc" id="L166">            MessagePanel.this.getAllMessages(clientContext.conversation.getCurrent());</span>
+          }
+        }
+<span class="nc" id="L169">      }</span>
+    });
+
+    // Panel is set up. If there is a current conversation, Populate the conversation list.
+<span class="nc" id="L173">    getAllMessages(clientContext.conversation.getCurrent());</span>
+<span class="nc" id="L174">  }</span>
+
+  // Populate ListModel
+  // TODO: don't refetch messages if current conversation not changed
+  private void getAllMessages(ConversationSummary conversation) {
+<span class="nc" id="L179">    messageListModel.clear();</span>
+
+<span class="nc bnc" id="L181" title="All 2 branches missed.">    for (final Message m : clientContext.message.getConversationContents(conversation)) {</span>
+      // Display author name if available.  Otherwise display the author UUID.
+<span class="nc" id="L183">      final String authorName = clientContext.user.getName(m.author);</span>
+
+<span class="nc bnc" id="L185" title="All 2 branches missed.">      final String displayString = String.format(&quot;%s: [%s]: %s&quot;,</span>
+<span class="nc" id="L186">          ((authorName == null) ? m.author : authorName), m.creation, m.content);</span>
+
+<span class="nc" id="L188">      messageListModel.addElement(displayString);</span>
+<span class="nc" id="L189">    }</span>
+<span class="nc" id="L190">  }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	~ Copyright (c) 2016 Google Inc. All Rights Reserved.
+	~
+	~ Licensed under the Apache License, Version 2.0 (the "License"); you
+	~ may not use this file except in compliance with the License. You may
+	~ obtain a copy of the License at
+	~
+	~     http://www.apache.org/licenses/LICENSE-2.0
+	~
+	~ Unless required by applicable law or agreed to in writing, software
+	~ distributed under the License is distributed on an "AS IS" BASIS,
+	~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+	~ implied. See the License for the specific language governing
+	~ permissions and limitations under the License.
+	-->
+<project>
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>codeu</groupId>
+	<artifactId>v-bigtable</artifactId>
+
+	<packaging>jar</packaging>
+	<version>1.0-SNAPSHOT</version>
+	<name>cloud-bigtable-hello-world</name>
+	<url>http://maven.apache.org</url>
+
+	<parent>
+		<groupId>com.google.cloud</groupId>
+		<artifactId>bigtable-samples</artifactId>
+		<version>1.0.0</version>
+		<relativePath>..</relativePath>
+	</parent>
+
+	<properties>
+		<bigtable.version>0.9.5.1</bigtable.version>
+		<hbase.version>1.1.5</hbase.version>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<maven.compiler.source>1.8</maven.compiler.source>
+	</properties>
+
+	<repositories>
+		<repository>
+			<id>snapshots-repo</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+			<releases><enabled>false</enabled></releases>
+			<snapshots><enabled>true</enabled></snapshots>
+		</repository>
+
+	</repositories>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.google.cloud.bigtable</groupId>
+			<artifactId>bigtable-hbase-1.1</artifactId>
+			<version>${bigtable.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.hbase</groupId>
+			<artifactId>hbase-client</artifactId>
+			<version>${hbase.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>io.netty</groupId>
+			<artifactId>netty-tcnative-boringssl-static</artifactId>
+			<version>1.1.33.Fork26</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.jfoenix</groupId>
+			<artifactId>jfoenix</artifactId>
+		    <version>1.5.0</version>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>exec-maven-plugin</artifactId>
+					<executions>
+					  <execution>
+			            <id>client</id>
+			            <goals>
+			              <goal>java</goal>
+			            </goals>
+			            <configuration>
+			              <mainClass>codeu.chat.ClientMain</mainClass>
+			              <useFile>false</useFile>
+			            </configuration>
+			          </execution>
+			          <execution>
+			            <id>server</id>
+			            <goals>
+			              <goal>java</goal>
+			            </goals>
+			            <configuration>
+			              <mainClass>codeu.chat.ServerMain</mainClass>
+			              <useFile>false</useFile>
+			            </configuration>
+			          </execution>
+			          <execution>
+			            <id>delete</id>
+			            <goals>
+			              <goal>java</goal>
+			            </goals>
+			            <configuration>
+			              <mainClass>codeu.chat.deleteTable</mainClass>
+			            </configuration>
+			          </execution>
+			          <execution>
+			            <id>create</id>
+			            <goals>
+			              <goal>java</goal>
+			            </goals>
+			            <configuration>
+			              <mainClass>codeu.chat.createTable</mainClass>
+			            </configuration>
+			          </execution>
+			          <execution>
+			            <id>createTableForUI</id>
+			            <goals>
+			              <goal>java</goal>
+			            </goals>
+			            <configuration>
+			              <mainClass>codeu.chat.createTableForUI</mainClass>
+			            </configuration>
+			          </execution>
+			          <execution>
+			            <id>simpleGUI</id>
+			            <goals>
+			              <goal>java</goal>
+			            </goals>
+			            <configuration>
+			              <mainClass>codeu.chat.SimpleGuiClientMain</mainClass>
+			              <useFile>false</useFile>
+			            </configuration>
+			          </execution>
+			          <execution>
+			            <id>betterGUI</id>
+			            <goals>
+			              <goal>java</goal>
+			            </goals>
+			            <configuration>
+			              <mainClass>codeu.chat.BetterGuiClientMain</mainClass>
+			              <useFile>false</useFile>
+			            </configuration>
+			          </execution>
+			        </executions>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>

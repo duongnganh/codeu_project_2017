@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Uuid.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">cloud-bigtable-hello-world</a> &gt; <a href="index.source.html" class="el_package">codeu.chat.util</a> &gt; <span class="el_source">Uuid.java</span></div><h1>Uuid.java</h1><pre class="source lang-java linenums">// Copyright 2017 Google Inc.
+//
+// Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+package codeu.chat.util;
+
+import java.lang.StringBuilder;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.Objects;
+
+public final class Uuid {
+
+<span class="fc" id="L25">  public static final Uuid NULL = new Uuid(0);</span>
+
+<span class="fc" id="L27">  public static final Serializer&lt;Uuid&gt; SERIALIZER = new Serializer&lt;Uuid&gt;() {</span>
+
+    @Override
+    public void write(OutputStream out, Uuid value) throws IOException {
+
+<span class="nc" id="L32">      int length = 0;</span>
+<span class="nc bnc" id="L33" title="All 2 branches missed.">      for (Uuid current = value; current != null; current = current.root()) {</span>
+<span class="nc" id="L34">        length += 1;</span>
+      }
+
+      // To make things easy, limit the max length to be 255. It should be unlikely
+      // that this limit will ever be reached as most chains should be less than
+      // three long.
+<span class="nc bnc" id="L40" title="All 4 branches missed.">      if (length &gt;= 0 &amp;&amp; length &lt;= 255) {</span>
+<span class="nc" id="L41">        out.write(length);</span>
+      } else {
+<span class="nc" id="L43">        throw new IOException(&quot;Max supported Uuid chain length is 255&quot;);</span>
+      }
+
+<span class="nc bnc" id="L46" title="All 2 branches missed.">      for (Uuid current = value; current != null; current = current.root()) {</span>
+<span class="nc" id="L47">        Serializers.INTEGER.write(out, current.id());</span>
+      }
+<span class="nc" id="L49">    }</span>
+
+    @Override
+    public Uuid read(InputStream in) throws IOException {
+
+      // &quot;input.read&quot; can only return one by of data so there is no need
+      // to check that the bounds of 0 to 255 is respected.
+<span class="nc" id="L56">      final int length = in.read();</span>
+<span class="nc" id="L57">      final int[] chain = new int[length];</span>
+
+<span class="nc bnc" id="L59" title="All 2 branches missed.">      for (int i = 0; i &lt; length; i++) {</span>
+<span class="nc" id="L60">        chain[i] = Serializers.INTEGER.read(in);</span>
+      }
+
+<span class="nc" id="L63">      Uuid head = null;</span>
+
+<span class="nc bnc" id="L65" title="All 2 branches missed.">      for (int i = length - 1; i &gt;= 0; i--) {</span>
+<span class="nc" id="L66">        head = new Uuid(head, chain[i]);</span>
+      }
+
+<span class="nc" id="L69">      return head;</span>
+    }
+  };
+
+
+  // GENERATOR
+  //
+  // This interface defines the inteface used for any class that will
+  // create Uuids. It is nested in here as for naming reasons. The two
+  // options was to have it sit along side Uuid can be called UuidGenerator
+  // or to scope it inside of Uuid so that it would be called Uuid.Generator.
+  //
+  // As the generator is in a way a replacement for a constructor, it felt
+  // better to place it inside the Uuid rather than have it side equal to
+  // Uuid.
+  public interface Generator {
+    Uuid make();
+  }
+
+  private final Uuid root;
+  private final int id;
+
+<span class="fc" id="L91">  public Uuid(Uuid root, int id) {</span>
+<span class="fc" id="L92">    this.root = root;</span>
+<span class="fc" id="L93">    this.id = id;</span>
+<span class="fc" id="L94">  }</span>
+
+<span class="fc" id="L96">  public Uuid(int id) {</span>
+<span class="fc" id="L97">    this.root = null;</span>
+<span class="fc" id="L98">    this.id = id;</span>
+<span class="fc" id="L99">  }</span>
+
+  public Uuid root() {
+<span class="fc" id="L102">    return root;</span>
+  }
+
+  public int id() {
+<span class="fc" id="L106">    return id;</span>
+  }
+
+  @Override
+  public boolean equals(Object other) {
+<span class="pc bpc" id="L111" title="1 of 4 branches missed.">    return other instanceof Uuid &amp;&amp; equals(this, (Uuid) other);</span>
+  }
+
+  @Override
+<span class="fc" id="L115">  public int hashCode() { return hash(this); }</span>
+
+  @Override
+  public String toString() {
+<span class="fc" id="L119">    return toString(this);</span>
+  }
+
+  // Check if two Uuids share the same root. This check is only one level deep.
+  public static boolean related(Uuid a, Uuid b) {
+<span class="fc" id="L124">    return equals(a.root(), b.root());</span>
+  }
+
+  // Check if two Uuids represent the same value even if they are different refereces. This
+  // means that all ids from the tail to the root have the same ids.
+  public static boolean equals(Uuid a, Uuid b) {
+
+    // First check if 'a' and 'b' refer to the same instance. This also
+    // checks if both 'a' and 'b' are null which saves us from having to
+    // check 'a' == null &amp;&amp; 'b' == null.
+
+<span class="fc bfc" id="L135" title="All 2 branches covered.">    if (a == b) {</span>
+<span class="fc" id="L136">      return true;</span>
+    }
+
+<span class="pc bpc" id="L139" title="1 of 4 branches missed.">    if (a == null &amp;&amp; b != null) {</span>
+<span class="fc" id="L140">      return false;</span>
+    }
+
+<span class="pc bpc" id="L143" title="1 of 4 branches missed.">    if (a != null &amp;&amp; b == null) {</span>
+<span class="fc" id="L144">      return false;</span>
+    }
+
+    // Check id before checking the root as the ids are more likely to differ
+    // and will short-circuit the logic preventing us from wasting time checking
+    // the full chain.
+<span class="fc bfc" id="L150" title="All 4 branches covered.">    return a.id() == b.id() &amp;&amp; equals(a.root(), b.root());</span>
+
+  }
+
+  // Compute a hash code for the Uuids by walking up the chain.
+  private static int hash(Uuid id) {
+
+<span class="fc" id="L157">    int hash = 0;</span>
+
+<span class="fc bfc" id="L159" title="All 2 branches covered.">    for (Uuid current = id; current != null; current = current.root()) {</span>
+<span class="fc" id="L160">      hash ^= Objects.hash(current.id());</span>
+    }
+
+<span class="fc" id="L163">    return hash;</span>
+  }
+
+  // Compute human-readable representation for Uuids
+  // Use long internally to avoid negative integers.
+  private static String toString(Uuid id) {
+<span class="fc" id="L169">    final StringBuilder build = new StringBuilder();</span>
+<span class="fc" id="L170">    buildString(id, build);</span>
+<span class="fc" id="L171">    return String.format(&quot;[UUID:%s]&quot;, build.substring(1));  // index of 1 to skip initial '.'</span>
+  }
+
+  private static void buildString(Uuid current, StringBuilder build) {
+<span class="fc" id="L175">    final long mask = (1L &lt;&lt; 32) - 1;  // removes sign extension</span>
+<span class="fc bfc" id="L176" title="All 2 branches covered.">    if (current != null) {</span>
+<span class="fc" id="L177">      buildString(current.root(), build);</span>
+<span class="fc" id="L178">      build.append(&quot;.&quot;).append(current.id() &amp; mask);</span>
+    }
+<span class="fc" id="L180">  }</span>
+
+  // FROM STRING
+  //
+  // Create a uuid from a sting.
+  public static Uuid fromString(String string) {
+<span class="nc" id="L186">    return fromString(null, string.split(&quot;\\.&quot;), 0);</span>
+  }
+
+  private static Uuid fromString(final Uuid root, String[] tokens, int index) {
+
+<span class="fc" id="L191">    final int id = Integer.parseInt(tokens[index]);</span>
+
+<span class="fc" id="L193">    final Uuid link = new Uuid(root, id);</span>
+
+<span class="fc" id="L195">    final int nextIndex = index + 1;</span>
+
+<span class="fc bfc" id="L197" title="All 2 branches covered.">    return nextIndex &lt; tokens.length ?</span>
+<span class="fc" id="L198">        fromString(link, tokens, nextIndex) :</span>
+<span class="fc" id="L199">        link;</span>
+  }
+
+  // Parse
+  //
+  // Create a uuid from a sting.
+  public static Uuid parse(String string) throws IOException {
+<span class="fc" id="L206">    return parse(null, string.split(&quot;\\.&quot;), 0);</span>
+  }
+
+  private static Uuid parse(final Uuid root, String[] tokens, int index) throws IOException {
+
+<span class="fc" id="L211">    final long id = Long.parseLong(tokens[index]);</span>
+
+<span class="pc bpc" id="L213" title="1 of 2 branches missed.">    if ((id &gt;&gt; 32) != 0) {</span>
+<span class="nc" id="L214">      throw new IOException(String.format(</span>
+          &quot;ID value '%s' is too large to be an unsigned 32 bit integer&quot;,
+          tokens[index]));
+    }
+
+<span class="fc" id="L219">    final Uuid link = new Uuid(root, (int)(id &amp; 0xFFFFFFFF));</span>
+
+<span class="fc" id="L221">    final int nextIndex = index + 1;</span>
+
+<span class="fc bfc" id="L223" title="All 2 branches covered.">    return nextIndex &lt; tokens.length ?</span>
+<span class="fc" id="L224">        parse(link, tokens, nextIndex) :</span>
+<span class="fc" id="L225">        link;</span>
+  }
+
+  // For saving in the google cloud db
+
+  public static String toUuidString(Uuid id){
+<span class="fc" id="L231">    StringBuilder build = new StringBuilder();</span>
+<span class="fc bfc" id="L232" title="All 2 branches covered.">    while (id != null){</span>
+<span class="fc" id="L233">      build.insert(0, id.id()).insert(0, &quot;.&quot;);</span>
+<span class="fc" id="L234">      id = id.root();</span>
+    }
+<span class="fc" id="L236">    String str = build.toString().substring(1);</span>
+<span class="fc" id="L237">    return str;</span>
+  }
+
+  public static Uuid fromUuidString(String string) {
+<span class="fc" id="L241">    Uuid str = fromString(null, string.split(&quot;\\.&quot;), 0);</span>
+<span class="fc" id="L242">    return str;</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>
