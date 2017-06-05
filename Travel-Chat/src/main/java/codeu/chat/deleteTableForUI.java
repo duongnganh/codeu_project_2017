@@ -37,7 +37,7 @@ import org.apache.hadoop.hbase.util.Bytes;
 import java.io.IOException;
 
 
-public class deleteTable {
+public class deleteTableForUI {
 
 
   private static void delete(String projectId, String instanceId, String[] tableNames) {
@@ -76,8 +76,11 @@ public class deleteTable {
     String projectId = requiredProperty("projectId");
     String instanceId = requiredProperty("instanceId");
     String[] tableNames = 
-    {requiredProperty("userTable"), requiredProperty("conversationTable"), 
-    requiredProperty("groupTable"), requiredProperty("messageTable")};
+    {
+    //TODO: hard code
+    "Paris-Food", "Paris-Culture", "Paris-Attractions", 
+    "Berlin-Food", "Berlin-Culture", "Berlin-Attractions", 
+    "London-Food", "London-Culture", "London-Attractions"};
     
     delete(projectId, instanceId, tableNames);
   }
