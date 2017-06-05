@@ -45,7 +45,7 @@ This project uses the native HBase API to connect to and interact with Cloud Big
 
 ## Downloading the code
 
-1.  Clone the [FIX HERE repository][github-repo], to your local
+1.  Clone the [https://github.com/neilbarooah/codeu_project_2017][github-repo], to your local
     machine:
 
         https://github.com/neilbarooah/codeu_project_2017
@@ -136,6 +136,7 @@ Or with the [application-default login](https://cloud.google.com/sdk/gcloud/refe
 [application-default-credentials]: https://developers.google.com/identity/protocols/application-default-credentials
 
 If you get Application Default Credentials are not available, include the following in the ~/.bash_profile:
+
     export GOOGLE_APPLICATION_CREDENTIALS=/Users/YOUR-LAPTOP/.config/gcloud/application_default_credentials.json
 
 
@@ -152,8 +153,9 @@ application.
 ## Running the application
 
 Place your projectId and instanceId in the following files:
-  codeu_project_2017/Travel-Chat/IDs
-  codeu_project_2017/Travel-Chat/src/main/java/codeu/chat/common/IDs.java
+    
+    codeu_project_2017/Travel-Chat/IDs
+    codeu_project_2017/Travel-Chat/src/main/java/codeu/chat/common/IDs.java
 
 Build and run the sample using Maven.
 
