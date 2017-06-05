@@ -168,12 +168,16 @@ Build and run the sample using Maven.
      Although there is a script to clean (clean.sh), please don't use it for testing purposes as it gets rid of all the media      files being used for the project.
 
   2. If the tables are not yet created, creat tables. This is done once.
+       
+       ```
        $ sh run_createTable.sh
        $ sh run_createTableForMainUI.sh
+       ```
 
      To delete the created tables:
+       ```
        $ sh run_deleteTable.sh
-
+       ```
   3. To run the project you will need to run both the client and the server. Run
      the following two commands in separate shells:
 
