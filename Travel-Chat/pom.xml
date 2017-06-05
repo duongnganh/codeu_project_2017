@@ -129,6 +129,15 @@
 			            </configuration>
 			          </execution>
 			          <execution>
+			            <id>deleteTableForUI</id>
+			            <goals>
+			              <goal>java</goal>
+			            </goals>
+			            <configuration>
+			              <mainClass>codeu.chat.deleteTableForUI</mainClass>
+			            </configuration>
+			          </execution>
+			          <execution>
 			            <id>simpleGUI</id>
 			            <goals>
 			              <goal>java</goal>
