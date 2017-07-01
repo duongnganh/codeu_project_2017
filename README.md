@@ -2,7 +2,7 @@
 # TRAVEL CHAT
 [![Java 7](https://img.shields.io/badge/Java-7-blue.svg)](https://img.shields.io/badge/Java-7-blue.svg)  [![JavaFX 7](https://img.shields.io/badge/JavaFX-7-blue.svg)](https://img.shields.io/badge/JavaFX-7-blue.svg)  [![Google Cloud Bigtable](https://img.shields.io/badge/GoogleCloudBigtable-0.9.5.1-blue.svg)](https://img.shields.io/badge/GoogleCloudBigtable-0.9.5.1-blue.svg)  [![Maven](https://img.shields.io/badge/Maven-3.5.0-orange.svg)](https://img.shields.io/badge/Maven-3.5.0-orange.svg)  [![JFoenix](https://img.shields.io/badge/JFoenix-1.4.0-42ebf4.svg)](https://img.shields.io/badge/JFoenix-1.4.0-42ebf4.svg)
 
-Travel Chat is a chat application designed for travellers to connect and explore the cities they are visiting. This could include communicating with locals and sharing tips, and meeting up with other tourists at their favorite locations. Users can join cities and topics of conversation within them to chat other users. Travel Chat is built using Java 7, JavaFX 7 and it implements Google's Material UI design. It uses Google Cloud Bigtable to achieve data persistence. Please see Design Doc for more information.
+Travel Chat is a chat application designed for travellers to connect and explore the cities they are visiting. This could include communicating with locals and sharing tips, and meeting up with other tourists at their favorite locations. Users can join cities and topics of conversation within them to chat other users. Travel Chat is built using Java 7, JavaFX 7 and it implements Google's Material UI design. It uses Google Cloud Bigtable to achieve data persistence. Please see our [Design Doc](Design%20Doc.pdf) for more information.
 
 Please note that the latest version is on the master branch.
 
